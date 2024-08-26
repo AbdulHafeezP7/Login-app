@@ -19,7 +19,7 @@
         <div class="card mb-6">
           <h5 class="card-header">Add Article</h5>
           <div class="card-body">
-            <form id="addArticleForm" method="POST" enctype="multipart/form-data">
+            <form id="addArticleForm" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="title_en" class="form-label">Title(English)</label>
                 <input type="text" class="form-control" id="title_en" name="title_en">
@@ -123,6 +123,8 @@
   <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+  <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+
 
 
   <script>

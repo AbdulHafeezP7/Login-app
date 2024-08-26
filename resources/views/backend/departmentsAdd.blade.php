@@ -19,7 +19,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Department</h5>
                     <div class="card-body">
-                        <form id="addDepartmentForm" action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addDepartmentForm" class="needs-validation" novalidate action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="department_en" class="form-label">Department(English)</label>
@@ -58,6 +58,8 @@
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+    <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+
 
 
     <script>

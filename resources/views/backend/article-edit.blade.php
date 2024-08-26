@@ -11,7 +11,7 @@
         <div class="card-body">
             <h1 class="card-title">Edit Article</h1>
 
-            <form id="article-form" action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="article-form" class="needs-validation" novalidate action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -117,6 +117,8 @@
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+<script src="{{ asset('assets/js/form-validation.js') }}"></script>
+
 
 <script>
     $(document).ready(function() {

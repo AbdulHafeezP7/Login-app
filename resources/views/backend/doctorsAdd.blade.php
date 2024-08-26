@@ -19,14 +19,14 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Doctor</h5>
                     <div class="card-body">
-                        <form id="addDoctorForm" action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addDoctorForm" class="needs-validation" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name_en" class="form-label">Name (English)</label>
-                                <input type="text" class="form-control" id="name_en" name="name_en"  >
+                                <input type="text" class="form-control" id="name_en" name="name_en">
                             </div>
                             <div class="mb-3">
                                 <label for="name_ar" class="form-label">Name (Arabic)</label>
-                                <input type="text" class="form-control" id="name_ar" name="name_ar" >
+                                <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
 
 
@@ -39,7 +39,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="department" class="form-label">Department</label>
-                                <select class="form-control" id="department" name="department" >
+                                <select class="form-control" id="department" name="department">
                                     <option value="">Select a Department</option>
                                     @foreach($departments as $id=> $department_en)
                                     <option value="{{$id}}">{{$department_en}}</option>
@@ -67,6 +67,8 @@
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+    <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+
 
 
     <script>

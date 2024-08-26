@@ -87,7 +87,7 @@
                     orderable: false,
                     searchable: false,
                     render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
+                        return `<img src="${data}" style="width: 50px; height: 50px;">`;
                     }
                 },
                 {
