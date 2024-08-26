@@ -66,3 +66,4 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
 Route::get('/articleDetails/{surl}', [FrontEndController::class, 'articleDetails'])->name('articleDetails');
+Route::get('/about', [FrontEndController::class, 'about'])->name('about');

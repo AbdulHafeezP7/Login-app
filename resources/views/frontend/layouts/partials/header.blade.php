@@ -110,11 +110,11 @@
                     <div class="collapse navbar-collapse" id="navbarElm">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link" href="{{route('home')}}">
                                     الرئٌسٌة </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="abouts.php">
+                                <a class="nav-link" href="{{route('about')}}">
                                     من نحن </a>
                             </li>
                             <li class="nav-item dropdown">
@@ -122,27 +122,9 @@
                                     aria-haspopup="true" aria-expanded="false">
                                     األقسام </a>
                                 <div class="dropdown-menu " aria-labelledby="blogDropdown">
-                                    <a class="dropdown-item" href="service.php">قسم الجراحة العامة</a>
-                                    <a class="dropdown-item" href="service.php">قسم جراحة امراض السمنة</a>
-                                    <a class="dropdown-item" href="service.php">جراحة امراض الجهاز الهضمً</a>
-                                    <a class="dropdown-item" href="service.php">جراحة امراض الكلى</a>
-                                    <a class="dropdown-item" href="service.php">جراحة امراض االورام السرطانٌة</a>
-                                    <a class="dropdown-item" href="service.php">جراحة امراض القدم السكرٌة</a>
-                                    <a class="dropdown-item" href="service.php">جراحة الترمٌم والتجمٌل والحروق</a>
-                                    <a class="dropdown-item" href="service.php">قسم الجلدٌة واللٌزر والبشرة</a>
-                                    <a class="dropdown-item" href="service.php">قسم طب االطفال</a>
-                                    <a class="dropdown-item" href="service.php">قسم النساء والوالدة</a>
-                                    <a class="dropdown-item" href="service.php">قسم الروماتٌزم</a>
-                                    <a class="dropdown-item" href="service.php">قسم امراض العٌون</a>
-                                    <a class="dropdown-item" href="service.php">قسم االسنان وجراحة الوجه والفكٌن</a>
-                                    <a class="dropdown-item" href="service.php">قسم االشعة</a>
-                                    <a class="dropdown-item" href="service.php">قسم الطوارئ</a>
-                                    <a class="dropdown-item" href="service.php">قسم المختبر</a>
-                                    <a class="dropdown-item" href="service.php">قسم االنف واالذن والحنجرة</a>
-                                    <a class="dropdown-item" href="service.php">قسم اضطرابات النوم</a>
-                                    <a class="dropdown-item" href="service.php">قسم المسالك البولٌة</a>
-                                    <a class="dropdown-item" href="service.php">قسم التخدٌر</a>
-                                    <a class="dropdown-item" href="service.php">قسم الرعاٌة المنزلٌة</a>
+                                    @foreach($departments as $department)
+                                    <a class="dropdown-item" href="service.php">{{ $department->department_ar }}</a>
+                                    @endforeach
                                 </div>
                             </li>
 

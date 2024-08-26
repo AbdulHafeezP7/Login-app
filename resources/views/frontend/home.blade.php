@@ -24,7 +24,7 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('frontend/page/website2.webp')}}" draggable="false" alt="نوفر لكم أفضل خدمات الأسنان الجلدية و الطبية" loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('01.webp')}}" draggable="false" alt="نوفر لكم أفضل خدمات الأسنان الجلدية و الطبية" loading="eager">
                     </div>
                     <div class="slider__text">
                         <div class="container">
@@ -175,7 +175,7 @@
 
         <section class="about d-pad brd-top-rad">
             <div class="container about__container home-about-section">
-                <img class="about__container_img" src="{{ asset('frontend/frontend/uploads/settings/2022/02/24/01.webp')}}" alt="Dr Khalid Service" alt="about" draggable="false" loading="lazy">
+                <img class="about__container_img" src="{{ asset('01.webp')}}" alt="Dr Khalid Service" alt="about" draggable="false" loading="lazy">
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6">
                         <div class="about__text">
@@ -397,335 +397,25 @@
 
 
 
-                        <div class="features-one__box" hidden="">
-                            <div class="features-one__box__image">
-                                <img width="121" height="121" src="{{ asset('frontend/assets/images/cleenhearts-landing/feature-i-1-1.png')}}">
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">Customizer <br>
-                                Kirki Framework</h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-                        <div class="features-one__box" hidden="">
-                            <div class="features-one__box__image">
-                                <img width="121" height="121" src="{{ asset('frontend/assets/images/cleenhearts-landing/feature-i-1-2.png')}}" alt="Elementor Page Builder">
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">Elementor <br>
-                                Page Builder</h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div class="features-one__box" data-modals="modals-1">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-calendar-days"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةماعلا ةحارجلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-
-                        <!-- Modal 1 -->
-                        <div id="modals-1" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-1">&times;</span>
-                                <p>ةماعلا ةحارجلا مسق </p>
-                            </div>
-                        </div>
-
+                     
+@foreach($department as $row)
                         <div class="features-one__box" data-modals="modals-2">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-spa"></i>
+                            <div class="features-one__box__image">
+                                <img width="60" height="60" src="{{asset('images').'/'.$row->image}}" alt="{{$row->department_ar}}">
                             </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةنمسلا ضارما ةحارج مسق </h3><!-- /.features-one__box__title -->
+                            <h3 class="features-one__box__title">{{$row->department_ar}}</h3><!-- /.features-one__box__title -->
                         </div><!-- /.features-one__box -->
 
                         <!-- Modal 2 -->
                         <div id="modals-2" class="modals">
                             <div class="modals-contents">
                                 <span class="close" data-modals="modals-2">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
+                                <p>{{$row->department_details}}</p>
                             </div>
                         </div>
+@endforeach
 
-
-                        <div class="features-one__box" hidden="">
-                            <div class="features-one__box__image">
-                                <img width="121" height="121" src="{{ asset('frontend/assets/images/cleenhearts-landing/feature-i-1-5.png')}}" alt="One Click
-								Demo Import">
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">One Click <br>
-                                Demo Import</h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-
-
-                        <div class="features-one__box" data-modals="modals-3">
-                            <div class="sub_icon">
-                                <i class="fa-brands fa-hashnode"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ًمضهلا زاهجلا ضارما ةحارج </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-3" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-3">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-4">
-                            <div class="sub_icon">
-                                <i class="fa-brands fa-hotjar"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ًىلكلا ضارما ةحارج </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-4" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-4">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-5">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-hourglass-start"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةٌناطرسلا مارولاا ضارما ةحارج </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-5" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-5">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-6">
-                            <div class="sub_icon">
-                                <i class="fa-regular fa-heart"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةٌركسلا مدقلا ضارما ةحارج </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-6" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-6">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-7">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-hard-drive"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">قورحلاو لٌمجتلاو مٌمرتلا ةحارج </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-7" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-7">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-8">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-share-from-square"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةرشبلاو رزٌللاو ةٌدلجلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-8" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-8">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-9">
-                            <div class="sub_icon">
-                                <i class="fa-regular fa-circle-dot"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">لافطلاا بط مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-9" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-9">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-
-                        <div class="features-one__box" data-modals="modals-10">
-                            <div class="sub_icon">
-                                <i class="fa-regular fa-bell"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةدلاولاو ءاسنلا مسق</h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-10" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-10">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-
-                        <div class="features-one__box" data-modals="modals-11">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-person-circle-exclamation"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">مزٌتامورلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-11" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-11">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-
-                        <div class="features-one__box" data-modals="modals-12">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-download"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">نوٌعلا ضارما مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-12" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-12">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-13">
-                            <div class="sub_icon">
-                                <i class="fa-brands fa-google-scholar"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">نٌكفلاو هجولا ةحارجو نانسلاا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-13" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-13">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-14">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةعشلاا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-14" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-14">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-15">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-tarp"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ئراوطلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-15" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-15">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-16">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-server"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ربتخملا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-16" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-16">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-17">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-code-branch"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةرجنحلاو نذلااو فنلاا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-17" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-17">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-18">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-money-bills"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">مونلا تابارطضا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-18" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-18">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-
-                        <div class="features-one__box" data-modals="modals-19">
-                            <div class="sub_icon">
-                                <i class="fa-brands fa-square-odnoklassniki"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةٌلوبلا كلاسملا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-19" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-19">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-
-                        <div class="features-one__box" data-modals="modals-20">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-infinity"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">رٌدختلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-20" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-20">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
-                        <div class="features-one__box" data-modals="modals-21">
-                            <div class="sub_icon">
-                                <i class="fa-solid fa-heart-circle-exclamation"></i>
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">ةٌلزنملا ةٌاعرلا مسق </h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <div id="modals-21" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-21">&times;</span>
-                                <p>ةنمسلا ضارما ةحارج مسق </p>
-                            </div>
-                        </div>
-
+                       
 
 
 
@@ -773,7 +463,7 @@
                                     </div>
                                     <div class="service__title">
                                         <div class="d-flex justify-content-between mt-3 color-text-secondary">
-                                            <h3 class="h6">{{$item->title}}</h3>
+                                            <h3 class="h6">{{$item->title_ar}}</h3>
                                         </div>
                                     </div>
                                 </a>
@@ -829,6 +519,7 @@
                                 <div class="swiper-wrapper">
 
                                     @foreach ($doctors as $item)
+                                   
                                     <div class="swiper-slide">
                                         <div class="doctor">
 
@@ -837,7 +528,7 @@
                                             </div>
                                             <div class="doctor__text">
                                                 <h3 class="h6">{{$item->department_name}}</h3>
-                                                <p>{{$item->name}}</p>
+                                                <p>{{$item->name_ar}}</p>
 
                                             </div>
                                         </div>
