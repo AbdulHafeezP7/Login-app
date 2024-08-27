@@ -1,6 +1,6 @@
 @extends('backend.layouts.backendLayout')
 
-@section('title', 'Department')
+@section('title', 'Branch')
 
 @section('content')
 <!-- <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script> -->
@@ -8,25 +8,29 @@
 <div id="content-area">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Department</h1>
+            <h1 class="card-title">Branch</h1>
             <!-- Button to Open the Modal -->
             <div class="d-flex justify-content-end mb-3">
-                <a href="{{route('departments.add')}}"><button type="button" class="btn btn-primary">
-                        Add New Department
+                <a href="{{route('branchs.add')}}"><button type="button" class="btn btn-primary">
+                        Add New Branch
                     </button></a>
             </div>
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
 
-            <!-- Departments Table -->
-            <table class="table table-bordered mt-4" id="departments-table">
+            <!-- Branchs Table -->
+            <table class="table table-bordered mt-4" id="branchs-table">
                 <thead>
                     <tr>
-                        <th>Department (English)</th>
-                        <th>Department (Arabic)</th>
-                        <th>Department Image</th>
-                        <th>Department Details</th>
+                        <th>Branch Name(English)</th>
+                        <th>Branch Name(Arabic)</th>
+                        <th>Branch Manager Name</th>
+                        <th>Branch Location</th>
+                        <th>Branch Address</th>
+                        <th>Branch Social Media Link</th>
+                        <th>Branch Office Number</th>
+                        <th>Branch Manager Number</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -64,38 +68,64 @@
         }
 
         // Initialize DataTable
-        var table = $('#departments-table').DataTable({
+        var table = $('#branchs-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('departments.dataTablesForDepartments') }}",
+            ajax: "{{ route('branchs.dataTablesForBranchs') }}",
             columns: [{
-                    data: 'department_en',
-                    name: 'department_en',
+                    data: 'branchname_en',
+                    name: 'branchname_en',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
-                    data: 'department_ar',
-                    name: 'department_ar',
+                    data: 'branchname_ar',
+                    name: 'branchname_ar',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
-                    data: 'image',
-                    name: 'image',
-                    orderable: false,
-                    searchable: false,
+                    data: 'branchmanager_name',
+                    name: 'branchmanager_name',
                     render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
+                        return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
-                    data: 'department_details',
-                    name: 'department_details',
+                    data: 'branch_location',
+                    name: 'branch_location',
                     render: function(data) {
-                        return data ? data.substring(0, 23) + '' : '';
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: 'branch_address',
+                    name: 'branch_address',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: 'branchsocial_link',
+                    name: 'branchsocial_link',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: 'branchoffice_number',
+                    name: 'branchoffice_number',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: 'branchmanager_number',
+                    name: 'branchmanager_number',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
@@ -109,36 +139,36 @@
                     searchable: false,
                     render: function(data, type, row) {
                         return `
-                    <button type="button" class="btn btn-info view-department" data-id="${row.id}"><i class="fa-solid fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning edit-department" data-id="${row.id}"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button type="button" class="btn btn-danger delete-department" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
+                    <button type="button" class="btn btn-info view-branch" data-id="${row.id}"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning edit-branch" data-id="${row.id}"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button type="button" class="btn btn-danger delete-branch" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
                 `;
                     }
                 }
             ],
             order: [
-                [4, 'desc']
+                [8, 'desc']
             ]
         });
 
-        // View Department
-        $('#departments-table').on('click', '.view-department', function() {
-            var departmentId = $(this).data('id');
-            window.location.href = "{{ url('departments') }}/" + departmentId + "/show";
+        // View Branch
+        $('#branchs-table').on('click', '.view-branch', function() {
+            var branchId = $(this).data('id');
+            window.location.href = "{{ url('branchs') }}/" + branchId + "/show";
         });
 
-        // Edit Department
-        $('#departments-table').on('click', '.edit-department', function() {
-            var departmentId = $(this).data('id');
-            window.location.href = "{{ url('departments') }}/" + departmentId + "/edit";
+        // Edit Branch
+        $('#branchs-table').on('click', '.edit-branch', function() {
+            var branchId = $(this).data('id');
+            window.location.href = "{{ url('branchs') }}/" + branchId + "/edit";
         });
 
-        // Delete Department
-        $('#departments-table').on('click', '.delete-department', function() {
-            var departmentId = $(this).data('id');
-            if (confirm('Are you sure you want to delete this department?')) {
+        // Delete Branch
+        $('#branchs-table').on('click', '.delete-branch', function() {
+            var branchId = $(this).data('id');
+            if (confirm('Are you sure you want to delete this branch?')) {
                 $.ajax({
-                    url: "{{ url('departments') }}/" + departmentId + "/delete",
+                    url: "{{ url('branchs') }}/" + branchId + "/delete",
                     type: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'
@@ -147,7 +177,7 @@
                         if (response.status) {
                             Swal.fire({
                                 title: 'Good job!',
-                                text: 'Department deleted successfully!',
+                                text: 'Branch deleted successfully!',
                                 icon: 'success',
                                 customClass: {
                                     confirmButton: 'btn btn-primary waves-effect waves-light'
@@ -155,16 +185,16 @@
                                 buttonsStyling: false
                             }).then(() => {
                                 setTimeout(() => {
-                                    window.location.href = "{{route('departments.index')}}"; // Replace with the URL of the page you want to redirect to
+                                    window.location.href = "{{route('branchs.index')}}"; // Replace with the URL of the page you want to redirect to
                                 }, 0); // 2000 milliseconds = 2 seconds
                             });
                             // location.reload(); 
                         } else {
-                            console.log('Error deleting department: ' + response.message);
+                            console.log('Error deleting branch: ' + response.message);
                         }
                     },
                     error: function(xhr) {
-                        console.log('Error deleting department: ' + (xhr.responseJSON.message || 'Unknown error'));
+                        console.log('Error deleting branch: ' + (xhr.responseJSON.message || 'Unknown error'));
                     }
                 });
             }

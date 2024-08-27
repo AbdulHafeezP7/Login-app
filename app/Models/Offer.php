@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Offer extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'department_en',
-        'department_ar',
+        'offer_en',
+        'offer_ar',
         'image',
-        'department_details',
+        'actual_price',
+        'offer_price',
     ];
 }

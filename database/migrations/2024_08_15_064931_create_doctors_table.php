@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('name_ar');
             $table->string('department');
             $table->string('image')->nullable();
-            $table->boolean('frontpage')->default(false);
+            $table->boolean('availability')->default(false);
             $table->timestamps();
         });
     }

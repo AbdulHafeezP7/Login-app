@@ -4,9 +4,11 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 // Registration Routes
@@ -49,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/doctors/{id}/update', [DoctorController::class, 'update'])->name('doctors.update');
     Route::delete('/doctors/{id}/delete', [DoctorController::class, 'destroy'])->name('doctors.destroy');
     Route::get('/doctors/{id}/show', [DoctorController::class, 'show'])->name('doctors.show');
-    Route::post('/doctors/{id}/toggle-frontpage', [DoctorController::class, 'toggleFrontpage'])->name('doctors.toggleFrontpage');
+    Route::post('/doctors/{id}/toggle-availability', [DoctorController::class, 'toggleAvailibility'])->name('doctors.toggleAvailibility');
 
 
     // Department Routes
@@ -63,6 +65,32 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/departments/{id}/delete', [DepartmentController::class, 'destroy'])->name('departments.destroy');
     Route::get('/departments/{id}/show', [DepartmentController::class, 'show'])->name('departments.show');
     // Route::get('/departments', [DepartmentController::class, 'getDepartment']);
+
+
+    // Branch Routes
+    Route::get('branchs', [BranchController::class, 'index'])->name('branchs.index');
+    Route::post('branchs/store', [BranchController::class, 'store'])->name('branchs.store');
+    Route::get('branchs/dataTablesForBranchs', [BranchController::class, 'dataTablesForBranchs'])->name('branchs.dataTablesForBranchs');
+    // Route::resource('branchs', BranchController::class);
+    Route::get('/branchs/{id}/edit', [BranchController::class, 'edit'])->name('branchs.edit');
+    Route::get('/branchs/addBranchs', [BranchController::class, 'addBranchs'])->name('branchs.add');
+    Route::put('/branchs/{id}/update', [BranchController::class, 'update'])->name('branchs.update');
+    Route::delete('/branchs/{id}/delete', [BranchController::class, 'destroy'])->name('branchs.destroy');
+    Route::get('/branchs/{id}/show', [BranchController::class, 'show'])->name('branchs.show');
+    // Route::get('/branchs', [BranchController::class, 'getBranch']);
+
+
+    // Offer Routes
+    Route::get('offers', [OfferController::class, 'index'])->name('offers.index');
+    Route::post('offers/store', [OfferController::class, 'store'])->name('offers.store');
+    Route::get('offers/dataTablesForOffers', [OfferController::class, 'dataTablesForOffers'])->name('offers.dataTablesForOffers');
+    // Route::resource('offers', OfferController::class);
+    Route::get('/offers/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
+    Route::get('/offers/addOffers', [OfferController::class, 'addOffers'])->name('offers.add');
+    Route::put('/offers/{id}/update', [OfferController::class, 'update'])->name('offers.update');
+    Route::delete('/offers/{id}/delete', [OfferController::class, 'destroy'])->name('offers.destroy');
+    Route::get('/offers/{id}/show', [OfferController::class, 'show'])->name('offers.show');
+    // Route::get('/offers', [OfferController::class, 'getOffer']);
 });
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
 Route::get('/articleDetails/{surl}', [FrontEndController::class, 'articleDetails'])->name('articleDetails');

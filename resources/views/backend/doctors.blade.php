@@ -25,7 +25,7 @@
                         <th>Name (Arabic)</th>
                         <th>Doctor Image</th>
                         <th>Department</th>
-                        <th>Frontpage</th>
+                        <th>Availability</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -95,13 +95,13 @@
                     name: 'department'
                 },
                 {
-                    data: 'frontpage',
-                    name: 'frontpage',
+                    data: 'availability',
+                    name: 'availability',
                     render: function(data, type, row) {
                         var checked = data ? 'checked' : '';
                         return `
                         <div class="form-check form-switch mb-2">
-                            <input class="form-check-input toggle-frontpage" type="checkbox" style="width:60%" data-id="${row.id}" ${checked}>
+                            <input class="form-check-input toggle-availability" type="checkbox" style="width:60%" data-id="${row.id}" ${checked}>
                         </div>`;
                     },
                     orderable: false,
@@ -126,31 +126,31 @@
                 }
             ],
             order: [
-                [1, 'desc']
+                [5, 'desc']
             ]
         });
 
-        // Toggle frontpage status
-        $('#doctors-table').on('change', '.toggle-frontpage', function() {
+        // Toggle availability status
+        $('#doctors-table').on('change', '.toggle-availability', function() {
             var doctorId = $(this).data('id');
-            var frontpageStatus = $(this).is(':checked') ? 1 : 0;
+            var availabilityStatus = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: "{{ url('doctors') }}/" + doctorId + "/toggle-frontpage",
+                url: "{{ url('doctors') }}/" + doctorId + "/toggle-availability",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
-                    frontpage: frontpageStatus
+                    availability: availabilityStatus
                 },
                 success: function(response) {
                     if (response.status) {
-                        showAlert('Frontpage status updated successfully!', 'success', 'alert-box1');
+                        showAlert('availability status updated successfully!', 'success', 'alert-box1');
                     } else {
-                        showAlert('Failed to update frontpage status.', 'danger', 'alert-box1');
+                        showAlert('Failed to update availability status.', 'danger', 'alert-box1');
                     }
                 },
                 error: function(xhr) {
-                    showAlert('Error updating frontpage status: ' + (xhr.responseJSON.message || 'Unknown error'), 'danger', 'alert-box1');
+                    showAlert('Error updating availability status: ' + (xhr.responseJSON.message || 'Unknown error'), 'danger', 'alert-box1');
                 }
             });
         });

@@ -1,6 +1,6 @@
 @extends('backend.layouts.backendLayout')
 
-@section('title', 'Department')
+@section('title', 'Offer')
 
 @section('content')
 <!-- <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script> -->
@@ -8,25 +8,26 @@
 <div id="content-area">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Department</h1>
+            <h1 class="card-title">Offer</h1>
             <!-- Button to Open the Modal -->
             <div class="d-flex justify-content-end mb-3">
-                <a href="{{route('departments.add')}}"><button type="button" class="btn btn-primary">
-                        Add New Department
+                <a href="{{route('offers.add')}}"><button type="button" class="btn btn-primary">
+                        Add New Offer
                     </button></a>
             </div>
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
 
-            <!-- Departments Table -->
-            <table class="table table-bordered mt-4" id="departments-table">
+            <!-- Offers Table -->
+            <table class="table table-bordered mt-4" id="offers-table">
                 <thead>
                     <tr>
-                        <th>Department (English)</th>
-                        <th>Department (Arabic)</th>
-                        <th>Department Image</th>
-                        <th>Department Details</th>
+                        <th>Offer Name (English)</th>
+                        <th>Offer Name (Arabic)</th>
+                        <th>Offer Image</th>
+                        <th>Actual Price</th>
+                        <th>Offer Price</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -64,20 +65,20 @@
         }
 
         // Initialize DataTable
-        var table = $('#departments-table').DataTable({
+        var table = $('#offers-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('departments.dataTablesForDepartments') }}",
+            ajax: "{{ route('offers.dataTablesForOffers') }}",
             columns: [{
-                    data: 'department_en',
-                    name: 'department_en',
+                    data: 'offer_en',
+                    name: 'offer_en',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
-                    data: 'department_ar',
-                    name: 'department_ar',
+                    data: 'offer_ar',
+                    name: 'offer_ar',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
                     }
@@ -92,8 +93,15 @@
                     }
                 },
                 {
-                    data: 'department_details',
-                    name: 'department_details',
+                    data: 'actual_price',
+                    name: 'actual_price',
+                    render: function(data) {
+                        return data ? data.substring(0, 23) + '' : '';
+                    }
+                },
+                {
+                    data: 'offer_price',
+                    name: 'offer_price',
                     render: function(data) {
                         return data ? data.substring(0, 23) + '' : '';
                     }
@@ -109,36 +117,36 @@
                     searchable: false,
                     render: function(data, type, row) {
                         return `
-                    <button type="button" class="btn btn-info view-department" data-id="${row.id}"><i class="fa-solid fa-eye"></i></button>
-                    <button type="button" class="btn btn-warning edit-department" data-id="${row.id}"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button type="button" class="btn btn-danger delete-department" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
+                    <button type="button" class="btn btn-info view-offer" data-id="${row.id}"><i class="fa-solid fa-eye"></i></button>
+                    <button type="button" class="btn btn-warning edit-offer" data-id="${row.id}"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button type="button" class="btn btn-danger delete-offer" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
                 `;
                     }
                 }
             ],
             order: [
-                [4, 'desc']
+                [5, 'desc']
             ]
         });
 
-        // View Department
-        $('#departments-table').on('click', '.view-department', function() {
-            var departmentId = $(this).data('id');
-            window.location.href = "{{ url('departments') }}/" + departmentId + "/show";
+        // View Offer
+        $('#offers-table').on('click', '.view-offer', function() {
+            var offerId = $(this).data('id');
+            window.location.href = "{{ url('offers') }}/" + offerId + "/show";
         });
 
-        // Edit Department
-        $('#departments-table').on('click', '.edit-department', function() {
-            var departmentId = $(this).data('id');
-            window.location.href = "{{ url('departments') }}/" + departmentId + "/edit";
+        // Edit Offer
+        $('#offers-table').on('click', '.edit-offer', function() {
+            var offerId = $(this).data('id');
+            window.location.href = "{{ url('offers') }}/" + offerId + "/edit";
         });
 
-        // Delete Department
-        $('#departments-table').on('click', '.delete-department', function() {
-            var departmentId = $(this).data('id');
-            if (confirm('Are you sure you want to delete this department?')) {
+        // Delete Offer
+        $('#offers-table').on('click', '.delete-offer', function() {
+            var offerId = $(this).data('id');
+            if (confirm('Are you sure you want to delete this offer?')) {
                 $.ajax({
-                    url: "{{ url('departments') }}/" + departmentId + "/delete",
+                    url: "{{ url('offers') }}/" + offerId + "/delete",
                     type: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'
@@ -147,7 +155,7 @@
                         if (response.status) {
                             Swal.fire({
                                 title: 'Good job!',
-                                text: 'Department deleted successfully!',
+                                text: 'Offer deleted successfully!',
                                 icon: 'success',
                                 customClass: {
                                     confirmButton: 'btn btn-primary waves-effect waves-light'
@@ -155,16 +163,16 @@
                                 buttonsStyling: false
                             }).then(() => {
                                 setTimeout(() => {
-                                    window.location.href = "{{route('departments.index')}}"; // Replace with the URL of the page you want to redirect to
+                                    window.location.href = "{{route('offers.index')}}"; // Replace with the URL of the page you want to redirect to
                                 }, 0); // 2000 milliseconds = 2 seconds
                             });
                             // location.reload(); 
                         } else {
-                            console.log('Error deleting department: ' + response.message);
+                            console.log('Error deleting offer: ' + response.message);
                         }
                     },
                     error: function(xhr) {
-                        console.log('Error deleting department: ' + (xhr.responseJSON.message || 'Unknown error'));
+                        console.log('Error deleting offer: ' + (xhr.responseJSON.message || 'Unknown error'));
                     }
                 });
             }

@@ -164,10 +164,10 @@ class DoctorController extends Controller
         return view('backend.doctor-show', compact('doctor'));
     }
 
-    public function toggleFrontpage(Request $request, $id)
+    public function toggleAvailibility(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);
-        $doctor->frontpage = $request->input('frontpage');
+        $doctor->availability = $request->input('availability');
         if ($doctor->save()) {
             return response()->json(['status' => true]);
         } else {

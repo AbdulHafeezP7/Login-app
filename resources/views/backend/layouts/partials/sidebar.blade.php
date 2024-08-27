@@ -70,7 +70,18 @@
         <div data-i18n="Department">Department</div>
       </a>
     </li>
-
+    <li class="menu-item">
+      <a href="{{ route('branchs.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-network-wired"></i>
+        <div data-i18n="Branch">Branch</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="{{ route('offers.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-tags"></i>
+        <div data-i18n="Offer">Offer</div>
+      </a>
+    </li>
     <li class="menu-item">
       <a href="{{route('activities')}}" class="menu-link">
         <i class="menu-icon fa-solid fa-chart-line"></i>
