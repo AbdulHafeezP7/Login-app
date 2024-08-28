@@ -1,4 +1,4 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/offersAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
 
 @section('title', 'AddOffer')
@@ -35,11 +35,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="actual_price" class="form-label">Actual Price</label>
-                                <input type="text" class="form-control" id="actual_price" name="actual_price">
+                                <input type="number" class="form-control" id="actual_price" name="actual_price" aria-label="Product price" fdprocessedid="2ibxem">
+
                             </div>
                             <div class="mb-3">
                                 <label for="offer_price" class="form-label">Offer Price</label>
-                                <input type="text" class="form-control" id="offer_price" name="offer_price">
+                                <input type="number" class="form-control" id="offer_price" name="productPrice" aria-label="Product price" fdprocessedid="2ibxem">
                             </div>
 
                             <div class="row justify-content-end">

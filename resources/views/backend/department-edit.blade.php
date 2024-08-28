@@ -35,10 +35,12 @@
                     <label for="department_details" class="form-label">Department Details</label>
                     <textarea class="form-control" id="department_details" name="department_details" rows="4">{{ old('department_details', $department->department_details) }}</textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="slug" class="form-label">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $department->slug) }}">
+                </div>
 
-                <!-- Hidden input fields for Quill editor content
-                <input type="hidden" id="content_en_data" name="department_en" value="{{ old('department_en', $department->department_en) }}">
-                <input type="hidden" id="content_ar_data" name="department_ar" value="{{ old('department_ar', $department->department_ar) }}"> -->
+                
 
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('departments.index') }}" class="btn btn-secondary">Cancel</a>
@@ -55,36 +57,9 @@
 
 <script>
     $(document).ready(function() {
-        // const snowEditor = new Quill('#snow-editor', {
-        //     bounds: '#snow-editor',
-        //     modules: {
-        //         formula: true,
-        //         toolbar: '#snow-toolbar'
-        //     },
-        //     theme: 'snow'
-        // });
-
-        // const snowEditor1 = new Quill('#snow-editor1', {
-        //     bounds: '#snow-editor1',
-        //     modules: {
-        //         formula: true,
-        //         toolbar: '#snow-toolbar1'
-        //     },
-        //     theme: 'snow'
-        // });
-
-        // const departmentEnContent = $('#content_en_data').val();
-        // const departmentArContent = $('#content_ar_data').val();
-
-        // snowEditor.root.innerHTML = departmentEnContent;
-        // snowEditor1.root.innerHTML = departmentArContent;
 
         $('#department-form').on('submit', function(e) {
             e.preventDefault();
-
-            // // Update hidden fields with Quill editor content
-            // $('#content_en_data').val(snowEditor.root.innerHTML);
-            // $('#content_ar_data').val(snowEditor1.root.innerHTML);
 
             let formData = new FormData(this);
 
@@ -106,10 +81,10 @@
                             buttonsStyling: false
                         }).then(() => {
                             setTimeout(() => {
-                                window.location.href = "{{route('departments.index')}}"; // Replace with the URL of the page you want to redirect to
-                            }, 0); // 2000 milliseconds = 2 seconds
+                                window.location.href = "{{route('departments.index')}}"; 
+                            }, 0); 
                         });
-                        // location.reload(); 
+                       
                     } else {
                         console.log('Error updating department: ' + response.message);
                     }

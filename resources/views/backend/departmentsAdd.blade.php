@@ -1,4 +1,4 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/departmentsAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
 
 @section('title', 'AddDepartment')
@@ -37,7 +37,11 @@
                                 <label for="department_details" class="form-label">Department Details</label>
                                 <textarea class="form-control" id="department_details" name="department_details" rows="4"></textarea>
                             </div>
-
+                            <div class="mb-3">
+                                <label for="slug" class="form-label">Slug</label>
+                                <input type="text" class="form-control" id="slug" name="slug">
+                            </div>
+                            
                             <div class="row justify-content-end">
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-primary">Save</button>

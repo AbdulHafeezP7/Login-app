@@ -27,6 +27,7 @@
                         <th>Department (Arabic)</th>
                         <th>Department Image</th>
                         <th>Department Details</th>
+                        <th>Slug</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -99,6 +100,10 @@
                     }
                 },
                 {
+                    data: 'slug',
+                    name: 'slug'
+                },
+                {
                     data: 'created_at',
                     name: 'created_at'
                 },
@@ -117,7 +122,7 @@
                 }
             ],
             order: [
-                [4, 'desc']
+                [5, 'desc']
             ]
         });
 

@@ -38,6 +38,9 @@ class DepartmentController extends Controller
                 ->addColumn('department_details', function ($row) {
                     return $row->department_details;
                 })
+                ->addColumn('slug', function ($row) {
+                    return $row->slug;
+                })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -49,6 +52,9 @@ class DepartmentController extends Controller
                 })
                 ->filterColumn('department_details', function ($query, $keyword) {
                     $query->where('department_details', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('slug', function ($query, $keyword) {
+                    $query->where('slug', 'like', "%{$keyword}%");
                 })
                 ->make(true);
         }
@@ -62,16 +68,12 @@ class DepartmentController extends Controller
     {
 
         try {
-            $request->validate([
-                'department_en' => 'required|string|max:255',
-                'department_ar' => 'required|string|max:255',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|required',
-                'department_details' => 'required|string',
-            ]);
+            
             $department = new Department;
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;
+            $department->slug = $request->slug;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
@@ -108,10 +110,14 @@ class DepartmentController extends Controller
                 'department_ar' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
                 'department_details' => 'required|string',
+                'slug' => 'required|string|max:255|unique:departments,slug,' . $id,
+            ], [
+                'slug.unique' => 'The slug should be unique.',
             ]);
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;
+            $department->slug = $request->slug;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);

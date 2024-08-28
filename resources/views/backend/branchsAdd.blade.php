@@ -1,4 +1,4 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/branchsAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
 
 @section('title', 'AddBranch')
@@ -35,7 +35,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branch_location" class="form-label">Branch Location</label>
-                                <input type="text" class="form-control" id="branch_location" name="branch_location">
+                                <input type="url" class="form-control" id="branch_location" name="branch_location">
                             </div>
                             <div class="mb-3">
                                 <label for="branch_address" class="form-label">Branch Address</label>
@@ -47,11 +47,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branchoffice_number" class="form-label">Branch Office Number</label>
-                                <input type="text" class="form-control" id="branchoffice_number" name="branchoffice_number">
+                                <input type="tel" class="form-control" id="branchoffice_number" name="branchoffice_number">
                             </div>
                             <div class="mb-3">
                                 <label for="branchmanager_number" class="form-label">Branch Manager Number</label>
-                                <input type="text" class="form-control" id="branchmanager_number" name="branchmanager_number">
+                                <input type="tel" class="form-control" id="branchmanager_number" name="branchmanager_number">
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-6">

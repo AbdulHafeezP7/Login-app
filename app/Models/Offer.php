@@ -9,6 +9,8 @@ class Offer extends Model
 {
     use HasFactory;
 
+    protected $table = 'offers';
+
     protected $fillable = [
         'offer_en',
         'offer_ar',

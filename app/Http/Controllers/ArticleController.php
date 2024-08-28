@@ -73,17 +73,7 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        try {
-            $request->validate([
-                'title_en' => 'required|string|max:255',
-                'title_ar' => 'required|string|max:255',
-                'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'content_en' => ['required', new NotEmptyHtml],
-                'content_ar' => ['required', new NotEmptyHtml],
-                'slug' => 'required|string|unique:articles,slug|max:255',
-            ], [
-                'slug.unique' => 'The slug should be unique.',
-            ]);
+        try {                             
 
             $article = new Article;
             $article->title_en = $request->title_en;
@@ -126,8 +116,8 @@ class ArticleController extends Controller
             $request->validate([
                 'title_en' => 'required|string|max:255',
                 'title_ar' => 'required|string|max:255',
-                // 'content_en' => 'required',
-                // 'content_ar' => 'required',
+                'content_en' => 'nullable',
+                'content_ar' => 'nullable',
                 'slug' => 'required|string|max:255|unique:articles,slug,' . $id,
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             ], [

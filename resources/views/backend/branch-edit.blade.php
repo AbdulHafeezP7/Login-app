@@ -11,7 +11,7 @@
         <div class="card-body">
             <h1 class="card-title">Edit Branch</h1>
 
-            <form id="branch-form" class="needs-validation" novalidate action="{{ route('branchs.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="branch-form" action="{{ route('branchs.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -55,10 +55,6 @@
                     <input type="text" class="form-control" id="branchmanager_number" name="branchmanager_number" value="{{ old('branchmanager_number', $branch->branchmanager_number) }}">
                 </div>
 
-                <!-- Hidden input fields for Quill editor content
-                <input type="hidden" id="content_en_data" name="branch_en" value="{{ old('branch_en', $branch->branch_en) }}">
-                <input type="hidden" id="content_ar_data" name="branch_en" value="{{ old('branch_en', $branch->branch_en) }}"> -->
-
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('branchs.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
@@ -69,41 +65,13 @@
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-<script src="{{ asset('assets/js/form-validation.js') }}"></script>
+<script src="{{ asset('assets/js/branch-form-validation.js') }}"></script>
 
 
 <script>
     $(document).ready(function() {
-        // const snowEditor = new Quill('#snow-editor', {
-        //     bounds: '#snow-editor',
-        //     modules: {
-        //         formula: true,
-        //         toolbar: '#snow-toolbar'
-        //     },
-        //     theme: 'snow'
-        // });
-
-        // const snowEditor1 = new Quill('#snow-editor1', {
-        //     bounds: '#snow-editor1',
-        //     modules: {
-        //         formula: true,
-        //         toolbar: '#snow-toolbar1'
-        //     },
-        //     theme: 'snow'
-        // });
-
-        // const branchEnContent = $('#content_en_data').val();
-        // const branchArContent = $('#content_ar_data').val();
-
-        // snowEditor.root.innerHTML = branchEnContent;
-        // snowEditor1.root.innerHTML = branchEnContent;
-
         $('#branch-form').on('submit', function(e) {
             e.preventDefault();
-
-            // // Update hidden fields with Quill editor content
-            // $('#content_en_data').val(snowEditor.root.innerHTML);
-            // $('#content_ar_data').val(snowEditor1.root.innerHTML);
 
             let formData = new FormData(this);
 
@@ -125,10 +93,9 @@
                             buttonsStyling: false
                         }).then(() => {
                             setTimeout(() => {
-                                window.location.href = "{{route('branchs.index')}}"; // Replace with the URL of the page you want to redirect to
-                            }, 0); // 2000 milliseconds = 2 seconds
+                                window.location.href = "{{route('branchs.index')}}"; 
+                            }, 0); 
                         });
-                        // location.reload(); 
                     } else {
                         console.log('Error updating branch: ' + response.message);
                     }

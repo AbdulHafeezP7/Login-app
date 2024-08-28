@@ -1,4 +1,4 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/articlesAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
 
 @section('title', 'AddArticle')
@@ -146,13 +146,11 @@
         theme: 'snow'
       });
 
-      // Submit form
       $('#addArticleForm').on('submit', function(e) {
         e.preventDefault();
         let contentEn = snowEditor.root.innerHTML;
         let contentAr = snowEditor1.root.innerHTML;
 
-        // Add content to hidden input fields
         $('<input>').attr({
           type: 'hidden',
           name: 'content_en',
@@ -165,7 +163,6 @@
           value: contentAr
         }).appendTo('#addArticleForm');
 
-        // var formData = new FormData(this);
         var formData = new FormData(this);
         $.ajax({
           url: "{{ route('articles.store') }}",
@@ -190,7 +187,6 @@
           },
           error: function(xhr) {
             if (xhr.status === 422) {
-              // Clear previous errors
               $('.invalid-feedback').remove();
 
               let errors = xhr.responseJSON.errors;
@@ -199,10 +195,8 @@
                 let errorMessage = errors[field][0];
                 let inputField = $('#' + field);
 
-                // Create a div for error message
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
 
-                // Append error message below the input field
                 inputField.after(errorDiv);
                 inputField.addClass('is-invalid');
               }

@@ -1,4 +1,4 @@
-<!-- resources/views/home.blade.php -->
+<!-- resources/views/doctorsAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
 
 @section('title', 'AddDoctor')
@@ -20,15 +20,18 @@
                     <h5 class="card-header">Add Doctor</h5>
                     <div class="card-body">
                         <form id="addDoctorForm" class="needs-validation" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="name_en" class="form-label">Name (English)</label>
+
+                            <label for="name_en" class="form-label">Name (English)</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_en" name="name_en">
                             </div>
-                            <div class="mb-3">
-                                <label for="name_ar" class="form-label">Name (Arabic)</label>
+
+                            <label for="name_ar" class="form-label">Name (Arabic)</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
-
 
                             <div class="mb-3" id="doctorImg">
                                 <label for="image" class="form-label">Doctor Image</label>
@@ -37,6 +40,7 @@
                             <div class="mb-3" id="imgdiv" style="display: none;">
                                 <img id="doctorImage" src="" alt="" width="100px" height="100px">
                             </div>
+
                             <div class="mb-3">
                                 <label for="department" class="form-label">Department</label>
                                 <select class="form-control" id="department" name="department">
@@ -74,12 +78,19 @@
     <script>
         $(document).ready(function() {
             $('#addDoctorForm').on('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
+                e.preventDefault(); 
+
+                var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val();
+                var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val();
+
+                $('#name_en').val(nameEnFull);
+                $('#name_ar').val(nameArFull);
+
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: "{{ route('doctors.store') }}", // Ensure this is the correct URL
-                    type: 'POST', // Ensure the request method is POST
+                    url: "{{ route('doctors.store') }}", 
+                    type: 'POST', 
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -102,7 +113,7 @@
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
-                            // Clear previous errors
+                           
                             $('.invalid-feedback').remove();
 
                             let errors = xhr.responseJSON.errors;
@@ -111,10 +122,10 @@
                                 let errorMessage = errors[field][0];
                                 let inputField = $('#' + field);
 
-                                // Create a div for error message
+                                
                                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
 
-                                // Append error message below the input field
+                               
                                 inputField.after(errorDiv);
                                 inputField.addClass('is-invalid');
                             }

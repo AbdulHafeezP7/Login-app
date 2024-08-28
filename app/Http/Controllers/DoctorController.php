@@ -66,12 +66,7 @@ class DoctorController extends Controller
     {
 
         try {
-            $request->validate([
-                'name_en' => 'required|string|max:255',
-                'name_ar' => 'required|string|max:255',
-                'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'department' => 'required|string',
-            ]);
+            
             $doctor = new Doctor;
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
@@ -108,9 +103,19 @@ class DoctorController extends Controller
             $doctor = Doctor::findOrFail($id);
 
             $request->validate([
-                'name_en' => 'required|string|max:255',
-                'name_ar' => 'required|string|max:255',
-                // 'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'name_en' => [
+                    'required',
+                    'regex:/^Dr\.\s.+$/',
+                    'string',
+                    'max:255'
+                ],
+                'name_ar' => [
+                    'required',
+                    'regex:/^Dr\.\s.+$/',
+                    'string',
+                    'max:255'
+                ],
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'department' => 'required|string',
             ]);
 

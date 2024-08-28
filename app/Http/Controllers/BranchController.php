@@ -19,9 +19,7 @@ class BranchController extends Controller
     {
         if ($request->ajax()) {
             $query = Branch::query();
-            // $query = DB::table('branchs')::query();
-
-
+            
             return DataTables::of($query)
                 ->addColumn('branchname_en', function ($row) {
                     return $row->branchname_en;
@@ -86,16 +84,7 @@ class BranchController extends Controller
     {
 
         try {
-            $request->validate([
-                'branchname_en' => 'required|string|max:255',
-                'branchname_ar' => 'required|string|max:255',
-                'branchmanager_name' => 'required|string|max:255',
-                'branch_location' => 'required|string|max:255',
-                'branch_address' => 'required|string',
-                'branchsocial_link' => 'required|string|max:255',
-                'branchoffice_number' => 'required|string|max:255',
-                'branchmanager_number' => 'required|string|max:255',
-            ]);
+            
             $branch = new Branch;
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;
@@ -136,11 +125,19 @@ class BranchController extends Controller
                 'branchname_en' => 'required|string|max:255',
                 'branchname_ar' => 'required|string|max:255',
                 'branchmanager_name' => 'required|string|max:255',
-                'branch_location' => 'required|string|max:255',
+                'branch_location' => 'required|url|max:255',
                 'branch_address' => 'required|string',
                 'branchsocial_link' => 'required|string|max:255',
-                'branchoffice_number' => 'required|string|max:255',
-                'branchmanager_number' => 'required|string|max:255',
+                'branchoffice_number' => [
+                    'required',
+                    'regex:/^(\+?\d{1,4}[\s-])?(\(?\d{3}\)?[\s-]?)?[\d\s-]{7,15}$/',
+                    'max:255'
+                ],
+                'branchmanager_number' => [
+                    'required',
+                    'regex:/^(\+?\d{1,4}[\s-])?(\(?\d{3}\)?[\s-]?)?[\d\s-]{7,15}$/',
+                    'max:255'
+                ],
             ]);
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;

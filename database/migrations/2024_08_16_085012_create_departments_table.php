@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('department_ar');
             $table->string('image')->nullable();
             $table->string('department_details');
+            $table->string('slug');
             $table->timestamps();
         });
     }
