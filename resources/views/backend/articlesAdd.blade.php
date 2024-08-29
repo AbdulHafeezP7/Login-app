@@ -1,20 +1,11 @@
-<!-- resources/views/articlesAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'AddArticle')
-
 @section('content')
-
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
-
 <div class="content-wrapper">
-  <!-- Content -->
-
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-
-      <!-- Snow Theme -->
       <div class="col-12">
         <div class="card mb-6">
           <h5 class="card-header">Add Article</h5>
@@ -102,33 +93,26 @@
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control" id="slug" name="slug">
               </div>
-
               <div class="row justify-content-end">
                 <div class="col-sm-6">
                   <button type="submit" class="btn btn-primary">Save</button>
                   <a href="{{ route('articles.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
               </div>
-
               <input type="hidden" name="content" id="content">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
   <script src="{{ asset('assets/js/article-form-validation.js') }}"></script>
-
   <script>
     var articleIndexUrl = "{{ route('articles.index') }}";
     var articleStoreUrl = "{{ route('articles.store') }}";
 </script>
-
-
   @endsection

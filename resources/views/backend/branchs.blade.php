@@ -1,15 +1,10 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'Branch')
-
 @section('content')
-<!-- <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script> -->
-
 <div id="content-area">
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Branch</h1>
-            <!-- Button to Open the Modal -->
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{route('branchs.add')}}"><button type="button" class="btn btn-primary">
                         Add New Branch
@@ -18,8 +13,6 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-
-            <!-- Branchs Table -->
             <table class="table table-bordered mt-4" id="branchs-table">
                 <thead>
                     <tr>
@@ -40,15 +33,12 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
 <script>
     $(document).ready(function() {
-        // Function to show alert messages
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
             $('#' + alertBoxId).removeClass('alert-success alert-danger').addClass(`alert-${type}`).show();
@@ -56,18 +46,14 @@
                 $('#' + alertBoxId).fadeOut();
             }, 1000);
         }
-
         if (sessionStorage.getItem('addMessage')) {
             showAlert(sessionStorage.getItem('addMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('addMessage');
         }
-
         if (sessionStorage.getItem('editMessage')) {
             showAlert(sessionStorage.getItem('editMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('editMessage');
         }
-
-        // Initialize DataTable
         var table = $('#branchs-table').DataTable({
             processing: true,
             serverSide: true,
@@ -150,20 +136,14 @@
                 [8, 'desc']
             ]
         });
-
-        // View Branch
         $('#branchs-table').on('click', '.view-branch', function() {
             var branchId = $(this).data('id');
             window.location.href = "{{ url('branchs') }}/" + branchId + "/show";
         });
-
-        // Edit Branch
         $('#branchs-table').on('click', '.edit-branch', function() {
             var branchId = $(this).data('id');
             window.location.href = "{{ url('branchs') }}/" + branchId + "/edit";
         });
-
-        // Delete Branch
         $('#branchs-table').on('click', '.delete-branch', function() {
             var branchId = $(this).data('id');
             if (confirm('Are you sure you want to delete this branch?')) {
@@ -185,10 +165,9 @@
                                 buttonsStyling: false
                             }).then(() => {
                                 setTimeout(() => {
-                                    window.location.href = "{{route('branchs.index')}}"; // Replace with the URL of the page you want to redirect to
-                                }, 0); // 2000 milliseconds = 2 seconds
+                                    window.location.href = "{{route('branchs.index')}}";
+                                }, 0);
                             });
-                            // location.reload(); 
                         } else {
                             console.log('Error deleting branch: ' + response.message);
                         }

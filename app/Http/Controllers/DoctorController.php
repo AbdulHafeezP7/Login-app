@@ -1,17 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
-
-
 class DoctorController extends Controller
 {
-
     public function index()
     {
         return view('backend.doctors');
@@ -22,7 +17,6 @@ class DoctorController extends Controller
             $query = Doctor::query()
                 ->join('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
                 ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
-
             return DataTables::of($query)
                 ->addColumn('name_en', function ($row) {
                     return $row->name_en;
@@ -38,13 +32,13 @@ class DoctorController extends Controller
                 })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+                        return $imageUrl = asset('images/' . $row->image); 
                     } else {
                         return 'No Image';
                     }
                 })
                 ->addColumn('department', function ($row) {
-                    return $row->department_name; // Use the department name from the join
+                    return $row->department_name;
                 })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
@@ -64,16 +58,13 @@ class DoctorController extends Controller
                 ->make(true);
         }
     }
-
     public function addDoctors()
     {
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctorsAdd', compact('departments'));
     }
-
     public function store(DoctorRequest $request)
     {
-
         try {
 
             $doctor = new Doctor;
@@ -93,25 +84,16 @@ class DoctorController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-
-
-
-
     public function edit($id)
     {
         $doctor = Doctor::find($id);
         $departments = DB::table('departments')->pluck('department_en', 'id');
-        return view('backend.doctor-edit', compact('departments', 'doctor'));
+        return view('backend.doctor-edit', compact('departments', 'doctor','id'));
     }
-
-
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-
-
-            $doctor = Doctor::findOrFail($id);
-
+            $doctor = Doctor::findOrFail($request->id);
             $request->validate([
                 'name_en' => [
                     'required',
@@ -129,7 +111,6 @@ class DoctorController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'department' => 'required|string',
             ]);
-
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
             $doctor->doctor_description = $request->doctor_description;
@@ -139,11 +120,7 @@ class DoctorController extends Controller
                 $request->image->move(public_path('images'), $imageName);
                 $doctor->image = $imageName;
             }
-
             $doctor->save();
-
-
-
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Doctor updated successfully.']);
             } else {
@@ -163,28 +140,21 @@ class DoctorController extends Controller
             }
         }
     }
-
-
     public function destroy($id)
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->delete();
-
         return response()->json(['status' => true, 'message' => 'Doctor deleted successfully'],);
     }
-
-
     public function show(Request $request, $id)
     {
         $doctor = Doctor::find($id);
-
         return view('backend.doctor-show', compact('doctor'));
     }
-
-    public function toggleAvailibility(Request $request, $id)
+    public function toggleFrontpage(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);
-        $doctor->frontpage = $request->input('availability');
+        $doctor->frontpage = $request->input('frontpage');
         if ($doctor->save()) {
             return response()->json(['status' => true]);
         } else {

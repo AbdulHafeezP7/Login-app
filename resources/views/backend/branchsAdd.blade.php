@@ -1,20 +1,9 @@
-<!-- resources/views/branchsAdd.blade.php -->
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'AddBranch')
-
 @section('content')
-
-<!-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" /> -->
-
 <div class="content-wrapper">
-    <!-- Content -->
-
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-
-            <!-- Snow Theme -->
             <div class="col-12">
                 <div class="card mb-6">
                     <h5 class="card-header">Add Branch</h5>
@@ -59,33 +48,26 @@
                                     <a href="{{ route('branchs.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
-
                             <input type="hidden" name="content" id="content">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
     <script src="{{ asset('assets/js/form-validation.js') }}"></script>
-
-
-
     <script>
         $(document).ready(function() {
             $('#addBranchForm').on('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
+                e.preventDefault(); 
                 var formData = new FormData(this);
-
                 $.ajax({
-                    url: "{{ route('branchs.store') }}", // Ensure this is the correct URL
-                    type: 'POST', // Ensure the request method is POST
+                    url: "{{ route('branchs.store') }}", 
+                    type: 'POST', 
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -108,19 +90,12 @@
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
-                            // Clear previous errors
                             $('.invalid-feedback').remove();
-
                             let errors = xhr.responseJSON.errors;
-
                             for (let field in errors) {
                                 let errorMessage = errors[field][0];
                                 let inputField = $('#' + field);
-
-                                // Create a div for error message
                                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
-                                // Append error message below the input field
                                 inputField.after(errorDiv);
                                 inputField.addClass('is-invalid');
                             }

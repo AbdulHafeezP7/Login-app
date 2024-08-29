@@ -8,10 +8,9 @@
             <form id="offer-form" class="needs-validation" novalidate action="{{ route('offers.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <input type="text" name="id" id="" value="{{$id}}">
-                <div class="mb-3">
+                <div class="mb-3" style="display:none;">
                     <label for="id" class="form-label">ID</label>
-                    <input type="text" name="id" id="" value="{{$id}}">
+                    <input type="hidden" class="form-control" name="id" value="{{$id}}">
                 </div>
                 <div class="mb-3">
                     <label for="offer_en" class="form-label">Offer Name(English)</label>

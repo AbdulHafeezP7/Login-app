@@ -1,7 +1,5 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'View Branch')
-
 @section('content')
 <div id="content-area">
     <div class="card">
@@ -23,7 +21,6 @@
             <h3 class="card-title">Branch Manager Number:</h3>
             <div>{!! $branch->branchmanager_number !!}</div>
             <p><strong>Created at:</strong> {{ $branch->created_at->format('Y-m-d H:i:s') }}</p>
-
             <a href="{{ route('branchs.index') }}" class="btn btn-primary">Back to Branches</a>
         </div>
     </div>

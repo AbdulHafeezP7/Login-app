@@ -109,7 +109,7 @@
                         var checked = row.frontpage==1 ? 'checked' : '';
                         return `
                         <div class="form-check form-switch mb-2">
-                            <input class="form-check-input toggle-availability" type="checkbox" style="width:60%" data-id="${row.id}" ${checked}>
+                            <input class="form-check-input toggle-frontpage" type="checkbox" style="width:80%" data-id="${row.id}" ${checked}>
                         </div>`;
                     },
                     orderable: false,
@@ -139,26 +139,26 @@
         });
 
         
-        $('#doctors-table').on('change', '.toggle-availability', function() {
+        $('#doctors-table').on('change', '.toggle-frontpage', function() {
             var doctorId = $(this).data('id');
-            var availabilityStatus = $(this).is(':checked') ? 1 : 0;
+            var frontpageStatus = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: "{{ url('doctors') }}/" + doctorId + "/toggle-availability",
+                url: "{{ url('doctors') }}/" + doctorId + "/toggle-frontpage",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
-                    availability: availabilityStatus
+                    frontpage: frontpageStatus
                 },
                 success: function(response) {
                     if (response.status) {
-                        showAlert('availability status updated successfully!', 'success', 'alert-box1');
+                        showAlert('frontpage status updated successfully!', 'success', 'alert-box1');
                     } else {
-                        showAlert('Failed to update availability status.', 'danger', 'alert-box1');
+                        showAlert('Failed to update frontpage status.', 'danger', 'alert-box1');
                     }
                 },
                 error: function(xhr) {
-                    showAlert('Error updating availability status: ' + (xhr.responseJSON.message || 'Unknown error'), 'danger', 'alert-box1');
+                    showAlert('Error updating frontpage status: ' + (xhr.responseJSON.message || 'Unknown error'), 'danger', 'alert-box1');
                 }
             });
         });

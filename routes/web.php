@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/doctors/{id}/update', [DoctorController::class, 'update'])->name('doctors.update');
     Route::delete('/doctors/{id}/delete', [DoctorController::class, 'destroy'])->name('doctors.destroy');
     Route::get('/doctors/{id}/show', [DoctorController::class, 'show'])->name('doctors.show');
-    Route::post('/doctors/{id}/toggle-availability', [DoctorController::class, 'toggleAvailibility'])->name('doctors.toggleAvailibility');
+    Route::post('/doctors/{id}/toggle-frontpage', [DoctorController::class, 'toggleFrontpage'])->name('doctors.toggleFrontpage');
 
 
     // Department Routes

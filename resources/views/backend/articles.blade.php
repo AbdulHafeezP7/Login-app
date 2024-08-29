@@ -1,10 +1,7 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'Article')
-
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script>
-
 <div id="content-area">
     <div class="card">
         <div class="card-body">
@@ -18,8 +15,6 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-
-           
             <table class="table table-bordered mt-4" id="articles-table">
                 <thead>
                     <tr>
@@ -38,16 +33,12 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
-
 <script>
     $(document).ready(function() {
-        
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
             $('#' + alertBoxId).removeClass('alert-success alert-danger').addClass(`alert-${type}`).show();
@@ -55,18 +46,14 @@
                 $('#' + alertBoxId).fadeOut();
             }, 1000);
         }
-
         if (sessionStorage.getItem('addMessage')) {
             showAlert(sessionStorage.getItem('addMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('addMessage');
         }
-
         if (sessionStorage.getItem('editMessage')) {
             showAlert(sessionStorage.getItem('editMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('editMessage');
         }
-
-     
         var table = $('#articles-table').DataTable({
             processing: true,
             serverSide: true,
@@ -134,21 +121,14 @@
                 [6, 'desc']
             ]
         });
-
-
-       
         $('#articles-table').on('click', '.view-article', function() {
             var articleId = $(this).data('id');
             window.location.href = "{{ url('articles') }}/" + articleId + "/show";
         });
-
-       
         $('#articles-table').on('click', '.edit-article', function() {
             var articleId = $(this).data('id');
             window.location.href = "{{ url('articles') }}/" + articleId + "/edit";
         });
-
-     
         $('#articles-table').on('click', '.delete-article', function() {
             var articleId = $(this).data('id');
             if (confirm('Are you sure you want to delete this article?')) {

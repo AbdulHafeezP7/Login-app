@@ -1,17 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OfferRequest;
-
-use function Laravel\Prompts\select;
-
 class OfferController extends Controller
 {
-
     public function index()
     {
         return view('backend.offers');
@@ -20,7 +14,6 @@ class OfferController extends Controller
     {
         if ($request->ajax()) {
             $query = Offer::query();
-
             return DataTables::of($query)
                 ->addColumn('offer_en', function ($row) {
                     return $row->offer_en;
@@ -44,7 +37,6 @@ class OfferController extends Controller
                 ->addColumn('offer_price', function ($row) {
                     return $row->offer_price;
                 })
-
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -70,10 +62,8 @@ class OfferController extends Controller
     {
         return view('backend.offersAdd');
     }
-
     public function store(OfferRequest $request)
     {
-
         try {
             $request->validate([
                 'offer_en' => 'required|string|max:255',
@@ -99,7 +89,6 @@ class OfferController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-
     public function offerDecrement(Request $request)
     {
         $offer = Offer::find($request->offerId);
@@ -114,10 +103,8 @@ class OfferController extends Controller
         $offer->sort = $sort;
         $offer->save();
         }
-        
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
-
     public function offerIncrement(Request $request)
     {
         $offer = Offer::find($request->offerId);
@@ -133,24 +120,18 @@ class OfferController extends Controller
         $offer->sort = $sort;
         $offer->save();
         }
-        
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
-
     public function edit($id)
     {
         $offer = Offer::find($id);
 
         return view('backend.offer-edit', compact('offer','id'));
     }
-
-
     public function update(Request $request)
     {
         try {
-
             $offer = Offer::findOrFail($request->id);
-
             $request->validate([
                 'offer_en' => 'required|string|max:255',
                 'offer_ar' => 'required|string|max:255',
@@ -168,7 +149,6 @@ class OfferController extends Controller
                 $offer->image = $imageName;
             }
             $offer->save();
-
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Offer updated successfully.']);
             } else {
@@ -192,11 +172,8 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrFail($id);
         $offer->delete();
-
         return response()->json(['status' => true, 'message' => 'Offer deleted successfully'],);
     }
-
-
     public function show(Request $request, $id)
     {
         $offer = Offer::find($id);

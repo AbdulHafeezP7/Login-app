@@ -1,7 +1,5 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'View Article')
-
 @section('content')
 <div id="content-area">
     <div class="card">
@@ -18,13 +16,10 @@
             </div>
             <h3>English Content:</h3>
             <div>{!! $article->article_en !!}</div>
-
             <h3>Arabic Content:</h3>
             <div>{!! $article->article_ar !!}</div>
-
             <p><strong>Slug:</strong> {{ $article->slug }}</p>
             <p><strong>Created at:</strong> {{ $article->created_at->format('Y-m-d H:i:s') }}</p>
-
             <a href="{{ route('articles.index') }}" class="btn btn-primary">Back to Articles</a>
         </div>
     </div>

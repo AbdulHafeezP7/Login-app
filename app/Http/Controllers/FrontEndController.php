@@ -1,16 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Department;
 use App\Models\Doctor;
-use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 use App\Models\Article;
-
 class FrontEndController extends Controller
 {
-
     public function home()
     {
         $data = array();
@@ -20,7 +14,6 @@ class FrontEndController extends Controller
             ->get();
         $data['article'] = Article::latest()->take(5)->get();
         $data['department'] = Department::whereNotNull('department_ar')->get();
-
         return view('frontend.home', $data);
     }
     public function articleDetails($slug = null)

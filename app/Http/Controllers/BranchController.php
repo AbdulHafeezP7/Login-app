@@ -1,16 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BranchRequest;
-use DB;
-
 class BranchController extends Controller
 {
-
     public function index()
     {
         return view('backend.branchs');
@@ -19,7 +14,6 @@ class BranchController extends Controller
     {
         if ($request->ajax()) {
             $query = Branch::query();
-            
             return DataTables::of($query)
                 ->addColumn('branchname_en', function ($row) {
                     return $row->branchname_en;
@@ -79,12 +73,9 @@ class BranchController extends Controller
     {
         return view('backend.branchsAdd');
     }
-
     public function store(BranchRequest $request)
     {
-
-        try {
-            
+        try { 
             $branch = new Branch;
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;
@@ -94,7 +85,6 @@ class BranchController extends Controller
             $branch->branchsocial_link = $request->branchsocial_link;
             $branch->branchoffice_number = $request->branchoffice_number;
             $branch->branchmanager_number = $request->branchmanager_number;
-            
             $branch->save();
             return response()->json(['status' => true, 'message' => 'Branch created successfully.']);
         } catch (\Exception $e) {
@@ -102,25 +92,16 @@ class BranchController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-
-
-
-
     public function edit($id)
     {
         $branch = Branch::find($id);
 
-        return view('backend.branch-edit', compact('branch'));
+        return view('backend.branch-edit', compact('branch','id'));
     }
-
-
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-
-
-            $branch = Branch::findOrFail($id);
-
+            $branch = Branch::findOrFail($request->id);
             $request->validate([
                 'branchname_en' => 'required|string|max:255',
                 'branchname_ar' => 'required|string|max:255',
@@ -147,9 +128,7 @@ class BranchController extends Controller
             $branch->branchsocial_link = $request->branchsocial_link;
             $branch->branchoffice_number = $request->branchoffice_number;
             $branch->branchmanager_number = $request->branchmanager_number;
-
             $branch->save();
-
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Branch updated successfully.']);
             } else {
@@ -173,15 +152,11 @@ class BranchController extends Controller
     {
         $branch = Branch::findOrFail($id);
         $branch->delete();
-
         return response()->json(['status' => true, 'message' => 'Branch deleted successfully'],);
     }
-
-
     public function show(Request $request, $id)
     {
         $branch = Branch::find($id);
-
         return view('backend.branch-show', compact('branch'));
     }
 }

@@ -1,7 +1,5 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'View Offer')
-
 @section('content')
 <div id="content-area">
     <div class="card">
@@ -21,7 +19,6 @@
             <h3 class="card-title">Offer Price:</h3>
             <div>{!! $offer->offer_price !!}</div>
             <p><strong>Created at:</strong> {{ $offer->created_at->format('Y-m-d H:i:s') }}</p>
-
             <a href="{{ route('offers.index') }}" class="btn btn-primary">Back to Offers</a>
         </div>
     </div>
