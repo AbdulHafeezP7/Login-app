@@ -33,6 +33,9 @@ class DoctorController extends Controller
                 ->addColumn('doctor_description', function ($row) {
                     return $row->doctor_description;
                 })
+                ->addColumn('frontpage', function ($row) {
+                    return $row->frontpage;
+                })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
                         return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
@@ -181,7 +184,7 @@ class DoctorController extends Controller
     public function toggleAvailibility(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);
-        $doctor->availability = $request->input('availability');
+        $doctor->frontpage = $request->input('availability');
         if ($doctor->save()) {
             return response()->json(['status' => true]);
         } else {

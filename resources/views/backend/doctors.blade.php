@@ -26,7 +26,7 @@
                         <th>Doctor Description</th>
                         <th>Doctor Image</th>
                         <th>Department</th>
-                        <th>Availability</th>
+                        <th>Front Page</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -103,10 +103,10 @@
                     name: 'department'
                 },
                 {
-                    data: 'availability',
-                    name: 'availability',
+                    data: 'frontpage',
+                    name: 'frontpage',
                     render: function(data, type, row) {
-                        var checked = data ? 'checked' : '';
+                        var checked = row.frontpage==1 ? 'checked' : '';
                         return `
                         <div class="form-check form-switch mb-2">
                             <input class="form-check-input toggle-availability" type="checkbox" style="width:60%" data-id="${row.id}" ${checked}>
