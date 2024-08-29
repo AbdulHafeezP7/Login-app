@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OfferRequest;
 
+use function Laravel\Prompts\select;
 
 class OfferController extends Controller
 {
@@ -27,6 +28,9 @@ class OfferController extends Controller
                 ->addColumn('offer_ar', function ($row) {
                     return $row->offer_ar;
                 })
+                ->addColumn('sort', function ($row) {
+                    return $row->sort;
+                })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
                         return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
@@ -40,6 +44,7 @@ class OfferController extends Controller
                 ->addColumn('offer_price', function ($row) {
                     return $row->offer_price;
                 })
+
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -54,6 +59,9 @@ class OfferController extends Controller
                 })
                 ->filterColumn('offer_price', function ($query, $keyword) {
                     $query->where('offer_price', 'like', "%{$keyword}%");
+                })
+                ->orderColumn('sort', function ($query) {
+                    $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
         }
@@ -92,23 +100,56 @@ class OfferController extends Controller
         }
     }
 
+    public function offerDecrement(Request $request)
+    {
+        $offer = Offer::find($request->offerId);
+        $sort = --$offer->sort;
+        if ($sort >= 1) {
+            $offerDownData = Offer::where('sort', $sort)->first();
+        if ($offerDownData) {
+            $newSort = ($offerDownData->sort == 0 || $offerDownData->sort == null) ? 0 : $offerDownData->sort;
+            $offerDownData->sort = $newSort + 1;
+            $offerDownData->save();
+        }
+        $offer->sort = $sort;
+        $offer->save();
+        }
+        
+        return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
+    }
 
-
+    public function offerIncrement(Request $request)
+    {
+        $offer = Offer::find($request->offerId);
+        $sort = ++$offer->sort;
+        $offerCount = Offer::count('id');
+        if ($sort <= $offerCount) {
+            $offerUpData = Offer::where('sort', $sort)->first();
+        if ($offerUpData) {
+            $newSort = ($offerUpData->sort == 0 || $offerUpData->sort == null) ? 0 : $offerUpData->sort;
+            $offerUpData->sort = $newSort - 1;
+            $offerUpData->save();
+        }
+        $offer->sort = $sort;
+        $offer->save();
+        }
+        
+        return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
+    }
 
     public function edit($id)
     {
         $offer = Offer::find($id);
 
-        return view('backend.offer-edit', compact('offer'));
+        return view('backend.offer-edit', compact('offer','id'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
 
-
-            $offer = Offer::findOrFail($id);
+            $offer = Offer::findOrFail($request->id);
 
             $request->validate([
                 'offer_en' => 'required|string|max:255',

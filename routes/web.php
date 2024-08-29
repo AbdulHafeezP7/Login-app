@@ -84,14 +84,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('offers', [OfferController::class, 'index'])->name('offers.index');
     Route::post('offers/store', [OfferController::class, 'store'])->name('offers.store');
     Route::get('offers/dataTablesForOffers', [OfferController::class, 'dataTablesForOffers'])->name('offers.dataTablesForOffers');
+    Route::post('offers/increment', [OfferController::class, 'offerIncrement'])->name('offers.increment');
+    Route::post('offers/decrement', [OfferController::class, 'offerDecrement'])->name('offers.decrement');
     // Route::resource('offers', OfferController::class);
     Route::get('/offers/{id}/edit', [OfferController::class, 'edit'])->name('offers.edit');
     Route::get('/offers/addOffers', [OfferController::class, 'addOffers'])->name('offers.add');
-    Route::put('/offers/{id}/update', [OfferController::class, 'update'])->name('offers.update');
+    Route::put('/offers/update', [OfferController::class, 'update'])->name('offers.update');
     Route::delete('/offers/{id}/delete', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::get('/offers/{id}/show', [OfferController::class, 'show'])->name('offers.show');
     // Route::get('/offers', [OfferController::class, 'getOffer']);
 });
+
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
 Route::get('/articleDetails/{surl}', [FrontEndController::class, 'articleDetails'])->name('articleDetails');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');

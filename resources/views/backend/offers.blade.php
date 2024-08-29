@@ -28,6 +28,7 @@
                         <th>Offer Image</th>
                         <th>Actual Price</th>
                         <th>Offer Price</th>
+                        <th>Sort</th>
                         <th>Created At</th>
                         <th>Actions</th>
                     </tr>
@@ -44,6 +45,56 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 <script>
+    function decrement(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('offers.decrement')}}",
+                data: {
+                    offerId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error decrementing offer:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
+
+    function increment(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('offers.increment')}}",
+                data: {
+                    offerId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error decrementing offer:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
+
     $(document).ready(function() {
         // Function to show alert messages
         function showAlert(message, type, alertBoxId) {
@@ -106,6 +157,20 @@
                         return data ? data.substring(0, 23) + '' : '';
                     }
                 },
+                {
+                    data: null,
+                    name: 'sort',
+                    orderable: true,
+                    searchable: false,
+                    render: function(data, type, row) {
+                        return `
+                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
+                    ${row.sort}
+                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
+                `;
+                    }
+                },
+
                 {
                     data: 'created_at',
                     name: 'created_at'

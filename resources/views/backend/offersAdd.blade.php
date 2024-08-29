@@ -19,7 +19,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Offer</h5>
                     <div class="card-body">
-                        <form id="addOfferForm" class="needs-validation" novalidate action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addOfferForm" class="is-invalid" novalidate action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="offer_en" class="form-label">Offer Name(English)</label>
@@ -35,12 +35,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="actual_price" class="form-label">Actual Price</label>
-                                <input type="number" class="form-control" id="actual_price" name="actual_price" aria-label="Product price" fdprocessedid="2ibxem">
+                                <input type="number" class="form-control" id="actual_price" name="actual_price" aria-label="actual_price" fdprocessedid="2ibxem">
 
                             </div>
                             <div class="mb-3">
                                 <label for="offer_price" class="form-label">Offer Price</label>
-                                <input type="number" class="form-control" id="offer_price" name="productPrice" aria-label="Product price" fdprocessedid="2ibxem">
+                                <input type="number" class="form-control" id="offer_price" name="offer_price" aria-label="actual_price" fdprocessedid="2ibxem">
                             </div>
 
                             <div class="row justify-content-end">

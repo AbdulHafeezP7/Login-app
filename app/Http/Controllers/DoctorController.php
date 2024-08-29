@@ -72,7 +72,7 @@ class DoctorController extends Controller
     {
 
         try {
-            
+
             $doctor = new Doctor;
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;

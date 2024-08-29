@@ -123,112 +123,12 @@
   <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
   <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-  <script src="{{ asset('assets/js/form-validation.js') }}"></script>
-
-
+  <script src="{{ asset('assets/js/article-form-validation.js') }}"></script>
 
   <script>
-  $(document).ready(function() {
-    const snowEditor = new Quill('#snow-editor', {
-      bounds: '#snow-editor',
-      modules: {
-        formula: true,
-        toolbar: '#snow-toolbar'
-      },
-      theme: 'snow'
-    });
-    const snowEditor1 = new Quill('#snow-editor1', {
-      bounds: '#snow-editor1',
-      modules: {
-        formula: true,
-        toolbar: '#snow-toolbar1'
-      },
-      theme: 'snow'
-    });
-
-    $('#addArticleForm').on('submit', function(e) {
-      e.preventDefault();
-      
-      // Get form field values
-      let titleEn = $('#title_en').val().trim();
-      let titleAr = $('#title_ar').val().trim();
-      let image = $('#image').val();
-      let contentEn = snowEditor.root.innerHTML.trim();
-      let contentAr = snowEditor1.root.innerHTML.trim();
-      let slug = $('#slug').val().trim();
-
-      // Check if all fields are empty
-      if (!titleEn || !titleAr || !image || contentEn === '<p><br></p>' || contentAr === '<p><br></p>' || !slug) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'All fields are required.',
-          icon: 'error',
-          customClass: {
-            confirmButton: 'btn btn-primary waves-effect waves-light'
-          },
-          buttonsStyling: false
-        });
-        return; // Stop the form submission if validation fails
-      }
-
-      // Add hidden inputs for content_en and content_ar
-      $('<input>').attr({
-        type: 'hidden',
-        name: 'content_en',
-        value: contentEn
-      }).appendTo('#addArticleForm');
-
-      $('<input>').attr({
-        type: 'hidden',
-        name: 'content_ar',
-        value: contentAr
-      }).appendTo('#addArticleForm');
-
-      // FormData for AJAX request
-      var formData = new FormData(this);
-      $.ajax({
-        url: "{{ route('articles.store') }}",
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response.status) {
-            Swal.fire({
-              title: 'Good job!',
-              text: 'Article created successfully!',
-              icon: 'success',
-              customClass: {
-                confirmButton: 'btn btn-primary waves-effect waves-light'
-              },
-              buttonsStyling: false
-            }).then(() => {
-              window.location.href = "{{route('articles.index')}}";
-            });
-          }
-        },
-        error: function(xhr) {
-          if (xhr.status === 422) {
-            $('.invalid-feedback').remove();
-
-            let errors = xhr.responseJSON.errors;
-
-            for (let field in errors) {
-              let errorMessage = errors[field][0];
-              let inputField = $('#' + field);
-
-              let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
-              inputField.after(errorDiv);
-              inputField.addClass('is-invalid');
-            }
-          } else {
-            console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
-          }
-        }
-      });
-    });
-  });
+    var articleIndexUrl = "{{ route('articles.index') }}";
+    var articleStoreUrl = "{{ route('articles.store') }}";
 </script>
+
 
   @endsection
