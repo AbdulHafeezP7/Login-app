@@ -26,6 +26,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="doctor_description" class="form-label">Doctor Description</label>
+                    <textarea class="form-control" id="doctor_description" name="doctor_description" rows="4">{{ old('doctor_description', $doctor->doctor_description) }}</textarea>
+                </div>
+
+                <div class="mb-3">
                     <label for="department" class="form-label">Department</label>
                     <select class="form-control" id="department" name="department" >
                         <option value="">Select a Department</option>

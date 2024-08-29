@@ -30,6 +30,9 @@ class DoctorController extends Controller
                 ->addColumn('name_ar', function ($row) {
                     return $row->name_ar;
                 })
+                ->addColumn('doctor_description', function ($row) {
+                    return $row->doctor_description;
+                })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
                         return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
@@ -45,6 +48,9 @@ class DoctorController extends Controller
                 })
                 ->filterColumn('name_en', function ($query, $keyword) {
                     $query->where('name_en', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('doctor_description', function ($query, $keyword) {
+                    $query->where('doctor_description', 'like', "%{$keyword}%");
                 })
                 ->filterColumn('name_ar', function ($query, $keyword) {
                     $query->where('name_ar', 'like', "%{$keyword}%");
@@ -70,6 +76,7 @@ class DoctorController extends Controller
             $doctor = new Doctor;
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
+            $doctor->doctor_description = $request->doctor_description;
             $doctor->department = $request->department;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
@@ -115,12 +122,14 @@ class DoctorController extends Controller
                     'string',
                     'max:255'
                 ],
+                'doctor_description' => 'required|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'department' => 'required|string',
             ]);
 
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
+            $doctor->doctor_description = $request->doctor_description;
             $doctor->department = $request->department;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();

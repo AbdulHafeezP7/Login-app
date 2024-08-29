@@ -23,6 +23,7 @@
                     <tr>
                         <th>Name (English)</th>
                         <th>Name (Arabic)</th>
+                        <th>Doctor Description</th>
                         <th>Doctor Image</th>
                         <th>Department</th>
                         <th>Availability</th>
@@ -82,6 +83,13 @@
                     }
                 },
                 {
+                    data: 'doctor_description',
+                    name: 'doctor_description',
+                    render: function(data) {
+                        return data ? data.substring(0, 23) + '' : '';
+                    }
+                },
+                {
                     data: 'image',
                     name: 'image',
                     orderable: false,
@@ -126,11 +134,11 @@
                 }
             ],
             order: [
-                [5, 'desc']
+                [6, 'desc']
             ]
         });
 
-        // Toggle availability status
+        
         $('#doctors-table').on('change', '.toggle-availability', function() {
             var doctorId = $(this).data('id');
             var availabilityStatus = $(this).is(':checked') ? 1 : 0;
@@ -155,19 +163,19 @@
             });
         });
 
-        // View doctor
+        
         $('#doctors-table').on('click', '.view-doctor', function() {
             var doctorId = $(this).data('id');
             window.location.href = "{{ url('doctors') }}/" + doctorId + "/show";
         });
 
-        // Edit doctor
+        
         $('#doctors-table').on('click', '.edit-doctor', function() {
             var doctorId = $(this).data('id');
             window.location.href = "{{ url('doctors') }}/" + doctorId + "/edit";
         });
 
-        // Delete doctor
+       
         $('#doctors-table').on('click', '.delete-doctor', function() {
             var doctorId = $(this).data('id');
             if (confirm('Are you sure you want to delete this doctor?')) {

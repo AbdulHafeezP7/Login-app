@@ -37,6 +37,12 @@
                                 <label for="image" class="form-label">Doctor Image</label>
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                             </div>
+
+                            <div class="mb-3">
+                                <label for="doctor_description" class="form-label">Doctor Description</label>
+                                <textarea class="form-control" id="doctor_description" name="doctor_description" rows="4"></textarea>
+                            </div>
+
                             <div class="mb-3" id="imgdiv" style="display: none;">
                                 <img id="doctorImage" src="" alt="" width="100px" height="100px">
                             </div>

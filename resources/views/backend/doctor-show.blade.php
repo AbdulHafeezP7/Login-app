@@ -10,6 +10,9 @@
             <div>{!! $doctor->name_en !!}</div>
             <h3 class="card-title">Arabic Name:</h3>
             <div>{!! $doctor->name_ar !!}</div>
+            <h3 class="card-title">Doctor Description:</h3>
+            <div>{!! $doctor-><h3 class="card-title">Arabic Name:</h3>
+            <div>{!! $doctor->doctor_description !!}</div> !!}</div>
             <div>
                 <h3>Image</h3>
                 @if($doctor->image)

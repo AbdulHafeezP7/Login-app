@@ -19,7 +19,7 @@
         <div class="card mb-6">
           <h5 class="card-header">Add Article</h5>
           <div class="card-body">
-            <form id="addArticleForm" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+            <form id="addArticleForm" class="is-invalid" novalidate method="POST" enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="title_en" class="form-label">Title(English)</label>
                 <input type="text" class="form-control" id="title_en" name="title_en">
@@ -128,84 +128,107 @@
 
 
   <script>
-    $(document).ready(function() {
-      const snowEditor = new Quill('#snow-editor', {
-        bounds: '#snow-editor',
-        modules: {
-          formula: true,
-          toolbar: '#snow-toolbar'
-        },
-        theme: 'snow'
-      });
-      const snowEditor1 = new Quill('#snow-editor1', {
-        bounds: '#snow-editor1',
-        modules: {
-          formula: true,
-          toolbar: '#snow-toolbar1'
-        },
-        theme: 'snow'
-      });
+  $(document).ready(function() {
+    const snowEditor = new Quill('#snow-editor', {
+      bounds: '#snow-editor',
+      modules: {
+        formula: true,
+        toolbar: '#snow-toolbar'
+      },
+      theme: 'snow'
+    });
+    const snowEditor1 = new Quill('#snow-editor1', {
+      bounds: '#snow-editor1',
+      modules: {
+        formula: true,
+        toolbar: '#snow-toolbar1'
+      },
+      theme: 'snow'
+    });
 
-      $('#addArticleForm').on('submit', function(e) {
-        e.preventDefault();
-        let contentEn = snowEditor.root.innerHTML;
-        let contentAr = snowEditor1.root.innerHTML;
+    $('#addArticleForm').on('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form field values
+      let titleEn = $('#title_en').val().trim();
+      let titleAr = $('#title_ar').val().trim();
+      let image = $('#image').val();
+      let contentEn = snowEditor.root.innerHTML.trim();
+      let contentAr = snowEditor1.root.innerHTML.trim();
+      let slug = $('#slug').val().trim();
 
-        $('<input>').attr({
-          type: 'hidden',
-          name: 'content_en',
-          value: contentEn
-        }).appendTo('#addArticleForm');
-
-        $('<input>').attr({
-          type: 'hidden',
-          name: 'content_ar',
-          value: contentAr
-        }).appendTo('#addArticleForm');
-
-        var formData = new FormData(this);
-        $.ajax({
-          url: "{{ route('articles.store') }}",
-          type: 'POST',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response) {
-            if (response.status) {
-              Swal.fire({
-                title: 'Good job!',
-                text: 'Article created successfully!',
-                icon: 'success',
-                customClass: {
-                  confirmButton: 'btn btn-primary waves-effect waves-light'
-                },
-                buttonsStyling: false
-              }).then(() => {
-                window.location.href = "{{route('articles.index')}}";
-              });
-            }
+      // Check if all fields are empty
+      if (!titleEn || !titleAr || !image || contentEn === '<p><br></p>' || contentAr === '<p><br></p>' || !slug) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'All fields are required.',
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-primary waves-effect waves-light'
           },
-          error: function(xhr) {
-            if (xhr.status === 422) {
-              $('.invalid-feedback').remove();
-
-              let errors = xhr.responseJSON.errors;
-
-              for (let field in errors) {
-                let errorMessage = errors[field][0];
-                let inputField = $('#' + field);
-
-                let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
-                inputField.after(errorDiv);
-                inputField.addClass('is-invalid');
-              }
-            } else {
-              console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
-            }
-          }
+          buttonsStyling: false
         });
+        return; // Stop the form submission if validation fails
+      }
+
+      // Add hidden inputs for content_en and content_ar
+      $('<input>').attr({
+        type: 'hidden',
+        name: 'content_en',
+        value: contentEn
+      }).appendTo('#addArticleForm');
+
+      $('<input>').attr({
+        type: 'hidden',
+        name: 'content_ar',
+        value: contentAr
+      }).appendTo('#addArticleForm');
+
+      // FormData for AJAX request
+      var formData = new FormData(this);
+      $.ajax({
+        url: "{{ route('articles.store') }}",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          if (response.status) {
+            Swal.fire({
+              title: 'Good job!',
+              text: 'Article created successfully!',
+              icon: 'success',
+              customClass: {
+                confirmButton: 'btn btn-primary waves-effect waves-light'
+              },
+              buttonsStyling: false
+            }).then(() => {
+              window.location.href = "{{route('articles.index')}}";
+            });
+          }
+        },
+        error: function(xhr) {
+          if (xhr.status === 422) {
+            $('.invalid-feedback').remove();
+
+            let errors = xhr.responseJSON.errors;
+
+            for (let field in errors) {
+              let errorMessage = errors[field][0];
+              let inputField = $('#' + field);
+
+              let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
+
+              inputField.after(errorDiv);
+              inputField.addClass('is-invalid');
+            }
+          } else {
+            console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
+          }
+        }
       });
     });
-  </script>
+  });
+</script>
+
   @endsection
