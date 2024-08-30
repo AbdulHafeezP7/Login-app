@@ -7,12 +7,14 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Article</h1>
-            <form id="article-form" class="needs-validation" novalidate action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
+            <!-- Ensure form method is PUT for updates -->
+            <form id="article-form" class="is-invalid" novalidate action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3" style="display:none;">
+                    <!-- Ensure the article ID is being passed correctly -->
                     <label for="id" class="form-label">ID</label>
-                    <input type="hidden" class="form-control" name="id" value="{{$id}}">
+                    <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
                 </div>
                 <div class="mb-3">
                     <label for="title_en" class="form-label">Title (English)</label>
@@ -56,7 +58,6 @@
                 <div class="mb-3">
                     <label for="article_ar" class="form-label">Article(Arabic)</label>
                     <div id="snow-toolbar1">
-
                         <span class="ql-formats">
                             <select class="ql-font"></select>
                             <select class="ql-size"></select>
@@ -85,6 +86,7 @@
                     <div id="snow-editor1"></div>
                     <div id="content_ar"></div>
                 </div>
+                <!-- Ensure hidden fields for editor content are present -->
                 <input type="hidden" id="content_en_data" name="article_en" value="{{ old('article_en', $article->article_en) }}">
                 <input type="hidden" id="content_ar_data" name="article_ar" value="{{ old('article_ar', $article->article_ar) }}">
 
@@ -108,73 +110,9 @@
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-<script src="{{ asset('assets/js/form-validation.js') }}"></script>
+<script src="{{ asset('assets/js/article-edit-validation.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        const snowEditor = new Quill('#snow-editor', {
-            bounds: '#snow-editor',
-            modules: {
-                formula: true,
-                toolbar: '#snow-toolbar'
-            },
-            theme: 'snow'
-        });
-        const snowEditor1 = new Quill('#snow-editor1', {
-            bounds: '#snow-editor1',
-            modules: {
-                formula: true,
-                toolbar: '#snow-toolbar1'
-            },
-            theme: 'snow'
-        });
-        const articleEnContent = $('#content_en_data').val();
-        const articleArContent = $('#content_ar_data').val();
-        snowEditor.root.innerHTML = articleEnContent;
-        snowEditor1.root.innerHTML = articleArContent;
-        $('#article-form').on('submit', function(e) {
-            e.preventDefault();
-            $('#content_en_data').val(snowEditor.root.innerHTML);
-            $('#content_ar_data').val(snowEditor1.root.innerHTML);
-            let formData = new FormData(this);
-            $.ajax({
-                url: $(this).attr('action'),
-                method: 'POST',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status) {
-                        Swal.fire({
-                            title: 'Good job!',
-                            text: 'Article updated successfully!',
-                            icon: 'success',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        }).then(() => {
-                            window.location.href = "{{route('articles.index')}}";
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    if (xhr.status === 422) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: xhr.responseJSON.message,
-                            icon: 'error',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        });
-                    } else {
-                        console.log('Error updating article: ' + (xhr.responseJSON.message || 'Unknown error'));
-                    }
-                }
-            });
-        });
-    });
+    var articlesIndexUrl = "{{ route('articles.index') }}";
 </script>
+
 @endsection

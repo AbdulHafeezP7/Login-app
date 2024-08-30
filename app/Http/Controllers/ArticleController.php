@@ -6,6 +6,8 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticleUpdateRequest;
+
 
 class ArticleController extends Controller
 {
@@ -92,20 +94,10 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view('backend.article-edit', compact('article', 'id'));
     }
-    public function update(Request $request)
+    public function update(ArticleUpdateRequest $request, Article $article)
     {
         try {
             $article = Article::findOrFail($request->id);
-            $request->validate([
-                'title_en' => 'required|string|max:255',
-                'title_ar' => 'required|string|max:255',
-                'content_en' => 'nullable',
-                'content_ar' => 'nullable',
-                'slug' => 'required|string|max:255|unique:articles,slug,' . $request->id,
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            ], [
-                'slug.unique' => 'The slug should be unique.',
-            ]);
             $article->title_en = $request->title_en;
             $article->title_ar = $request->title_ar;
             $article->article_en = $request->article_en;
@@ -136,6 +128,7 @@ class ArticleController extends Controller
             }
         }
     }
+
     public function destroy($id)
     {
         $article = Article::findOrFail($id);

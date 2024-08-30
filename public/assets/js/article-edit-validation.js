@@ -15,50 +15,48 @@ $(document).ready(function () {
         },
         theme: 'snow'
     });
+    const articleEnContent = $('#content_en_data').val();
+    const articleArContent = $('#content_ar_data').val();
+    snowEditor.root.innerHTML = articleEnContent;
+    snowEditor1.root.innerHTML = articleArContent;
 
-    $('#addArticleForm').on('submit', function (e) {
+    $('#article-form').on('submit', function (e) {
         e.preventDefault();
-
-        // Clear previous error messages
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
         let titleEn = $('#title_en').val().trim();
         let titleAr = $('#title_ar').val().trim();
+        let slug = $('#slug').val().trim();
         let image = $('#image').val();
         let contentEn = snowEditor.root.innerHTML.trim();
         let contentAr = snowEditor1.root.innerHTML.trim();
-        let slug = $('#slug').val().trim();
-
-        // Image format validation
         let imageFile = $('#image')[0].files[0];
-        let validImageFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/svg+xml'];
+        let validImageFormats = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
         let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
-
         let errors = {};
 
         if (!titleEn) errors.title_en = 'Title (English) is required.';
         if (!titleAr) errors.title_ar = 'Title (Arabic) is required.';
-        if (!contentEn || contentEn === '<p><br></p>') errors.content_en = 'Article (English) content is required.';
-        if (!contentAr || contentAr === '<p><br></p>') errors.content_ar = 'Article (Arabic) content is required.';
+        if (!contentEn || contentEn === '<p><br></p>') errors.article_en = 'Article (English) content is required.';
+        if (!contentAr || contentAr === '<p><br></p>') errors.article_ar = 'Article (Arabic) content is required.';
         if (!slug) errors.slug = 'Slug is required.';
-        if (!image) errors.image = 'Thumbnail image is required.';
-        if (!isValidImage) errors.image = 'Image format must be JPEG, JPG, PNG, GIF, or SVG.';
+        if (!isValidImage) errors.image = 'Image format must be JPEG, PNG, JPG, GIF, or SVG.';
 
         if (Object.keys(errors).length > 0) {
-            // Display error messages under input fields
             for (let field in errors) {
                 let errorMessage = errors[field];
                 let inputField = $('#' + field);
 
-                let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
-                inputField.addClass('is-invalid').after(errorDiv);
+                if (field === 'article_en' || field === 'article_ar') {
+                    let editorContainer = field === 'article_en' ? $('#snow-editor') : $('#snow-editor1');
+                    let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
+                    editorContainer.addClass('is-invalid').after(errorDiv);
+                } else {
+                    let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
+                    inputField.addClass('is-invalid').after(errorDiv);
+                }
             }
-
-            // Consolidate error messages for Swal
             let errorMessages = Object.values(errors).join('\n');
-
             Swal.fire({
                 title: 'Error!',
                 text: errorMessages,
@@ -71,22 +69,19 @@ $(document).ready(function () {
             return;
         }
 
-        // Append hidden inputs for content
-        $('<input>').attr({
-            type: 'hidden',
-            name: 'content_en',
-            value: contentEn
-        }).appendTo('#addArticleForm');
+        $('#content_en_data').val(contentEn);
+        $('#content_ar_data').val(contentAr);
 
-        $('<input>').attr({
-            type: 'hidden',
-            name: 'content_ar',
-            value: contentAr
-        }).appendTo('#addArticleForm');
-
-        var formData = new FormData(this);
+        let formData = new FormData(this);
+        formData.append('title_en', titleEn);
+        formData.append('title_ar', titleAr);
+        formData.append('slug', slug);
+        formData.append('article_en', contentEn);
+        formData.append('article_ar', contentAr);
+        if (imageFile) formData.append('image', imageFile);
+        formData.append('_method', 'PUT'); // 
         $.ajax({
-            url: articleStoreUrl,
+            url: $(this).attr('action'),
             type: 'POST',
             data: formData,
             processData: false,
@@ -95,22 +90,19 @@ $(document).ready(function () {
                 if (response.status) {
                     Swal.fire({
                         title: 'Good job!',
-                        text: 'Article created successfully!',
+                        text: 'Article updated successfully!',
                         icon: 'success',
                         customClass: {
                             confirmButton: 'btn btn-primary waves-effect waves-light'
                         },
                         buttonsStyling: false
                     }).then(() => {
-                        window.location.href = articleIndexUrl;
+                        window.location.href = articlesIndexUrl;
                     });
                 }
             },
             error: function (xhr) {
                 if (xhr.status === 422) {
-                    $('.invalid-feedback').remove();
-                    $('.form-control').removeClass('is-invalid');
-
                     let errors = xhr.responseJSON.errors;
                     let errorMessages = '';
 
@@ -134,27 +126,25 @@ $(document).ready(function () {
                         buttonsStyling: false
                     });
                 } else {
-                    console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
+                    console.log('Error updating article: ' + (xhr.responseJSON.message || 'Unknown error'));
                 }
             }
         });
     });
 
-    // Event listeners to clear validation on input
-    $('#addArticleForm input, #addArticleForm textarea').on('input change', function () {
+    $('#article-form input, #article-form textarea').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
     });
 
-    // Special case for editors
-    snowEditor.on('text-change', function() {
+    snowEditor.on('text-change', function () {
         if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor').removeClass('is-invalid');
             $('#snow-editor').siblings('.invalid-feedback').remove();
         }
     });
 
-    snowEditor1.on('text-change', function() {
+    snowEditor1.on('text-change', function () {
         if (snowEditor1.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor1').removeClass('is-invalid');
             $('#snow-editor1').siblings('.invalid-feedback').remove();
