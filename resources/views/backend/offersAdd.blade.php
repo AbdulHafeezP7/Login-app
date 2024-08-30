@@ -54,8 +54,8 @@
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('offers.store') }}", 
-                    type: 'POST', 
+                    url: "{{ route('offers.store') }}",
+                    type: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,

@@ -422,7 +422,7 @@
         const values = [];
         let currentStep;
 
-        for (currentStep = 0; currentStep < steps.length; ) {
+        for (currentStep = 0; currentStep < steps.length;) {
           const result = await new swalQueueStep({
             title: 'Question ' + steps[currentStep],
             showCancelButton: currentStep > 0,

@@ -18,7 +18,7 @@
                                 <div class="swiper-wrapper">
 
                                     @foreach ($doctors as $item)
-                                   
+
                                     <div class="swiper-slide">
                                         <div class="doctor">
 

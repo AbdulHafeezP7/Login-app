@@ -114,5 +114,5 @@
   <script>
     var articleIndexUrl = "{{ route('articles.index') }}";
     var articleStoreUrl = "{{ route('articles.store') }}";
-</script>
+  </script>
   @endsection

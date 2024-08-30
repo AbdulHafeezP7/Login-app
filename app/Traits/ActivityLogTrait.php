@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Traits;
+
 use App\Models\ActivityLog;
+
 trait ActivityLogTrait
 {
     public function logActivity($userId, $action, $activity, $agent, $ipAddress)
@@ -14,4 +17,3 @@ trait ActivityLogTrait
         ]);
     }
 }
-

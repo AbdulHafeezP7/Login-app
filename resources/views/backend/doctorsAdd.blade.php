@@ -60,15 +60,15 @@
     <script>
         $(document).ready(function() {
             $('#addDoctorForm').on('submit', function(e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val();
                 var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val();
                 $('#name_en').val(nameEnFull);
                 $('#name_ar').val(nameArFull);
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('doctors.store') }}", 
-                    type: 'POST', 
+                    url: "{{ route('doctors.store') }}",
+                    type: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -91,7 +91,7 @@
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
-                           
+
                             $('.invalid-feedback').remove();
 
                             let errors = xhr.responseJSON.errors;

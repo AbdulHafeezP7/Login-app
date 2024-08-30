@@ -6,7 +6,7 @@ $(document).ready(function () {
     }
 
     $('#addDepartmentForm').on('submit', function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
         $('.invalid-feedback').remove();
         $('.is-invalid').removeClass('is-invalid');
@@ -48,7 +48,7 @@ $(document).ready(function () {
         if (isValid) {
             var formData = new FormData(this);
             $.ajax({
-                url: $(this).attr('action'), 
+                url: $(this).attr('action'),
                 type: 'POST',
                 data: formData,
                 processData: false,

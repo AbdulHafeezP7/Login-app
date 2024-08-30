@@ -4567,9 +4567,9 @@
       golden = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
     const cities = L.layerGroup([littleton, denver, aurora, golden]);
     const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '© OpenStreetMap'
-      }),
+      maxZoom: 18,
+      attribution: '© OpenStreetMap'
+    }),
       osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution:

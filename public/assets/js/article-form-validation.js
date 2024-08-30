@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const snowEditor = new Quill('#snow-editor', {
         bounds: '#snow-editor',
         modules: {
@@ -16,7 +16,7 @@ $(document).ready(function() {
         theme: 'snow'
     });
 
-    $('#addArticleForm').on('submit', function(e) {
+    $('#addArticleForm').on('submit', function (e) {
         e.preventDefault();
 
         let titleEn = $('#title_en').val().trim();
@@ -51,7 +51,7 @@ $(document).ready(function() {
                 },
                 buttonsStyling: false
             });
-            return; 
+            return;
         }
 
         $('<input>').attr({
@@ -73,7 +73,7 @@ $(document).ready(function() {
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 if (response.status) {
                     Swal.fire({
                         title: 'Good job!',
@@ -88,7 +88,7 @@ $(document).ready(function() {
                     });
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     $('.invalid-feedback').remove();
 

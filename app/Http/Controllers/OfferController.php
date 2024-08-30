@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OfferRequest;
+
 class OfferController extends Controller
 {
     public function index()
@@ -95,13 +98,13 @@ class OfferController extends Controller
         $sort = --$offer->sort;
         if ($sort >= 1) {
             $offerDownData = Offer::where('sort', $sort)->first();
-        if ($offerDownData) {
-            $newSort = ($offerDownData->sort == 0 || $offerDownData->sort == null) ? 0 : $offerDownData->sort;
-            $offerDownData->sort = $newSort + 1;
-            $offerDownData->save();
-        }
-        $offer->sort = $sort;
-        $offer->save();
+            if ($offerDownData) {
+                $newSort = ($offerDownData->sort == 0 || $offerDownData->sort == null) ? 0 : $offerDownData->sort;
+                $offerDownData->sort = $newSort + 1;
+                $offerDownData->save();
+            }
+            $offer->sort = $sort;
+            $offer->save();
         }
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
@@ -112,13 +115,13 @@ class OfferController extends Controller
         $offerCount = Offer::count('id');
         if ($sort <= $offerCount) {
             $offerUpData = Offer::where('sort', $sort)->first();
-        if ($offerUpData) {
-            $newSort = ($offerUpData->sort == 0 || $offerUpData->sort == null) ? 0 : $offerUpData->sort;
-            $offerUpData->sort = $newSort - 1;
-            $offerUpData->save();
-        }
-        $offer->sort = $sort;
-        $offer->save();
+            if ($offerUpData) {
+                $newSort = ($offerUpData->sort == 0 || $offerUpData->sort == null) ? 0 : $offerUpData->sort;
+                $offerUpData->sort = $newSort - 1;
+                $offerUpData->save();
+            }
+            $offer->sort = $sort;
+            $offer->save();
         }
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
@@ -126,7 +129,7 @@ class OfferController extends Controller
     {
         $offer = Offer::find($id);
 
-        return view('backend.offer-edit', compact('offer','id'));
+        return view('backend.offer-edit', compact('offer', 'id'));
     }
     public function update(Request $request)
     {

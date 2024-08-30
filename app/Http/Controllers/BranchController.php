@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BranchRequest;
+
 class BranchController extends Controller
 {
     public function index()
@@ -75,7 +78,7 @@ class BranchController extends Controller
     }
     public function store(BranchRequest $request)
     {
-        try { 
+        try {
             $branch = new Branch;
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;
@@ -96,7 +99,7 @@ class BranchController extends Controller
     {
         $branch = Branch::find($id);
 
-        return view('backend.branch-edit', compact('branch','id'));
+        return view('backend.branch-edit', compact('branch', 'id'));
     }
     public function update(Request $request)
     {

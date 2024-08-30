@@ -118,7 +118,7 @@ class TemplateCustomizer {
         this.settings.controls = this.settings.controls.slice(0, i).concat(this.settings.controls.slice(i + 1))
       }
     }
-    this.settings.onSettingsChange = typeof onSettingsChange === 'function' ? onSettingsChange : () => {}
+    this.settings.onSettingsChange = typeof onSettingsChange === 'function' ? onSettingsChange : () => { }
 
     this._loadSettings()
 
@@ -170,13 +170,13 @@ class TemplateCustomizer {
 
     const themeUrl = this.pathResolver(
       this.settings.themesPath +
-        this.settings.cssFilenamePattern.replace(
-          '%name%',
-          themeName + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
-        )
+      this.settings.cssFilenamePattern.replace(
+        '%name%',
+        themeName + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
+      )
     )
 
-    this._loadStylesheets({ [themeUrl]: document.querySelector('.template-customizer-theme-css') }, cb || (() => {}))
+    this._loadStylesheets({ [themeUrl]: document.querySelector('.template-customizer-theme-css') }, cb || (() => { }))
 
     if (updateStorage) this.settings.onSettingsChange.call(this, this.settings)
   }
@@ -262,32 +262,32 @@ class TemplateCustomizer {
 
     const t = TemplateCustomizer.LANGUAGES[lang]
 
-    ;[
-      'panel_header',
-      'panel_sub_header',
-      'theming_header',
-      'style_label',
-      'style_switch_light',
-      'style_switch_dark',
-      'layout_header',
-      'layout_label',
-      'layout_header_label',
-      'content_label',
-      'layout_static',
-      'layout_offcanvas',
-      'layout_fixed',
-      'layout_fixed_offcanvas',
-      'layout_dd_open_label',
-      'layout_navbar_label',
-      'layout_footer_label',
-      'misc_header',
-      'theme_label',
-      'direction_label'
-    ].forEach(key => {
-      const el = this.container.querySelector(`.template-customizer-t-${key}`)
-      // eslint-disable-next-line no-unused-expressions
-      el && (el.textContent = t[key])
-    })
+      ;[
+        'panel_header',
+        'panel_sub_header',
+        'theming_header',
+        'style_label',
+        'style_switch_light',
+        'style_switch_dark',
+        'layout_header',
+        'layout_label',
+        'layout_header_label',
+        'content_label',
+        'layout_static',
+        'layout_offcanvas',
+        'layout_fixed',
+        'layout_fixed_offcanvas',
+        'layout_dd_open_label',
+        'layout_navbar_label',
+        'layout_footer_label',
+        'misc_header',
+        'theme_label',
+        'direction_label'
+      ].forEach(key => {
+        const el = this.container.querySelector(`.template-customizer-t-${key}`)
+        // eslint-disable-next-line no-unused-expressions
+        el && (el.textContent = t[key])
+      })
 
     const tt = t.themes || {}
     const themes = this.container.querySelectorAll('.template-customizer-theme-item') || []
@@ -493,9 +493,8 @@ class TemplateCustomizer {
       <div class="form-check custom-option custom-option-icon">
         <label class="form-check-label custom-option-content p-0" for="${inputName}${nameVal}">
           <span class="custom-option-body mb-0">
-            <img src="${assetsPath}img/customizer/${image}${
-              isDarkStyle ? '-dark' : ''
-            }.svg" alt="${title}" class="img-fluid scaleX-n1-rtl" />
+            <img src="${assetsPath}img/customizer/${image}${isDarkStyle ? '-dark' : ''
+        }.svg" alt="${title}" class="img-fluid scaleX-n1-rtl" />
           </span>
           <input
             name="${inputName}"
@@ -859,7 +858,7 @@ class TemplateCustomizer {
       'template-customizer-core-css',
       this.pathResolver(
         this.settings.cssPath +
-          this.settings.cssFilenamePattern.replace('%name%', `core${style !== 'light' ? `-${style}` : ''}`)
+        this.settings.cssFilenamePattern.replace('%name%', `core${style !== 'light' ? `-${style}` : ''}`)
       )
     )
     // ? Uncomment if needed
@@ -912,10 +911,10 @@ class TemplateCustomizer {
         'template-customizer-theme-css',
         this.pathResolver(
           this.settings.themesPath +
-            this.settings.cssFilenamePattern.replace(
-              '%name%',
-              this.settings.theme.name + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
-            )
+          this.settings.cssFilenamePattern.replace(
+            '%name%',
+            this.settings.theme.name + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
+          )
         )
       )
     } else {
@@ -925,12 +924,12 @@ class TemplateCustomizer {
         'template-customizer-theme-css',
         this.pathResolver(
           this.settings.themesPath +
-            this.settings.cssFilenamePattern.replace(
-              '%name%',
-              theme
-                ? theme
-                : this.settings.defaultTheme.name + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
-            )
+          this.settings.cssFilenamePattern.replace(
+            '%name%',
+            theme
+              ? theme
+              : this.settings.defaultTheme.name + (this.settings.style !== 'light' ? `-${this.settings.style}` : '')
+          )
         )
       )
     }

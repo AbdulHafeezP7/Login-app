@@ -77,8 +77,8 @@
                             buttonsStyling: false
                         }).then(() => {
                             setTimeout(() => {
-                                window.location.href = "{{route('branchs.index')}}"; 
-                            }, 0); 
+                                window.location.href = "{{route('branchs.index')}}";
+                            }, 0);
                         });
                     } else {
                         console.log('Error updating branch: ' + response.message);

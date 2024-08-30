@@ -141,7 +141,7 @@
                             }).then(() => {
                                 setTimeout(() => {
                                     window.location.href = "{{route('departments.index')}}";
-                                }, 0); 
+                                }, 0);
                             });
                         } else {
                             console.log('Error deleting department: ' + response.message);

@@ -60,6 +60,7 @@
             });
         });
     }
+
     function increment(id) {
         $(document).ready(function() {
             $.ajax({
@@ -208,7 +209,7 @@
                                     window.location.href = "{{route('offers.index')}}";
                                 }, 0);
                             });
-                            
+
                         } else {
                             console.log('Error deleting offer: ' + response.message);
                         }

@@ -397,8 +397,8 @@
 
 
 
-                     
-@foreach($department as $row)
+
+                        @foreach($department as $row)
                         <div class="features-one__box" data-modals="modals-2">
                             <div class="features-one__box__image">
                                 <img width="60" height="60" src="{{asset('images').'/'.$row->image}}" alt="{{$row->department_ar}}">
@@ -413,9 +413,9 @@
                                 <p>{{$row->department_details}}</p>
                             </div>
                         </div>
-@endforeach
+                        @endforeach
 
-                       
+
 
 
 
@@ -519,7 +519,7 @@
                                 <div class="swiper-wrapper">
 
                                     @foreach ($doctors as $item)
-                                   
+
                                     <div class="swiper-slide">
                                         <div class="doctor">
 

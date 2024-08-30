@@ -4,8 +4,8 @@
 .leaflet-marker-icon,
 .leaflet-marker-shadow,
 .leaflet-tile-container,
-.leaflet-pane > svg,
-.leaflet-pane > canvas,
+.leaflet-pane>svg,
+.leaflet-pane>canvas,
 .leaflet-zoom-box,
 .leaflet-image-layer,
 .leaflet-layer {
@@ -170,7 +170,8 @@
 .leaflet-control {
   position: relative;
   z-index: 800;
-  pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+  pointer-events: visiblePainted;
+  /* IE 9-10 doesn't have auto */
   pointer-events: auto;
 }
 
@@ -295,16 +296,17 @@ svg.leaflet-zoom-animated {
 .leaflet-marker-icon,
 .leaflet-marker-shadow,
 .leaflet-image-layer,
-.leaflet-pane > svg path,
+.leaflet-pane>svg path,
 .leaflet-tile-container {
   pointer-events: none;
 }
 
 .leaflet-marker-icon.leaflet-interactive,
 .leaflet-image-layer.leaflet-interactive,
-.leaflet-pane > svg path.leaflet-interactive,
+.leaflet-pane>svg path.leaflet-interactive,
 svg.leaflet-image-layer.leaflet-interactive path {
-  pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+  pointer-events: visiblePainted;
+  /* IE 9-10 doesn't have auto */
   pointer-events: auto;
 }
 
@@ -401,7 +403,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
   text-indent: 1px;
 }
 
-.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out {
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
   font-size: 22px;
 }
 
@@ -469,7 +472,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 
 /* Default icon URLs */
-.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+.leaflet-default-icon-path {
+  /* used only in path-guessing heuristic, see L.Icon.Default */
   background-image: url(images/marker-icon.png);
 }
 
@@ -738,12 +742,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* Printing */
 @media print {
+
   /* Prevent printers from removing background-images of controls. */
   .leaflet-control {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 }
+
 .leaflet-map {
   height: 400px;
 }
@@ -756,15 +762,18 @@ svg.leaflet-image-layer.leaflet-interactive path {
   right: 0;
   left: unset;
 }
+
 [dir=rtl] .leaflet-map .leaflet-control-container .leaflet-left .leaflet-control-zoom,
 [dir=rtl] .leaflet-map .leaflet-control-container .leaflet-left .leaflet-control-layers {
   margin-left: 0;
   margin-right: 10px;
 }
+
 [dir=rtl] .leaflet-map .leaflet-control-container .leaflet-right {
   left: 0;
   right: unset;
 }
+
 [dir=rtl] .leaflet-map .leaflet-control-container .leaflet-right .leaflet-control-zoom,
 [dir=rtl] .leaflet-map .leaflet-control-container .leaflet-right .leaflet-control-layers {
   margin-left: 10px;

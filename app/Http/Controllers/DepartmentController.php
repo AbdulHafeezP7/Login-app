@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\DepartmentRequest;
+
 class DepartmentController extends Controller
 {
     public function index()
@@ -79,7 +82,7 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $department = Department::find($id);
-        return view('backend.department-edit', compact('department','id'));
+        return view('backend.department-edit', compact('department', 'id'));
     }
     public function update(Request $request)
     {
@@ -90,7 +93,7 @@ class DepartmentController extends Controller
                 'department_ar' => 'required|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
                 'department_details' => 'required|string',
-                'slug' => 'required|string|max:255|unique:departments,slug,' .$request->id,
+                'slug' => 'required|string|max:255|unique:departments,slug,' . $request->id,
             ], [
                 'slug.unique' => 'The slug should be unique.',
             ]);

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Articles</h1>
-            
+
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{route('articles.add')}}"><button type="button" class="btn btn-primary">
                         Add New Article
@@ -150,10 +150,10 @@
                                 buttonsStyling: false
                             }).then(() => {
                                 setTimeout(() => {
-                                    window.location.href = "{{route('articles.index')}}"; 
-                                }, 0); 
+                                    window.location.href = "{{route('articles.index')}}";
+                                }, 0);
                             });
-                    
+
                         } else {
                             console.log('Error deleting article: ' + response.message);
                         }

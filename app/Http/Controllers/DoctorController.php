@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
+
 class DoctorController extends Controller
 {
     public function index()
@@ -32,7 +35,7 @@ class DoctorController extends Controller
                 })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); 
+                        return $imageUrl = asset('images/' . $row->image);
                     } else {
                         return 'No Image';
                     }
@@ -88,7 +91,7 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::find($id);
         $departments = DB::table('departments')->pluck('department_en', 'id');
-        return view('backend.doctor-edit', compact('departments', 'doctor','id'));
+        return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
     public function update(Request $request)
     {

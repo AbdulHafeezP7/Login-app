@@ -1,12 +1,13 @@
 <!doctype html>
 <html
-  lang="en"
-  class="light-style layout-wide customizer-hide"
-  dir="ltr"
-  data-theme="theme-default"
-  data-assets-path="../../assets/"
-  data-template="vertical-menu-template"
-  data-style="light">
+    lang="en"
+    class="light-style layout-wide customizer-hide"
+    dir="ltr"
+    data-theme="theme-default"
+    data-assets-path="../../assets/"
+    data-template="vertical-menu-template"
+    data-style="light">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -26,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap" rel="stylesheet" />
 </head>
+
 <body>
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
@@ -89,7 +91,7 @@
                                 <span>Login instead</span>
                             </a>
                         </p>
-                        
+
                         <div class="d-flex justify-content-center">
                             <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-facebook me-1_5">
                                 <i class="tf-icons ti ti-brand-facebook-filled"></i>
@@ -113,78 +115,79 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#formAuthentication').on('submit', function(e) {
-            e.preventDefault();
-            $('.alert-danger').remove();
-            let name = $('#name').val();
-            let email = $('#email').val();
-            let password = $('#password').val();
-            let password_confirmation = $('#password_confirmation').val();
+    <script>
+        $(document).ready(function() {
+            $('#formAuthentication').on('submit', function(e) {
+                e.preventDefault();
+                $('.alert-danger').remove();
+                let name = $('#name').val();
+                let email = $('#email').val();
+                let password = $('#password').val();
+                let password_confirmation = $('#password_confirmation').val();
 
-            let errors = [];
-            if (name === '') {
-                errors.push('Full Name is required.');
-            }
-            if (email === '') {
-                errors.push('Email is required.');
-            } else if (!email.endsWith('@gmail.com')) {
-                errors.push('Email must be a @gmail.com address.');
-            }
-            if (password === '') {
-                errors.push('Password is required.');
-            } else if (password.length < 8) {
-                errors.push('Password must be at least 8 characters.');
-            } else if (!/[A-Z]/.test(password)) {
-                errors.push('Password must contain at least one uppercase character.');
-            } else if (!/[0-9]/.test(password)) {
-                errors.push('Password must contain at least one number.');
-            } else if (!/[@$!%*?&]/.test(password)) {
-                errors.push('Password must contain at least one special character.');
-            }
-            if (password_confirmation !== password) {
-                errors.push('Password confirmation does not match.');
-            }
-            if (errors.length > 0) {
-                let errorHtml = '<div class="alert alert-danger"><ul>';
-                errors.forEach(function(error) {
-                    errorHtml += '<li>' + error + '</li>';
-                });
-                errorHtml += '</ul></div>';
-                $('form').before(errorHtml);
-            } else {
-                // Send Ajax request
-                $.ajax({
-                    url: "{{ route('register') }}",
-                    method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        if (response.success) {
-                            let successHtml = '<div class="alert alert-success">' + response.message + '</div>';
-                            $('form').before(successHtml);
-                            setTimeout(function() {
-                                window.location.href = "{{ route('register') }}";
-                            }, 3000);
-                        } else {
-                            let errorHtml = '<div class="alert alert-danger"><ul>';
-                            response.errors.forEach(function(error) {
-                                errorHtml += '<li>' + error + '</li>';
-                            });
-                            errorHtml += '</ul></div>';
-                            $('form').before(errorHtml);
+                let errors = [];
+                if (name === '') {
+                    errors.push('Full Name is required.');
+                }
+                if (email === '') {
+                    errors.push('Email is required.');
+                } else if (!email.endsWith('@gmail.com')) {
+                    errors.push('Email must be a @gmail.com address.');
+                }
+                if (password === '') {
+                    errors.push('Password is required.');
+                } else if (password.length < 8) {
+                    errors.push('Password must be at least 8 characters.');
+                } else if (!/[A-Z]/.test(password)) {
+                    errors.push('Password must contain at least one uppercase character.');
+                } else if (!/[0-9]/.test(password)) {
+                    errors.push('Password must contain at least one number.');
+                } else if (!/[@$!%*?&]/.test(password)) {
+                    errors.push('Password must contain at least one special character.');
+                }
+                if (password_confirmation !== password) {
+                    errors.push('Password confirmation does not match.');
+                }
+                if (errors.length > 0) {
+                    let errorHtml = '<div class="alert alert-danger"><ul>';
+                    errors.forEach(function(error) {
+                        errorHtml += '<li>' + error + '</li>';
+                    });
+                    errorHtml += '</ul></div>';
+                    $('form').before(errorHtml);
+                } else {
+                    // Send Ajax request
+                    $.ajax({
+                        url: "{{ route('register') }}",
+                        method: 'POST',
+                        data: $(this).serialize(),
+                        success: function(response) {
+                            if (response.success) {
+                                let successHtml = '<div class="alert alert-success">' + response.message + '</div>';
+                                $('form').before(successHtml);
+                                setTimeout(function() {
+                                    window.location.href = "{{ route('register') }}";
+                                }, 3000);
+                            } else {
+                                let errorHtml = '<div class="alert alert-danger"><ul>';
+                                response.errors.forEach(function(error) {
+                                    errorHtml += '<li>' + error + '</li>';
+                                });
+                                errorHtml += '</ul></div>';
+                                $('form').before(errorHtml);
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
+
 </html>

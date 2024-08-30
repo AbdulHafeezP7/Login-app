@@ -51,10 +51,10 @@
     <script>
         $(document).ready(function() {
             $('#addDepartmentForm').on('submit', function(e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('departments.store') }}", 
+                    url: "{{ route('departments.store') }}",
                     type: 'POST',
                     data: formData,
                     processData: false,

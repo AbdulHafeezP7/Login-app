@@ -106,7 +106,7 @@
                     data: 'frontpage',
                     name: 'frontpage',
                     render: function(data, type, row) {
-                        var checked = row.frontpage==1 ? 'checked' : '';
+                        var checked = row.frontpage == 1 ? 'checked' : '';
                         return `
                         <div class="form-check form-switch mb-2">
                             <input class="form-check-input toggle-frontpage" type="checkbox" style="width:80%" data-id="${row.id}" ${checked}>
@@ -138,7 +138,7 @@
             ]
         });
 
-        
+
         $('#doctors-table').on('change', '.toggle-frontpage', function() {
             var doctorId = $(this).data('id');
             var frontpageStatus = $(this).is(':checked') ? 1 : 0;
@@ -163,19 +163,19 @@
             });
         });
 
-        
+
         $('#doctors-table').on('click', '.view-doctor', function() {
             var doctorId = $(this).data('id');
             window.location.href = "{{ url('doctors') }}/" + doctorId + "/show";
         });
 
-        
+
         $('#doctors-table').on('click', '.edit-doctor', function() {
             var doctorId = $(this).data('id');
             window.location.href = "{{ url('doctors') }}/" + doctorId + "/edit";
         });
 
-       
+
         $('#doctors-table').on('click', '.delete-doctor', function() {
             var doctorId = $(this).data('id');
             if (confirm('Are you sure you want to delete this doctor?')) {

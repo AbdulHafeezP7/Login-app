@@ -89,10 +89,10 @@
     el.insertAdjacentHTML(
       'afterbegin',
       '<img src="' +
-        assetsPath +
-        'img/illustrations/fleet-car.png" alt="Fleet Car" width="20" class="rounded-3" id="carFleet-' +
-        marker.properties.message +
-        '">'
+      assetsPath +
+      'img/illustrations/fleet-car.png" alt="Fleet Car" width="20" class="rounded-3" id="carFleet-' +
+      marker.properties.message +
+      '">'
     );
     el.style.width = `${width}px`;
     el.style.height = `${height}px`;

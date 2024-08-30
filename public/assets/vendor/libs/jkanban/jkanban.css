@@ -151,6 +151,7 @@
 .light-style .kanban-board {
   background: #e6e6e8;
 }
+
 .light-style .kanban-item {
   background: #fff;
 }
@@ -158,6 +159,7 @@
 .dark-style .kanban-board {
   background: #44485e;
 }
+
 .dark-style .kanban-item {
   background: #2f3349;
 }

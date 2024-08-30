@@ -123,31 +123,31 @@
     return images == undefined
       ? ' '
       : images
-          .split(',')
-          .map(function (img, index, arr) {
-            var $margin = margin && index !== arr.length - 1 ? ' me-' + margin + '' : '';
+        .split(',')
+        .map(function (img, index, arr) {
+          var $margin = margin && index !== arr.length - 1 ? ' me-' + margin + '' : '';
 
-            return (
-              "<div class='avatar " +
-              $size +
-              $margin +
-              "'" +
-              "data-bs-toggle='tooltip' data-bs-placement='top'" +
-              "title='" +
-              member[index] +
-              "'" +
-              '>' +
-              "<img src='" +
-              assetsPath +
-              'img/avatars/' +
-              img +
-              "' alt='Avatar' class='rounded-circle " +
-              $transition +
-              "'>" +
-              '</div>'
-            );
-          })
-          .join(' ');
+          return (
+            "<div class='avatar " +
+            $size +
+            $margin +
+            "'" +
+            "data-bs-toggle='tooltip' data-bs-placement='top'" +
+            "title='" +
+            member[index] +
+            "'" +
+            '>' +
+            "<img src='" +
+            assetsPath +
+            'img/avatars/' +
+            img +
+            "' alt='Avatar' class='rounded-circle " +
+            $transition +
+            "'>" +
+            '</div>'
+          );
+        })
+        .join(' ');
   }
 
   // Render footer
@@ -188,8 +188,8 @@
     click: function (el) {
       let element = el;
       let title = element.getAttribute('data-eid')
-          ? element.querySelector('.kanban-text').textContent
-          : element.textContent,
+        ? element.querySelector('.kanban-text').textContent
+        : element.textContent,
         date = element.getAttribute('data-due-date'),
         dateObj = new Date(),
         year = dateObj.getFullYear(),
@@ -216,9 +216,9 @@
         .insertAdjacentHTML(
           'afterbegin',
           renderAvatar(avatars, false, 'xs', '1', el.getAttribute('data-members')) +
-            "<div class='avatar avatar-xs ms-1'>" +
-            "<span class='avatar-initial rounded-circle bg-label-secondary'><i class='ti ti-plus ti-xs text-heading'></i></span>" +
-            '</div>'
+          "<div class='avatar avatar-xs ms-1'>" +
+          "<span class='avatar-initial rounded-circle bg-label-secondary'><i class='ti ti-plus ti-xs text-heading'></i></span>" +
+          '</div>'
         );
     },
 

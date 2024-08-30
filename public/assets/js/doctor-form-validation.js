@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#addDoctorForm').on('submit', function (e) {
-        e.preventDefault(); 
-        
+        e.preventDefault();
+
         $('.invalid-feedback').remove();
         $('.is-invalid').removeClass('is-invalid');
 
@@ -56,7 +56,7 @@ $(document).ready(function () {
             var formData = new FormData(this);
 
             $.ajax({
-                url: $(this).attr('action'), 
+                url: $(this).attr('action'),
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -80,7 +80,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
-                        
+
                         $('.invalid-feedback').remove();
 
                         let errors = xhr.responseJSON.errors;
@@ -89,10 +89,10 @@ $(document).ready(function () {
                             let errorMessage = errors[field][0];
                             let inputField = $('#' + field);
 
-                            
+
                             let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
 
-                            
+
                             inputField.after(errorDiv);
                             inputField.addClass('is-invalid');
                         }
@@ -102,7 +102,7 @@ $(document).ready(function () {
                 }
             });
         } else {
-            
+
             if (!errorMessage) {
                 errorMessage = 'Please fill out all required fields correctly and ensure the image file is of a supported type.';
             }

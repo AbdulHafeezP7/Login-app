@@ -8,6 +8,7 @@
   font-weight: 400;
   src: url("tabler/tabler-icons.woff2?v3.4.0") format("woff2"), url("tabler/tabler-icons.woff?") format("woff"), url("tabler/tabler-icons.ttf?v3.4.0") format("truetype");
 }
+
 .ti {
   vertical-align: middle;
   font-size: 1.25rem;
@@ -33,207 +34,259 @@
     -webkit-transform: rotate(0);
     transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
+
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0);
     transform: rotate(0);
   }
+
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
+
 @-webkit-keyframes burst {
   0% {
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1;
   }
+
   90% {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
     opacity: 0;
   }
 }
+
 @keyframes burst {
   0% {
     -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 1;
   }
+
   90% {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
     opacity: 0;
   }
 }
+
 @-webkit-keyframes flashing {
   0% {
     opacity: 1;
   }
+
   45% {
     opacity: 0;
   }
+
   90% {
     opacity: 1;
   }
 }
+
 @keyframes flashing {
   0% {
     opacity: 1;
   }
+
   45% {
     opacity: 0;
   }
+
   90% {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes fade-left {
   0% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateX(-20px);
     transform: translateX(-20px);
     opacity: 0;
   }
 }
+
 @keyframes fade-left {
   0% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateX(-20px);
     transform: translateX(-20px);
     opacity: 0;
   }
 }
+
 @-webkit-keyframes fade-right {
   0% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateX(20px);
     transform: translateX(20px);
     opacity: 0;
   }
 }
+
 @keyframes fade-right {
   0% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateX(20px);
     transform: translateX(20px);
     opacity: 0;
   }
 }
+
 @-webkit-keyframes fade-up {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px);
     opacity: 0;
   }
 }
+
 @keyframes fade-up {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px);
     opacity: 0;
   }
 }
+
 @-webkit-keyframes fade-down {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateY(20px);
     transform: translateY(20px);
     opacity: 0;
   }
 }
+
 @keyframes fade-down {
   0% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
+
   75% {
     -webkit-transform: translateY(20px);
     transform: translateY(20px);
     opacity: 0;
   }
 }
+
 @-webkit-keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
-  10%, 20% {
+
+  10%,
+  20% {
     -webkit-transform: scale3d(0.95, 0.95, 0.95) rotate3d(0, 0, 1, -10deg);
     transform: scale3d(0.95, 0.95, 0.95) rotate3d(0, 0, 1, -10deg);
   }
-  30%, 50%, 70%, 90% {
+
+  30%,
+  50%,
+  70%,
+  90% {
     -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
     transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
   }
-  40%, 60%, 80% {
+
+  40%,
+  60%,
+  80% {
     -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
     transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
   }
+
   to {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 }
+
 @keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
-  10%, 20% {
+
+  10%,
+  20% {
     -webkit-transform: scale3d(0.95, 0.95, 0.95) rotate3d(0, 0, 1, -10deg);
     transform: scale3d(0.95, 0.95, 0.95) rotate3d(0, 0, 1, -10deg);
   }
-  30%, 50%, 70%, 90% {
+
+  30%,
+  50%,
+  70%,
+  90% {
     -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
     transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
   }
-  40%, 60%, 80% {
+
+  40%,
+  60%,
+  80% {
     -webkit-transform: rotate3d(0, 0, 1, -10deg);
     transform: rotate3d(0, 0, 1, -10deg);
   }
+
   to {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 }
+
 .ti-spin {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
@@ -334,67 +387,83 @@
   font-size: 2.25rem !important;
 }
 
-.ti-10px, .ti-10px:before {
+.ti-10px,
+.ti-10px:before {
   font-size: 10px;
 }
 
-.ti-12px, .ti-12px:before {
+.ti-12px,
+.ti-12px:before {
   font-size: 12px;
 }
 
-.ti-14px, .ti-14px:before {
+.ti-14px,
+.ti-14px:before {
   font-size: 14px;
 }
 
-.ti-16px, .ti-16px:before {
+.ti-16px,
+.ti-16px:before {
   font-size: 16px;
 }
 
-.ti-18px, .ti-18px:before {
+.ti-18px,
+.ti-18px:before {
   font-size: 18px;
 }
 
-.ti-20px, .ti-20px:before {
+.ti-20px,
+.ti-20px:before {
   font-size: 20px;
 }
 
-.ti-22px, .ti-22px:before {
+.ti-22px,
+.ti-22px:before {
   font-size: 22px;
 }
 
-.ti-24px, .ti-24px:before {
+.ti-24px,
+.ti-24px:before {
   font-size: 24px;
 }
 
-.ti-26px, .ti-26px:before {
+.ti-26px,
+.ti-26px:before {
   font-size: 26px;
 }
 
-.ti-28px, .ti-28px:before {
+.ti-28px,
+.ti-28px:before {
   font-size: 28px;
 }
 
-.ti-30px, .ti-30px:before {
+.ti-30px,
+.ti-30px:before {
   font-size: 30px;
 }
 
-.ti-32px, .ti-32px:before {
+.ti-32px,
+.ti-32px:before {
   font-size: 32px;
 }
 
-.ti-36px, .ti-36px:before {
+.ti-36px,
+.ti-36px:before {
   font-size: 36px;
 }
 
-.ti-40px, .ti-40px:before {
+.ti-40px,
+.ti-40px:before {
   font-size: 40px;
 }
 
-.ti-42px, .ti-42px:before {
+.ti-42px,
+.ti-42px:before {
   font-size: 42px;
 }
 
-.ti-48px, .ti-48px:before {
+.ti-48px,
+.ti-48px:before {
   font-size: 48px;
 }
 

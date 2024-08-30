@@ -74,7 +74,7 @@ if (document.getElementById('layout-menu')) {
             let layoutCollapsedVal = window.Helpers.isCollapsed() ? 'collapsed' : 'expanded';
             layoutCollapsedCustomizerOptions.querySelector(`input[value="${layoutCollapsedVal}"]`).click();
           }
-        } catch (e) {}
+        } catch (e) { }
       }
     });
   });
@@ -406,7 +406,7 @@ if (document.getElementById('layout-menu')) {
             localStorage.getItem('templateCustomizer-' + templateName + '--LayoutCollapsed') === 'true',
             false
           );
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 })();

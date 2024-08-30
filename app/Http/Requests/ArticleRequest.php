@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\NotEmptyHtml;
+
 class ArticleRequest extends FormRequest
 {
     public function authorize(): bool

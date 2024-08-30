@@ -68,10 +68,10 @@
                             buttonsStyling: false
                         }).then(() => {
                             setTimeout(() => {
-                                window.location.href = "{{route('departments.index')}}"; 
-                            }, 0); 
+                                window.location.href = "{{route('departments.index')}}";
+                            }, 0);
                         });
-                       
+
                     } else {
                         console.log('Error updating department: ' + response.message);
                     }

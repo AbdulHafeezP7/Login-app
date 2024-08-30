@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\ArticleRequest;
+
 class ArticleController extends Controller
 {
     public function index()
@@ -64,7 +67,7 @@ class ArticleController extends Controller
     }
     public function store(ArticleRequest $request)
     {
-        try {                             
+        try {
             $article = new Article;
             $article->title_en = $request->title_en;
             $article->title_ar = $request->title_ar;
@@ -87,7 +90,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('backend.article-edit', compact('article','id'));
+        return view('backend.article-edit', compact('article', 'id'));
     }
     public function update(Request $request)
     {

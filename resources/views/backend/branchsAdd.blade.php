@@ -63,11 +63,11 @@
     <script>
         $(document).ready(function() {
             $('#addBranchForm').on('submit', function(e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
-                    url: "{{ route('branchs.store') }}", 
-                    type: 'POST', 
+                    url: "{{ route('branchs.store') }}",
+                    type: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
