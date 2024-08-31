@@ -1,4 +1,7 @@
 
+@extends('frontend.layouts.FrontendLayout')
+@section('title', 'Dashborad')
+@section('content')
 <!-- BEGIN :: page header section -->
 <div class="slider">
     <div class="swiper mm">
@@ -101,3 +104,5 @@
     </div>
 </div>
 
+
+@endsection
