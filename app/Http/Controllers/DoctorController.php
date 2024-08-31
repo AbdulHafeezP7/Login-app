@@ -98,18 +98,6 @@ class DoctorController extends Controller
         try {
             $doctor = Doctor::findOrFail($request->id);
             $request->validate([
-                'name_en' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
-                'name_ar' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
                 'doctor_description' => 'required|string',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'department' => 'required|string',
