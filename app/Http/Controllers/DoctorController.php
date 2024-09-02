@@ -114,6 +114,7 @@ class DoctorController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'department' => 'required|string',
             ]);
+            
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
             $doctor->doctor_description = $request->doctor_description;

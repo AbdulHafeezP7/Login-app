@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\NotEmptyHtml;
 
 class DoctorRequest extends FormRequest
 {
@@ -15,19 +16,19 @@ class DoctorRequest extends FormRequest
 
         return [
             'name_en' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
-                'name_ar' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
+                'required',
+                'regex:/^Dr\.\s.+$/',
+                'string',
+                'max:255'
+            ],
+            'name_ar' => [
+                'required',
+                'regex:/^Dr\.\s.+$/',
+                'string',
+                'max:255'
+            ],
             'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'doctor_description' => 'required|string',
+            'doctor_description' => ['required', new NotEmptyHtml],
             'department' => 'required|string',
         ];
     }

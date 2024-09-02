@@ -1,6 +1,8 @@
 @extends('backend.layouts.backendLayout')
 @section('title', 'AddDoctor')
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -8,13 +10,15 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Doctor</h5>
                     <div class="card-body">
-                        <form id="addDoctorForm" class="needs-validation" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addDoctorForm" class="is-invalid" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <label for="name_en" class="form-label">Name (English)</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="name_en" name="name_en">
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
+                                <input type=" text" class="form-control" id="name_en" name="name_en">
                             </div>
                             <label for="name_ar" class="form-label">Name (Arabic)</label>
                             <div class="input-group">
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
                             <div class="mb-3" id="doctorImg">
@@ -23,8 +27,36 @@
                             </div>
                             <div class="mb-3">
                                 <label for="doctor_description" class="form-label">Doctor Description</label>
-                                <textarea class="form-control" id="doctor_description" name="doctor_description" rows="4"></textarea>
+                                <div id="doctor-description-toolbar">
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-color"></select>
+                                        <select class="ql-background"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-script" value="sub"></button>
+                                        <button class="ql-script" value="super"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-header" value="1"></button>
+                                        <button class="ql-header" value="2"></button>
+                                        <button class="ql-blockquote"></button>
+                                        <button class="ql-code-block"></button>
+                                    </span>
+                                </div>
+                                <div id="doctor-description-editor"></div>
+                                <input type="hidden" name="doctor_description" id="doctor_description">
                             </div>
+
                             <div class="mb-3" id="imgdiv" style="display: none;">
                                 <img id="doctorImage" src="" alt="" width="100px" height="100px">
                             </div>
@@ -57,13 +89,27 @@
     <script src="{{ asset('assets/js/form-validation.js') }}"></script>
     <script>
         $(document).ready(function() {
+            var quillDescription = new Quill('#doctor-description-editor', {
+                modules: {
+                    toolbar: '#doctor-description-toolbar'
+                },
+                theme: 'snow'
+            });
+
             $('#addDoctorForm').on('submit', function(e) {
                 e.preventDefault();
-                var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val();
-                var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val();
-                var nameEnValue = $('#name_en').val().trim();
-                var nameArValue = $('#name_ar').val().trim();
+
+                var doctorDescriptionContent = quillDescription.root.innerHTML;
+                $('#doctor_description').val(doctorDescriptionContent);
+
+                var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val().trim();
+                var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val().trim();
+
                 var formData = new FormData(this);
+                formData.set('name_en', nameEnFull);
+                formData.set('name_ar', nameArFull);
+                formData.set('doctor_description', doctorDescriptionContent);
+
                 $.ajax({
                     url: "{{ route('doctors.store') }}",
                     type: 'POST',
@@ -81,7 +127,7 @@
                                 },
                                 buttonsStyling: false
                             }).then(() => {
-                                window.location.href = "{{route('doctors.index')}}";
+                                window.location.href = "{{ route('doctors.index') }}";
                             });
                         } else {
                             console.log('Error saving doctor: ' + response.message);
@@ -89,11 +135,8 @@
                     },
                     error: function(xhr) {
                         if (xhr.status === 422) {
-
                             $('.invalid-feedback').remove();
-
                             let errors = xhr.responseJSON.errors;
-
                             for (let field in errors) {
                                 let errorMessage = errors[field][0];
                                 let inputField = $('#' + field);
@@ -109,4 +152,5 @@
             });
         });
     </script>
+
     @endsection

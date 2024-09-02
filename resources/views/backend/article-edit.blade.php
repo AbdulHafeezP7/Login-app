@@ -7,12 +7,10 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Article</h1>
-            <!-- Ensure form method is PUT for updates -->
             <form id="article-form" class="is-invalid" novalidate action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3" style="display:none;">
-                    <!-- Ensure the article ID is being passed correctly -->
                     <label for="id" class="form-label">ID</label>
                     <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
                 </div>
@@ -86,7 +84,6 @@
                     <div id="snow-editor1"></div>
                     <div id="content_ar"></div>
                 </div>
-                <!-- Ensure hidden fields for editor content are present -->
                 <input type="hidden" id="content_en_data" name="article_en" value="{{ old('article_en', $article->article_en) }}">
                 <input type="hidden" id="content_ar_data" name="article_ar" value="{{ old('article_ar', $article->article_ar) }}">
 

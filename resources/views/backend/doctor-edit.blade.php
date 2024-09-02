@@ -1,16 +1,19 @@
 @extends('backend.layouts.backendLayout')
 @section('title', 'Edit Doctor')
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css') }}" />
+
 <div id="content-area">
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Doctor</h1>
-            <form id="doctor-form" class="needs-validation" novalidate action="{{ route('doctors.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="doctor-form" class="is-invalid" novalidate action="{{ route('doctors.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3" style="display:none;">
                     <label for="id" class="form-label">ID</label>
-                    <input type="hidden" class="form-control" name="id" value="{{$id}}">
+                    <input type="hidden" class="form-control" name="id" value="{{$doctor->id}}">
                 </div>
                 <div class="mb-3">
                     <label for="name_en" class="form-label">Name (English)</label>
@@ -22,15 +25,42 @@
                 </div>
                 <div class="mb-3">
                     <label for="doctor_description" class="form-label">Doctor Description</label>
-                    <textarea class="form-control" id="doctor_description" name="doctor_description" rows="4">{{ old('doctor_description', $doctor->doctor_description) }}</textarea>
+                    <div id="doctor-description-toolbar">
+                        <span class="ql-formats">
+                            <select class="ql-font"></select>
+                            <select class="ql-size"></select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                            <button class="ql-strike"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-color"></select>
+                            <select class="ql-background"></select>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-script" value="sub"></button>
+                            <button class="ql-script" value="super"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <button class="ql-header" value="1"></button>
+                            <button class="ql-header" value="2"></button>
+                            <button class="ql-blockquote"></button>
+                            <button class="ql-code-block"></button>
+                        </span>
+                    </div>
+                    <div id="doctor-description-editor"></div>
+                    <input type="hidden" name="doctor_description" id="doctor_description">
                 </div>
                 <div class="mb-3">
                     <label for="department" class="form-label">Department</label>
                     <select class="form-control" id="department" name="department">
                         <option value="">Select a Department</option>
-                        @foreach($departments as $id => $department_name)
-                        <option value="{{ $id }}" {{ old('department', $doctor->department) == $id ? 'selected' : '' }}>
-                            {{ $department_name }}
+                        @foreach($departments as $data)
+                        <option value="{{$data->id}}" {{ old('department', $doctor->department) == $data->id ? 'selected' : '' }}>
+                            {{ $data->department_en }}
                         </option>
                         @endforeach
                     </select>
@@ -48,15 +78,44 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
-<script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
-<script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+
+<script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
 <script src="{{ asset('assets/js/form-validation.js') }}"></script>
 <script>
     $(document).ready(function() {
+        // Function to strip HTML tags
+        function stripHtmlTags(html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            return doc.body.textContent || "";
+        }
+
+        // Initialize Quill editor
+        var quillDescription = new Quill('#doctor-description-editor', {
+            modules: {
+                formula: true,
+                toolbar: '#doctor-description-toolbar'
+            },
+            theme: 'snow'
+        });
+
+        // Get the initial content, clean it, and set it to Quill editor
+        var initialDescriptionContent = '{{ old("doctor_description", $doctor->doctor_description) }}';
+        var cleanContent = stripHtmlTags(initialDescriptionContent);
+        quillDescription.root.innerHTML = cleanContent;
+
+        // Handle form submission
         $('#doctor-form').on('submit', function(e) {
             e.preventDefault();
-            let formData = new FormData(this);
+
+            // Get the Quill editor content
+            var doctorDescriptionContent = quillDescription.root.innerHTML;
+            $('#doctor_description').val(doctorDescriptionContent);
+
+
+            var formData = new FormData(this);
+
             $.ajax({
                 url: $(this).attr('action'),
                 method: 'POST',
@@ -74,11 +133,8 @@
                             },
                             buttonsStyling: false
                         }).then(() => {
-                            setTimeout(() => {
-                                window.location.href = "{{route('doctors.index')}}";
-                            }, 0);
+                            window.location.href = "{{ route('doctors.index') }}";
                         });
-
                     } else {
                         console.log('Error updating doctor: ' + response.message);
                     }
@@ -98,8 +154,10 @@
                         console.log('Error updating doctor: ' + (xhr.responseJSON.message || 'Unknown error'));
                     }
                 }
+
             });
         });
     });
 </script>
+
 @endsection

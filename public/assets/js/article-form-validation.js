@@ -147,14 +147,14 @@ $(document).ready(function () {
     });
 
     // Special case for editors
-    snowEditor.on('text-change', function() {
+    snowEditor.on('text-change', function () {
         if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor').removeClass('is-invalid');
             $('#snow-editor').siblings('.invalid-feedback').remove();
         }
     });
 
-    snowEditor1.on('text-change', function() {
+    snowEditor1.on('text-change', function () {
         if (snowEditor1.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor1').removeClass('is-invalid');
             $('#snow-editor1').siblings('.invalid-feedback').remove();
