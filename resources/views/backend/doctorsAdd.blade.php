@@ -11,12 +11,10 @@
                         <form id="addDoctorForm" class="needs-validation" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <label for="name_en" class="form-label">Name (English)</label>
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_en" name="name_en">
                             </div>
                             <label for="name_ar" class="form-label">Name (Arabic)</label>
                             <div class="input-group">
-                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
                             <div class="mb-3" id="doctorImg">
@@ -34,8 +32,8 @@
                                 <label for="department" class="form-label">Department</label>
                                 <select class="form-control" id="department" name="department">
                                     <option value="">Select a Department</option>
-                                    @foreach($departments as $id=> $department_en)
-                                    <option value="{{$id}}">{{$department_en}}</option>
+                                    @foreach($departments as $id=> $data)
+                                    <option value="{{$data->id}}">{{$data->department_en}}</option>
                                     @endforeach
                                 </select>
                             </div>
