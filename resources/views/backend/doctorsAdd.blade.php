@@ -61,8 +61,8 @@
                 e.preventDefault();
                 var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val();
                 var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val();
-                $('#name_en').val(nameEnFull);
-                $('#name_ar').val(nameArFull);
+                var nameEnValue = $('#name_en').val().trim();
+                var nameArValue = $('#name_ar').val().trim();
                 var formData = new FormData(this);
                 $.ajax({
                     url: "{{ route('doctors.store') }}",
