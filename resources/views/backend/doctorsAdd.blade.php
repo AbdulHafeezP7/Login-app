@@ -11,12 +11,12 @@
                         <form id="addDoctorForm" class="needs-validation" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <label for="name_en" class="form-label">Name (English)</label>
                             <div class="input-group">
-                                <span class="input-group-text" id="dr">Dr.</span>
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_en" name="name_en">
                             </div>
                             <label for="name_ar" class="form-label">Name (Arabic)</label>
                             <div class="input-group">
-                                <span class="input-group-text" id="dr">Dr.</span>
+                                <span class="input-group-text" id="basic-addon11">Dr.</span>
                                 <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
                             <div class="mb-3" id="doctorImg">
@@ -61,8 +61,8 @@
         $(document).ready(function() {
             $('#addDoctorForm').on('submit', function(e) {
                 e.preventDefault();
-                var nameEnFull = $('#dr').text() + ' ' + $('#name_en').val();
-                var nameArFull = $('#dr').text() + ' ' + $('#name_ar').val();
+                var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val();
+                var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val();
                 var nameEnValue = $('#name_en').val().trim();
                 var nameArValue = $('#name_ar').val().trim();
                 var formData = new FormData(this);
