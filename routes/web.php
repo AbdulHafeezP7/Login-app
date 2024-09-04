@@ -9,6 +9,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\SocialmediaController;
 use Illuminate\Support\Facades\Route;
 
 // Registration Routes
@@ -45,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('doctors', [DoctorController::class, 'index'])->name('doctors.index');
     Route::post('doctors/store', [DoctorController::class, 'store'])->name('doctors.store');
     Route::get('doctors/dataTablesForDoctors', [DoctorController::class, 'dataTablesForDoctors'])->name('doctors.dataTablesForDoctors');
+    Route::post('doctors/increment', [DoctorController::class, 'doctorIncrement'])->name('doctors.increment');
+    Route::post('doctors/decrement', [DoctorController::class, 'doctorDecrement'])->name('doctors.decrement');
     // Route::resource('doctors', DoctorController::class);
     Route::get('/doctors/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');
     Route::get('/doctors/addDoctors', [DoctorController::class, 'addDoctors'])->name('doctors.add');
@@ -58,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('departments', [DepartmentController::class, 'index'])->name('departments.index');
     Route::post('departments/store', [DepartmentController::class, 'store'])->name('departments.store');
     Route::get('departments/dataTablesForDepartments', [DepartmentController::class, 'dataTablesForDepartments'])->name('departments.dataTablesForDepartments');
+    Route::post('departments/increment', [DepartmentController::class, 'departmentIncrement'])->name('departments.increment');
+    Route::post('departments/decrement', [DepartmentController::class, 'departmentDecrement'])->name('departments.decrement');
     // Route::resource('departments', DepartmentController::class);
     Route::get('/departments/{id}/edit', [DepartmentController::class, 'edit'])->name('departments.edit');
     Route::get('/departments/addDepartments', [DepartmentController::class, 'addDepartments'])->name('departments.add');
@@ -71,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('branchs', [BranchController::class, 'index'])->name('branchs.index');
     Route::post('branchs/store', [BranchController::class, 'store'])->name('branchs.store');
     Route::get('branchs/dataTablesForBranchs', [BranchController::class, 'dataTablesForBranchs'])->name('branchs.dataTablesForBranchs');
+    Route::post('branchs/increment', [BranchController::class, 'branchIncrement'])->name('branchs.increment');
+    Route::post('branchs/decrement', [BranchController::class, 'branchDecrement'])->name('branchs.decrement');
     // Route::resource('branchs', BranchController::class);
     Route::get('/branchs/{id}/edit', [BranchController::class, 'edit'])->name('branchs.edit');
     Route::get('/branchs/addBranchs', [BranchController::class, 'addBranchs'])->name('branchs.add');
@@ -93,6 +100,21 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/offers/{id}/delete', [OfferController::class, 'destroy'])->name('offers.destroy');
     Route::get('/offers/{id}/show', [OfferController::class, 'show'])->name('offers.show');
     // Route::get('/offers', [OfferController::class, 'getOffer']);
+
+
+    // Socialmedia Routes
+    Route::get('socialmedias', [SocialmediaController::class, 'index'])->name('socialmedias.index');
+    Route::post('socialmedias/store', [SocialmediaController::class, 'store'])->name('socialmedias.store');
+    Route::get('socialmedias/dataTablesForSocialmedias', [SocialmediaController::class, 'dataTablesForSocialmedias'])->name('socialmedias.dataTablesForSocialmedias');
+    Route::post('socialmedias/increment', [SocialmediaController::class, 'socialmediaIncrement'])->name('socialmedias.increment');
+    Route::post('socialmedias/decrement', [SocialmediaController::class, 'socialmediaDecrement'])->name('socialmedias.decrement');
+    // Route::resource('socialmedias', SocialmediaController::class);
+    Route::get('/socialmedias/{id}/edit', [SocialmediaController::class, 'edit'])->name('socialmedias.edit');
+    Route::get('/socialmedias/addSocialmedias', [SocialmediaController::class, 'addSocialmedias'])->name('socialmedias.add');
+    Route::put('/socialmedias/update', [SocialmediaController::class, 'update'])->name('socialmedias.update');
+    Route::delete('/socialmedias/{id}/delete', [SocialmediaController::class, 'destroy'])->name('socialmedias.destroy');
+    Route::get('/socialmedias/{id}/show', [SocialmediaController::class, 'show'])->name('socialmedias.show');
+    // Route::get('/socialmedias', [SocialmediaController::class, 'getSocialmedia']);
 });
 
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');

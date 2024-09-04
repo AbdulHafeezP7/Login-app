@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Branch</h1>
-            <form id="branch-form" action="{{ route('branchs.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="branch-form" class="is-invalid" novalidate action="{{ route('branchs.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3" style="display:none;">

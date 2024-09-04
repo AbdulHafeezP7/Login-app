@@ -43,6 +43,9 @@ class DoctorController extends Controller
                 ->addColumn('department', function ($row) {
                     return $row->department_name;
                 })
+                ->addColumn('sort', function ($row) {
+                    return $row->sort;
+                })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -58,6 +61,9 @@ class DoctorController extends Controller
                 ->filterColumn('department', function ($query, $keyword) {
                     $query->where('departments.department_en', 'like', "%{$keyword}%");
                 })
+                ->orderColumn('sort', function ($query) {
+                    $query->orderBy('sort', 'asc');
+                })
                 ->make(true);
         }
     }
@@ -69,12 +75,13 @@ class DoctorController extends Controller
     public function store(DoctorRequest $request)
     {
         try {
-
+            $totalDoctors = Doctor::count();
             $doctor = new Doctor;
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
             $doctor->doctor_description = $request->doctor_description;
             $doctor->department = $request->department;
+            $doctor->sort = $totalDoctors + 1;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
@@ -86,6 +93,39 @@ class DoctorController extends Controller
 
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
+    }
+    public function doctorDecrement(Request $request)
+    {
+        $doctor = Doctor::find($request->doctorId);
+        $sort = --$doctor->sort;
+        if ($sort >= 1) {
+            $doctorDownData = Doctor::where('sort', $sort)->first();
+            if ($doctorDownData) {
+                $newSort = ($doctorDownData->sort == 0 || $doctorDownData->sort == null) ? 0 : $doctorDownData->sort;
+                $doctorDownData->sort = $newSort + 1;
+                $doctorDownData->save();
+            }
+            $doctor->sort = $sort;
+            $doctor->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
+    }
+    public function doctorIncrement(Request $request)
+    {
+        $doctor = Doctor::find($request->doctorId);
+        $sort = ++$doctor->sort;
+        $doctorCount = Doctor::count('id');
+        if ($sort <= $doctorCount) {
+            $doctorUpData = Doctor::where('sort', $sort)->first();
+            if ($doctorUpData) {
+                $newSort = ($doctorUpData->sort == 0 || $doctorUpData->sort == null) ? 0 : $doctorUpData->sort;
+                $doctorUpData->sort = $newSort - 1;
+                $doctorUpData->save();
+            }
+            $doctor->sort = $sort;
+            $doctor->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
     }
     public function edit($id)
     {

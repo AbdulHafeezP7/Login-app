@@ -15,21 +15,23 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-            <table class="table table-bordered mt-4" id="articles-table">
-                <thead>
-                    <tr>
-                        <th>Title (English)</th>
-                        <th>Title (Arabic)</th>
-                        <th>Thumbnail Image</th>
-                        <th>Article (English)</th>
-                        <th>Article (Arabic)</th>
-                        <th>Slug</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4" id="articles-table">
+                    <thead>
+                        <tr>
+                            <th>Title (English)</th>
+                            <th>Title (Arabic)</th>
+                            <th>Thumbnail Image</th>
+                            <th>Article (English)</th>
+                            <th>Article (Arabic)</th>
+                            <th>Slug</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -118,7 +120,7 @@
                 }
             ],
             order: [
-                [6, 'desc']
+                [5, 'desc']
             ]
         });
         $('#articles-table').on('click', '.view-article', function() {

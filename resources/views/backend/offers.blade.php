@@ -13,21 +13,23 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-            <table class="table table-bordered mt-4" id="offers-table">
-                <thead>
-                    <tr>
-                        <th>Offer Name (English)</th>
-                        <th>Offer Name (Arabic)</th>
-                        <th>Offer Image</th>
-                        <th>Actual Price</th>
-                        <th>Offer Price</th>
-                        <th>Sort</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4" id="offers-table">
+                    <thead>
+                        <tr>
+                            <th>Offer Name (English)</th>
+                            <th>Offer Name (Arabic)</th>
+                            <th>Offer Image</th>
+                            <th>Actual Price</th>
+                            <th>Offer Price</th>
+                            <th>Sort</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -76,7 +78,7 @@
                         console.log(response.message);
                         location.reload();
                     } else {
-                        console.error('Error decrementing offer:', response.message);
+                        console.error('Error incrementing offer:', response.message);
                     }
                 },
                 error: function(xhr, status, error) {

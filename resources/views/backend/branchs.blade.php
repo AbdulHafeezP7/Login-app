@@ -13,23 +13,26 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-            <table class="table table-bordered mt-4" id="branchs-table">
-                <thead>
-                    <tr>
-                        <th>Branch Name(English)</th>
-                        <th>Branch Name(Arabic)</th>
-                        <th>Branch Manager Name</th>
-                        <th>Branch Location</th>
-                        <th>Branch Address</th>
-                        <th>Branch Social Media Link</th>
-                        <th>Branch Office Number</th>
-                        <th>Branch Manager Number</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4" id="branchs-table">
+                    <thead>
+                        <tr>
+                            <th>Branch Name(English)</th>
+                            <th>Branch Name(Arabic)</th>
+                            <th>Branch Manager Name</th>
+                            <th>Branch Location</th>
+                            <th>Branch Address</th>
+                            <th>Branch Social Media Link</th>
+                            <th>Branch Office Number</th>
+                            <th>Branch Manager Number</th>
+                            <th>Sort</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -38,6 +41,55 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+    function decrement(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('branchs.decrement')}}",
+                data: {
+                    branchId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error decrementing branch:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
+
+    function increment(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('branchs.increment')}}",
+                data: {
+                    branchId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error incrementing branch:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
     $(document).ready(function() {
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
@@ -112,6 +164,19 @@
                     name: 'branchmanager_number',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: null,
+                    name: 'sort',
+                    orderable: true,
+                    searchable: false,
+                    render: function(data, type, row) {
+                        return `
+                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
+                    ${row.sort}
+                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
+                `;
                     }
                 },
                 {

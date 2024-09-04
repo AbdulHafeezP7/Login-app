@@ -8,7 +8,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Branch</h5>
                     <div class="card-body">
-                        <form id="addBranchForm" class="needs-validation" novalidate action="{{ route('branchs.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addBranchForm" class="is-invalid" novalidate action="{{ route('branchs.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="branchname_en" class="form-label">Branch Name(English)</label>
@@ -100,7 +100,7 @@
                                 inputField.addClass('is-invalid');
                             }
                         } else {
-                            console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
+                            console.log('Error saving branch: ' + (xhr.responseJSON.message || 'Unknown error'));
                         }
                     }
                 });

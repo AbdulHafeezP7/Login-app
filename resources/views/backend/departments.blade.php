@@ -13,20 +13,23 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
-            <table class="table table-bordered mt-4" id="departments-table">
-                <thead>
-                    <tr>
-                        <th>Department (English)</th>
-                        <th>Department (Arabic)</th>
-                        <th>Department Image</th>
-                        <th>Department Details</th>
-                        <th>Slug</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4" id="departments-table">
+                    <thead>
+                        <tr>
+                            <th>Department (English)</th>
+                            <th>Department (Arabic)</th>
+                            <th>Department Image</th>
+                            <th>Department Details</th>
+                            <th>Slug</th>
+                            <th>Sort</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -35,6 +38,55 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+    function decrement(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('departments.decrement')}}",
+                data: {
+                    departmentId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error decrementing department:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
+
+    function increment(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('departments.increment')}}",
+                data: {
+                    departmentId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                        location.reload();
+                    } else {
+                        console.error('Error incrementing department:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
     $(document).ready(function() {
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
@@ -88,6 +140,19 @@
                 {
                     data: 'slug',
                     name: 'slug'
+                },
+                {
+                    data: null,
+                    name: 'sort',
+                    orderable: true,
+                    searchable: false,
+                    render: function(data, type, row) {
+                        return `
+                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
+                    ${row.sort}
+                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
+                `;
+                    }
                 },
                 {
                     data: 'created_at',

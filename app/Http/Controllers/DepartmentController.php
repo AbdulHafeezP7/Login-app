@@ -38,6 +38,9 @@ class DepartmentController extends Controller
                 ->addColumn('slug', function ($row) {
                     return $row->slug;
                 })
+                ->addColumn('sort', function ($row) {
+                    return $row->sort;
+                })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -53,6 +56,9 @@ class DepartmentController extends Controller
                 ->filterColumn('slug', function ($query, $keyword) {
                     $query->where('slug', 'like', "%{$keyword}%");
                 })
+                ->orderColumn('sort', function ($query) {
+                    $query->orderBy('sort', 'asc');
+                })
                 ->make(true);
         }
     }
@@ -63,11 +69,13 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         try {
+            $totalDepartments = Department::count();
             $department = new Department;
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;
             $department->slug = $request->slug;
+            $department->sort = $totalDepartments + 1;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
@@ -78,6 +86,39 @@ class DepartmentController extends Controller
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
+    }
+    public function departmentDecrement(Request $request)
+    {
+        $department = Department::find($request->departmentId);
+        $sort = --$department->sort;
+        if ($sort >= 1) {
+            $departmentDownData = Department::where('sort', $sort)->first();
+            if ($departmentDownData) {
+                $newSort = ($departmentDownData->sort == 0 || $departmentDownData->sort == null) ? 0 : $departmentDownData->sort;
+                $departmentDownData->sort = $newSort + 1;
+                $departmentDownData->save();
+            }
+            $department->sort = $sort;
+            $department->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
+    }
+    public function departmentIncrement(Request $request)
+    {
+        $department = Department::find($request->departmentId);
+        $sort = ++$department->sort;
+        $departmentCount = Department::count('id');
+        if ($sort <= $departmentCount) {
+            $departmentUpData = Department::where('sort', $sort)->first();
+            if ($departmentUpData) {
+                $newSort = ($departmentUpData->sort == 0 || $departmentUpData->sort == null) ? 0 : $departmentUpData->sort;
+                $departmentUpData->sort = $newSort - 1;
+                $departmentUpData->save();
+            }
+            $department->sort = $sort;
+            $department->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
     }
     public function edit($id)
     {

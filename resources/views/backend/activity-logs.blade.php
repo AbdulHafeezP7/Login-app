@@ -6,17 +6,19 @@
         <div class="card-body">
             <h1 class="card-title">Activity Log</h1>
             @include('backend.layouts.partials.sidebar')
-            <table class="table table-bordered" id="activity-log-table">
-                <thead>
-                    <tr>
-                        <th>User Id</th>
-                        <th>Action</th>
-                        <th>Agent</th>
-                        <th>IP Address</th>
-                        <th>Created At</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="activity-log-table">
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>Action</th>
+                            <th>Agent</th>
+                            <th>IP Address</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

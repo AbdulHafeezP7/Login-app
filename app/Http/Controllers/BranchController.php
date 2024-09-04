@@ -42,6 +42,9 @@ class BranchController extends Controller
                 ->addColumn('branchmanager_number', function ($row) {
                     return $row->branchmanager_number;
                 })
+                ->addColumn('sort', function ($row) {
+                    return $row->sort;
+                })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
                 })
@@ -69,6 +72,9 @@ class BranchController extends Controller
                 ->filterColumn('branchmanager_number', function ($query, $keyword) {
                     $query->where('branchmanager_number', 'like', "%{$keyword}%");
                 })
+                ->orderColumn('sort', function ($query) {
+                    $query->orderBy('sort', 'asc');
+                })
                 ->make(true);
         }
     }
@@ -79,6 +85,7 @@ class BranchController extends Controller
     public function store(BranchRequest $request)
     {
         try {
+            $totalBranchs = Branch::count();
             $branch = new Branch;
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;
@@ -88,12 +95,46 @@ class BranchController extends Controller
             $branch->branchsocial_link = $request->branchsocial_link;
             $branch->branchoffice_number = $request->branchoffice_number;
             $branch->branchmanager_number = $request->branchmanager_number;
+            $branch->sort = $totalBranchs + 1;
             $branch->save();
             return response()->json(['status' => true, 'message' => 'Branch created successfully.']);
         } catch (\Exception $e) {
 
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
+    }
+    public function branchDecrement(Request $request)
+    {
+        $branch = Branch::find($request->branchId);
+        $sort = --$branch->sort;
+        if ($sort >= 1) {
+            $branchDownData = Branch::where('sort', $sort)->first();
+            if ($branchDownData) {
+                $newSort = ($branchDownData->sort == 0 || $branchDownData->sort == null) ? 0 : $branchDownData->sort;
+                $branchDownData->sort = $newSort + 1;
+                $branchDownData->save();
+            }
+            $branch->sort = $sort;
+            $branch->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
+    }
+    public function branchIncrement(Request $request)
+    {
+        $branch = Branch::find($request->branchId);
+        $sort = ++$branch->sort;
+        $branchCount = Branch::count('id');
+        if ($sort <= $branchCount) {
+            $branchUpData = Branch::where('sort', $sort)->first();
+            if ($branchUpData) {
+                $newSort = ($branchUpData->sort == 0 || $branchUpData->sort == null) ? 0 : $branchUpData->sort;
+                $branchUpData->sort = $newSort - 1;
+                $branchUpData->save();
+            }
+            $branch->sort = $sort;
+            $branch->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
     }
     public function edit($id)
     {

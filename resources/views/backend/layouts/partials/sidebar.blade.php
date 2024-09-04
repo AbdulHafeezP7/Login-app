@@ -83,6 +83,12 @@
       </a>
     </li>
     <li class="menu-item">
+      <a href="{{ route('socialmedias.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-hashtag"></i>
+        <div data-i18n="Socialmedia">Social Media</div>
+      </a>
+    </li>
+    <li class="menu-item">
       <a href="{{route('activities')}}" class="menu-link">
         <i class="menu-icon fa-solid fa-chart-line"></i>
         <div data-i18n="Activity">Activity</div>

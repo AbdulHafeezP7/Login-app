@@ -8,7 +8,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Department</h5>
                     <div class="card-body">
-                        <form id="addDepartmentForm" class="needs-validation" novalidate action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="addDepartmentForm" class="is-invalid" novalidate action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="department_en" class="form-label">Department(English)</label>
@@ -88,7 +88,7 @@
                                 inputField.addClass('is-invalid');
                             }
                         } else {
-                            console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
+                            console.log('Error saving department: ' + (xhr.responseJSON.message || 'Unknown error'));
                         }
                     }
                 });

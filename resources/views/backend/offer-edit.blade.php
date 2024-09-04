@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Offer</h1>
-            <form id="offer-form" class="needs-validation" novalidate action="{{ route('offers.update') }}" method="POST" enctype="multipart/form-data">
+            <form id="offer-form" class="is-invalid" novalidate action="{{ route('offers.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3" style="display:none;">

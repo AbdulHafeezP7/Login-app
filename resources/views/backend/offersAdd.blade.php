@@ -88,7 +88,7 @@
                                 inputField.addClass('is-invalid');
                             }
                         } else {
-                            console.log('Error saving article: ' + (xhr.responseJSON.message || 'Unknown error'));
+                            console.log('Error saving offer: ' + (xhr.responseJSON.message || 'Unknown error'));
                         }
                     }
                 });

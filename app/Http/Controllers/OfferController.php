@@ -68,18 +68,13 @@ class OfferController extends Controller
     public function store(OfferRequest $request)
     {
         try {
-            $request->validate([
-                'offer_en' => 'required|string|max:255',
-                'offer_ar' => 'required|string|max:255',
-                'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'actual_price' => 'required|string|max:255',
-                'offer_price' => 'required|string|max:255',
-            ]);
+            $totalOffers = Offer::count();
             $offer = new Offer;
             $offer->offer_en = $request->offer_en;
             $offer->offer_ar = $request->offer_ar;
             $offer->actual_price = $request->actual_price;
             $offer->offer_price = $request->offer_price;
+            $offer->sort = $totalOffers + 1;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
