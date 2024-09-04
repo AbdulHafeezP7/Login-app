@@ -89,6 +89,18 @@
       </a>
     </li>
     <li class="menu-item">
+      <a href="{{ route('partners.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-handshake"></i>
+        <div data-i18n="Partner">Partner</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="{{ route('insurances.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-hand-holding-medical"></i>
+        <div data-i18n="Insurance">Insurance</div>
+      </a>
+    </li>
+    <li class="menu-item">
       <a href="{{route('activities')}}" class="menu-link">
         <i class="menu-icon fa-solid fa-chart-line"></i>
         <div data-i18n="Activity">Activity</div>

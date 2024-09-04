@@ -9,7 +9,7 @@
             <h3 class="card-title">Department Arabic Name:</h3>
             <div>{!! $department->department_ar !!}</div>
             <div>
-                <h3>Image</h3>
+                <h3>Department Image</h3>
                 @if($department->image)
                 <img src="{{ asset('images/' . $department->image) }}" alt="Department Image" class="img-fluid mb-3" width="100px" height="100px">
                 @endif

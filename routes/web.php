@@ -10,6 +10,8 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SocialmediaController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\InsuranceController;
 use Illuminate\Support\Facades\Route;
 
 // Registration Routes
@@ -115,6 +117,36 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/socialmedias/{id}/delete', [SocialmediaController::class, 'destroy'])->name('socialmedias.destroy');
     Route::get('/socialmedias/{id}/show', [SocialmediaController::class, 'show'])->name('socialmedias.show');
     // Route::get('/socialmedias', [SocialmediaController::class, 'getSocialmedia']);
+
+
+    // Partner Routes
+    Route::get('partners', [PartnerController::class, 'index'])->name('partners.index');
+    Route::post('partners/store', [PartnerController::class, 'store'])->name('partners.store');
+    Route::get('partners/dataTablesForPartners', [PartnerController::class, 'dataTablesForPartners'])->name('partners.dataTablesForPartners');
+    Route::post('partners/increment', [PartnerController::class, 'partnerIncrement'])->name('partners.increment');
+    Route::post('partners/decrement', [PartnerController::class, 'partnerDecrement'])->name('partners.decrement');
+    // Route::resource('partners', PartnerController::class);
+    Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
+    Route::get('/partners/addPartners', [PartnerController::class, 'addPartners'])->name('partners.add');
+    Route::put('/partners/update', [PartnerController::class, 'update'])->name('partners.update');
+    Route::delete('/partners/{id}/delete', [PartnerController::class, 'destroy'])->name('partners.destroy');
+    Route::get('/partners/{id}/show', [PartnerController::class, 'show'])->name('partners.show');
+    // Route::get('/partners', [PartnerController::class, 'getPartner']);
+
+
+    // Insurance Routes
+    Route::get('insurances', [InsuranceController::class, 'index'])->name('insurances.index');
+    Route::post('insurances/store', [InsuranceController::class, 'store'])->name('insurances.store');
+    Route::get('insurances/dataTablesForInsurances', [InsuranceController::class, 'dataTablesForInsurances'])->name('insurances.dataTablesForInsurances');
+    Route::post('insurances/increment', [InsuranceController::class, 'insuranceIncrement'])->name('insurances.increment');
+    Route::post('insurances/decrement', [InsuranceController::class, 'insuranceDecrement'])->name('insurances.decrement');
+    // Route::resource('insurances', InsuranceController::class);
+    Route::get('/insurances/{id}/edit', [InsuranceController::class, 'edit'])->name('insurances.edit');
+    Route::get('/insurances/addInsurances', [InsuranceController::class, 'addInsurances'])->name('insurances.add');
+    Route::put('/insurances/update', [InsuranceController::class, 'update'])->name('insurances.update');
+    Route::delete('/insurances/{id}/delete', [InsuranceController::class, 'destroy'])->name('insurances.destroy');
+    Route::get('/insurances/{id}/show', [InsuranceController::class, 'show'])->name('insurances.show');
+    // Route::get('/insurances', [InsuranceController::class, 'getInsurance']);
 });
 
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');

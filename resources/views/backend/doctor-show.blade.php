@@ -11,7 +11,7 @@
             <h3 class="card-title">Doctor Description:</h3>
             <div>{!! $doctor->doctor_description !!}</div>
             <div>
-                <h3>Image</h3>
+                <h3>Doctor Image</h3>
                 @if($doctor->image)
                 <img src="{{ asset('images/' . $doctor->image) }}" alt="Doctor Image" class="img-fluid mb-3" width="100px" height="100px">
                 @endif

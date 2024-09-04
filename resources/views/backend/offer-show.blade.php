@@ -9,7 +9,7 @@
             <h3 class="card-title">Offer Arabic Name:</h3>
             <div>{!! $offer->offer_ar !!}</div>
             <div>
-                <h3>Image</h3>
+                <h3>Offer Image</h3>
                 @if($offer->image)
                 <img src="{{ asset('images/' . $offer->image) }}" alt="Offer Image" class="img-fluid mb-3" width="100px" height="100px">
                 @endif

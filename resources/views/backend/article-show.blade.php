@@ -9,7 +9,7 @@
             <h3 class="card-title">Arabic Title:</h3>
             <div>{!! $article->title_ar !!}</div>
             <div>
-                <h3>Image</h3>
+                <h3>Article Image</h3>
                 @if($article->image)
                 <img src="{{ asset('images/' . $article->image) }}" alt="Article Image" class="img-fluid mb-3" width="100px" height="100px">
                 @endif
