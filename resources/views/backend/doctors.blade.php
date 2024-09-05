@@ -1,13 +1,12 @@
 @extends('backend.layouts.backendLayout')
-
 @section('title', 'Doctor')
-
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script>
 <div id="content-area">
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Doctors</h1>
-            <!-- Button to Open the Modal -->
+
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{route('doctors.add')}}"><button type="button" class="btn btn-primary">
                         Add New Doctor
@@ -17,7 +16,6 @@
                 <span id="alert-message"></span>
             </div>
             <div class="table-responsive">
-                <!-- Doctors Table -->
                 <table class="table table-bordered mt-4" id="doctors-table">
                     <thead>
                         <tr>
@@ -38,12 +36,10 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
 <script>
     function decrement(id) {
         $(document).ready(function() {
@@ -95,7 +91,6 @@
         });
     }
     $(document).ready(function() {
-        // Function to show alert messages
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
             $('#' + alertBoxId).removeClass('alert-success alert-danger').addClass(`alert-${type}`).show();
@@ -103,18 +98,14 @@
                 $('#' + alertBoxId).fadeOut();
             }, 1000);
         }
-
         if (sessionStorage.getItem('addMessage')) {
             showAlert(sessionStorage.getItem('addMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('addMessage');
         }
-
         if (sessionStorage.getItem('editMessage')) {
             showAlert(sessionStorage.getItem('editMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('editMessage');
         }
-
-        // Initialize DataTable
         var table = $('#doctors-table').DataTable({
             processing: true,
             serverSide: true,
@@ -177,7 +168,7 @@
                     ${row.sort}
                     <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
                 `;
-                }
+                    }
                 },
                 {
                     data: 'created_at',
@@ -201,8 +192,6 @@
                 [6, 'desc']
             ]
         });
-
-
         $('#doctors-table').on('change', '.toggle-frontpage', function() {
             var doctorId = $(this).data('id');
             var frontpageStatus = $(this).is(':checked') ? 1 : 0;

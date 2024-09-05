@@ -52,7 +52,7 @@
                         </span>
                     </div>
                     <div id="doctor-description-editor"></div>
-                    <input type="hidden" name="doctor_description" id="doctor_description">
+                    <input type="hidden" name="doctor_description" id="doctor_description" value="{{ old('doctor_description', $doctor->doctor_description) }}>
                 </div>
                 <div class="mb-3">
                     <label for="department" class="form-label">Department</label>
@@ -82,82 +82,9 @@
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js') }}"></script>
-<script src="{{ asset('assets/js/form-validation.js') }}"></script>
+<script src="{{ asset('assets/js/doctor-edit-validation.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        // Function to strip HTML tags
-        function stripHtmlTags(html) {
-            var doc = new DOMParser().parseFromString(html, 'text/html');
-            return doc.body.textContent || "";
-        }
-
-        // Initialize Quill editor
-        var quillDescription = new Quill('#doctor-description-editor', {
-            modules: {
-                formula: true,
-                toolbar: '#doctor-description-toolbar'
-            },
-            theme: 'snow'
-        });
-
-        // Get the initial content, clean it, and set it to Quill editor
-        var initialDescriptionContent = '{{ old("doctor_description", $doctor->doctor_description) }}';
-        var cleanContent = stripHtmlTags(initialDescriptionContent);
-        quillDescription.root.innerHTML = cleanContent;
-
-        // Handle form submission
-        $('#doctor-form').on('submit', function(e) {
-            e.preventDefault();
-
-            // Get the Quill editor content
-            var doctorDescriptionContent = quillDescription.root.innerHTML;
-            $('#doctor_description').val(doctorDescriptionContent);
-
-
-            var formData = new FormData(this);
-
-            $.ajax({
-                url: $(this).attr('action'),
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status) {
-                        Swal.fire({
-                            title: 'Good job!',
-                            text: 'Doctor updated successfully!',
-                            icon: 'success',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        }).then(() => {
-                            window.location.href = "{{ route('doctors.index') }}";
-                        });
-                    } else {
-                        console.log('Error updating doctor: ' + response.message);
-                    }
-                },
-                error: function(xhr) {
-                    if (xhr.status === 422) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: xhr.responseJSON.message,
-                            icon: 'error',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        });
-                    } else {
-                        console.log('Error updating doctor: ' + (xhr.responseJSON.message || 'Unknown error'));
-                    }
-                }
-
-            });
-        });
-    });
+     var doctorsIndexUrl = "{{ route('doctors.index') }}";
 </script>
 
 @endsection

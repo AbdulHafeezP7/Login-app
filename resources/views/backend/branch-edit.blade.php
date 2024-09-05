@@ -53,54 +53,8 @@
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-<script src="{{ asset('assets/js/branch-form-validation.js') }}"></script>
+<script src="{{ asset('assets/js/branch-edit-validation.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('#branch-form').on('submit', function(e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            $.ajax({
-                url: $(this).attr('action'),
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status) {
-                        Swal.fire({
-                            title: 'Good job!',
-                            text: 'Branch updated successfully!',
-                            icon: 'success',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        }).then(() => {
-                            setTimeout(() => {
-                                window.location.href = "{{route('branchs.index')}}";
-                            }, 0);
-                        });
-                    } else {
-                        console.log('Error updating branch: ' + response.message);
-                    }
-                },
-                error: function(xhr) {
-                    if (xhr.status === 422) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: xhr.responseJSON.message,
-                            icon: 'error',
-                            customClass: {
-                                confirmButton: 'btn btn-primary waves-effect waves-light'
-                            },
-                            buttonsStyling: false
-                        });
-                    } else {
-                        console.log('Error updating branch: ' + (xhr.responseJSON.message || 'Unknown error'));
-                    }
-                }
-            });
-        });
-    });
+     var branchIndexUrl = "{{ route('branchs.index') }}";
 </script>
 @endsection

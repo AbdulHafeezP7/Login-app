@@ -6,6 +6,8 @@ use App\Models\Branch;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BranchRequest;
+use App\Http\Requests\BranchUpdateRequest;
+
 
 class BranchController extends Controller
 {
@@ -142,28 +144,10 @@ class BranchController extends Controller
 
         return view('backend.branch-edit', compact('branch', 'id'));
     }
-    public function update(Request $request)
+    public function update(BranchUpdateRequest $request)
     {
         try {
             $branch = Branch::findOrFail($request->id);
-            $request->validate([
-                'branchname_en' => 'required|string|max:255',
-                'branchname_ar' => 'required|string|max:255',
-                'branchmanager_name' => 'required|string|max:255',
-                'branch_location' => 'required|url|max:255',
-                'branch_address' => 'required|string',
-                'branchsocial_link' => 'required|string|max:255',
-                'branchoffice_number' => [
-                    'required',
-                    'regex:/^(\+?\d{1,4}[\s-])?(\(?\d{3}\)?[\s-]?)?[\d\s-]{7,15}$/',
-                    'max:255'
-                ],
-                'branchmanager_number' => [
-                    'required',
-                    'regex:/^(\+?\d{1,4}[\s-])?(\(?\d{3}\)?[\s-]?)?[\d\s-]{7,15}$/',
-                    'max:255'
-                ],
-            ]);
             $branch->branchname_en = $request->branchname_en;
             $branch->branchname_ar = $request->branchname_ar;
             $branch->branchmanager_name = $request->branchmanager_name;

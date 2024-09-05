@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
+use App\Http\Requests\DoctorUpdateRequest;
 
 class DoctorController extends Controller
 {
@@ -90,10 +91,10 @@ class DoctorController extends Controller
             $doctor->save();
             return response()->json(['status' => true, 'message' => 'Doctor created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+
     public function doctorDecrement(Request $request)
     {
         $doctor = Doctor::find($request->doctorId);
@@ -133,28 +134,10 @@ class DoctorController extends Controller
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
-    public function update(Request $request)
+    public function update(DoctorUpdateRequest $request)
     {
         try {
             $doctor = Doctor::findOrFail($request->id);
-            $request->validate([
-                'name_en' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
-                'name_ar' => [
-                    'required',
-                    'regex:/^Dr\.\s.+$/',
-                    'string',
-                    'max:255'
-                ],
-                'doctor_description' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'department' => 'required|string',
-            ]);
-            
             $doctor->name_en = $request->name_en;
             $doctor->name_ar = $request->name_ar;
             $doctor->doctor_description = $request->doctor_description;

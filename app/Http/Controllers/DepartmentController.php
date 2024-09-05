@@ -6,6 +6,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\DepartmentRequest;
+use App\Http\Requests\DepartmentUpdateRequest;
 
 class DepartmentController extends Controller
 {
@@ -125,19 +126,10 @@ class DepartmentController extends Controller
         $department = Department::find($id);
         return view('backend.department-edit', compact('department', 'id'));
     }
-    public function update(Request $request)
+    public function update(DepartmentUpdateRequest $request)
     {
         try {
             $department = Department::findOrFail($request->id);
-            $request->validate([
-                'department_en' => 'required|string|max:255',
-                'department_ar' => 'required|string|max:255',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-                'department_details' => 'required|string',
-                'slug' => 'required|string|max:255|unique:departments,slug,' . $request->id,
-            ], [
-                'slug.unique' => 'The slug should be unique.',
-            ]);
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;

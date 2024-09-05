@@ -27,7 +27,7 @@
                 <img id="articleImage" src="" alt="" width="100px" height="100px">
               </div>
               <div class="mb-3">
-                <label for="article_en" class="form-label">Article(English)</label>
+                <label for="doctor_description" class="form-label">Article(English)</label>
                 <div id="snow-toolbar">
                   <span class="ql-formats">
                     <select class="ql-font"></select>

@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    $('#addDepartmentForm').on('submit', function(e) {
+    $('#department-form').on('submit', function(e) {
         e.preventDefault();
-
-        // Clear previous error messages
+        // Form validation
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
 
@@ -10,35 +9,28 @@ $(document).ready(function() {
         let departmentAr = $('#department_ar').val().trim();
         let departmentDetails = $('#department_details').val().trim();
         let slug = $('#slug').val().trim();
-        let image = $('#image').val();
-
-        // Image format validation
         let imageFile = $('#image')[0].files[0];
-        let validImageFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/svg+xml'];
+        let validImageFormats = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
         let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
-
         let errors = {};
 
+        // Validation checks
         if (!departmentEn) errors.department_en = 'Department (English) is required.';
         if (!departmentAr) errors.department_ar = 'Department (Arabic) is required.';
-        if (!departmentDetails) errors.department_details = 'Department details are required.';
+        if (!departmentDetails) errors.department_details = 'Department Details are required.';
         if (!slug) errors.slug = 'Slug is required.';
-        if (!image) errors.image = 'Department image is required.';
-        if (!isValidImage) errors.image = 'Image format must be JPEG, JPG, PNG, GIF, or SVG.';
+        if (!isValidImage) errors.image = 'Image format must be JPEG, PNG, JPG, GIF, or SVG.';
 
-        // Display error messages if any
+        // If there are validation errors, display them and prevent form submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
                 let inputField = $('#' + field);
 
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
                 inputField.addClass('is-invalid').after(errorDiv);
             }
-
             let errorMessages = Object.values(errors).join('\n');
-
             Swal.fire({
                 title: 'Error!',
                 text: errorMessages,
@@ -51,10 +43,14 @@ $(document).ready(function() {
             return;
         }
 
-        // Submit the form if no errors
+        // Prepare form data
         let formData = new FormData(this);
+        if (imageFile) formData.append('image', imageFile);
+        formData.append('_method', 'PUT');
+
+        // Submit the form via AJAX
         $.ajax({
-            url: departmentStoreUrl,
+            url: $(this).attr('action'),
             type: 'POST',
             data: formData,
             processData: false,
@@ -63,7 +59,7 @@ $(document).ready(function() {
                 if (response.status) {
                     Swal.fire({
                         title: 'Good job!',
-                        text: 'Department created successfully!',
+                        text: 'Department updated successfully!',
                         icon: 'success',
                         customClass: {
                             confirmButton: 'btn btn-primary waves-effect waves-light'
@@ -76,24 +72,36 @@ $(document).ready(function() {
             },
             error: function(xhr) {
                 if (xhr.status === 422) {
-                    $('.invalid-feedback').remove();
                     let errors = xhr.responseJSON.errors;
+                    let errorMessages = '';
+
                     for (let field in errors) {
                         let errorMessage = errors[field][0];
                         let inputField = $('#' + field);
+
                         let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-                        inputField.after(errorDiv);
-                        inputField.addClass('is-invalid');
+                        inputField.addClass('is-invalid').after(errorDiv);
+                        errorMessages += errorMessage + '\n';
                     }
+
+                    Swal.fire({
+                        title: 'Error!',
+                        text: errorMessages.trim(),
+                        icon: 'error',
+                        customClass: {
+                            confirmButton: 'btn btn-primary waves-effect waves-light'
+                        },
+                        buttonsStyling: false
+                    });
                 } else {
-                    console.log('Error saving department: ' + (xhr.responseJSON.message || 'Unknown error'));
+                    console.log('Error updating department: ' + (xhr.responseJSON.message || 'Unknown error'));
                 }
             }
         });
     });
 
-    // Clear validation on input
-    $('#addDepartmentForm input, #addDepartmentForm textarea').on('input', function() {
+    // Remove validation error when input enters
+    $('#department-form input, #department-form textarea').on('input change', function() {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
     });

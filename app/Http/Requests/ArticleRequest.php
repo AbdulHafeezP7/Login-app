@@ -11,6 +11,13 @@ class ArticleRequest extends FormRequest
     {
         return true;
     }
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'content_en' => strip_tags($this->content_en),
+            'content_ar' => strip_tags($this->content_ar),
+        ]);
+    }
     public function rules(): array
     {
         return [

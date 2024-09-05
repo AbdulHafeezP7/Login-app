@@ -47,52 +47,9 @@
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-    <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+    <script src="{{ asset('assets/js/department-form-validation.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#addDepartmentForm').on('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    url: "{{ route('departments.store') }}",
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        if (response.status) {
-                            Swal.fire({
-                                title: 'Good job!',
-                                text: 'Department created successfully!',
-                                icon: 'success',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary waves-effect waves-light'
-                                },
-                                buttonsStyling: false
-                            }).then(() => {
-                                window.location.href = "{{route('departments.index')}}";
-                            });
-                        } else {
-                            console.log('Error saving department: ' + response.message);
-                        }
-                    },
-                    error: function(xhr) {
-                        if (xhr.status === 422) {
-                            $('.invalid-feedback').remove();
-                            let errors = xhr.responseJSON.errors;
-                            for (let field in errors) {
-                                let errorMessage = errors[field][0];
-                                let inputField = $('#' + field);
-                                let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-                                inputField.after(errorDiv);
-                                inputField.addClass('is-invalid');
-                            }
-                        } else {
-                            console.log('Error saving department: ' + (xhr.responseJSON.message || 'Unknown error'));
-                        }
-                    }
-                });
-            });
-        });
+        var departmentIndexUrl = "{{ route('departments.index') }}";
+        var departmentStoreUrl = "{{ route('departments.store') }}";
     </script>
     @endsection

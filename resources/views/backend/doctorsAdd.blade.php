@@ -86,71 +86,10 @@
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
-    <script src="{{ asset('assets/js/form-validation.js') }}"></script>
+    <script src="{{ asset('assets/js/doctor-form-validation.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            var quillDescription = new Quill('#doctor-description-editor', {
-                modules: {
-                    toolbar: '#doctor-description-toolbar'
-                },
-                theme: 'snow'
-            });
-
-            $('#addDoctorForm').on('submit', function(e) {
-                e.preventDefault();
-
-                var doctorDescriptionContent = quillDescription.root.innerHTML;
-                $('#doctor_description').val(doctorDescriptionContent);
-
-                var nameEnFull = $('#basic-addon11').text() + ' ' + $('#name_en').val().trim();
-                var nameArFull = $('#basic-addon11').text() + ' ' + $('#name_ar').val().trim();
-
-                var formData = new FormData(this);
-                formData.set('name_en', nameEnFull);
-                formData.set('name_ar', nameArFull);
-                formData.set('doctor_description', doctorDescriptionContent);
-
-                $.ajax({
-                    url: "{{ route('doctors.store') }}",
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        if (response.status) {
-                            Swal.fire({
-                                title: 'Good job!',
-                                text: 'Doctor created successfully!',
-                                icon: 'success',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary waves-effect waves-light'
-                                },
-                                buttonsStyling: false
-                            }).then(() => {
-                                window.location.href = "{{ route('doctors.index') }}";
-                            });
-                        } else {
-                            console.log('Error saving doctor: ' + response.message);
-                        }
-                    },
-                    error: function(xhr) {
-                        if (xhr.status === 422) {
-                            $('.invalid-feedback').remove();
-                            let errors = xhr.responseJSON.errors;
-                            for (let field in errors) {
-                                let errorMessage = errors[field][0];
-                                let inputField = $('#' + field);
-                                let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-                                inputField.after(errorDiv);
-                                inputField.addClass('is-invalid');
-                            }
-                        } else {
-                            console.log('Error saving doctor: ' + (xhr.responseJSON.message || 'Unknown error'));
-                        }
-                    }
-                });
-            });
-        });
+        var doctorIndexUrl = "{{ route('doctors.index') }}";
+        var doctorStoreUrl = "{{ route('doctors.store') }}";
     </script>
 
     @endsection

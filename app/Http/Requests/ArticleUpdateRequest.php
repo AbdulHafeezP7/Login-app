@@ -7,6 +7,13 @@ use Illuminate\Validation\Rule;
 
 class ArticleUpdateRequest extends FormRequest
 {
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'article_en' => strip_tags($this->article_en),
+            'article_ar' => strip_tags($this->article_ar),
+        ]);
+    }
     public function rules()
     {
         return [
