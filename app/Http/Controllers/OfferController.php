@@ -6,6 +6,7 @@ use App\Models\Offer;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\OfferRequest;
+use App\Http\Requests\OfferUpdateRequest;
 
 class OfferController extends Controller
 {
@@ -126,17 +127,10 @@ class OfferController extends Controller
 
         return view('backend.offer-edit', compact('offer', 'id'));
     }
-    public function update(Request $request)
+    public function update(OfferUpdateRequest $request)
     {
         try {
             $offer = Offer::findOrFail($request->id);
-            $request->validate([
-                'offer_en' => 'required|string|max:255',
-                'offer_ar' => 'required|string|max:255',
-                // 'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'actual_price' => 'required|string|max:255',
-                'offer_price' => 'required|string|max:255',
-            ]);
             $offer->offer_en = $request->offer_en;
             $offer->offer_ar = $request->offer_ar;
             $offer->actual_price = $request->actual_price;

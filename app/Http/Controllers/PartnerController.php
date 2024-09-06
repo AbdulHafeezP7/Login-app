@@ -6,6 +6,7 @@ use App\Models\Partner;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\PartnerRequest;
+use App\Http\Requests\PartnerUpdateRequest;
 
 class PartnerController extends Controller
 {
@@ -112,15 +113,10 @@ class PartnerController extends Controller
 
         return view('backend.partner-edit', compact('partner', 'id'));
     }
-    public function update(Request $request)
+    public function update(PartnerUpdateRequest $request)
     {
         try {
             $partner = Partner::findOrFail($request->id);
-            $request->validate([
-                'partner_en' => 'required|string|max:255',
-                'partner_ar' => 'required|string|max:255',
-                // 'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
             $partner->partner_en = $request->partner_en;
             $partner->partner_ar = $request->partner_ar;
             if ($request->hasFile('image')) {

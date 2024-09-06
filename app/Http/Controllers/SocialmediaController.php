@@ -6,6 +6,7 @@ use App\Models\Socialmedia;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\SocialmediaRequest;
+use App\Http\Requests\SocialmediaUpdateRequest;
 
 class SocialmediaController extends Controller
 {
@@ -187,22 +188,10 @@ class SocialmediaController extends Controller
 
         return view('backend.socialmedia-edit', compact('socialmedia', 'id'));
     }
-    public function update(Request $request)
+    public function update(SocialmediaUpdateRequest $request)
     {
         try {
             $socialmedia = Socialmedia::findOrFail($request->id);
-            $request->validate([
-                'tiktok_name' => 'required|string|max:255',
-                // 'tiktok_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'snapchat_name' => 'required|string|max:255',
-                // 'snapchat_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'instagram_name' => 'required|string|max:255',
-                // 'instagram_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'facebook_name' => 'required|string|max:255',
-                // 'facebook_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'youtube_name' => 'required|string|max:255',
-                // 'youtube_image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
             $socialmedia->tiktok_name = $request->tiktok_name;
             if ($request->hasFile('tiktok_image')) {
                 $imageName = time() . '_tiktok.' . $request->tiktok_image->extension();

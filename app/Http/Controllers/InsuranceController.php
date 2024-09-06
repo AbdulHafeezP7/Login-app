@@ -6,6 +6,7 @@ use App\Models\Insurance;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\InsuranceRequest;
+use App\Http\Requests\InsuranceUpdateRequest;
 
 class InsuranceController extends Controller
 {
@@ -112,15 +113,10 @@ class InsuranceController extends Controller
 
         return view('backend.insurance-edit', compact('insurance', 'id'));
     }
-    public function update(Request $request)
+    public function update(InsuranceUpdateRequest $request)
     {
         try {
             $insurance = Insurance::findOrFail($request->id);
-            $request->validate([
-                'insurance_en' => 'required|string|max:255',
-                'insurance_ar' => 'required|string|max:255',
-                // 'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
             $insurance->insurance_en = $request->insurance_en;
             $insurance->insurance_ar = $request->insurance_ar;
             if ($request->hasFile('image')) {
