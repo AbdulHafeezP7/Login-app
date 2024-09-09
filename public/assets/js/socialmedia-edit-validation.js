@@ -6,18 +6,11 @@ $(document).ready(function() {
         $('.form-control').removeClass('is-invalid');
 
         // Validation checks
-        let tiktokName = $('#tiktok_name').val().trim();
-        let snapchatName = $('#snapchat_name').val().trim();
-        let instagramName = $('#instagram_name').val().trim();
-        let facebookName = $('#facebook_name').val().trim();
-        let youtubeName = $('#youtube_name').val().trim();
+        let socialmediaUrl = $('#socialmedia_url').val().trim();
+    
         let errors = {};
 
-        if (!tiktokName) errors.tiktok_name = 'TikTok Name (English) is required.';
-        if (!snapchatName) errors.snapchat_name = 'Snapchat Name (English) is required.';
-        if (!instagramName) errors.instagram_name = 'Instagram Name (English) is required.';
-        if (!facebookName) errors.facebook_name = 'Facebook Name (English) is required.';
-        if (!youtubeName) errors.youtube_name = 'Youtube Name (English) is required.';
+        if (!socialmediaUrl) errors.socialmedia_url = 'Socialmedia Url is required.';
 
         // If there are validation errors
         if (Object.keys(errors).length > 0) {

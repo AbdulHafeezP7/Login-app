@@ -13,58 +13,14 @@
                     <input type="hidden" class="form-control" name="id" value="{{$id}}">
                 </div>
                 <div class="mb-3">
-                    <label for="tiktok_name" class="form-label">TikTok Name (English)</label>
-                    <input type="text" class="form-control" id="tiktok_name" name="tiktok_name" value="{{ old('tiktok_name', $socialmedia->tiktok_name) }}">
+                    <label for="socialmedia_url" class="form-label">Socialmedia URL</label>
+                    <input type="text" class="form-control" id="socialmedia_url" name="socialmedia_url" value="{{ old('socialmedia_url', $socialmedia->socialmedia_url) }}">
                 </div>
                 <div class="mb-3">
-                    <label for="tiktok_image" class="form-label">TikTok Image</label>
-                    <input type="file" class="form-control" id="tiktok_image" name="tiktok_image">
-                    @if($socialmedia->tiktok_image)
-                    <img src="{{ asset('images/' . $socialmedia->tiktok_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="snapchat_name" class="form-label">Snapchat Name (English)</label>
-                    <input type="text" class="form-control" id="snapchat_name" name="snapchat_name" value="{{ old('snapchat_name', $socialmedia->snapchat_name) }}">
-                </div>
-                <div class="mb-3">
-                    <label for="snapchat_image" class="form-label">Snapchat Image</label>
-                    <input type="file" class="form-control" id="snapchat_image" name="snapchat_image">
-                    @if($socialmedia->snapchat_image)
-                    <img src="{{ asset('images/' . $socialmedia->snapchat_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="instagram_name" class="form-label">Instagram Name (English)</label>
-                    <input type="text" class="form-control" id="instagram_name" name="instagram_name" value="{{ old('instagram_name', $socialmedia->instagram_name) }}">
-                </div>
-                <div class="mb-3">
-                    <label for="instagram_image" class="form-label">Instagram Image</label>
-                    <input type="file" class="form-control" id="instagram_image" name="instagram_image">
-                    @if($socialmedia->instagram_image)
-                    <img src="{{ asset('images/' . $socialmedia->instagram_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="facebook_name" class="form-label">Facebook Name (English)</label>
-                    <input type="text" class="form-control" id="facebook_name" name="facebook_name" value="{{ old('facebook_name', $socialmedia->facebook_name) }}">
-                </div>
-                <div class="mb-3">
-                    <label for="facebook_image" class="form-label">Facebook Image</label>
-                    <input type="file" class="form-control" id="facebook_image" name="facebook_image">
-                    @if($socialmedia->facebook_image)
-                    <img src="{{ asset('images/' . $socialmedia->facebook_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
-                    @endif
-                </div>
-                <div class="mb-3">
-                    <label for="youtube_name" class="form-label">Youtube Name (English)</label>
-                    <input type="text" class="form-control" id="youtube_name" name="youtube_name" value="{{ old('youtube_name', $socialmedia->youtube_name) }}">
-                </div>
-                <div class="mb-3">
-                    <label for="youtube_image" class="form-label">Youtube Image</label>
-                    <input type="file" class="form-control" id="youtube_image" name="youtube_image">
-                    @if($socialmedia->youtube_image)
-                    <img src="{{ asset('images/' . $socialmedia->youtube_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
+                    <label for="socialmedia_image" class="form-label">Socialmedia Image</label>
+                    <input type="file" class="form-control" id="socialmedia_image" name="socialmedia_image">
+                    @if($socialmedia->socialmedia_image)
+                    <img src="{{ asset('images/' . $socialmedia->socialmedia_image) }}" alt="Socialmedia Image" class="img-thumbnail mt-2" style="width: 100px;">
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
