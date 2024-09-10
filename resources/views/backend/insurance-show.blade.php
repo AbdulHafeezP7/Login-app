@@ -15,7 +15,7 @@
                 @endif
             </div>
             <p><strong>Created at:</strong> {{ $insurance->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('insurances.index') }}" class="btn btn-primary">Back to Insurances</a>
+            <a href="{{ route('insurances.index') }}" class="btn btn-primary">Back to Insurance</a>
         </div>
     </div>
 </div>

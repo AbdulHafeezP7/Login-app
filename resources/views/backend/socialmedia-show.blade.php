@@ -13,7 +13,7 @@
                 @endif
             </div>
             <p><strong>Created at:</strong> {{ $socialmedia->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('socialmedias.index') }}" class="btn btn-primary">Back to Socialmedias</a>
+            <a href="{{ route('socialmedias.index') }}" class="btn btn-primary">Back to Socialmedia</a>
         </div>
     </div>
 </div>

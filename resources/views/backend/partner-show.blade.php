@@ -15,7 +15,7 @@
                 @endif
             </div>
             <p><strong>Created at:</strong> {{ $partner->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('partners.index') }}" class="btn btn-primary">Back to Partners</a>
+            <a href="{{ route('partners.index') }}" class="btn btn-primary">Back to Partner</a>
         </div>
     </div>
 </div>

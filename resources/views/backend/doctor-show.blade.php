@@ -19,7 +19,7 @@
             <h3>Department:</h3>
             <div>{!! $doctor->department !!}</div>
             <p><strong>Created at:</strong> {{ $doctor->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('doctors.index') }}" class="btn btn-primary">Back to Doctors</a>
+            <a href="{{ route('doctors.index') }}" class="btn btn-primary">Back to Doctor</a>
         </div>
     </div>
 </div>
