@@ -32,12 +32,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branchsocial_link" class="form-label">Branch Social Media Link</label>
-                                <select class="form-control" id="branchsocial_link" name="branchsocial_link">
-                                    <option value="">Select a Branch Social Media Link</option>
-                                    @foreach($socialmedias as $id=> $data)
-                                    <option value="{{$data->id}}">{{$data->socialmedia_url}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" id="branchsocial_link" name="branchsocial_link">
                             </div>
                             <div class="mb-3">
                                 <label for="branchoffice_number" class="form-label">Branch Office Number</label>
