@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Article;
-use App\Models\Offers;
+use App\Models\Offer;
 
 class FrontEndController extends Controller
 {
@@ -32,7 +32,7 @@ class FrontEndController extends Controller
     }
     public function offer()
     {
-        $data['offer'] = Offers::whereNotNull('image')->get();;
+        $data['offer'] = Offer::whereNotNull('image')->get();;
         return view('frontend.abouts',$data);
     }
 }
