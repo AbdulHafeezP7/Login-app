@@ -7,30 +7,14 @@ $(document).ready(function() {
         $('.form-control').removeClass('is-invalid');
 
         // Get form field values
-        let tiktokName = $('#tiktok_name').val().trim();
-        let tiktokImage = $('#tiktok_image').val();
-        let snapchatName = $('#snapchat_name').val().trim();
-        let snapchatImage = $('#snapchat_image').val();
-        let instagramName = $('#instagram_name').val().trim();
-        let instagramImage = $('#instagram_image').val();
-        let facebookName = $('#facebook_name').val().trim();
-        let facebookImage = $('#facebook_image').val();
-        let youtubeName = $('#youtube_name').val().trim();
-        let youtubeImage = $('#youtube_image').val();
+        let socialmediaUrl = $('#socialmedia_url').val().trim();
+        let socialmediaImage = $('#socialmedia_image').val();
 
         let errors = {};
 
         // Validate fields
-        if (!tiktokName) errors.tiktok_name = 'TikTok Name is required.';
-        if (!tiktokImage) errors.tiktok_image = 'TikTok Image is required.';
-        if (!snapchatName) errors.snapchat_name = 'Snapchat Name is required.';
-        if (!snapchatImage) errors.snapchat_image = 'Snapchat Image is required.';
-        if (!instagramName) errors.instagram_name = 'Instagram Name is required.';
-        if (!instagramImage) errors.instagram_image = 'Instagram Image is required.';
-        if (!facebookName) errors.facebook_name = 'Facebook Name is required.';
-        if (!facebookImage) errors.facebook_image = 'Facebook Image is required.';
-        if (!youtubeName) errors.youtube_name = 'YouTube Name is required.';
-        if (!youtubeImage) errors.youtube_image = 'YouTube Image is required.';
+        if (!socialmediaUrl) errors.socialmedia_url = 'Socialmedia Url is required.';
+        if (!socialmediaImage) errors.socialmedia_image = 'Socialmedia Image is required.';
 
         // Display error messages if any
         if (Object.keys(errors).length > 0) {

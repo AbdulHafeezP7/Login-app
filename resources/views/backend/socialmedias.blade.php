@@ -17,16 +17,8 @@
                 <table class="table table-bordered mt-4" id="socialmedias-table">
                     <thead>
                         <tr>
-                            <th>TikTok Name (English)</th>
-                            <th>TikTok Image</th>
-                            <th>Snapchat Name (English)</th>
-                            <th>Snapchat Image</th>
-                            <th>Instagram Name (English)</th>
-                            <th>Instagram Image</th>
-                            <th>Facebook Name (English)</th>
-                            <th>Facebook Image</th>
-                            <th>Youtube Name (English)</th>
-                            <th>Youtube Image</th>
+                            <th>Socialmedia URL</th>
+                            <th>Socialmedia Image</th>
                             <th>Sort</th>
                             <th>Created At</th>
                             <th>Actions</th>
@@ -114,79 +106,15 @@
             ajax: "{{ route('socialmedias.dataTablesForSocialmedias') }}",
             columns: [
                 {
-                    data: 'tiktok_name',
-                    name: 'tiktok_name',
+                    data: 'socialmedia_url',
+                    name: 'socialmedia_url',
                     render: function(data) {
                         return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
-                    data: 'tiktok_image',
-                    name: 'tiktok_image',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
-                    }
-                },
-                {
-                    data: 'snapchat_name',
-                    name: 'snapchat_name',
-                    render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
-                    }
-                },
-                {
-                    data: 'snapchat_image',
-                    name: 'snapchat_image',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
-                    }
-                },
-                {
-                    data: 'instagram_name',
-                    name: 'instagram_name',
-                    render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
-                    }
-                },
-                {
-                    data: 'instagram_image',
-                    name: 'instagram_image',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
-                    }
-                },
-                {
-                    data: 'facebook_name',
-                    name: 'facebook_name',
-                    render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
-                    }
-                },
-                {
-                    data: 'facebook_image',
-                    name: 'facebook_image',
-                    orderable: false,
-                    searchable: false,
-                    render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: auto;">`;
-                    }
-                },
-                {
-                    data: 'youtube_name',
-                    name: 'youtube_name',
-                    render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
-                    }
-                },
-                {
-                    data: 'youtube_image',
-                    name: 'youtube_image',
+                    data: 'socialmedia_image',
+                    name: 'socialmedia_image',
                     orderable: false,
                     searchable: false,
                     render: function(data) {
@@ -225,7 +153,7 @@
                 }
             ],
             order: [
-                [10, 'desc']
+                [2, 'desc']
             ]
         });
         $('#socialmedias-table').on('click', '.view-socialmedia', function() {

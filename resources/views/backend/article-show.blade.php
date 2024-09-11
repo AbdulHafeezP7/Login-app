@@ -20,7 +20,7 @@
             <div>{!! $article->article_ar !!}</div>
             <p><strong>Slug:</strong> {{ $article->slug }}</p>
             <p><strong>Created at:</strong> {{ $article->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('articles.index') }}" class="btn btn-primary">Back to Articles</a>
+            <a href="{{ route('articles.index') }}" class="btn btn-primary">Back to Article</a>
         </div>
     </div>
 </div>

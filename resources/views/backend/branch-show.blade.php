@@ -21,7 +21,7 @@
             <h3 class="card-title">Branch Manager Number:</h3>
             <div>{!! $branch->branchmanager_number !!}</div>
             <p><strong>Created at:</strong> {{ $branch->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('branchs.index') }}" class="btn btn-primary">Back to Branches</a>
+            <a href="{{ route('branchs.index') }}" class="btn btn-primary">Back to Branch</a>
         </div>
     </div>
 </div>
