@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BranchRequest;
 use App\Http\Requests\BranchUpdateRequest;
+use App\Models\SocialMedia;
+
 
 
 class BranchController extends Controller
@@ -82,7 +84,8 @@ class BranchController extends Controller
     }
     public function addBranchs()
     {
-        return view('backend.branchsAdd');
+        $socialmedias = SocialMedia::all();
+        return view('backend.branchsAdd', compact('socialmedias'));
     }
     public function store(BranchRequest $request)
     {
@@ -141,8 +144,8 @@ class BranchController extends Controller
     public function edit($id)
     {
         $branch = Branch::find($id);
-
-        return view('backend.branch-edit', compact('branch', 'id'));
+        $socialmedias = SocialMedia::all();
+        return view('backend.branch-edit', compact('socialmedias', 'branch', 'id'));
     }
     public function update(BranchUpdateRequest $request)
     {

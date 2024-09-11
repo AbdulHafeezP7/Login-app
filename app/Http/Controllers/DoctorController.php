@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
 use App\Http\Requests\DoctorUpdateRequest;
+use App\Models\Department;
 
 class DoctorController extends Controller
 {
@@ -70,7 +70,7 @@ class DoctorController extends Controller
     }
     public function addDoctors()
     {
-        $departments = DB::table('departments')->pluck('department_en', 'id');
+        $departments = Department::pluck('department_en', 'id');  // Fetch department names and IDs
         return view('backend.doctorsAdd', compact('departments'));
     }
     public function store(DoctorRequest $request)
@@ -131,9 +131,10 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::find($id);
-        $departments = DB::table('departments')->pluck('department_en', 'id');
+        $departments = Department::pluck('department_en', 'id'); // Fetching departments using the Department model
         return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
+
     public function update(DoctorUpdateRequest $request)
     {
         try {
