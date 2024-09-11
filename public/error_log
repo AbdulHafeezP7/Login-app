@@ -1,0 +1,1 @@
+[09-Sep-2024 13:10:33 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\FrontEndController::doctors() in /home/dralruhaimi/public_html/web/demo/app/Http/Controllers/FrontEndController.php on line 53

@@ -2,12 +2,11 @@
   list-style-type: none;
 }
 
-.pricing-plans-comparison .table tr>th:first-child,
-.pricing-plans-comparison .table tr>td:first-child {
+.pricing-plans-comparison .table tr > th:first-child,
+.pricing-plans-comparison .table tr > td:first-child {
   white-space: nowrap;
   text-align: start;
 }
-
 .pricing-plans-comparison .table tbody tr:last-child td {
   border-bottom: 0;
 }

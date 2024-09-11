@@ -19,7 +19,7 @@ class DoctorController extends Controller
     {
         if ($request->ajax()) {
             $query = Doctor::query()
-                ->join('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
+                ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
                 ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
             return DataTables::of($query)
                 ->addColumn('name_en', function ($row) {
@@ -171,7 +171,7 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->delete();
-        return response()->json(['status' => true, 'message' => 'Doctor deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Doctor deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

@@ -5,6 +5,6 @@ import Popper from '@popperjs/core/dist/umd/popper.min';
 
 try {
   window.Popper = Popper;
-} catch (e) { }
+} catch (e) {}
 
 export { Popper };

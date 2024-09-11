@@ -39,9 +39,6 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
-    <!-- Dashboards -->
-
-
     <!-- Apps & Pages -->
     <li class="menu-header small">
       <span class="menu-header-text" data-i18n="Apps & Pages">Menus</span>
@@ -58,12 +55,14 @@
         <div data-i18n="Articles">Articles</div>
       </a>
     </li>
+   
     <li class="menu-item">
       <a href="{{ route('doctors.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-stethoscope"></i>
         <div data-i18n="Doctors">Doctors</div>
       </a>
     </li>
+   
     <li class="menu-item">
       <a href="{{ route('departments.index') }}" class="menu-link">
         <i class="menu-icon fa-regular fa-building"></i>

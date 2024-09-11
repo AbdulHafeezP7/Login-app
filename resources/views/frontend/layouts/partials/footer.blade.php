@@ -5,7 +5,7 @@
             <div class="col-md-3">
                 <div class="footer__logo aos-init aos-animate" data-aos="fade-up">
                     <a class="navbar-brand" href="index.php">
-                        <img src="frontend/images/logo.png" alt="logo">
+                        <img src="{{ asset('frontend/frontend/images/logo12.png')}}" alt="logo">
                     </a>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                             <li class="list-inline-item">
                                 <a href="https://www.instagram.com/dr.kalruhaimi/" target="_blank" title="Instagram">
                                     <div class="top-bar__icon">
-                                        <img src="frontend/images/icons/social/instagram-svg.png" draggable="false" alt="instagram" class="socialmedia-icon" loading="lazy">
+                                        <img src="{{ asset('frontend/frontend/images/icons/social/instagram-svg.png')}}" draggable="false" alt="instagram" class="socialmedia-icon" loading="lazy">
                                     </div>
                                 </a>
                             </li>
@@ -42,7 +42,7 @@
                             <li class="list-inline-item">
                                 <a href="https://t.snapchat.com/8jM6vxbU" target="_blank" title="snapchat">
                                     <div class="top-bar__icon">
-                                        <img src="frontend/images/icons/social/snapchat.png" draggable="false" alt="snapchat" class="socialmedia-icon" loading="lazy">
+                                        <img src="{{ asset('frontend/frontend/images/icons/social/snapchat.png')}}" draggable="false" alt="snapchat" class="socialmedia-icon" loading="lazy">
                                     </div>
                                 </a>
                             </li>
@@ -51,7 +51,7 @@
                             <li class="list-inline-item">
                                 <a href="https://twitter.com/drkalruhaimi" target="_blank" title="Twitter">
                                     <div class="top-bar__icon">
-                                        <img src="frontend/images/icons/social/twitter-svg.png" draggable="false" alt="Twitter" class="socialmedia-icon" loading="lazy">
+                                        <img src="{{ asset('frontend/frontend/images/icons/social/twitter-svg.png')}}" draggable="false" alt="Twitter" class="socialmedia-icon" loading="lazy">
                                     </div>
                                 </a>
                             </li>
@@ -92,9 +92,9 @@
                     <div class="footer__list aos-init aos-animate" data-aos="fade-up">
                         <div class="footerHead">الوصول السريع :</div>
                         <ul class="list-unstyled">
-                            <li><a href="index.php">الرئيسية</a></li>
-                            <li><a href="abouts.php">نبذة عنا</a></li>
-                            <li><a href="doctor.php">الأطباء</a></li>
+                            <li><a href="{{route('home')}}">الرئيسية</a></li>
+                            <li><a href="{{route('about')}}">نبذة عنا</a></li>
+                            <li><a href="{{route('doctors')}}">الأطباء</a></li>
 
                         </ul>
                     </div>
@@ -102,15 +102,8 @@
                     <div class="footer__list aos-init aos-animate" data-aos="fade-up">
                         <div class="footerHead">الخدمات :</div>
                         <ul class="list-unstyled">
-                            <!-- <li><a href="service.php">جميع الخدمات</a></li>
-                            <li><a href="service.php"> خدمات الجلدية</a></li> -->
-
-                            <li><a href="service.php">جميع الخدمات</a></li>
-                            <li><a href="service.php">رزٌلو ةرشب</a></li>
-                            <li><a href="service.php">مسق لا ةٌدلج</a></li>
-                            <li><a href="service.php">مسق نانسلاا</a></li>
-                            <li><a href="service.php">مسق لٌمجتلا ةحارج</a></li>
-                            <li><a href="service.php">مسق ةماعلا ةحارجلا</a></li>
+                            
+                           
                         </ul>
                     </div>
 
@@ -118,8 +111,8 @@
                         <div class="footerHead">الإتصال بنا :</div>
                         <ul class="list-unstyled">
                             <!--<li><a href="">الوظائف</a></li>-->
-                            <li><a href="contact.php">الإتصال بنا</a></li>
-                            <li><a href="privacy_policy.php">سياسة الخصوصية</a></li>
+                            <li><a href="{{route('contact_us')}}">الإتصال بنا</a></li>
+                            <li><a href="{{route('privacy_policy')}}">سياسة الخصوصية</a></li>
                         </ul>
                     </div>
                 </div>
@@ -132,11 +125,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-10 d-flex justify-content-start align-items-center">
-                    <small>حقوق النشر كل الحقوق محفوظة مجمعات الدكتور خالد الرحيمي الطبية &copy; 2023</small>
+                    <small>حقوق النشر محفوظة لمستشفى د. خالد الرحيمي 2024</small>
 
                 </div>
                 <div class="col-2">
-                    <a href="#top" class="footer__icon top" aria-label="Move to Top"><img src="frontend/images/icons/arrow-top.svg" alt="top" /></a>
+                    <a href="#top" class="footer__icon top" aria-label="Move to Top"><img src="{{ asset('frontend/frontend/images/icons/arrow-top.svg')}}" alt="top" /></a>
                 </div>
             </div>
         </div>

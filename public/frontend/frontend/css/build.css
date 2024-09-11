@@ -898,7 +898,7 @@ mark {
 
 .form-control-secondary:focus {
     background: #F9F5EB 0% 0% no-repeat padding-box !important;
-    border-color: #d0c161 !important;
+    border-color: #8e264b !important;
 }
 
 .form-control-secondary::placeholder {
@@ -1365,20 +1365,20 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #e6b21b;
-    border-color: #e6b21b;
+    background-color: #8e264b ;
+    border-color: #8e264b ;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #8e264b;
+    border-color: #8e264b;
 }
 
 .btn-primary.focus,
 .btn-primary:focus {
     color: #fff;
-    background-color: #0069d9;
+    background-color: #8e264b;
     border-color: #0062cc;
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
@@ -1394,8 +1394,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf;
+    background-color: #e3cfcf;
+    border-color: #e3cfcf;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -4671,7 +4671,7 @@ a.text-dark:hover {
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .show>.nav-link {
-    color: #d2c360;
+    color: #8e264b ;
 }
 
 .dropdown-item,
@@ -4701,7 +4701,7 @@ a.text-dark:hover {
 
 .dropdown-item:focus,
 .dropdown-item:hover {
-    color: #d0c161;
+    color: #8e264b;
     background: 0 0;
 }
 
@@ -4786,7 +4786,7 @@ button.minimize {
 }
 
 .text-primary {
-    color: #d0c161 !important;
+    color: #8e264b !important;
 }
 
 @font-face {
@@ -5749,7 +5749,7 @@ button.swiper-pagination-bullet {
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .swiper-horizontal>.swiper-pagination-bullets,
@@ -5783,11 +5783,11 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination-bullet-active {
-    background-color: #C5983C;
+    background-color: #8e264b ;
 }
 
 .overlay-background {
-    background: #d0c161 0% 0% no-repeat padding-box;
+    background: #8e264b 0% 0% no-repeat padding-box;
     opacity: 0.05;
     filter: blur(50px);
     position: absolute;
@@ -5845,12 +5845,12 @@ button.swiper-pagination-bullet {
 
 ::-moz-selection {
     color: #fff;
-    background-color: #d0c161;
+    background-color: #8e264b;
 }
 
 ::selection {
     color: #fff;
-    background-color: #d0c161;
+    background-color: #8e264b;
 }
 
 html {
@@ -5890,7 +5890,7 @@ a {
 }
 
 a:hover {
-    color: #d0c161;
+    color: #8e264b;
     text-decoration: none;
 }
 
@@ -5910,15 +5910,15 @@ svg {
 }
 
 .color {
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .color-brand-secondary {
-    color: #C5983C !important;
+    color: #8e264b  !important;
 }
 
 .background-brand-secondary {
-    background-color: #C5983C !important;
+    background-color: #8e264b  !important;
 }
 
 .color-text-secondary {
@@ -5953,7 +5953,7 @@ svg {
 .overline {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #d0c161;
+    color: #8e264b;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: var(--spc-1x);
@@ -6288,7 +6288,7 @@ button {
     height: 3.2rem;
     border-radius: 14px;
     border-style: solid;
-    border-color: #d2c360;
+    border-color: #8e264b ;
     border-width: 1px;
     display: flex;
     align-items: center;
@@ -6342,7 +6342,7 @@ button {
 }
 
 .header .top-bar .contact .icon {
-    fill: transparent linear-gradient(180deg, #d0c161 0, #94dcff 100%) 0 0 no-repeat padding-box;
+    fill: transparent linear-gradient(180deg, #8e264b 0, #94dcff 100%) 0 0 no-repeat padding-box;
 }
 
 .header .top-bar .contact li {
@@ -6461,7 +6461,7 @@ button {
 }
 
 .footer .contact .icon {
-    fill: transparent linear-gradient(180deg, #d0c161 0, #94dcff 100%) 0 0 no-repeat padding-box;
+    fill: transparent linear-gradient(180deg, #8e264b 0, #94dcff 100%) 0 0 no-repeat padding-box;
 }
 
 .footer .contact li {
@@ -6486,7 +6486,7 @@ button {
 }
 
 .footer a:hover {
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .footer__list ul {
@@ -6540,7 +6540,7 @@ button {
     right: 10px;
     display: flex;
     align-items: center;
-    fill: #d0c161;
+    fill: #8e264b;
 }
 
 .footer__copyrights {
@@ -6605,7 +6605,7 @@ textarea {
     padding: var(--spc-2x) var(--spc-4x);
     height: var(--spc-7x);
     border-radius: 1.8rem;
-    border: 1.5px solid #e3a900;
+    border: 1.5px solid #8e264b;
 }
 
 .custom-file .custom-file-input:focus~.custom-file-label,
@@ -6625,7 +6625,7 @@ select:focus,
 textarea .custom-file-input:focus~.custom-file-label,
 textarea:focus {
     background-color: white;
-    border: 1.5px solid #d0c161;
+    border: 1.5px solid #8e264b;
     box-shadow: none;
 }
 
@@ -6677,7 +6677,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .custom-control-input:checked~.custom-control-label::before {
-    background-color: #d0c161;
+    background-color: #8e264b;
     border: none;
     box-shadow: none;
 }
@@ -6696,7 +6696,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 
 .custom-select:disabled,
 .form-control:disabled {
-    color: #d0c161;
+    color: #8e264b;
     background-color: #f8f8f8;
     opacity: 1;
 }
@@ -6724,12 +6724,12 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .btn-tab.active {
-    background: #C5983C 0% 0% no-repeat padding-box !important;
+    background: #8e264b  0% 0% no-repeat padding-box !important;
     color: white !important;
 }
 
 .btn-tab:hover {
-    background: #C5983C 0% 0% no-repeat padding-box !important;
+    background: #8e264b  0% 0% no-repeat padding-box !important;
     color: white !important;
 }
 
@@ -6749,21 +6749,21 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .btn-white-icon:hover .btn-icon {
-    fill: #d0c161;
+    fill: #8e264b;
 }
 
 .btn-brand-secondary {
     background-color: #F9F5EB;
     border: 2px solid transparent;
-    color: #C5983C;
+    color: #8e264b ;
     box-shadow: none;
 }
 
 .btn-brand-secondary.active,
 .btn-brand-secondary:hover {
     background-color: #fff;
-    border-color: #d0c161;
-    color: #d0c161;
+    border-color: #8e264b;
+    color: #8e264b;
     transform: translate(0);
 }
 
@@ -6785,7 +6785,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 
 .btn-brand-sub {
     background: #F9F5EB 0% 0% no-repeat padding-box;
-    color: #C5983C !important;
+    color: #8e264b  !important;
 }
 
 .btn-white {
@@ -6795,7 +6795,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 .btn-link {
     position: relative;
     background-color: transparent;
-    color: #C5983C;
+    color: #8e264b ;
     box-shadow: none;
     padding: 0;
     min-height: auto;
@@ -6811,7 +6811,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 
 .btn-link:hover {
     text-decoration: none;
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .btn-link:hover::after {
@@ -6829,7 +6829,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .btn-link-secondary.active {
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .section-pagination {
@@ -7051,7 +7051,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .search-input {
-    border: 1.5px solid #d0c161;
+    border: 1.5px solid #8e264b;
     height: 48px;
     padding-top: 0;
     padding-bottom: 0;
@@ -11234,7 +11234,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     width: 180px;
     height: 162px;
     background: transparent linear-gradient(232deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(232deg, #d0c161 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(232deg, #8e264b 0%, #8e264b  100%) 0% 0% no-repeat padding-box;
     border-radius: 19px;
     display: inline-flex;
     flex-direction: column;
@@ -11318,7 +11318,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .statistic:hover {
-    background: transparent linear-gradient(237deg, #fee8b9 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
 }
 
 .statistic:hover * {
@@ -11357,7 +11357,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .statistic.info-card span {
-    color: #C5983C;
+    color: #8e264b ;
     font-size: 12px;
     margin: 0;
 }
@@ -11397,11 +11397,11 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     align-items: center;
     margin: calc(var(--spc-4x) * -1) auto auto;
     position: relative;
-    background: transparent linear-gradient(229deg, #f9e4ac 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
 }
 
 .statistic__icon_bold {
-    background: transparent linear-gradient(237deg, #d0c161 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(237deg, #8e264b 0%, #8e264b  100%) 0% 0% no-repeat padding-box;
 }
 
 .statistic__icon::before {
@@ -11481,7 +11481,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     right: 0;
     bottom: 0;
     left: 0;
-    background: transparent linear-gradient(261deg, #b99236 0%, #ffe9bd 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
 }
 
 .book-now .h3 {
@@ -11604,7 +11604,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
     left: 0;
     top: 0;
     color: #fff;
-    background: transparent linear-gradient(257deg, #e9d087 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(257deg, #e9d087 0%, #8e264b  100%) 0% 0% no-repeat padding-box;
     padding: 2px 4px;
     font-size: 12px;
     border-radius: 1.8rem;
@@ -11743,7 +11743,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 .offer__text p {
     font-size: calc(var(--fnt-size-1x) - 0.1rem);
     margin: var(--spc-x) 0 0;
-    color: #C5983C;
+    color: #8e264b ;
 }
 
 .doctor__text_relative,
@@ -11811,7 +11811,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .article__text .color {
-    color: #d0c161;
+    color: #8e264b;
 }
 
 .article__details * {
@@ -12091,7 +12091,7 @@ input[type="month"]::-webkit-calendar-picker-indicator {
 }
 
 .services {
-    background: transparent radial-gradient(closest-side at 50% 50%, #F9F5EB 0%, #EEE0C4 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
     border-radius: 0px 250px 0px 0px;
     position: relative;
     z-index: 10;
@@ -12878,7 +12878,7 @@ ul.list-item li {
     bottom: 20px;
     left: 20px;
     z-index: 999999999;
-    background-color: transparent linear-gradient(257deg, #d0c161 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
+    background-color: transparent linear-gradient(257deg, #8e264b 0%, #8e264b  100%) 0% 0% no-repeat padding-box;
     height: 6rem;
     width: 6rem;
     display: flex;
@@ -12922,7 +12922,7 @@ ul.list-item li {
 
 .bannerImageWithLogo {
     color: white;
-    background: transparent linear-gradient(261deg, #b99236 0%, #ffe9bd 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
     border-radius: 16px;
     text-align: center;
     margin: 15px;
@@ -12932,7 +12932,7 @@ ul.list-item li {
 
 .bannerImage {
     color: white;
-    background: transparent linear-gradient(261deg, #b99236 0%, #ffe9bd 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%) 0% 0% no-repeat padding-box;
     border-radius: 16px;
     text-align: center;
     margin: 15px;
@@ -12961,7 +12961,7 @@ ul.list-item li {
         height: 372px;
         background: #F9F5EB 0% 0% no-repeat padding-box;
         border-radius: 19px;
-        border: 7px solid #F9F5EB;
+        border: 7px solid #8e264b;
     }
 
     .doctorList {

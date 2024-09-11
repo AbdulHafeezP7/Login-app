@@ -40,7 +40,7 @@
   width: 38px;
 }
 
-.fv-plugins-bootstrap5 .input-group~.fv-plugins-icon {
+.fv-plugins-bootstrap5 .input-group ~ .fv-plugins-icon {
   z-index: 3;
 }
 
@@ -57,19 +57,18 @@
 }
 
 .fv-plugins-bootstrap5 .row .fv-plugins-icon-check {
-  top: -7px;
-  /* labelHeight/2 - iconHeight/2 */
+  top: -7px; /* labelHeight/2 - iconHeight/2 */
 }
 
-.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label~.fv-plugins-icon {
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label ~ .fv-plugins-icon {
   top: 32px;
 }
 
-.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label~.fv-plugins-icon-check {
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label ~ .fv-plugins-icon-check {
   top: 25px;
 }
 
-.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label.sr-only~.fv-plugins-icon-check {
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label.sr-only ~ .fv-plugins-icon-check {
   top: -7px;
 }
 

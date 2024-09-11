@@ -8,7 +8,7 @@
         <div class="swiper-wrapper">
             <div class="subSlider">
                     <div class="slider__image small-header">
-                        <img src="frontend/images/slider/another_page-01.png" draggable="false" alt="alt">
+                        <img src="{{ asset('frontend/frontend/images/slider/another_page-01.png')}}" draggable="false" alt="alt">
                     </div>
                     <div class="slider__text">
                         <div class="container">
@@ -87,12 +87,12 @@
                                     </div>
                                     <div class="offer__text">
 
-                                        <div class="d-flex justify-content-around mt-3 offers-book-btn-container">
-                                            <button class="btn btn-brand-primary offer__button w-50 add_new_offer_cart_cart" data-offer_id="92">
-                                                إحجز الآن                                                </button>
+                                        <!--<div class="d-flex justify-content-around mt-3 offers-book-btn-container">-->
+                                        <!--    <button class="btn btn-brand-primary offer__button w-50 add_new_offer_cart_cart" data-offer_id="92">-->
+                                        <!--        إحجز الآن                                                </button>-->
 
                                       
-                                        </div>
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>

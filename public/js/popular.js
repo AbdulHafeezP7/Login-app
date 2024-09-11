@@ -2,7 +2,7 @@ import FormValidation from '@form-validation/bundle/popular'
 
 try {
   window.FormValidation = FormValidation;
-} catch (e) { }
+} catch (e) {}
 
 export { FormValidation };
 

@@ -51,7 +51,9 @@
                 success: function(response) {
                     if (response.status) {
                         console.log(response.message);
-                        location.reload();
+                     
+                         var table = $('#departments-table').DataTable();
+                         table.ajax.reload();
                     } else {
                         console.error('Error decrementing department:', response.message);
                     }
@@ -75,8 +77,8 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.status) {
-                        console.log(response.message);
-                        location.reload();
+                         var table = $('#departments-table').DataTable();
+                         table.ajax.reload();
                     } else {
                         console.error('Error incrementing department:', response.message);
                     }
@@ -148,9 +150,9 @@
                     searchable: false,
                     render: function(data, type, row) {
                         return `
-                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
                     ${row.sort}
-                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
                 `;
                     }
                 },
@@ -204,9 +206,8 @@
                                 },
                                 buttonsStyling: false
                             }).then(() => {
-                                setTimeout(() => {
-                                    window.location.href = "{{route('departments.index')}}";
-                                }, 0);
+                                 var table = $('#departments-table').DataTable();
+                                 table.ajax.reload();
                             });
                         } else {
                             console.log('Error deleting department: ' + response.message);
