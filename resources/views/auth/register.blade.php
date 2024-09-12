@@ -81,7 +81,7 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
                             </div>
                         </form>
-                        <!-- <div class="divider my-6">
+                        <div class="divider my-6">
                             <div class="divider-text">or</div>
                         </div>
 
@@ -90,7 +90,7 @@
                             <a href="{{ url('login') }}">
                                 <span>Login instead</span>
                             </a>
-                        </p> -->
+                        </p>
 
                         <div class="d-flex justify-content-center">
                             <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-facebook me-1_5">
