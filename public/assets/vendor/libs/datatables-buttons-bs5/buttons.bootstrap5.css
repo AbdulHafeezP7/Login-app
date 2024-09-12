@@ -1,39 +1,33 @@
 @charset "UTF-8";
-
 @keyframes dtb-spinner {
   100% {
     transform: rotate(360deg);
   }
 }
-
 @-o-keyframes dtb-spinner {
   100% {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-ms-keyframes dtb-spinner {
   100% {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-webkit-keyframes dtb-spinner {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 @-moz-keyframes dtb-spinner {
   100% {
     -moz-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
-
 div.dataTables_wrapper {
   position: relative;
 }
@@ -68,7 +62,7 @@ div.dt-button-info h2 {
   font-weight: normal;
 }
 
-div.dt-button-info>div {
+div.dt-button-info > div {
   padding: 1em 2em 2em 2em;
 }
 
@@ -140,11 +134,11 @@ div.dt-button-collection .dt-button-active.dt-button-split:after {
   display: none;
 }
 
-div.dt-button-collection .dt-button-active.dt-button-split>*:first-child {
+div.dt-button-collection .dt-button-active.dt-button-split > *:first-child {
   padding-right: 3em;
 }
 
-div.dt-button-collection .dt-button-active.dt-button-split>*:first-child:after {
+div.dt-button-collection .dt-button-active.dt-button-split > *:first-child:after {
   position: absolute;
   top: 50%;
   margin-top: -10px;
@@ -268,27 +262,22 @@ div.dt-buttons div.dropdown-menu.fixed.columns {
     margin-left: -308px;
   }
 }
-
 @media screen and (max-width: 640px) {
   div.dt-buttons div.dropdown-menu.fixed.columns {
     margin-left: -203px;
   }
 }
-
 @media screen and (max-width: 460px) {
   div.dt-buttons div.dropdown-menu.fixed.columns {
     margin-left: -100px;
   }
 }
-
-div.dt-buttons div.dropdown-menu.fixed> :last-child {
+div.dt-buttons div.dropdown-menu.fixed > :last-child {
   max-height: 100vh;
   overflow: auto;
 }
 
-div.dt-buttons div.dropdown-menu.two-column> :last-child,
-div.dt-buttons div.dropdown-menu.three-column> :last-child,
-div.dt-buttons div.dropdown-menu.four-column> :last-child {
+div.dt-buttons div.dropdown-menu.two-column > :last-child, div.dt-buttons div.dropdown-menu.three-column > :last-child, div.dt-buttons div.dropdown-menu.four-column > :last-child {
   display: block !important;
   -webkit-column-gap: 8px;
   -moz-column-gap: 8px;
@@ -297,9 +286,7 @@ div.dt-buttons div.dropdown-menu.four-column> :last-child {
   column-gap: 8px;
 }
 
-div.dt-buttons div.dropdown-menu.two-column> :last-child>*,
-div.dt-buttons div.dropdown-menu.three-column> :last-child>*,
-div.dt-buttons div.dropdown-menu.four-column> :last-child>* {
+div.dt-buttons div.dropdown-menu.two-column > :last-child > *, div.dt-buttons div.dropdown-menu.three-column > :last-child > *, div.dt-buttons div.dropdown-menu.four-column > :last-child > * {
   -webkit-column-break-inside: avoid;
   break-inside: avoid;
 }
@@ -308,7 +295,7 @@ div.dt-buttons div.dropdown-menu.two-column {
   width: 400px;
 }
 
-div.dt-buttons div.dropdown-menu.two-column> :last-child {
+div.dt-buttons div.dropdown-menu.two-column > :last-child {
   padding-bottom: 1px;
   column-count: 2;
 }
@@ -317,7 +304,7 @@ div.dt-buttons div.dropdown-menu.three-column {
   width: 450px;
 }
 
-div.dt-buttons div.dropdown-menu.three-column> :last-child {
+div.dt-buttons div.dropdown-menu.three-column > :last-child {
   padding-bottom: 1px;
   column-count: 3;
 }
@@ -326,7 +313,7 @@ div.dt-buttons div.dropdown-menu.four-column {
   width: 600px;
 }
 
-div.dt-buttons div.dropdown-menu.four-column> :last-child {
+div.dt-buttons div.dropdown-menu.four-column > :last-child {
   padding-bottom: 1px;
   column-count: 4;
 }
@@ -339,7 +326,7 @@ div.dt-buttons div.dropdown-menu.columns {
   width: auto;
 }
 
-div.dt-buttons div.dropdown-menu.columns> :last-child {
+div.dt-buttons div.dropdown-menu.columns > :last-child {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -349,15 +336,13 @@ div.dt-buttons div.dropdown-menu.columns> :last-child {
   padding-bottom: 1px;
 }
 
-div.dt-buttons div.dropdown-menu.columns> :last-child .dt-button {
+div.dt-buttons div.dropdown-menu.columns > :last-child .dt-button {
   min-width: 200px;
   flex: 0 1;
   margin: 0;
 }
 
-div.dt-buttons div.dropdown-menu.columns.dtb-b3> :last-child,
-div.dt-buttons div.dropdown-menu.columns.dtb-b2> :last-child,
-div.dt-buttons div.dropdown-menu.columns.dtb-b1> :last-child {
+div.dt-buttons div.dropdown-menu.columns.dtb-b3 > :last-child, div.dt-buttons div.dropdown-menu.columns.dtb-b2 > :last-child, div.dt-buttons div.dropdown-menu.columns.dtb-b1 > :last-child {
   justify-content: space-between;
 }
 
@@ -374,27 +359,23 @@ div.dt-buttons div.dropdown-menu.columns.dtb-b1 .dt-button {
 }
 
 @media screen and (max-width: 1024px) {
-  div.dt-buttons div.dropdown-menu.columns> :last-child {
+  div.dt-buttons div.dropdown-menu.columns > :last-child {
     width: 612px;
   }
 }
-
 @media screen and (max-width: 640px) {
-  div.dt-buttons div.dropdown-menu.columns> :last-child {
+  div.dt-buttons div.dropdown-menu.columns > :last-child {
     width: 406px;
   }
-
   div.dt-buttons div.dropdown-menu.columns.dtb-b3 .dt-button {
     flex: 0 1 32%;
   }
 }
-
 @media screen and (max-width: 460px) {
-  div.dt-buttons div.dropdown-menu.columns> :last-child {
+  div.dt-buttons div.dropdown-menu.columns > :last-child {
     width: 200px;
   }
 }
-
 div.dt-buttons span.dt-button-spacer.empty {
   margin: 1px;
 }
@@ -444,12 +425,10 @@ div.dt-button-background {
     text-align: center;
     margin-bottom: 0.5em;
   }
-
   div.dt-buttons a.btn {
     float: none;
   }
 }
-
 :root[data-bs-theme=dark] div.dropdown-menu.dt-button-collection.fixed {
   background-color: #212529;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -461,15 +440,13 @@ div.dt-button-background {
     margin-bottom: 0;
   }
 }
-
 div.dataTables_wrapper .dt-button-collection {
   border: 0;
   border-radius: var(--bs-border-radius);
   padding: 0.5rem 0.5rem;
   width: auto;
 }
-
-div.dataTables_wrapper .dt-button-collection>div[role=menu] {
+div.dataTables_wrapper .dt-button-collection > div[role=menu] {
   text-align: left;
 }
 
@@ -494,15 +471,12 @@ div.dt-buttons div.dropdown-menu .dt-button {
 .light-style div.dataTables_wrapper .dt-button-collection {
   background-color: #fff;
 }
-
 .light-style .dataTable a:not([href]):not([tabindex]) {
   color: #28c76f;
 }
-
 .light-style .dt-button-info {
   box-shadow: 0 0.31rem 1.25rem 0 rgba(47, 43, 61, 0.4);
 }
-
 .light-style .dt-button-collection .dropdown-item {
   padding: 0.543rem 1rem;
 }
@@ -510,15 +484,12 @@ div.dt-buttons div.dropdown-menu .dt-button {
 .dark-style div.dataTables_wrapper .dt-button-collection {
   background-color: #2f3349;
 }
-
 .dark-style .dataTable a:not([href]):not([tabindex]) {
   color: #28c76f;
 }
-
 .dark-style .dt-button-info {
   box-shadow: 0 0.31rem 1.25rem 0 rgba(47, 51, 73, 0.4);
 }
-
 .dark-style .dt-button-collection .dropdown-item {
   padding: 0.543rem 1rem;
 }
@@ -527,7 +498,6 @@ div.dt-buttons div.dropdown-menu .dt-button {
   border-width: 0 !important;
   border-radius: 0.375rem !important;
 }
-
 .dt-button-info h2 {
   font-size: 1.5rem !important;
 }
@@ -535,11 +505,9 @@ div.dt-buttons div.dropdown-menu .dt-button {
 .dt-buttons {
   position: relative;
 }
-
 [dir=rtl] .dt-buttons .dt-button-collection .dropdown-item {
   text-align: right;
 }
-
 .dt-buttons.btn-group button {
   border-color: transparent !important;
   border-radius: 0.375rem !important;

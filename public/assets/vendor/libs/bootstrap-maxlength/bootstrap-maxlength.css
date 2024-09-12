@@ -12,7 +12,6 @@
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-
 .light-style .bootstrap-maxlength.label-danger {
   color: #fff;
   background: #ff4c51;
@@ -26,7 +25,6 @@
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-
 .dark-style .bootstrap-maxlength.label-danger {
   color: #fff;
   background: #ff4c51;

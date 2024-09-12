@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/uploads/settings/2022/03/10/20220310174130725093682_settings.png')}}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('frontend/uploads/settings/2022/03/10/20220310174130725093682_settings.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('frontend/uploads/settings/2022/03/10/20220310174130725093682_settings.png')}}">
-    <meta name="title" content=" في مجمعات الدكتور خالد الرحيمي الطبية" />
-    <meta name="description" content="في مجمعات د. خالد الرحيمي الطبية، نؤمن أن الطبيب هو العنصر الأبرز في نجاح الخدمة الطبية، لذلك نفخر باستقطاب استشاريين وأخصائيين مؤهلين في كافة التخصصات الطبية" />
+    <meta name="title" content=" مستشفى د. خالد الرحيمي" />
+    <meta name="description" content="مستشفى د. خالد الرحيمي" />
     <meta name="keywords" content="" />
     <link rel="canonical" href="https://www.dralruhaimi.com/" />
     <link rel="stylesheet" href="{{ asset('frontend/frontend/css/build.css')}}" rel="preload" />
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ asset('frontend/frontend/css/build.css')}}">
     </noscript>
 
-    <title>مرحبا بكم في مجمعات الدكتور خالد الرحيمي الطبية</title>
+    <title>مستشفى د. خالد الرحيمي</title>
     <meta name="google-site-verification" content="8ckLqlAuob_Jy79p5FNtLc3s0y7IzYYgk2BHO4Ra3Ho" />
 </head>
 
@@ -31,8 +31,8 @@
         <div class="header__nav container" data-aos="fade-up" data-aos-delay="100">
             <nav class="navbar navbar-expand-xl navbar-light d-flex flex-row w-100">
                 <div class="brand-container">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="{{ asset('frontend/frontend/images/logo.png')}}" alt="logo">
+                    <a class="navbar-brand" href="{{route('home')}}">
+                        <img src="{{ asset('frontend/frontend/images/logo12.png')}}" alt="logo">
                     </a>
                     <div class="mobile-icons">
                         <button class="btn navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarElm" aria-controls="navbarElm"
@@ -64,7 +64,7 @@
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="https://t.snapchat.com/8jM6vxbU" target="_blank" title="snapchat">
+                                            <a href="tel:+966920010436" >
                                                 <div class="top-bar__icon">
                                                     <img src="{{ asset('frontend/frontend/images/icons/phone-svg.png')}}" draggable="false" alt="snapchat" class="socialmedia-icon" style="
     width: 60%;
@@ -111,7 +111,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('home')}}">
-                                    الرئٌسٌة </a>
+                                    الرئيسية </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('about')}}">
@@ -120,10 +120,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="blogDropdown" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                    األقسام </a>
+                                الأقسام </a>
                                 <div class="dropdown-menu " aria-labelledby="blogDropdown">
                                     @foreach($departments as $department)
-                                    <a class="dropdown-item" href="service.php">{{ $department->department_ar }}</a>
+                                    <a class="dropdown-item" href="{{route('departmentDetails',['surl'=>$department->slug])}}">{{ $department->department_ar }}</a>
                                     @endforeach
                                 </div>
                             </li>
@@ -134,21 +134,23 @@
                                     الفروع </a>
 
                                 <div class="dropdown-menu " aria-labelledby="blogDropdown">
-                                    <a class="dropdown-item" href="contact_1.php">فرع الرٌان – الدمام</a>
-                                    <a class="dropdown-item" href="contact_2.php">فرع الفرسان – الدمام</a>
-                                    <a class="dropdown-item" href="contact_3.php">فرع العلٌا – الخبر</a>
-                                    <a class="dropdown-item" href="contact_4.php">فرع البٌبسً – الخبر</a>
-                                    <a class="dropdown-item" href="contact_5.php">فرع العزٌزٌة – الخبر</a>
-                                    <a class="dropdown-item" href="contact_6.php">فرع الفتح – االحساء</a>
+                                    @foreach($branch as $row)
+                                     <a class="dropdown-item" href="{{route('branch_location',['clinicId'=>$row->id])}}">{{ $row->branchname_ar }}</a>
+                                    @endforeach
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="offer.php">
-                                    األطباء </a>
+                                <a class="nav-link" href="{{route('doctors')}}">
+                                   الأطباء </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.php">
-                                    مقاالت ونصائح </a>
+                                <a class="nav-link" href="{{route('offer')}}">
+                                   العروض </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('contact_us')}}">
+                                    تواصل معنا </a>
                             </li>
 
 

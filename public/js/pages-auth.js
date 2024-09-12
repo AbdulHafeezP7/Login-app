@@ -3,7 +3,7 @@ import Popper from './path/to/popper.min.js'; // Correct relative path
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('formAuthentication');
-
+    
     if (form) {
         FormValidation.formValidation(form, {
             fields: {

@@ -8,7 +8,7 @@
             <div class="swiper-slide">
                 <div class="subSlider">
                     <div class="slider__image small-header">
-                        <img src="{{asset('frontend/assets/images/slider/another_page-01.png')}}" draggable="false" alt="نبذة عنا" />
+                        <img src="{{ asset('frontend/frontend/images/slider/another_page-01.png')}}" draggable="false" alt="نبذة عنا" />
                     </div>
                     <div class="slider__text">
                         <div class="container">

@@ -9,7 +9,7 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('frontend/page/website.webp')}}" draggable="false" alt="رمز الثقة في الرعاية الطبية" loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('frontend/frontend/images/model0123.jpg')}}" draggable="false" alt="رمز الثقة في الرعاية الطبية" loading="eager">
                     </div>
                     <div class="slider__text main_slider_text">
                         <div class="container pull-center">
@@ -255,131 +255,122 @@
                 <h2 class="title" data-aos="fade-up">والنصائح االسئلة اه</h2>
 
             </div>
-            <style>
-                .features-one__box {
-                    width: 140px;
-                    height: 140px;
-                    background-color: var(--cleenhearts-white, #fff);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
+          <style>
+        .features-one__box {
+            width: 140px;
+            height: 140px;
+            background-color: var(--cleenhearts-white, #fff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin: 0 0 46px;
+            border-radius: 12px;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.7s ease;
+        }
 
-                .features-one__box {
-                    text-align: center;
-                    position: relative;
-                    margin: 0 0 46px;
-                    border-radius: 12px;
-                    flex-direction: column;
-                    gap: 10px;
-                }
+        .features-one__box:hover {
+            transform: translate3D(0, -1px, 0) scale(1.1);
+            background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%);
+            border-radius: 8px;
+        }
 
-                .features-one__grid {
-                    display: grid;
-                    grid-template-columns: repeat(6, 1fr);
-                    /* display: flex;
-    flex-direction: row;
-    gap: 12px; */
-                }
+        .features-one_box_image img {
+            width: 60px;
+            height: 60px;
+        }
 
-                /* .features-one__box__image img{
-    max-height: 121px;
-    display: inline-block;
-    transition: all 500ms linear;
-    transition-delay: 0s;
-    transition-delay: 0s;
-    transform: scale(1);
-    vertical-align: middle;
+        .features-one_box_title {
+            font-size: 15px;
+            color: var(--cleenhearts-base, #351C42);
+            font-family: "DM Sans", sans-serif;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .features-one__grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        /* Responsive adjustments */
+        @media only screen and (max-width: 995px) {
+            .features-one__grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .features-one__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .features-one__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .modals {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modals-contents {
+            background: transparent linear-gradient(261deg, #8e264b 0%, #f7f7f7 100%);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+.doctors-more {
     display: flex;
-  justify-content: center;
-  align-items: center; 
-} */
-                .features-one__box__title {
-                    max-width: 131px;
-                    font-size: 15px;
-                    color: var(--cleenhearts-base, #351C42);
-                    font-family: "DM Sans", sans-serif;
-                    font-weight: 700;
-                    margin: 18px 0 0;
-                    margin: 0px;
-                }
-
-                .sub_icon {
-                    border-radius: 100%;
-                    border: 6px solid white;
-                    width: var(--spc-8x);
-                    height: var(--spc-8x);
-                    background-color: #fff;
-                    box-shadow: 0 3px 22px #87878724;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: transparent linear-gradient(229deg, #f9e4ac 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
-                }
-
-                .title {
-                    margin-bottom: var(--spc-5x);
-                }
-
-                .features-one__box:hover {
-                    transform: translate3D(0, -1px, 0) scale(1.1);
-                    transition: all .7s ease;
-                    cursor: pointer;
-                    background: transparent linear-gradient(229deg, #f9e4ac 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
-                    border-radius: 8px;
-                }
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
 
 
-                /* CSS for modals */
-                .modals {
-                    display: none;
-                    position: fixed;
-                    z-index: 1;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    overflow: auto;
-                    background-color: rgba(0, 0, 0, 0.4);
-                }
-
-                .modals-contents {
-                    background: transparent linear-gradient(229deg, #f9e4ac 0%, #C5983C 100%) 0% 0% no-repeat padding-box;
-                    margin: 15% auto;
-                    padding: 20px;
-                    border: 1px solid #888;
-                    width: 30%;
-                    height: 20%;
-                    display: flex;
-                    flex-direction: column;
-                    border-radius: 12px;
-                }
-
-                .banner-h1 {
-                    margin-bottom: 25px;
-                }
-
-                .doctors-more {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    gap: 12px;
-                }
-
-                .close {
-                    color: #aaa;
-                    float: right;
-                    font-size: 28px;
-                    font-weight: bold;
-                    margin-bottom: 10px;
-                }
-
-                .close:hover,
-                .close:focus {
-                    color: black;
-                    text-decoration: none;
-                    cursor: pointer;
-                }
+@media only screen and (max-width: 995px) {
+    .doctors-more {
+        flex-direction: column; 
+        align-items: center;
+        gap: 12px;
+    }
+}
+    </style>
             </style>
 
 
@@ -397,22 +388,26 @@
 
 
 
-
+                        @php
+                        $countPOPUpModel=0;
+                        @endphp
                         @foreach($department as $row)
-                        <div class="features-one__box" data-modals="modals-2">
-                            <div class="features-one__box__image">
-                                <img width="60" height="60" src="{{asset('images').'/'.$row->image}}" alt="{{$row->department_ar}}">
-                            </div><!-- /.features-one__box__image -->
-                            <h3 class="features-one__box__title">{{$row->department_ar}}</h3><!-- /.features-one__box__title -->
-                        </div><!-- /.features-one__box -->
-
-                        <!-- Modal 2 -->
-                        <div id="modals-2" class="modals">
-                            <div class="modals-contents">
-                                <span class="close" data-modals="modals-2">&times;</span>
-                                <p>{{$row->department_details}}</p>
+                         @php
+                         $countPOPUpModel++;
+                        @endphp
+                            <div class="features-one__box" data-modals="modals-{{$countPOPUpModel}}">
+                                <div class="features-one_box_image">
+                                    <img width="60" height="60" src="{{asset('images').'/'.$row->image}}" alt="{{$row->department_ar}}">
+                                </div>
+                                <h3 class="features-one_box_title">{{$row->department_ar}}</h3>
                             </div>
-                        </div>
+            
+                            <div id="modals-{{$countPOPUpModel}}" class="modals">
+                                <div class="modals-contents">
+                                    <span class="close" data-modals="modals-{{$countPOPUpModel}}">×</span>
+                                    <p>{{$row->department_details}}</p>
+                                </div>
+                            </div>
                         @endforeach
 
 
@@ -554,7 +549,7 @@
 
 
             </div>
-            <button type="submit" class="btn btn-primary"><a href="offer.php">أكثر</a> </button>
+            <button type="submit" class="btn btn-primary"><a href="{{route('doctors')}}">أكثر</a> </button>
         </div>
     </section>
 
@@ -604,41 +599,13 @@
             </div>
             <div class="swiper insuranceSlider" data-aos="fade-up">
                 <div class="swiper-wrapper">
+                @foreach ($insurance as $item)
                     <div class="swiper-slide">
                         <div class="company">
-                            <img src="web/assets/images/partners/1.webp" width="112px" height="22px" draggable="false" alt="nextcare" loading="lazy">
+                            <img src="{{asset('images').'/'.$item->image}}" draggable="false" alt="{{$item->insurance_ar}}" loading="lazy">
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/2.webp" width="112px" height="17px" draggable="false" alt="allianz partners" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/3.webp" width="112px" height="31px" draggable="false" alt="gulf union al ahlia cooperative insurance" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/4.webp" width="112px" height="27px" draggable="false" alt="alsagr insurance" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/5.webp" width="" height="" draggable="false" alt="saico" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/6.webp" width="" height="" draggable="false" alt="medgulf" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/7.webp" width="" height="" draggable="false" alt="walaa" loading="lazy">
-                        </div>
-                    </div>
+                @endforeach
                 </div>
                 <div class="section-pagination">
                     <div class="insurance-pagination"></div>
@@ -662,41 +629,14 @@
             </div>
             <div class="swiper insuranceSlider" data-aos="fade-up">
                 <div class="swiper-wrapper">
+                   @foreach ($partner as $item)
                     <div class="swiper-slide">
                         <div class="company">
-                            <img src="web/assets/images/partners/1.webp" width="112px" height="22px" draggable="false" alt="nextcare" loading="lazy">
+                            <img src="{{asset('images').'/'.$item->image}}"  draggable="false" alt="nextcare" loading="lazy">
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/2.webp" width="112px" height="17px" draggable="false" alt="allianz partners" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/3.webp" width="112px" height="31px" draggable="false" alt="gulf union al ahlia cooperative insurance" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/4.webp" width="112px" height="27px" draggable="false" alt="alsagr insurance" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/5.webp" width="" height="" draggable="false" alt="saico" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/6.webp" width="" height="" draggable="false" alt="medgulf" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="company">
-                            <img src="web/assets/images/partners/7.webp" width="" height="" draggable="false" alt="walaa" loading="lazy">
-                        </div>
-                    </div>
+                   @endforeach
+
                 </div>
                 <div class="section-pagination">
                     <div class="insurance-pagination"></div>

@@ -75,6 +75,7 @@ class DepartmentController extends Controller
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;
+            $department->content_ar = $request->content_ar;
             $department->slug = $request->slug;
             $department->sort = $totalDepartments + 1;
             if ($request->hasFile('image')) {
@@ -91,7 +92,8 @@ class DepartmentController extends Controller
     public function departmentDecrement(Request $request)
     {
         $department = Department::find($request->departmentId);
-        $sort = --$department->sort;
+        
+        $sort =($department->sort!="")?--$department->sort:0;
         if ($sort >= 1) {
             $departmentDownData = Department::where('sort', $sort)->first();
             if ($departmentDownData) {
@@ -133,6 +135,7 @@ class DepartmentController extends Controller
             $department->department_en = $request->department_en;
             $department->department_ar = $request->department_ar;
             $department->department_details = $request->department_details;
+            $department->content_ar = $request->content_ar;
             $department->slug = $request->slug;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
@@ -163,7 +166,7 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
         $department->delete();
-        return response()->json(['status' => true, 'message' => 'Department deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Department deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

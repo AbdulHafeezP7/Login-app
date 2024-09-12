@@ -175,7 +175,7 @@
             var partnerId = $(this).data('id');
             if (confirm('Are you sure you want to delete this partner?')) {
                 $.ajax({
-                    url: "{{ url('partners') }}/" + partnerId + "/delete",
+                    url: "{{ url('backend/partners') }}/" + partnerId + "/delete",
                     type: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'

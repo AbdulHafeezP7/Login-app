@@ -1,7 +1,6 @@
 #icons-container .icon-card {
   width: 128px;
 }
-
 #icons-container .icon-card i {
   font-size: 2rem;
 }
@@ -11,19 +10,16 @@
     width: 126px;
   }
 }
-
 @media (max-width: 767.98px) {
   #icons-container .icon-card {
     width: 131px;
   }
 }
-
 @media (max-width: 414px) {
   #icons-container .icon-card {
     width: 110px;
   }
 }
-
 @media (max-width: 375px) {
   #icons-container .icon-card {
     width: 150px;

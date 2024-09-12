@@ -57,25 +57,25 @@
   cursor: pointer;
 }
 
-.jstree-leaf>.jstree-ocl {
+.jstree-leaf > .jstree-ocl {
   cursor: default;
 }
 
-.jstree .jstree-open>.jstree-children {
+.jstree .jstree-open > .jstree-children {
   display: block;
 }
 
-.jstree .jstree-closed>.jstree-children,
-.jstree .jstree-leaf>.jstree-children {
+.jstree .jstree-closed > .jstree-children,
+.jstree .jstree-leaf > .jstree-children {
   display: none;
 }
 
-.jstree-anchor>.jstree-themeicon {
+.jstree-anchor > .jstree-themeicon {
   margin-right: 2px;
 }
 
 .jstree-no-icons .jstree-themeicon,
-.jstree-anchor>.jstree-themeicon-hidden {
+.jstree-anchor > .jstree-themeicon-hidden {
   display: none;
 }
 
@@ -88,7 +88,7 @@
   padding: 0 1px 0 4px;
 }
 
-.jstree-rtl .jstree-anchor>.jstree-themeicon {
+.jstree-rtl .jstree-anchor > .jstree-themeicon {
   margin-left: 2px;
   margin-right: 0;
 }
@@ -97,7 +97,7 @@
   margin-left: 0;
 }
 
-.jstree-rtl .jstree-container-ul>.jstree-node {
+.jstree-rtl .jstree-container-ul > .jstree-node {
   margin-right: 0;
 }
 
@@ -107,7 +107,7 @@
   min-width: 100%;
 }
 
-.jstree-wholerow-ul .jstree-leaf>.jstree-ocl {
+.jstree-wholerow-ul .jstree-leaf > .jstree-ocl {
   cursor: pointer;
 }
 
@@ -167,7 +167,7 @@
   list-style: none;
 }
 
-.vakata-context li>a {
+.vakata-context li > a {
   display: block;
   padding: 0 2em 0 2em;
   text-decoration: none;
@@ -179,19 +179,19 @@
   border-radius: 1px;
 }
 
-.vakata-context li>a:hover {
+.vakata-context li > a:hover {
   position: relative;
   background-color: #e8eff7;
   box-shadow: 0 0 2px #0a6aa1;
 }
 
-.vakata-context li>a.vakata-context-parent {
+.vakata-context li > a.vakata-context-parent {
   background-image: url("data:image/gif;base64,R0lGODlhCwAHAIAAACgoKP///yH5BAEAAAEALAAAAAALAAcAAAIORI4JlrqN1oMSnmmZDQUAOw==");
   background-position: right center;
   background-repeat: no-repeat;
 }
 
-.vakata-context li>a:focus {
+.vakata-context li > a:focus {
   outline: 0;
 }
 
@@ -199,14 +199,14 @@
   margin-left: 0;
 }
 
-.vakata-context .vakata-context-hover>a {
+.vakata-context .vakata-context-hover > a {
   position: relative;
   background-color: #e8eff7;
   box-shadow: 0 0 2px #0a6aa1;
 }
 
-.vakata-context .vakata-context-separator>a,
-.vakata-context .vakata-context-separator>a:hover {
+.vakata-context .vakata-context-separator > a,
+.vakata-context .vakata-context-separator > a:hover {
   background: white;
   border: 0;
   border-top: 1px solid #e2e3e3;
@@ -229,11 +229,11 @@
   box-shadow: 0 0 0;
 }
 
-.vakata-context .vakata-contextmenu-disabled>a>i {
+.vakata-context .vakata-contextmenu-disabled > a > i {
   filter: grayscale(100%);
 }
 
-.vakata-context li>a>i {
+.vakata-context li > a > i {
   text-decoration: none;
   display: inline-block;
   width: 2.4em;
@@ -245,12 +245,12 @@
   line-height: 2.4em;
 }
 
-.vakata-context li>a>i:empty {
+.vakata-context li > a > i:empty {
   width: 2.4em;
   line-height: 2.4em;
 }
 
-.vakata-context li>a .vakata-contextmenu-sep {
+.vakata-context li > a .vakata-contextmenu-sep {
   display: inline-block;
   width: 1px;
   height: 2.4em;
@@ -273,13 +273,13 @@
   margin-right: -4px;
 }
 
-.vakata-context-rtl li>a.vakata-context-parent {
+.vakata-context-rtl li > a.vakata-context-parent {
   background-image: url("data:image/gif;base64,R0lGODlhCwAHAIAAACgoKP///yH5BAEAAAEALAAAAAALAAcAAAINjI+AC7rWHIsPtmoxLAA7");
   background-position: left center;
   background-repeat: no-repeat;
 }
 
-.vakata-context-rtl .vakata-context-separator>a {
+.vakata-context-rtl .vakata-context-separator > a {
   margin: 0 2.4em 0 0;
   border-left: 0;
   border-right: 1px solid #e2e3e3;
@@ -292,11 +292,11 @@
   margin-right: auto;
 }
 
-.vakata-context-rtl li>a>i {
+.vakata-context-rtl li > a > i {
   margin: 0 -2em 0 0;
 }
 
-.vakata-context-rtl li>a .vakata-contextmenu-sep {
+.vakata-context-rtl li > a .vakata-contextmenu-sep {
   margin: 0 0 0 0.5em;
   border-left-color: white;
   background: #e2e3e3;
@@ -376,7 +376,7 @@
   box-shadow: inset 0 0 1px #999999;
 }
 
-.jstree-default .jstree-no-icons .jstree-anchor>.jstree-themeicon {
+.jstree-default .jstree-no-icons .jstree-anchor > .jstree-themeicon {
   display: none;
 }
 
@@ -394,7 +394,7 @@
   background: #efefef;
 }
 
-.jstree-default .jstree-disabled>.jstree-icon {
+.jstree-default .jstree-disabled > .jstree-icon {
   opacity: 0.8;
   filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
@@ -423,22 +423,22 @@
   background: #e7f4f9;
 }
 
-.jstree-default.jstree-checkbox-no-clicked>.jstree-wholerow-ul .jstree-wholerow-clicked {
+.jstree-default.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked {
   background: transparent;
 }
 
-.jstree-default.jstree-checkbox-no-clicked>.jstree-wholerow-ul .jstree-wholerow-clicked.jstree-wholerow-hovered {
+.jstree-default.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked.jstree-wholerow-hovered {
   background: #e7f4f9;
 }
 
-.jstree-default>.jstree-striped {
+.jstree-default > .jstree-striped {
   min-width: 100%;
   display: inline-block;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAkCAMAAAB/qqA+AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMNAMM9s3UAAAAXSURBVHjajcEBAQAAAIKg/H/aCQZ70AUBjAATb6YPDgAAAABJRU5ErkJggg==") left top repeat;
 }
 
-.jstree-default>.jstree-wholerow-ul .jstree-hovered,
-.jstree-default>.jstree-wholerow-ul .jstree-clicked {
+.jstree-default > .jstree-wholerow-ul .jstree-hovered,
+.jstree-default > .jstree-wholerow-ul .jstree-clicked {
   background: transparent;
   box-shadow: none;
   border-radius: 0;
@@ -506,15 +506,15 @@
   background-image: none;
 }
 
-.jstree-default .jstree-open>.jstree-ocl {
+.jstree-default .jstree-open > .jstree-ocl {
   background-position: -132px -4px;
 }
 
-.jstree-default .jstree-closed>.jstree-ocl {
+.jstree-default .jstree-closed > .jstree-ocl {
   background-position: -100px -4px;
 }
 
-.jstree-default .jstree-leaf>.jstree-ocl {
+.jstree-default .jstree-leaf > .jstree-ocl {
   background-position: -68px -4px;
 }
 
@@ -522,16 +522,16 @@
   background-position: -260px -4px;
 }
 
-.jstree-default>.jstree-no-dots .jstree-node,
-.jstree-default>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default > .jstree-no-dots .jstree-node,
+.jstree-default > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -36px -4px;
 }
 
-.jstree-default>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -4px -4px;
 }
 
@@ -555,21 +555,21 @@
   background-position: -164px -36px;
 }
 
-.jstree-default.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default .jstree-checked>.jstree-checkbox {
+.jstree-default.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default .jstree-checked > .jstree-checkbox {
   background-position: -228px -4px;
 }
 
-.jstree-default.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default .jstree-checked>.jstree-checkbox:hover {
+.jstree-default.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default .jstree-checked > .jstree-checkbox:hover {
   background-position: -228px -36px;
 }
 
-.jstree-default .jstree-anchor>.jstree-undetermined {
+.jstree-default .jstree-anchor > .jstree-undetermined {
   background-position: -196px -4px;
 }
 
-.jstree-default .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default .jstree-anchor > .jstree-undetermined:hover {
   background-position: -196px -36px;
 }
 
@@ -583,7 +583,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default>.jstree-striped {
+.jstree-default > .jstree-striped {
   background-size: auto 48px;
 }
 
@@ -597,28 +597,28 @@
   background-image: none;
 }
 
-.jstree-default.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -132px -36px;
 }
 
-.jstree-default.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -100px -36px;
 }
 
-.jstree-default.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -68px -36px;
 }
 
-.jstree-default.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -36px -36px;
 }
 
-.jstree-default.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -4px -36px;
 }
 
@@ -628,7 +628,7 @@
   background-position: 0 0;
 }
 
-.jstree-default>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -640,7 +640,7 @@
   background: url("32px.png") -260px -4px no-repeat;
 }
 
-.jstree-default>.jstree-container-ul>.jstree-node {
+.jstree-default > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -736,15 +736,15 @@
   background-image: none;
 }
 
-.jstree-default-small .jstree-open>.jstree-ocl {
+.jstree-default-small .jstree-open > .jstree-ocl {
   background-position: -135px -7px;
 }
 
-.jstree-default-small .jstree-closed>.jstree-ocl {
+.jstree-default-small .jstree-closed > .jstree-ocl {
   background-position: -103px -7px;
 }
 
-.jstree-default-small .jstree-leaf>.jstree-ocl {
+.jstree-default-small .jstree-leaf > .jstree-ocl {
   background-position: -71px -7px;
 }
 
@@ -752,16 +752,16 @@
   background-position: -263px -7px;
 }
 
-.jstree-default-small>.jstree-no-dots .jstree-node,
-.jstree-default-small>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-small > .jstree-no-dots .jstree-node,
+.jstree-default-small > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-small>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-small > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -39px -7px;
 }
 
-.jstree-default-small>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-small > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -7px -7px;
 }
 
@@ -785,21 +785,21 @@
   background-position: -167px -39px;
 }
 
-.jstree-default-small.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default-small .jstree-checked>.jstree-checkbox {
+.jstree-default-small.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default-small .jstree-checked > .jstree-checkbox {
   background-position: -231px -7px;
 }
 
-.jstree-default-small.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default-small .jstree-checked>.jstree-checkbox:hover {
+.jstree-default-small.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default-small .jstree-checked > .jstree-checkbox:hover {
   background-position: -231px -39px;
 }
 
-.jstree-default-small .jstree-anchor>.jstree-undetermined {
+.jstree-default-small .jstree-anchor > .jstree-undetermined {
   background-position: -199px -7px;
 }
 
-.jstree-default-small .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default-small .jstree-anchor > .jstree-undetermined:hover {
   background-position: -199px -39px;
 }
 
@@ -813,7 +813,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default-small>.jstree-striped {
+.jstree-default-small > .jstree-striped {
   background-size: auto 36px;
 }
 
@@ -827,28 +827,28 @@
   background-image: none;
 }
 
-.jstree-default-small.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default-small.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -135px -39px;
 }
 
-.jstree-default-small.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default-small.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -103px -39px;
 }
 
-.jstree-default-small.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default-small.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -71px -39px;
 }
 
-.jstree-default-small.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default-small.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-small.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default-small.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-small.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-small.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -39px -39px;
 }
 
-.jstree-default-small.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-small.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -7px -39px;
 }
 
@@ -858,7 +858,7 @@
   background-position: 0 0;
 }
 
-.jstree-default-small>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-small > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -870,7 +870,7 @@
   background: url("32px.png") -263px -7px no-repeat;
 }
 
-.jstree-default-small>.jstree-container-ul>.jstree-node {
+.jstree-default-small > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -966,15 +966,15 @@
   background-image: none;
 }
 
-.jstree-default-large .jstree-open>.jstree-ocl {
+.jstree-default-large .jstree-open > .jstree-ocl {
   background-position: -128px 0px;
 }
 
-.jstree-default-large .jstree-closed>.jstree-ocl {
+.jstree-default-large .jstree-closed > .jstree-ocl {
   background-position: -96px 0px;
 }
 
-.jstree-default-large .jstree-leaf>.jstree-ocl {
+.jstree-default-large .jstree-leaf > .jstree-ocl {
   background-position: -64px 0px;
 }
 
@@ -982,16 +982,16 @@
   background-position: -256px 0px;
 }
 
-.jstree-default-large>.jstree-no-dots .jstree-node,
-.jstree-default-large>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-large > .jstree-no-dots .jstree-node,
+.jstree-default-large > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-large>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-large > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -32px 0px;
 }
 
-.jstree-default-large>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-large > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: 0px 0px;
 }
 
@@ -1015,21 +1015,21 @@
   background-position: -160px -32px;
 }
 
-.jstree-default-large.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default-large .jstree-checked>.jstree-checkbox {
+.jstree-default-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default-large .jstree-checked > .jstree-checkbox {
   background-position: -224px 0px;
 }
 
-.jstree-default-large.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default-large .jstree-checked>.jstree-checkbox:hover {
+.jstree-default-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default-large .jstree-checked > .jstree-checkbox:hover {
   background-position: -224px -32px;
 }
 
-.jstree-default-large .jstree-anchor>.jstree-undetermined {
+.jstree-default-large .jstree-anchor > .jstree-undetermined {
   background-position: -192px 0px;
 }
 
-.jstree-default-large .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default-large .jstree-anchor > .jstree-undetermined:hover {
   background-position: -192px -32px;
 }
 
@@ -1043,7 +1043,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default-large>.jstree-striped {
+.jstree-default-large > .jstree-striped {
   background-size: auto 64px;
 }
 
@@ -1057,28 +1057,28 @@
   background-image: none;
 }
 
-.jstree-default-large.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default-large.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -128px -32px;
 }
 
-.jstree-default-large.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default-large.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -96px -32px;
 }
 
-.jstree-default-large.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default-large.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -64px -32px;
 }
 
-.jstree-default-large.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default-large.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-large.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default-large.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-large.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-large.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -32px -32px;
 }
 
-.jstree-default-large.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-large.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: 0px -32px;
 }
 
@@ -1088,7 +1088,7 @@
   background-position: 0 0;
 }
 
-.jstree-default-large>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-large > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -1100,7 +1100,7 @@
   background: url("32px.png") -256px 0px no-repeat;
 }
 
-.jstree-default-large>.jstree-container-ul>.jstree-node {
+.jstree-default-large > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -1157,25 +1157,21 @@
     font-size: 1.1em;
     text-shadow: 1px 1px white;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>i {
+  #jstree-dnd.jstree-dnd-responsive > i {
     background: transparent;
     width: 40px;
     height: 40px;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-ok {
+  #jstree-dnd.jstree-dnd-responsive > .jstree-ok {
     background-image: url("40px.png");
     background-position: 0 -200px;
     background-size: 120px 240px;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-er {
+  #jstree-dnd.jstree-dnd-responsive > .jstree-er {
     background-image: url("40px.png");
     background-position: -40px -200px;
     background-size: 120px 240px;
   }
-
   #jstree-marker.jstree-dnd-responsive {
     border-left-width: 10px;
     border-top-width: 10px;
@@ -1183,7 +1179,6 @@
     margin-top: -10px;
   }
 }
-
 @media (max-width: 768px) {
   .jstree-default-responsive {
     /*
@@ -1191,16 +1186,13 @@
     .jstree-closed > .jstree-ocl { border-radius:20px; background-color:white; }
     */
   }
-
   .jstree-default-responsive .jstree-icon {
     background-image: url("40px.png");
   }
-
   .jstree-default-responsive .jstree-node,
-  .jstree-default-responsive .jstree-leaf>.jstree-ocl {
+  .jstree-default-responsive .jstree-leaf > .jstree-ocl {
     background: transparent;
   }
-
   .jstree-default-responsive .jstree-node {
     min-height: 40px;
     line-height: 40px;
@@ -1208,163 +1200,131 @@
     min-width: 40px;
     white-space: nowrap;
   }
-
   .jstree-default-responsive .jstree-anchor {
     line-height: 40px;
     height: 40px;
   }
-
   .jstree-default-responsive .jstree-icon,
   .jstree-default-responsive .jstree-icon:empty {
     width: 40px;
     height: 40px;
     line-height: 40px;
   }
-
-  .jstree-default-responsive>.jstree-container-ul>.jstree-node {
+  .jstree-default-responsive > .jstree-container-ul > .jstree-node {
     margin-left: 0;
   }
-
   .jstree-default-responsive.jstree-rtl .jstree-node {
     margin-left: 0;
     margin-right: 40px;
     background: transparent;
   }
-
-  .jstree-default-responsive.jstree-rtl .jstree-container-ul>.jstree-node {
+  .jstree-default-responsive.jstree-rtl .jstree-container-ul > .jstree-node {
     margin-right: 0;
   }
-
   .jstree-default-responsive .jstree-ocl,
   .jstree-default-responsive .jstree-themeicon,
   .jstree-default-responsive .jstree-checkbox {
     background-size: 120px 240px;
   }
-
-  .jstree-default-responsive .jstree-leaf>.jstree-ocl,
-  .jstree-default-responsive.jstree-rtl .jstree-leaf>.jstree-ocl {
+  .jstree-default-responsive .jstree-leaf > .jstree-ocl,
+  .jstree-default-responsive.jstree-rtl .jstree-leaf > .jstree-ocl {
     background: transparent;
   }
-
-  .jstree-default-responsive .jstree-open>.jstree-ocl {
+  .jstree-default-responsive .jstree-open > .jstree-ocl {
     background-position: 0 0 !important;
   }
-
-  .jstree-default-responsive .jstree-closed>.jstree-ocl {
+  .jstree-default-responsive .jstree-closed > .jstree-ocl {
     background-position: 0 -40px !important;
   }
-
-  .jstree-default-responsive.jstree-rtl .jstree-closed>.jstree-ocl {
+  .jstree-default-responsive.jstree-rtl .jstree-closed > .jstree-ocl {
     background-position: -40px 0 !important;
   }
-
   .jstree-default-responsive .jstree-themeicon {
     background-position: -40px -40px;
   }
-
   .jstree-default-responsive .jstree-checkbox,
   .jstree-default-responsive .jstree-checkbox:hover {
     background-position: -40px -80px;
   }
-
-  .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-  .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-  .jstree-default-responsive .jstree-checked>.jstree-checkbox,
-  .jstree-default-responsive .jstree-checked>.jstree-checkbox:hover {
+  .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+  .jstree-default-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+  .jstree-default-responsive .jstree-checked > .jstree-checkbox,
+  .jstree-default-responsive .jstree-checked > .jstree-checkbox:hover {
     background-position: 0 -80px;
   }
-
-  .jstree-default-responsive .jstree-anchor>.jstree-undetermined,
-  .jstree-default-responsive .jstree-anchor>.jstree-undetermined:hover {
+  .jstree-default-responsive .jstree-anchor > .jstree-undetermined,
+  .jstree-default-responsive .jstree-anchor > .jstree-undetermined:hover {
     background-position: 0 -120px;
   }
-
   .jstree-default-responsive .jstree-anchor {
     font-weight: bold;
     font-size: 1.1em;
     text-shadow: 1px 1px white;
   }
-
-  .jstree-default-responsive>.jstree-striped {
+  .jstree-default-responsive > .jstree-striped {
     background: transparent;
   }
-
   .jstree-default-responsive .jstree-wholerow {
     border-top: 1px solid rgba(255, 255, 255, 0.7);
     border-bottom: 1px solid rgba(64, 64, 64, 0.2);
     background: #ebebeb;
     height: 40px;
   }
-
   .jstree-default-responsive .jstree-wholerow-hovered {
     background: #e7f4f9;
   }
-
   .jstree-default-responsive .jstree-wholerow-clicked {
     background: #beebff;
   }
-
-  .jstree-default-responsive .jstree-children .jstree-last>.jstree-wholerow {
+  .jstree-default-responsive .jstree-children .jstree-last > .jstree-wholerow {
     box-shadow: inset 0 -6px 3px -5px #666666;
   }
-
-  .jstree-default-responsive .jstree-children .jstree-open>.jstree-wholerow {
+  .jstree-default-responsive .jstree-children .jstree-open > .jstree-wholerow {
     box-shadow: inset 0 6px 3px -5px #666666;
     border-top: 0;
   }
-
-  .jstree-default-responsive .jstree-children .jstree-open+.jstree-open {
+  .jstree-default-responsive .jstree-children .jstree-open + .jstree-open {
     box-shadow: none;
   }
-
   .jstree-default-responsive .jstree-node,
   .jstree-default-responsive .jstree-icon,
-  .jstree-default-responsive .jstree-node>.jstree-ocl,
+  .jstree-default-responsive .jstree-node > .jstree-ocl,
   .jstree-default-responsive .jstree-themeicon,
   .jstree-default-responsive .jstree-checkbox {
     background-image: url("40px.png");
     background-size: 120px 240px;
   }
-
   .jstree-default-responsive .jstree-node {
     background-position: -80px 0;
     background-repeat: repeat-y;
   }
-
   .jstree-default-responsive .jstree-last {
     background-image: none;
   }
-
-  .jstree-default-responsive .jstree-leaf>.jstree-ocl {
+  .jstree-default-responsive .jstree-leaf > .jstree-ocl {
     background-position: -40px -120px;
   }
-
-  .jstree-default-responsive .jstree-last>.jstree-ocl {
+  .jstree-default-responsive .jstree-last > .jstree-ocl {
     background-position: -40px -160px;
   }
-
   .jstree-default-responsive .jstree-themeicon-custom {
     background-color: transparent;
     background-image: none;
     background-position: 0 0;
   }
-
   .jstree-default-responsive .jstree-file {
     background: url("40px.png") 0 -160px no-repeat;
     background-size: 120px 240px;
   }
-
   .jstree-default-responsive .jstree-folder {
     background: url("40px.png") -40px -40px no-repeat;
     background-size: 120px 240px;
   }
-
-  .jstree-default-responsive>.jstree-container-ul>.jstree-node {
+  .jstree-default-responsive > .jstree-container-ul > .jstree-node {
     margin-left: 0;
     margin-right: 0;
   }
 }
-
 /* jsTree default dark theme */
 .jstree-node,
 .jstree-children,
@@ -1424,25 +1384,25 @@
   cursor: pointer;
 }
 
-.jstree-leaf>.jstree-ocl {
+.jstree-leaf > .jstree-ocl {
   cursor: default;
 }
 
-.jstree .jstree-open>.jstree-children {
+.jstree .jstree-open > .jstree-children {
   display: block;
 }
 
-.jstree .jstree-closed>.jstree-children,
-.jstree .jstree-leaf>.jstree-children {
+.jstree .jstree-closed > .jstree-children,
+.jstree .jstree-leaf > .jstree-children {
   display: none;
 }
 
-.jstree-anchor>.jstree-themeicon {
+.jstree-anchor > .jstree-themeicon {
   margin-right: 2px;
 }
 
 .jstree-no-icons .jstree-themeicon,
-.jstree-anchor>.jstree-themeicon-hidden {
+.jstree-anchor > .jstree-themeicon-hidden {
   display: none;
 }
 
@@ -1455,7 +1415,7 @@
   padding: 0 1px 0 4px;
 }
 
-.jstree-rtl .jstree-anchor>.jstree-themeicon {
+.jstree-rtl .jstree-anchor > .jstree-themeicon {
   margin-left: 2px;
   margin-right: 0;
 }
@@ -1464,7 +1424,7 @@
   margin-left: 0;
 }
 
-.jstree-rtl .jstree-container-ul>.jstree-node {
+.jstree-rtl .jstree-container-ul > .jstree-node {
   margin-right: 0;
 }
 
@@ -1474,7 +1434,7 @@
   min-width: 100%;
 }
 
-.jstree-wholerow-ul .jstree-leaf>.jstree-ocl {
+.jstree-wholerow-ul .jstree-leaf > .jstree-ocl {
   cursor: pointer;
 }
 
@@ -1534,7 +1494,7 @@
   list-style: none;
 }
 
-.vakata-context li>a {
+.vakata-context li > a {
   display: block;
   padding: 0 2em 0 2em;
   text-decoration: none;
@@ -1546,19 +1506,19 @@
   border-radius: 1px;
 }
 
-.vakata-context li>a:hover {
+.vakata-context li > a:hover {
   position: relative;
   background-color: #e8eff7;
   box-shadow: 0 0 2px #0a6aa1;
 }
 
-.vakata-context li>a.vakata-context-parent {
+.vakata-context li > a.vakata-context-parent {
   background-image: url("data:image/gif;base64,R0lGODlhCwAHAIAAACgoKP///yH5BAEAAAEALAAAAAALAAcAAAIORI4JlrqN1oMSnmmZDQUAOw==");
   background-position: right center;
   background-repeat: no-repeat;
 }
 
-.vakata-context li>a:focus {
+.vakata-context li > a:focus {
   outline: 0;
 }
 
@@ -1566,14 +1526,14 @@
   margin-left: 0;
 }
 
-.vakata-context .vakata-context-hover>a {
+.vakata-context .vakata-context-hover > a {
   position: relative;
   background-color: #e8eff7;
   box-shadow: 0 0 2px #0a6aa1;
 }
 
-.vakata-context .vakata-context-separator>a,
-.vakata-context .vakata-context-separator>a:hover {
+.vakata-context .vakata-context-separator > a,
+.vakata-context .vakata-context-separator > a:hover {
   background: white;
   border: 0;
   border-top: 1px solid #e2e3e3;
@@ -1596,11 +1556,11 @@
   box-shadow: 0 0 0;
 }
 
-.vakata-context .vakata-contextmenu-disabled>a>i {
+.vakata-context .vakata-contextmenu-disabled > a > i {
   filter: grayscale(100%);
 }
 
-.vakata-context li>a>i {
+.vakata-context li > a > i {
   text-decoration: none;
   display: inline-block;
   width: 2.4em;
@@ -1612,12 +1572,12 @@
   line-height: 2.4em;
 }
 
-.vakata-context li>a>i:empty {
+.vakata-context li > a > i:empty {
   width: 2.4em;
   line-height: 2.4em;
 }
 
-.vakata-context li>a .vakata-contextmenu-sep {
+.vakata-context li > a .vakata-contextmenu-sep {
   display: inline-block;
   width: 1px;
   height: 2.4em;
@@ -1640,13 +1600,13 @@
   margin-right: -4px;
 }
 
-.vakata-context-rtl li>a.vakata-context-parent {
+.vakata-context-rtl li > a.vakata-context-parent {
   background-image: url("data:image/gif;base64,R0lGODlhCwAHAIAAACgoKP///yH5BAEAAAEALAAAAAALAAcAAAINjI+AC7rWHIsPtmoxLAA7");
   background-position: left center;
   background-repeat: no-repeat;
 }
 
-.vakata-context-rtl .vakata-context-separator>a {
+.vakata-context-rtl .vakata-context-separator > a {
   margin: 0 2.4em 0 0;
   border-left: 0;
   border-right: 1px solid #e2e3e3;
@@ -1659,11 +1619,11 @@
   margin-right: auto;
 }
 
-.vakata-context-rtl li>a>i {
+.vakata-context-rtl li > a > i {
   margin: 0 -2em 0 0;
 }
 
-.vakata-context-rtl li>a .vakata-contextmenu-sep {
+.vakata-context-rtl li > a .vakata-contextmenu-sep {
   margin: 0 0 0 0.5em;
   border-left-color: white;
   background: #e2e3e3;
@@ -1743,7 +1703,7 @@
   box-shadow: inset 0 0 1px #666666;
 }
 
-.jstree-default-dark .jstree-no-icons .jstree-anchor>.jstree-themeicon {
+.jstree-default-dark .jstree-no-icons .jstree-anchor > .jstree-themeicon {
   display: none;
 }
 
@@ -1761,7 +1721,7 @@
   background: #333333;
 }
 
-.jstree-default-dark .jstree-disabled>.jstree-icon {
+.jstree-default-dark .jstree-disabled > .jstree-icon {
   opacity: 0.8;
   filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='jstree-grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#jstree-grayscale");
   /* Firefox 10+ */
@@ -1790,22 +1750,22 @@
   background: #555;
 }
 
-.jstree-default-dark.jstree-checkbox-no-clicked>.jstree-wholerow-ul .jstree-wholerow-clicked {
+.jstree-default-dark.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked {
   background: transparent;
 }
 
-.jstree-default-dark.jstree-checkbox-no-clicked>.jstree-wholerow-ul .jstree-wholerow-clicked.jstree-wholerow-hovered {
+.jstree-default-dark.jstree-checkbox-no-clicked > .jstree-wholerow-ul .jstree-wholerow-clicked.jstree-wholerow-hovered {
   background: #555;
 }
 
-.jstree-default-dark>.jstree-striped {
+.jstree-default-dark > .jstree-striped {
   min-width: 100%;
   display: inline-block;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAkCAMAAAB/qqA+AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMNAMM9s3UAAAAXSURBVHjajcEBAQAAAIKg/H/aCQZ70AUBjAATb6YPDgAAAABJRU5ErkJggg==") left top repeat;
 }
 
-.jstree-default-dark>.jstree-wholerow-ul .jstree-hovered,
-.jstree-default-dark>.jstree-wholerow-ul .jstree-clicked {
+.jstree-default-dark > .jstree-wholerow-ul .jstree-hovered,
+.jstree-default-dark > .jstree-wholerow-ul .jstree-clicked {
   background: transparent;
   box-shadow: none;
   border-radius: 0;
@@ -1873,15 +1833,15 @@
   background-image: none;
 }
 
-.jstree-default-dark .jstree-open>.jstree-ocl {
+.jstree-default-dark .jstree-open > .jstree-ocl {
   background-position: -132px -4px;
 }
 
-.jstree-default-dark .jstree-closed>.jstree-ocl {
+.jstree-default-dark .jstree-closed > .jstree-ocl {
   background-position: -100px -4px;
 }
 
-.jstree-default-dark .jstree-leaf>.jstree-ocl {
+.jstree-default-dark .jstree-leaf > .jstree-ocl {
   background-position: -68px -4px;
 }
 
@@ -1889,16 +1849,16 @@
   background-position: -260px -4px;
 }
 
-.jstree-default-dark>.jstree-no-dots .jstree-node,
-.jstree-default-dark>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark > .jstree-no-dots .jstree-node,
+.jstree-default-dark > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -36px -4px;
 }
 
-.jstree-default-dark>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -4px -4px;
 }
 
@@ -1922,21 +1882,21 @@
   background-position: -164px -36px;
 }
 
-.jstree-default-dark.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default-dark .jstree-checked>.jstree-checkbox {
+.jstree-default-dark.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default-dark .jstree-checked > .jstree-checkbox {
   background-position: -228px -4px;
 }
 
-.jstree-default-dark.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default-dark .jstree-checked>.jstree-checkbox:hover {
+.jstree-default-dark.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default-dark .jstree-checked > .jstree-checkbox:hover {
   background-position: -228px -36px;
 }
 
-.jstree-default-dark .jstree-anchor>.jstree-undetermined {
+.jstree-default-dark .jstree-anchor > .jstree-undetermined {
   background-position: -196px -4px;
 }
 
-.jstree-default-dark .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default-dark .jstree-anchor > .jstree-undetermined:hover {
   background-position: -196px -36px;
 }
 
@@ -1950,7 +1910,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default-dark>.jstree-striped {
+.jstree-default-dark > .jstree-striped {
   background-size: auto 48px;
 }
 
@@ -1964,28 +1924,28 @@
   background-image: none;
 }
 
-.jstree-default-dark.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default-dark.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -132px -36px;
 }
 
-.jstree-default-dark.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default-dark.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -100px -36px;
 }
 
-.jstree-default-dark.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default-dark.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -68px -36px;
 }
 
-.jstree-default-dark.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default-dark.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default-dark.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -36px -36px;
 }
 
-.jstree-default-dark.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -4px -36px;
 }
 
@@ -1995,7 +1955,7 @@
   background-position: 0 0;
 }
 
-.jstree-default-dark>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-dark > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -2007,7 +1967,7 @@
   background: url("32px.png") -260px -4px no-repeat;
 }
 
-.jstree-default-dark>.jstree-container-ul>.jstree-node {
+.jstree-default-dark > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -2103,15 +2063,15 @@
   background-image: none;
 }
 
-.jstree-default-dark-small .jstree-open>.jstree-ocl {
+.jstree-default-dark-small .jstree-open > .jstree-ocl {
   background-position: -135px -7px;
 }
 
-.jstree-default-dark-small .jstree-closed>.jstree-ocl {
+.jstree-default-dark-small .jstree-closed > .jstree-ocl {
   background-position: -103px -7px;
 }
 
-.jstree-default-dark-small .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-small .jstree-leaf > .jstree-ocl {
   background-position: -71px -7px;
 }
 
@@ -2119,16 +2079,16 @@
   background-position: -263px -7px;
 }
 
-.jstree-default-dark-small>.jstree-no-dots .jstree-node,
-.jstree-default-dark-small>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-small > .jstree-no-dots .jstree-node,
+.jstree-default-dark-small > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark-small>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark-small > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -39px -7px;
 }
 
-.jstree-default-dark-small>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark-small > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -7px -7px;
 }
 
@@ -2152,21 +2112,21 @@
   background-position: -167px -39px;
 }
 
-.jstree-default-dark-small.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default-dark-small .jstree-checked>.jstree-checkbox {
+.jstree-default-dark-small.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default-dark-small .jstree-checked > .jstree-checkbox {
   background-position: -231px -7px;
 }
 
-.jstree-default-dark-small.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default-dark-small .jstree-checked>.jstree-checkbox:hover {
+.jstree-default-dark-small.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default-dark-small .jstree-checked > .jstree-checkbox:hover {
   background-position: -231px -39px;
 }
 
-.jstree-default-dark-small .jstree-anchor>.jstree-undetermined {
+.jstree-default-dark-small .jstree-anchor > .jstree-undetermined {
   background-position: -199px -7px;
 }
 
-.jstree-default-dark-small .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default-dark-small .jstree-anchor > .jstree-undetermined:hover {
   background-position: -199px -39px;
 }
 
@@ -2180,7 +2140,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default-dark-small>.jstree-striped {
+.jstree-default-dark-small > .jstree-striped {
   background-size: auto 36px;
 }
 
@@ -2194,28 +2154,28 @@
   background-image: none;
 }
 
-.jstree-default-dark-small.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -135px -39px;
 }
 
-.jstree-default-dark-small.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -103px -39px;
 }
 
-.jstree-default-dark-small.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -71px -39px;
 }
 
-.jstree-default-dark-small.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default-dark-small.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default-dark-small.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark-small.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -39px -39px;
 }
 
-.jstree-default-dark-small.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark-small.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: -7px -39px;
 }
 
@@ -2225,7 +2185,7 @@
   background-position: 0 0;
 }
 
-.jstree-default-dark-small>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-dark-small > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -2237,7 +2197,7 @@
   background: url("32px.png") -263px -7px no-repeat;
 }
 
-.jstree-default-dark-small>.jstree-container-ul>.jstree-node {
+.jstree-default-dark-small > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -2333,15 +2293,15 @@
   background-image: none;
 }
 
-.jstree-default-dark-large .jstree-open>.jstree-ocl {
+.jstree-default-dark-large .jstree-open > .jstree-ocl {
   background-position: -128px 0px;
 }
 
-.jstree-default-dark-large .jstree-closed>.jstree-ocl {
+.jstree-default-dark-large .jstree-closed > .jstree-ocl {
   background-position: -96px 0px;
 }
 
-.jstree-default-dark-large .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-large .jstree-leaf > .jstree-ocl {
   background-position: -64px 0px;
 }
 
@@ -2349,16 +2309,16 @@
   background-position: -256px 0px;
 }
 
-.jstree-default-dark-large>.jstree-no-dots .jstree-node,
-.jstree-default-dark-large>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-large > .jstree-no-dots .jstree-node,
+.jstree-default-dark-large > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark-large>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark-large > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -32px 0px;
 }
 
-.jstree-default-dark-large>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark-large > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: 0px 0px;
 }
 
@@ -2382,21 +2342,21 @@
   background-position: -160px -32px;
 }
 
-.jstree-default-dark-large.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-.jstree-default-dark-large .jstree-checked>.jstree-checkbox {
+.jstree-default-dark-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+.jstree-default-dark-large .jstree-checked > .jstree-checkbox {
   background-position: -224px 0px;
 }
 
-.jstree-default-dark-large.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-.jstree-default-dark-large .jstree-checked>.jstree-checkbox:hover {
+.jstree-default-dark-large.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+.jstree-default-dark-large .jstree-checked > .jstree-checkbox:hover {
   background-position: -224px -32px;
 }
 
-.jstree-default-dark-large .jstree-anchor>.jstree-undetermined {
+.jstree-default-dark-large .jstree-anchor > .jstree-undetermined {
   background-position: -192px 0px;
 }
 
-.jstree-default-dark-large .jstree-anchor>.jstree-undetermined:hover {
+.jstree-default-dark-large .jstree-anchor > .jstree-undetermined:hover {
   background-position: -192px -32px;
 }
 
@@ -2410,7 +2370,7 @@
   /* Chrome 19+ & Safari 6+ */
 }
 
-.jstree-default-dark-large>.jstree-striped {
+.jstree-default-dark-large > .jstree-striped {
   background-size: auto 64px;
 }
 
@@ -2424,28 +2384,28 @@
   background-image: none;
 }
 
-.jstree-default-dark-large.jstree-rtl .jstree-open>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl .jstree-open > .jstree-ocl {
   background-position: -128px -32px;
 }
 
-.jstree-default-dark-large.jstree-rtl .jstree-closed>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl .jstree-closed > .jstree-ocl {
   background-position: -96px -32px;
 }
 
-.jstree-default-dark-large.jstree-rtl .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl .jstree-leaf > .jstree-ocl {
   background-position: -64px -32px;
 }
 
-.jstree-default-dark-large.jstree-rtl>.jstree-no-dots .jstree-node,
-.jstree-default-dark-large.jstree-rtl>.jstree-no-dots .jstree-leaf>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl > .jstree-no-dots .jstree-node,
+.jstree-default-dark-large.jstree-rtl > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
 }
 
-.jstree-default-dark-large.jstree-rtl>.jstree-no-dots .jstree-open>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -32px -32px;
 }
 
-.jstree-default-dark-large.jstree-rtl>.jstree-no-dots .jstree-closed>.jstree-ocl {
+.jstree-default-dark-large.jstree-rtl > .jstree-no-dots .jstree-closed > .jstree-ocl {
   background-position: 0px -32px;
 }
 
@@ -2455,7 +2415,7 @@
   background-position: 0 0;
 }
 
-.jstree-default-dark-large>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-dark-large > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background: url("throbber.gif") center center no-repeat;
 }
 
@@ -2467,7 +2427,7 @@
   background: url("32px.png") -256px 0px no-repeat;
 }
 
-.jstree-default-dark-large>.jstree-container-ul>.jstree-node {
+.jstree-default-dark-large > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
 }
@@ -2524,25 +2484,21 @@
     font-size: 1.1em;
     text-shadow: 1px 1px white;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>i {
+  #jstree-dnd.jstree-dnd-responsive > i {
     background: transparent;
     width: 40px;
     height: 40px;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-ok {
+  #jstree-dnd.jstree-dnd-responsive > .jstree-ok {
     background-image: url("40px.png");
     background-position: 0 -200px;
     background-size: 120px 240px;
   }
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-er {
+  #jstree-dnd.jstree-dnd-responsive > .jstree-er {
     background-image: url("40px.png");
     background-position: -40px -200px;
     background-size: 120px 240px;
   }
-
   #jstree-marker.jstree-dnd-responsive {
     border-left-width: 10px;
     border-top-width: 10px;
@@ -2550,7 +2506,6 @@
     margin-top: -10px;
   }
 }
-
 @media (max-width: 768px) {
   .jstree-default-dark-responsive {
     /*
@@ -2558,16 +2513,13 @@
     .jstree-closed > .jstree-ocl { border-radius:20px; background-color:white; }
     */
   }
-
   .jstree-default-dark-responsive .jstree-icon {
     background-image: url("40px.png");
   }
-
   .jstree-default-dark-responsive .jstree-node,
-  .jstree-default-dark-responsive .jstree-leaf>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-leaf > .jstree-ocl {
     background: transparent;
   }
-
   .jstree-default-dark-responsive .jstree-node {
     min-height: 40px;
     line-height: 40px;
@@ -2575,163 +2527,131 @@
     min-width: 40px;
     white-space: nowrap;
   }
-
   .jstree-default-dark-responsive .jstree-anchor {
     line-height: 40px;
     height: 40px;
   }
-
   .jstree-default-dark-responsive .jstree-icon,
   .jstree-default-dark-responsive .jstree-icon:empty {
     width: 40px;
     height: 40px;
     line-height: 40px;
   }
-
-  .jstree-default-dark-responsive>.jstree-container-ul>.jstree-node {
+  .jstree-default-dark-responsive > .jstree-container-ul > .jstree-node {
     margin-left: 0;
   }
-
   .jstree-default-dark-responsive.jstree-rtl .jstree-node {
     margin-left: 0;
     margin-right: 40px;
     background: transparent;
   }
-
-  .jstree-default-dark-responsive.jstree-rtl .jstree-container-ul>.jstree-node {
+  .jstree-default-dark-responsive.jstree-rtl .jstree-container-ul > .jstree-node {
     margin-right: 0;
   }
-
   .jstree-default-dark-responsive .jstree-ocl,
   .jstree-default-dark-responsive .jstree-themeicon,
   .jstree-default-dark-responsive .jstree-checkbox {
     background-size: 120px 240px;
   }
-
-  .jstree-default-dark-responsive .jstree-leaf>.jstree-ocl,
-  .jstree-default-dark-responsive.jstree-rtl .jstree-leaf>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-leaf > .jstree-ocl,
+  .jstree-default-dark-responsive.jstree-rtl .jstree-leaf > .jstree-ocl {
     background: transparent;
   }
-
-  .jstree-default-dark-responsive .jstree-open>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-open > .jstree-ocl {
     background-position: 0 0 !important;
   }
-
-  .jstree-default-dark-responsive .jstree-closed>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-closed > .jstree-ocl {
     background-position: 0 -40px !important;
   }
-
-  .jstree-default-dark-responsive.jstree-rtl .jstree-closed>.jstree-ocl {
+  .jstree-default-dark-responsive.jstree-rtl .jstree-closed > .jstree-ocl {
     background-position: -40px 0 !important;
   }
-
   .jstree-default-dark-responsive .jstree-themeicon {
     background-position: -40px -40px;
   }
-
   .jstree-default-dark-responsive .jstree-checkbox,
   .jstree-default-dark-responsive .jstree-checkbox:hover {
     background-position: -40px -80px;
   }
-
-  .jstree-default-dark-responsive.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox,
-  .jstree-default-dark-responsive.jstree-checkbox-selection .jstree-clicked>.jstree-checkbox:hover,
-  .jstree-default-dark-responsive .jstree-checked>.jstree-checkbox,
-  .jstree-default-dark-responsive .jstree-checked>.jstree-checkbox:hover {
+  .jstree-default-dark-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox,
+  .jstree-default-dark-responsive.jstree-checkbox-selection .jstree-clicked > .jstree-checkbox:hover,
+  .jstree-default-dark-responsive .jstree-checked > .jstree-checkbox,
+  .jstree-default-dark-responsive .jstree-checked > .jstree-checkbox:hover {
     background-position: 0 -80px;
   }
-
-  .jstree-default-dark-responsive .jstree-anchor>.jstree-undetermined,
-  .jstree-default-dark-responsive .jstree-anchor>.jstree-undetermined:hover {
+  .jstree-default-dark-responsive .jstree-anchor > .jstree-undetermined,
+  .jstree-default-dark-responsive .jstree-anchor > .jstree-undetermined:hover {
     background-position: 0 -120px;
   }
-
   .jstree-default-dark-responsive .jstree-anchor {
     font-weight: bold;
     font-size: 1.1em;
     text-shadow: 1px 1px white;
   }
-
-  .jstree-default-dark-responsive>.jstree-striped {
+  .jstree-default-dark-responsive > .jstree-striped {
     background: transparent;
   }
-
   .jstree-default-dark-responsive .jstree-wholerow {
     border-top: 1px solid #666;
     border-bottom: 1px solid #000;
     background: #333333;
     height: 40px;
   }
-
   .jstree-default-dark-responsive .jstree-wholerow-hovered {
     background: #555;
   }
-
   .jstree-default-dark-responsive .jstree-wholerow-clicked {
     background: #5fa2db;
   }
-
-  .jstree-default-dark-responsive .jstree-children .jstree-last>.jstree-wholerow {
+  .jstree-default-dark-responsive .jstree-children .jstree-last > .jstree-wholerow {
     box-shadow: inset 0 -6px 3px -5px #111111;
   }
-
-  .jstree-default-dark-responsive .jstree-children .jstree-open>.jstree-wholerow {
+  .jstree-default-dark-responsive .jstree-children .jstree-open > .jstree-wholerow {
     box-shadow: inset 0 6px 3px -5px #111111;
     border-top: 0;
   }
-
-  .jstree-default-dark-responsive .jstree-children .jstree-open+.jstree-open {
+  .jstree-default-dark-responsive .jstree-children .jstree-open + .jstree-open {
     box-shadow: none;
   }
-
   .jstree-default-dark-responsive .jstree-node,
   .jstree-default-dark-responsive .jstree-icon,
-  .jstree-default-dark-responsive .jstree-node>.jstree-ocl,
+  .jstree-default-dark-responsive .jstree-node > .jstree-ocl,
   .jstree-default-dark-responsive .jstree-themeicon,
   .jstree-default-dark-responsive .jstree-checkbox {
     background-image: url("40px.png");
     background-size: 120px 240px;
   }
-
   .jstree-default-dark-responsive .jstree-node {
     background-position: -80px 0;
     background-repeat: repeat-y;
   }
-
   .jstree-default-dark-responsive .jstree-last {
     background-image: none;
   }
-
-  .jstree-default-dark-responsive .jstree-leaf>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-leaf > .jstree-ocl {
     background-position: -40px -120px;
   }
-
-  .jstree-default-dark-responsive .jstree-last>.jstree-ocl {
+  .jstree-default-dark-responsive .jstree-last > .jstree-ocl {
     background-position: -40px -160px;
   }
-
   .jstree-default-dark-responsive .jstree-themeicon-custom {
     background-color: transparent;
     background-image: none;
     background-position: 0 0;
   }
-
   .jstree-default-dark-responsive .jstree-file {
     background: url("40px.png") 0 -160px no-repeat;
     background-size: 120px 240px;
   }
-
   .jstree-default-dark-responsive .jstree-folder {
     background: url("40px.png") -40px -40px no-repeat;
     background-size: 120px 240px;
   }
-
-  .jstree-default-dark-responsive>.jstree-container-ul>.jstree-node {
+  .jstree-default-dark-responsive > .jstree-container-ul > .jstree-node {
     margin-left: 0;
     margin-right: 0;
   }
 }
-
 .jstree-default-dark {
   background: #333;
 }
@@ -2755,13 +2675,13 @@
   background: transparent;
 }
 
-.jstree-default-dark .jstree-anchor>.jstree-icon {
+.jstree-default-dark .jstree-anchor > .jstree-icon {
   opacity: 0.75;
 }
 
-.jstree-default-dark .jstree-clicked>.jstree-icon,
-.jstree-default-dark .jstree-hovered>.jstree-icon,
-.jstree-default-dark .jstree-checked>.jstree-icon {
+.jstree-default-dark .jstree-clicked > .jstree-icon,
+.jstree-default-dark .jstree-hovered > .jstree-icon,
+.jstree-default-dark .jstree-checked > .jstree-icon {
   opacity: 1;
 }
 
@@ -2793,9 +2713,9 @@
   background: transparent;
 }
 
-.jstree-default>.jstree-container-ul .jstree-loading>.jstree-ocl,
-.jstree-default-small>.jstree-container-ul .jstree-loading>.jstree-ocl,
-.jstree-default-large>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default > .jstree-container-ul .jstree-loading > .jstree-ocl,
+.jstree-default-small > .jstree-container-ul .jstree-loading > .jstree-ocl,
+.jstree-default-large > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background-image: url('./themes/default/throbber.gif');
 }
 
@@ -2821,13 +2741,12 @@
 }
 
 @media (max-width: 767.98px) {
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-ok,
-  #jstree-dnd.jstree-dnd-responsive>.jstree-er,
+  #jstree-dnd.jstree-dnd-responsive > .jstree-ok,
+  #jstree-dnd.jstree-dnd-responsive > .jstree-er,
   .jstree-default-responsive .jstree-icon,
   .jstree-default-responsive .jstree-node,
   .jstree-default-responsive .jstree-icon,
-  .jstree-default-responsive .jstree-node>.jstree-ocl,
+  .jstree-default-responsive .jstree-node > .jstree-ocl,
   .jstree-default-responsive .jstree-themeicon,
   .jstree-default-responsive .jstree-checkbox,
   .jstree-default-responsive .jstree-file,
@@ -2835,10 +2754,9 @@
     background-image: url('./themes/default/40px.png');
   }
 }
-
 .jstree-default .jstree-last,
-.jstree-default>.jstree-no-dots .jstree-node,
-.jstree-default>.jstree-no-dots .jstree-leaf>.jstree-ocl,
+.jstree-default > .jstree-no-dots .jstree-node,
+.jstree-default > .jstree-no-dots .jstree-leaf > .jstree-ocl,
 .jstree-default .jstree-disabled,
 .jstree-default .jstree-themeicon-custom:not(.jstree-file):not(.jstree-folder) {
   background: transparent !important;
@@ -2848,9 +2766,9 @@
   background: transparent;
 }
 
-.jstree-default-dark>.jstree-container-ul .jstree-loading>.jstree-ocl,
-.jstree-default-dark-small>.jstree-container-ul .jstree-loading>.jstree-ocl,
-.jstree-default-dark-large>.jstree-container-ul .jstree-loading>.jstree-ocl {
+.jstree-default-dark > .jstree-container-ul .jstree-loading > .jstree-ocl,
+.jstree-default-dark-small > .jstree-container-ul .jstree-loading > .jstree-ocl,
+.jstree-default-dark-large > .jstree-container-ul .jstree-loading > .jstree-ocl {
   background-image: url('./themes/default-dark/throbber.gif');
 }
 
@@ -2876,13 +2794,12 @@
 }
 
 @media (max-width: 767.98px) {
-
-  #jstree-dnd.jstree-dnd-responsive>.jstree-ok,
-  #jstree-dnd.jstree-dnd-responsive>.jstree-er,
+  #jstree-dnd.jstree-dnd-responsive > .jstree-ok,
+  #jstree-dnd.jstree-dnd-responsive > .jstree-er,
   .jstree-default-dark-responsive .jstree-icon,
   .jstree-default-dark-responsive .jstree-node,
   .jstree-default-dark-responsive .jstree-icon,
-  .jstree-default-dark-responsive .jstree-node>.jstree-ocl,
+  .jstree-default-dark-responsive .jstree-node > .jstree-ocl,
   .jstree-default-dark-responsive .jstree-themeicon,
   .jstree-default-dark-responsive .jstree-checkbox,
   .jstree-default-dark-responsive .jstree-file,
@@ -2890,10 +2807,9 @@
     background-image: url('./themes/default-dark/40px.png');
   }
 }
-
 .jstree-default-dark .jstree-last,
-.jstree-default-dark>.jstree-no-dots .jstree-node,
-.jstree-default-dark>.jstree-no-dots .jstree-leaf>.jstree-ocl,
+.jstree-default-dark > .jstree-no-dots .jstree-node,
+.jstree-default-dark > .jstree-no-dots .jstree-leaf > .jstree-ocl,
 .jstree-default-dark .jstree-disabled,
 .jstree-default-dark .jstree-themeicon-custom:not(.jstree-file):not(.jstree-folder) {
   background: transparent !important;
@@ -2903,40 +2819,32 @@
 .light-style .jstree .jstree-container-ul .ion-ios-folder {
   color: #ff9f43;
 }
-
 .light-style .jstree .jstree-container-ul .jstree-icon.ti-file {
   color: #7367f0;
 }
-
 .light-style .vakata-context.jstree-contextmenu {
   background: #fff;
   border: 0;
   box-shadow: 0px 0px 50px 0px rgba(47, 43, 61, 0.1);
 }
-
 .light-style .vakata-context.jstree-contextmenu li a {
   padding: 0 1.5rem;
   text-shadow: none;
 }
-
 .light-style .vakata-context.jstree-contextmenu li a i {
   display: none;
 }
-
 .light-style .vakata-context.jstree-contextmenu li.vakata-context-hover a {
   box-shadow: none;
 }
-
 .light-style .vakata-context.jstree-contextmenu li.vakata-context-separator a {
   margin: 0;
 }
-
 .light-style .vakata-context.jstree-contextmenu li ul {
   background: #fff;
   border: 0;
   box-shadow: 0px 0px 50px 0px rgba(47, 43, 61, 0.1);
 }
-
 .light-style .vakata-context.jstree-contextmenu .vakata-contextmenu-sep {
   display: none;
 }
@@ -2945,40 +2853,32 @@
 .dark-style .jstree .jstree-container-ul .ion-ios-folder {
   color: #ff9f43;
 }
-
 .dark-style .jstree .jstree-container-ul .jstree-icon.ti-file {
   color: #7367f0;
 }
-
 .dark-style .vakata-context.jstree-contextmenu {
   background: #fff;
   border: 0;
   box-shadow: 0px 0px 50px 0px rgba(47, 51, 73, 0.1);
 }
-
 .dark-style .vakata-context.jstree-contextmenu li a {
   padding: 0 1.5rem;
   text-shadow: none;
 }
-
 .dark-style .vakata-context.jstree-contextmenu li a i {
   display: none;
 }
-
 .dark-style .vakata-context.jstree-contextmenu li.vakata-context-hover a {
   box-shadow: none;
 }
-
 .dark-style .vakata-context.jstree-contextmenu li.vakata-context-separator a {
   margin: 0;
 }
-
 .dark-style .vakata-context.jstree-contextmenu li ul {
   background: #fff;
   border: 0;
   box-shadow: 0px 0px 50px 0px rgba(47, 51, 73, 0.1);
 }
-
 .dark-style .vakata-context.jstree-contextmenu .vakata-contextmenu-sep {
   display: none;
 }
