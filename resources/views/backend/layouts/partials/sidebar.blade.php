@@ -100,6 +100,12 @@
       </a>
     </li>
     <li class="menu-item">
+      <a href="{{ route('users.index') }}" class="menu-link">
+        <i class="menu-icon fa-solid fa-user"></i>
+        <div data-i18n="User">Users</div>
+      </a>
+    </li>
+    <li class="menu-item">
       <a href="{{route('activities')}}" class="menu-link">
         <i class="menu-icon fa-solid fa-chart-line"></i>
         <div data-i18n="Activity">Activity</div>

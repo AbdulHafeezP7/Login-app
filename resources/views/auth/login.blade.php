@@ -38,10 +38,10 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#7367F0" />
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-heading fw-bold">BeHighCare</span>
+                                <span class="app-brand-text demo text-heading fw-bold">Login</span>
                             </a>
                         </div>
-                        <h4 class="mb-1">Welcome toBeHighCare 👋</h4>
+                        <h4 class="mb-1">Welcome to Login Page 👋</h4>
                         <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
                         <div id="error-messages"></div>
@@ -73,10 +73,10 @@
                             </div>
                         </form>
 
-                        <div class="divider my-6">
+                        <!-- <div class="divider my-6">
                             <div class="divider-text">or</div>
                         </div>
-                        <p class="text-center"><span>New on our platform?</span> <a href="{{ url('register') }}"><span>Create an account</span></a></p>
+                        <p class="text-center"><span>New on our platform?</span> <a href="{{ url('register') }}"><span>Create an account</span></a></p> -->
                     </div>
                 </div>
             </div>

@@ -47,7 +47,7 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#7367F0" />
                                     </svg>
                                 </span>
-                                <span class="app-brand-text demo text-heading fw-bold">BeHighCare</span>
+                                <span class="app-brand-text demo text-heading fw-bold">Register</span>
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -81,7 +81,7 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
                             </div>
                         </form>
-                        <div class="divider my-6">
+                        <!-- <div class="divider my-6">
                             <div class="divider-text">or</div>
                         </div>
 
@@ -90,7 +90,7 @@
                             <a href="{{ url('login') }}">
                                 <span>Login instead</span>
                             </a>
-                        </p>
+                        </p> -->
 
                         <div class="d-flex justify-content-center">
                             <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-facebook me-1_5">
