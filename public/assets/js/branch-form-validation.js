@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    $('#branchsocial_link').select2({
+        placeholder: "Select a Branch Social Media Link",
+        allowClear: true
+    });
     $('#addBranchForm').on('submit', function(e) {
         e.preventDefault();
 
@@ -50,6 +54,12 @@ $(document).ready(function() {
             });
             return;
         }
+
+
+
+    
+
+
 
         // Submit the form if no errors
         let formData = new FormData(this);

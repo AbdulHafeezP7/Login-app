@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}" />
   <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')}}" />
+  <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css')}}"/>
 
   <!-- Page CSS -->
   <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/cards-advance.css')}}" />
@@ -155,6 +156,7 @@
   <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
   <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
   <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+  <script src="{{ asset('assets/vendor/libs/select2/select2.js')}}"></script>
 
   <!-- endbuild -->
 

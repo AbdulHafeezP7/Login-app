@@ -30,15 +30,40 @@
                                 <label for="branch_address" class="form-label">Branch Address</label>
                                 <textarea class="form-control" id="branch_address" name="branch_address" rows="4"></textarea>
                             </div>
+
                             <div class="mb-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="branchsocial_link">Branch Social Media Link</label>
+                                    <select id="branchsocial_link" name="branchsocial_link" class="form-control select2 socialmedia" data-allow-clear="true">
+                                    <option value="">Search Social Media Link</option>
+                                    @foreach($socialmedias as $data)
+                                    <option value="{{ $data->id }}">{{ $data->socialmedia_url }}</option>
+                                    @endforeach
+                                    </select>
+                                    <span class="text-danger error-text socialmedia_error"></span>
+                                </div>
+                            </div>
+
+
+
+
+
+                            
+
+                            <!-- <div class="mb-3">
                                 <label for="branchsocial_link" class="form-label">Branch Social Media Link</label>
-                                <select class="form-control" id="branchsocial_link" name="branchsocial_link">
+                                <select class="form-control select2 socialmedia" id="branchsocial_link" name="branchsocial_link" data-allow-clear="true">
                                     <option value="">Select a Branch Social Media Link</option>
                                     @foreach($socialmedias as $data)
                                     <option value="{{ $data->id }}">{{ $data->socialmedia_url }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                                <span class="text-danger error-text socialmedia_error"></span>
+                            </div> -->
+
+
+
+
 
                             <div class="mb-3">
                                 <label for="branchoffice_number" class="form-label">Branch Office Number</label>
