@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\BranchRequest;
 use App\Http\Requests\BranchUpdateRequest;
-use App\Models\SocialMedia;
 
 
 class BranchController extends Controller
@@ -16,12 +15,9 @@ class BranchController extends Controller
     {
         return view('backend.branchs');
     }
-    public function dataTablesForBranchs(Request $request)
+    public function dataTablesForBranchs()
     {
-        if ($request->ajax()) {
-            $query = Branch::query()
-                ->join('socialmedias', 'branchs.branchsocial_link', '=', 'socialmedias.id') // Join with departments table
-                ->select('branchs.*', 'socialmedias.socialmedia_url as socialmedia_url'); // Select the department name
+            $query = Branch::query();
             return DataTables::of($query)
                 ->addColumn('branchname_en', function ($row) {
                     return $row->branchname_en;
@@ -39,7 +35,7 @@ class BranchController extends Controller
                     return $row->branch_address;
                 })
                 ->addColumn('branchsocial_link', function ($row) {
-                    return $row->socialmedia_url;
+                    return $row->branchsocial_link;
                 })
                 ->addColumn('branchoffice_number', function ($row) {
                     return $row->branchoffice_number;
@@ -69,7 +65,7 @@ class BranchController extends Controller
                     $query->where('branch_address', 'like', "%{$keyword}%");
                 })
                 ->filterColumn('branchsocial_link', function ($query, $keyword) {
-                    $query->where('socialmedias.socialmedia_url', 'like', "%{$keyword}%");
+                    $query->where('branchsocial_link', 'like', "%{$keyword}%");
                 })
                 ->filterColumn('branchoffice_number', function ($query, $keyword) {
                     $query->where('branchoffice_number', 'like', "%{$keyword}%");
@@ -81,12 +77,10 @@ class BranchController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addBranchs()
     {
-        $socialmedias = SocialMedia::all();
-        return view('backend.branchsAdd', compact('socialmedias'));
+        return view('backend.branchsAdd');
     }
     public function store(BranchRequest $request)
     {
@@ -145,8 +139,8 @@ class BranchController extends Controller
     public function edit($id)
     {
         $branch = Branch::find($id);
-        $socialmedias = SocialMedia::all();
-        return view('backend.branch-edit', compact('socialmedias', 'branch', 'id'));
+
+        return view('backend.branch-edit', compact('branch', 'id'));
     }
     public function update(BranchUpdateRequest $request)
     {
@@ -184,7 +178,7 @@ class BranchController extends Controller
     {
         $branch = Branch::findOrFail($id);
         $branch->delete();
-        return response()->json(['status' => true, 'message' => 'Branch deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Branch deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

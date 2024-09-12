@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
 use App\Http\Requests\DoctorUpdateRequest;
-use App\Models\Department;
 
 class DoctorController extends Controller
 {
@@ -15,9 +15,8 @@ class DoctorController extends Controller
     {
         return view('backend.doctors');
     }
-    public function dataTablesForDoctors(Request $request)
+    public function dataTablesForDoctors()
     {
-        if ($request->ajax()) {
             $query = Doctor::query()
                 ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
                 ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
@@ -66,11 +65,10 @@ class DoctorController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addDoctors()
     {
-        $departments = Department::pluck('department_en', 'id');  // Fetch department names and IDs
+        $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctorsAdd', compact('departments'));
     }
     public function store(DoctorRequest $request)
@@ -131,10 +129,9 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::find($id);
-        $departments = Department::pluck('department_en', 'id'); // Fetching departments using the Department model
+        $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
-
     public function update(DoctorUpdateRequest $request)
     {
         try {

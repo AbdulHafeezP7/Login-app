@@ -14,9 +14,8 @@ class DepartmentController extends Controller
     {
         return view('backend.departments');
     }
-    public function dataTablesForDepartments(Request $request)
+    public function dataTablesForDepartments()
     {
-        if ($request->ajax()) {
             $query = Department::query();
             return DataTables::of($query)
                 ->addColumn('department_en', function ($row) {
@@ -61,7 +60,6 @@ class DepartmentController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addDepartments()
     {

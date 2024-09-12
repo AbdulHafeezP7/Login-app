@@ -15,9 +15,8 @@ class ArticleController extends Controller
     {
         return view('backend.articles');
     }
-    public function dataTablesForArticles(Request $request)
+    public function dataTablesForArticles()
     {
-        if ($request->ajax()) {
             $query = Article::query();
             return DataTables::of($query)
                 ->addColumn('title_en', function ($row) {
@@ -61,7 +60,6 @@ class ArticleController extends Controller
                     $query->where('slug', 'like', "%{$keyword}%");
                 })
                 ->make(true);
-        }
     }
     public function addArticles()
     {
@@ -133,7 +131,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $article->delete();
-        return response()->json(['status' => true, 'message' => 'Article deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Article deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

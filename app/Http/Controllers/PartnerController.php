@@ -14,9 +14,8 @@ class PartnerController extends Controller
     {
         return view('backend.partners');
     }
-    public function dataTablesForPartners(Request $request)
+    public function dataTablesForPartners()
     {
-        if ($request->ajax()) {
             $query = Partner::query();
             return DataTables::of($query)
                 ->addColumn('partner_en', function ($row) {
@@ -48,7 +47,6 @@ class PartnerController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addPartners()
     {
@@ -148,7 +146,7 @@ class PartnerController extends Controller
     {
         $partner = Partner::findOrFail($id);
         $partner->delete();
-        return response()->json(['status' => true, 'message' => 'Partner deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Partner deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

@@ -14,9 +14,8 @@ class OfferController extends Controller
     {
         return view('backend.offers');
     }
-    public function dataTablesForOffers(Request $request)
+    public function dataTablesForOffers()
     {
-        if ($request->ajax()) {
             $query = Offer::query();
             return DataTables::of($query)
                 ->addColumn('offer_en', function ($row) {
@@ -60,7 +59,6 @@ class OfferController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addOffers()
     {
@@ -164,7 +162,7 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrFail($id);
         $offer->delete();
-        return response()->json(['status' => true, 'message' => 'Offer deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Offer deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

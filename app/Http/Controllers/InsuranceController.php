@@ -14,9 +14,8 @@ class InsuranceController extends Controller
     {
         return view('backend.insurances');
     }
-    public function dataTablesForInsurances(Request $request)
+    public function dataTablesForInsurances()
     {
-        if ($request->ajax()) {
             $query = Insurance::query();
             return DataTables::of($query)
                 ->addColumn('insurance_en', function ($row) {
@@ -48,7 +47,6 @@ class InsuranceController extends Controller
                     $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
-        }
     }
     public function addInsurances()
     {
