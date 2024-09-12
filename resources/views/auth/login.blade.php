@@ -73,10 +73,10 @@
                             </div>
                         </form>
 
-                        <div class="divider my-6">
+                        <!-- <div class="divider my-6">
                             <div class="divider-text">or</div>
                         </div>
-                        <p class="text-center"><span>New on our platform?</span> <a href="{{ url('register') }}"><span>Create an account</span></a></p>
+                        <p class="text-center"><span>New on our platform?</span> <a href="{{ url('register') }}"><span>Create an account</span></a></p> -->
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @extends('backend.layouts.backendLayout')
-@section('title', 'AddBranch')
+@section('title', 'Add Branch')
 @section('content')
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">

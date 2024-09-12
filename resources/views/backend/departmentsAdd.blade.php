@@ -1,5 +1,5 @@
 @extends('backend.layouts.backendLayout')
-@section('title', 'AddDepartment')
+@section('title', 'Add Department')
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
