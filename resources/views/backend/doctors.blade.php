@@ -241,7 +241,7 @@
                     success: function(response) {
                         if (response.status) {
                             Swal.fire({
-                                title: 'Good job!',
+                                title: 'Deleted!',
                                 text: 'Doctor deleted successfully!',
                                 icon: 'success',
                                 customClass: {

@@ -264,7 +264,7 @@
   if (iconSuccess) {
     iconSuccess.onclick = function () {
       Swal.fire({
-        title: 'Good job!',
+        title: 'Success!',
         text: 'You clicked the button!',
         icon: 'success',
         customClass: {

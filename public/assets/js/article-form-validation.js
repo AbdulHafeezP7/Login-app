@@ -94,7 +94,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status) {
                     Swal.fire({
-                        title: 'Good job!',
+                        title: 'Success!',
                         text: 'Article created successfully!',
                         icon: 'success',
                         customClass: {

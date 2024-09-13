@@ -199,7 +199,7 @@
                     success: function(response) {
                         if (response.status) {
                             Swal.fire({
-                                title: 'Good job!',
+                                title: 'Deleted!',
                                 text: 'Offer deleted successfully!',
                                 icon: 'success',
                                 customClass: {

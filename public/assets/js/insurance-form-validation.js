@@ -52,7 +52,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.status) {
                     Swal.fire({
-                        title: 'Good job!',
+                        title: 'Success!',
                         text: 'Insurance created successfully!',
                         icon: 'success',
                         customClass: {

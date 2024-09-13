@@ -50,7 +50,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.status) {
                     Swal.fire({
-                        title: 'Good job!',
+                        title: 'Success!',
                         text: 'Offer updated successfully!',
                         icon: 'success',
                         customClass: {
