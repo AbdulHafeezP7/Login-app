@@ -141,7 +141,7 @@ class SocialmediaController extends Controller
     {
         $socialmedia = Socialmedia::findOrFail($id);
         $socialmedia->delete();
-        return response()->json(['status' => true, 'message' => 'Social Media deleted successfully'], '');
+        return response()->json(['status' => true, 'message' => 'Social Media deleted successfully']);
     }
     public function show(Request $request, $id)
     {

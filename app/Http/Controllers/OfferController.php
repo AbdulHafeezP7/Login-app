@@ -162,7 +162,7 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrFail($id);
         $offer->delete();
-        return response()->json(['status' => true, 'message' => 'Offer deleted successfully'],'');
+        return response()->json(['status' => true, 'message' => 'Offer deleted successfully']);
     }
     public function show(Request $request, $id)
     {

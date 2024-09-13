@@ -14,17 +14,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="insurance_en" class="form-label">Insurance Name(English)</label>
-                    <input type="text" class="form-control" id="insurance_en" name="insurance_en" value="{{ old('insurance_en', $insurance->insurance_en) }}">
+                    <input type="text" class="form-control" id="insurance_en" name="insurance_en" value="{{ old('insurance_en', $singleInsurance->insurance_en) }}">
                 </div>
                 <div class="mb-3">
                     <label for="insurance_ar" class="form-label">Insurance Name(Arabic)</label>
-                    <input type="text" class="form-control" id="insurance_ar" name="insurance_ar" value="{{ old('insurance_ar', $insurance->insurance_ar) }}">
+                    <input type="text" class="form-control" id="insurance_ar" name="insurance_ar" value="{{ old('insurance_ar', $singleInsurance->insurance_ar) }}">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Insurance Image</label>
                     <input type="file" class="form-control" id="image" name="image">
-                    @if($insurance->image)
-                    <img src="{{ asset('images/' . $insurance->image) }}" alt="Insurance Image" class="img-thumbnail mt-2" style="width: 100px;">
+                    @if($singleInsurance->image)
+                    <img src="{{ asset('images/' . $singleInsurance->image) }}" alt="Insurance Image" class="img-thumbnail mt-2" style="width: 100px;">
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>

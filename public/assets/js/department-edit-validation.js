@@ -1,23 +1,6 @@
 
 $(document).ready(function() {
-     const snowEditor = new Quill('#snow-editor1', {
-        bounds: '#snow-editor1',
-        modules: {
-            formula: true,
-            toolbar: '#snow-toolbar1'
-        },
-        theme: 'snow'
-    });
-    // Special case for editors
-    snowEditor.on('text-change', function () {
-        if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
-            $('#snow-editor').removeClass('is-invalid');
-            $('#snow-editor').siblings('.invalid-feedback').remove();
-        }
-    });
-       const content_ar = $('#content_ar_old').val();
-        snowEditor.root.innerHTML = content_ar;
-    
+     
     $('#department-form').on('submit', function(e) {
         e.preventDefault();
         // Form validation
@@ -63,12 +46,7 @@ $(document).ready(function() {
         }
      
       
-         let contentAr = snowEditor.root.innerHTML.trim();
-        $('<input>').attr({
-            type: 'hidden',
-            name: 'content_ar',
-            value: contentAr
-        }).appendTo('#department-form');
+        
 
         // Prepare form data
         let formData = new FormData(this);

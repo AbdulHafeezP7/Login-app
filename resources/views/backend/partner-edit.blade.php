@@ -14,17 +14,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="partner_en" class="form-label">Partner Name(English)</label>
-                    <input type="text" class="form-control" id="partner_en" name="partner_en" value="{{ old('partner_en', $partner->partner_en) }}">
+                    <input type="text" class="form-control" id="partner_en" name="partner_en" value="{{ old('partner_en', $singlePartner->partner_en) }}">
                 </div>
                 <div class="mb-3">
                     <label for="partner_ar" class="form-label">Partner Name(Arabic)</label>
-                    <input type="text" class="form-control" id="partner_ar" name="partner_ar" value="{{ old('partner_ar', $partner->partner_ar) }}">
+                    <input type="text" class="form-control" id="partner_ar" name="partner_ar" value="{{ old('partner_ar', $singlePartner->partner_ar) }}">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Partner Image</label>
                     <input type="file" class="form-control" id="image" name="image">
-                    @if($partner->image)
-                    <img src="{{ asset('images/' . $partner->image) }}" alt="Partner Image" class="img-thumbnail mt-2" style="width: 100px;">
+                    @if($singlePartner->image)
+                    <img src="{{ asset('images/' . $singlePartner->image) }}" alt="Partner Image" class="img-thumbnail mt-2" style="width: 100px;">
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>

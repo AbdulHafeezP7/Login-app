@@ -169,7 +169,7 @@ class DoctorController extends Controller
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->delete();
-        return response()->json(['status' => true, 'message' => 'Doctor deleted successfully'],'');
+        return response()->json(['status' => true, 'message' => 'Doctor deleted successfully']);
     }
     public function show(Request $request, $id)
     {

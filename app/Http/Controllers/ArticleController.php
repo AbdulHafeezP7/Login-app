@@ -131,7 +131,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $article->delete();
-        return response()->json(['status' => true, 'message' => 'Article deleted successfully'],'');
+        return response()->json(['status' => true, 'message' => 'Article deleted successfully']);
     }
     public function show(Request $request, $id)
     {

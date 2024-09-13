@@ -107,9 +107,9 @@ class PartnerController extends Controller
     }
     public function edit($id)
     {
-        $partner = Partner::find($id);
+        $singlePartner = Partner::find($id);
 
-        return view('backend.partner-edit', compact('partner', 'id'));
+        return view('backend.partner-edit', compact('singlePartner', 'id'));
     }
     public function update(PartnerUpdateRequest $request)
     {
@@ -146,12 +146,12 @@ class PartnerController extends Controller
     {
         $partner = Partner::findOrFail($id);
         $partner->delete();
-        return response()->json(['status' => true, 'message' => 'Partner deleted successfully'],'');
+        return response()->json(['status' => true, 'message' => 'Partner deleted successfully']);
     }
     public function show(Request $request, $id)
     {
-        $partner = Partner::find($id);
+        $singlePartner = Partner::find($id);
 
-        return view('backend.partner-show', compact('partner'));
+        return view('backend.partner-show', compact('singlePartner'));
     }
 }

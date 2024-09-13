@@ -107,9 +107,9 @@ class InsuranceController extends Controller
     }
     public function edit($id)
     {
-        $insurance = Insurance::find($id);
+        $singleInsurance = Insurance::find($id);
 
-        return view('backend.insurance-edit', compact('insurance', 'id'));
+        return view('backend.insurance-edit', compact('singleInsurance', 'id'));
     }
     public function update(InsuranceUpdateRequest $request)
     {
@@ -150,8 +150,8 @@ class InsuranceController extends Controller
     }
     public function show(Request $request, $id)
     {
-        $insurance = Insurance::find($id);
+        $singleInsurance = Insurance::find($id);
 
-        return view('backend.insurance-show', compact('insurance'));
+        return view('backend.insurance-show', compact('singleInsurance'));
     }
 }

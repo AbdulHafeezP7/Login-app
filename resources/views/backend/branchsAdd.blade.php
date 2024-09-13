@@ -32,7 +32,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <div class="mb-3">
                                     <label class="form-label" for="branchsocial_link">Branch Social Media Link</label>
                                     <select id="branchsocial_link" name="branchsocial_link" class="form-control select2 socialmedia" data-allow-clear="true">
                                     <option value="">Search Social Media Link</option>
@@ -42,7 +41,6 @@
                                     </select>
                                     <span class="text-danger error-text socialmedia_error"></span>
                                 </div>
-                            </div>
 
 
 

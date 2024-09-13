@@ -5,22 +5,22 @@
     <div class="card">
         <div class="card-body">
             <h3 class="card-title">Branch English Name:</h3>
-            <div>{!! $branch->branchname_en !!}</div>
+            <div>{!! $singleBranch->branchname_en !!}</div>
             <h3 class="card-title">Branch Arabic Name:</h3>
-            <div>{!! $branch->branchname_ar !!}</div>
+            <div>{!! $singleBranch->branchname_ar !!}</div>
             <h3 class="card-title">Branch Manager Name:</h3>
-            <div>{!! $branch->branchmanager_name !!}</div>
+            <div>{!! $singleBranch->branchmanager_name !!}</div>
             <h3 class="card-title">Branch Location:</h3>
-            <div>{!! $branch->branch_location !!}</div>
+            <div>{!! $singleBranch->branch_location !!}</div>
             <h3 class="card-title">Branch Address:</h3>
-            <div>{!! $branch->branch_address !!}</div>
+            <div>{!! $singleBranch->branch_address !!}</div>
             <h3 class="card-title">Branch Social Media Link:</h3>
-            <div>{!! $branch->branchsocial_link !!}</div>
+            <div>{!! $singleBranch->branchsocial_link !!}</div>
             <h3 class="card-title">Branch Office Number:</h3>
-            <div>{!! $branch->branchoffice_number !!}</div>
+            <div>{!! $singleBranch->branchoffice_number !!}</div>
             <h3 class="card-title">Branch Manager Number:</h3>
-            <div>{!! $branch->branchmanager_number !!}</div>
-            <p><strong>Created at:</strong> {{ $branch->created_at->format('Y-m-d H:i:s') }}</p>
+            <div>{!! $singleBranch->branchmanager_number !!}</div>
+            <p><strong>Created at:</strong> {{ $singleBranch->created_at->format('Y-m-d H:i:s') }}</p>
             <a href="{{ route('branchs.index') }}" class="btn btn-primary">Back to Branch</a>
         </div>
     </div>

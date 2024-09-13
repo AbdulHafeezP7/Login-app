@@ -25,46 +25,13 @@
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                             </div>
                             <div class="mb-3">
-                                <label for="department_details" class="form-label">POPUp</label>
+                                <label for="department_details" class="form-label">Department Details</label>
                                 <textarea class="form-control" id="department_details" name="department_details" rows="4"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="slug" class="form-label">Slug</label>
                                 <input type="text" class="form-control" id="slug" name="slug">
                             </div>
-                            
-                               <div class="mb-3">
-                                <label for="doctor_description" class="form-label">Article(English)</label>
-                                <div id="snow-toolbar">
-                                  <span class="ql-formats">
-                                    <select class="ql-font"></select>
-                                    <select class="ql-size"></select>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                    <button class="ql-strike"></button>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <select class="ql-color"></select>
-                                    <select class="ql-background"></select>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-script" value="sub"></button>
-                                    <button class="ql-script" value="super"></button>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-header" value="1"></button>
-                                    <button class="ql-header" value="2"></button>
-                                    <button class="ql-blockquote"></button>
-                                    <button class="ql-code-block"></button>
-                                  </span>
-                                </div>
-                                <div id="snow-editor"></div>
-                                <div id="content_ar"></div>
-                             </div>
-                            
                             <div class="row justify-content-end">
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-primary">Save</button>
