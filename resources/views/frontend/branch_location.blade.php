@@ -17,7 +17,7 @@
                                 <div class="breadcrumb">
                                     <ul vocab="https://schema.org/" typeof="BreadcrumbList">
                                         <li property="itemListElement" typeof="ListItem" class="first">
-                                            <a href="index.php" property="item" typeof="WebPage">
+                                            <a href="{{route('home')}}" property="item" typeof="WebPage">
                                                 <span property="name">الرئيسية</span>
                                             </a>
                                         </li>
@@ -121,27 +121,43 @@
                     <div class="col-12">
                         <h2 class="title about__title mb-5" data-aos="fade-up" data-aos-delay="100">فروعنا </h2>
                     </div>
-                    
-                    @foreach ($branch as $item)
+              
                     <div class="col-md-4 col-12 mb-5">
                         <div class="contact__blocks">
+                            <div class="form-group row d-flex align-items-center">
+                                <label for="bookName" class="col-lg-3 col-form-label">مدير فرع</label>
+                                <div class="col-lg-9">
+                               
+                                    {{$branchDetails->branchmanager_name}}
+                                                                    </div>
+                            </div>
+
+                            <div class="form-group row d-flex align-items-center">
+                                <label for="bookName" class="col-lg-3 col-form-label">رقم مدير الفرع</label>
+                                <div class="col-lg-9">
+                               
+                                    {{$branchDetails->branchmanager_number}}
+                                                                    </div>
+                            </div>
                           
                             <div class="contact__info mb-4">
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
-                                        <a href="{{$item->branch_location}}" class="d-flex align-items-center">
+                                        <a href="{{$branchDetails->branch_location}}" class="d-flex align-items-center">
                                             <div>
                                                 <img src="{{ asset('frontend/frontend/images/icons/location-svg.svg')}}" draggable="false" alt="alt">
                                             </div>
-                                            <div class="mx-3">{{$item->branchname_ar}}</div>
+                                            <div class="mx-3">{{$branchDetails->branchname_ar}}</div>
                                         </a>
                                     </li>
+                                    
                                 </ul>
                             </div>
+                          
                             
                         </div>
                     </div>
-                    @endforeach
+                
                    
 
             

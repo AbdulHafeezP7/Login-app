@@ -55,7 +55,7 @@ class FrontEndController extends Controller
     }
     public function branch_location($branchId=null)
     {
-        $data['branch'] = Branch::find($branchId)->get();
+        $data['branchDetails'] = Branch::find($branchId);
         return view('frontend.branch_location',$data);
     }
     public function departmentDetails($slug = null)

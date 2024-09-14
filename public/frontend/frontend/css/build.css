@@ -2848,6 +2848,8 @@ input[type="submit"].btn-block {
 .navbar-nav .dropdown-menu {
     position: static;
     float: none;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .navbar-text {
@@ -12688,7 +12690,7 @@ ul.list-item li {
     .home-statistic-container {
         flex-direction: column;
         padding: 0 15px;
-        margin-top: 400px;
+        /* margin-top: 400px; */
     }
 
     .home-statistic-container .statistic {

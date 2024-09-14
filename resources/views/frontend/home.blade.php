@@ -24,7 +24,7 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('01.webp')}}" draggable="false" alt="نوفر لكم أفضل خدمات الأسنان الجلدية و الطبية" loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('frontend/page/website2.webp')}}" draggable="false" alt="نوفر لكم أفضل خدمات الأسنان الجلدية و الطبية" loading="eager">
                     </div>
                     <div class="slider__text">
                         <div class="container">
@@ -103,11 +103,11 @@
 
 
     <!-- BEGIN :: services section -->
-    <section class="services d-pad brd-top-rad mt-50">
-        <div class="container book-now d-pad">
+    <section class="services">
+        <div class="container">
             <div class="container">
 
-                <div class="col-12 statistics d-pad px-0">
+                <div class="col-12 statistics">
                     <div class="w-100 d-flex justify-content-between home-statistic-container">
                         <div class="statistic" data-aos="fade-up">
                             <div class="statistic__icon">
