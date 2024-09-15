@@ -24,13 +24,13 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('frontend/page/website2.webp')}}" draggable="false" alt="نوفر لكم أفضل خدمات الأسنان الجلدية و الطبية" loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('frontend/page/website2.webp')}}" draggable="false" alt="نوفر لكم أفضل الخدمات العلاجية" loading="eager">
                     </div>
                     <div class="slider__text">
                         <div class="container">
-                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up"> إنتشار واسع فً المنطقة الشرقٌة</h1>
+                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up"> إنتشار واسع</h1>
                             <p class="lead font-weight-bold bannerImage" data-aos="fade-up" data-aos-delay="100">
-                                نسعد بالوصول إلٌكم من خالل 6 فروع بالدمام والخبر واألحساء، نقدم من خاللها رعاٌة طبٌة متكاملة
+                                نسعد بالوصول لكم من خلال 8 فروع بالمنطقة الشرقية والرياض، نقدم من خلالها رعاية طبية متكاملة
                             </p>
                             <center>
                                 <div class="slider__actions" data-aos="fade-up" data-aos-delay="200">
@@ -45,13 +45,13 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('frontend/page/website3.webp')}}" draggable="false" alt="نخبة من افضل االستشارٌٌن واالخصائٌٌن فً المنطقة الشرقٌة." loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('frontend/page/website3.webp')}}" draggable="false" alt="نخبة من أفضل الاستشاريين والأخصائيين في المنطقة الشرقية." loading="eager">
                     </div>
                     <div class="slider__text">
                         <div class="container">
-                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up">نخبة من افضل االستشارٌٌن واالخصائٌٌن فً المنطقة الشرقٌة.</h1>
+                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up">نخبة من أفضل الاستشاريين والأخصائيين في المنطقة الشرقية.</h1>
                             <p class="lead font-weight-bold bannerImage" data-aos="fade-up" data-aos-delay="100">
-                                ٌقدمون الخدمات فً كافة التخصصات الطبٌة بإستخدام افضل االجهزة والتقنٌات الحدٌثة لضمان أفضل النتائج.
+                                يقدمون خدماتهم في كافة التخصصات الطبية باستخدام أفضل الأجهزة والتقنيات الحديثة لضمان أفضل النتائج.
                             </p>
                             <center>
                                 <div class="slider__actions" data-aos="fade-up" data-aos-delay="200">
@@ -67,13 +67,13 @@
             <div class="swiper-slide">
                 <div class="slider__slide">
                     <div class="slider__image">
-                        <img class="bannerImageSize" src="{{ asset('frontend/page/website4.webp')}}" draggable="false" alt="رعاٌة طبٌة بالجودة العالٌة تحت إشراف طاقم طبً متكامل" loading="eager">
+                        <img class="bannerImageSize" src="{{ asset('frontend/page/website4.webp')}}" draggable="false" alt="رعاية طبية بالجودة العالية تحت إشراف طاقم طبي متكامل في كل التخصصات" loading="eager">
                     </div>
                     <div class="slider__text">
                         <div class="container">
-                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up">رعاٌة طبٌة بالجودة العالٌة تحت إشراف طاقم طبً متكامل</h1>
+                            <h1 class="color font-weight-bold bannerImage" data-aos="fade-up">رعاية طبية بالجودة العالية تحت إشراف طاقم طبي متكامل في كل التخصصات</h1>
                             <p class="lead font-weight-bold bannerImage" data-aos="fade-up" data-aos-delay="100">
-                                نفخر بحصولنا على اعتماد المركز السعودي إلعتماد المنشآت الصحٌة )CBAHI)
+                                نفخر بحصولنا على اعتماد المركز السعودي لإعتماد المنشآت الصحية )CBAHI)
                             </p>
 
 
@@ -129,9 +129,9 @@
                             </div>
                             <div class="statistic__text">
                                 <div class="color-text-secondary">
-                                    <strong>فروع بالمنطقة الشرقٌة</strong>
+                                    <strong>فروع بالمملكة العربية السعودية</strong>
                                     <p class="mb-0 mt-2">
-                                        6
+                                        8
                                     </p>
                                 </div>
                             </div>
@@ -143,9 +143,9 @@
                             </div>
                             <div class="statistic__text">
                                 <div class="color-text-secondary">
-                                    <strong>طبٌب بفروعنا</strong>
+                                    <strong>طبيب في خدمتك</strong>
                                     <p class="mb-0 mt-3">
-                                        + 150
+                                        + 60
                                     </p>
                                 </div>
                             </div>
@@ -157,9 +157,9 @@
                             </div>
                             <div class="statistic__text">
                                 <div class="color-text-secondary">
-                                    <strong>مرٌض</strong>
+                                    <strong>مراجع راضي</strong>
                                     <p class="mb-0 mt-2">
-                                        + 20000000
+                                        + 1300000
                                     </p>
                                 </div>
                             </div>
@@ -181,10 +181,10 @@
                         <div class="about__text">
                             <h2 class="title about__title mb-5" data-aos="fade-up" data-aos-delay="100">نخبة من أمهر الاستشاريين والأخصائيين على مستوى المملكة العربية السعودية</h2>
                             <p class=" mb-5 color-text-secondary about__" data-aos="fade-up" data-aos-delay="200">
-                                في مجمعات د. خالد الرحيمي الطبية، نؤمن أن الطبيب هو العنصر الأبرز في نجاح الخدمة الطبية، لذلك نفخر باستقطاب استشاريين وأخصائيين مؤهلين في كافة التخصصات الطبية
+                                في مستشفى د. خالد الرحيمي، نؤمن أن الطبيب هو العنصر الأبرز في نجاح الخدمة الطبية، لذلك نفخر باستقطاب استشاريين وأخصائيين مؤهلين في كافة التخصصات الطبية
                             </p>
                             <a href="abouts.php" class="btn btn-link" data-aos="fade-up" data-aos-delay="300">
-                                المزيد عن مجمعاتنا.. </a>
+                                للمزيد.. </a>
                         </div>
                     </div>
                     <div class="col-12 statistics d-pad px-0">
@@ -211,7 +211,7 @@
                                     <div class="color-text-secondary">
                                         <strong>أفضل الخدمات</strong>
                                         <p class="mb-0 mt-2">
-                                            تقديم رعاية صحية متميزة للعملاء والمجتمع تواكب أفضل المعايير الطبية.
+                                            تقديم رعاية صحية متميزة للعملاء والمجتمع تواكب أفضل المعايير الطبية
                                         </p>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
                                     <div class="color-text-secondary">
                                         <strong>سعودية عالمية</strong>
                                         <p class="mb-0 mt-3">
-                                            نقدم خدماتنا الطبية بمعيار سعودي عالمي
+                                            نقدم خدماتنا الطبية بالمعيار السعودي العالمي
                                         </p>
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@
 
         <div class="container mt-50">
             <div class="section-title align-items-stretch mb-0">
-                <h2 class="title" data-aos="fade-up">والنصائح االسئلة اه</h2>
+                <h2 class="title" data-aos="fade-up">أقسام طبية متفردة</h2>
 
             </div>
           <style>
@@ -287,11 +287,9 @@
         .features-one_box_title {
             font-size: 15px;
             color: var(--cleenhearts-base, #351C42);
-            font-family: "DM Sans", sans-serif;
             font-weight: 700;
             margin: 0;
         }
-
         .features-one__grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -334,11 +332,18 @@
             margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 30%;
-            height: 20%;
+             width: 80%; /* Width relative to screen size */
+    height: 60%; /* Height relative to screen size */
+    max-width: 500px; /* Maximum width to prevent it from growing too large */
+    max-height: 400px; /* Maximum height */
             display: flex;
             flex-direction: column;
             border-radius: 12px;
+                /* Centering the modal */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
         }
 
         .close {
@@ -405,7 +410,9 @@
                             <div id="modals-{{$countPOPUpModel}}" class="modals">
                                 <div class="modals-contents">
                                     <span class="close" data-modals="modals-{{$countPOPUpModel}}">×</span>
-                                    <p>{{$row->department_details}}</p>
+                                    <p style="
+    color: #ffffff;
+">{{$row->department_details}}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -430,11 +437,11 @@
 
     <div class="container mt-50">
         <div class="section-title align-items-stretch mb-0">
-            <h2 class="title" data-aos="fade-up">الخدمات</h2>
+            <h2 class="title" data-aos="fade-up">مقالات طبية</h2>
             <div>
                 <ul class="nav nav-tabs" id="servicesTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="btn btn-link-secondary active" id="all_services" data-toggle="tab" href="#all_services" role="tab">كل الخدمات</a>
+                        <a class="btn btn-link-secondary active" id="all_services" data-toggle="tab" href="#all_services" role="tab">يكتبها لكم أطبائنا</a>
                     </li>
 
 
@@ -549,7 +556,7 @@
 
 
             </div>
-            <button type="submit" class="btn btn-primary"><a href="{{route('doctors')}}">أكثر</a> </button>
+            <button type="submit" class="btn btn-primary"><a href="{{route('doctors')}}">المزيد من الأطباء</a> </button>
         </div>
     </section>
 
@@ -558,44 +565,34 @@
 
     <div class="container mt-50 mb-50">
         <div class="section-title align-items-stretch mb-0">
-            <h2 class="title" data-aos="fade-up">الشكاوى وتقييم الزيارة</h2>
+            <h2 class="title" data-aos="fade-up">طلب تواصل</h2>
             <!-- <h1></h1> -->
         </div>
         <form action="submit_complaint.php" method="post">
             <div class="form-group">
-                <label for="name">اسم:</label>
-                <input type="text" id="name" placeholder="اسم" name="name" class="form-control" required>
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" placeholder="اسمك" name="name" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="number">رقم:</label>
-                <input type="text" id="number" name="number" placeholder="رقم" class="form-control" required>
+                <label for="number">رقم الجوال:</label>
+                <input type="text" id="number" name="number" placeholder="رقمك" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="branch">فرع:</label>
-                <input type="text" id="branch" name="branch" placeholder="فرع" class="form-control">
+                <label for="message">الموضوع:</label>
+                <textarea id="message" name="message" placeholder="اكتب لنا" class="form-control" rows="5" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="message">رسالة:</label>
-                <textarea id="message" name="message" placeholder="رسالة" class="form-control" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary"> يُقدِّم</button>
+            <button type="submit" class="btn btn-primary"> تم</button>
         </form>
 
-
-        <div class="banner text-center">
-            <h1 class="banner-h1">Installment Service</h1>
-            <!-- <p>Take advantage of our installment service to make your purchases more manageable.</p> -->
-            <button type="submit" class="btn btn-primary"> كتامدخ طسق</button>
-        </div>
-    </div>
-
+<!-- END :: footer section -->
+</div>
 
     <!-- BEGIN :: insurance section -->
     <section class="insurance d-pad pt-0">
         <div class="container position-relative">
             <div class="overlay-background"></div>
             <div class="section-title mb-0">
-                <h2 class="title" data-aos="fade-up">شركات التؤمٌن</h2>
+                <h2 class="title" data-aos="fade-up">شركات التأمين</h2>
             </div>
             <div class="swiper insuranceSlider" data-aos="fade-up">
                 <div class="swiper-wrapper">

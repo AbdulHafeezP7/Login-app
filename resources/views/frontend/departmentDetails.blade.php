@@ -60,7 +60,7 @@
             <div class="d-flex book-now__wrapper">
                 <div class="col-lg-6 d-flex align-items-center">
                     <h2 class="h3" data-aos="fade-up">
-                        إحجز موعدك الآن <br> وإستمتع بتجربه علاج فريده من نوعها </h2>
+                        إحجز موعدك الآن <br> واستمتع بتجربة علاج فريدة من نوعها </h2>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center justify-content-lg-end justify-content-center">
                     <a href="" class="btn btn-white" data-aos="fade-up">

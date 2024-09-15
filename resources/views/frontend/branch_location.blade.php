@@ -125,7 +125,7 @@
                     <div class="col-md-4 col-12 mb-5">
                         <div class="contact__blocks">
                             <div class="form-group row d-flex align-items-center">
-                                <label for="bookName" class="col-lg-6 col-form-label">مدير فرع</label>
+                                <label for="bookName" class="col-lg-6 col-form-label">مدير الفرع</label>
                                 <div class="col-lg-6">
                                
                                     {{$branchDetails->branchmanager_name}}
@@ -232,7 +232,7 @@
                                     <textarea class="form-control form-control-secondary"
                                               name="content"
                                               id="contactMessage"
-                                              placeholder="محتوي الرسالة"></textarea>
+                                              placeholder="محتوى الرسالة"></textarea>
 
                                                                     </div>
                             </div>

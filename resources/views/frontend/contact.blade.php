@@ -39,27 +39,34 @@
 
 <div class="container mt-50 mb-50">
     <div class="section-title align-items-stretch mb-0">
-        <h2 class="title" data-aos="fade-up">الشكاوى وتقييم الزيارة</h2>
+        <h2 class="title" data-aos="fade-up">طلب تواصل</h2>
         <!-- <h1></h1> -->
     </div>
     <form action="submit_complaint.php" method="post">
+        
+           <div class="form-group">
+               
+                        <label for="service" class="col-form-label">اختر الفرع:</label>
+                        <select class="form-control show-tick" id="service" name="service" tabindex="-98">
+                           @foreach($branch as $row)
+                                 <option value="{{ $row->branchname_ar }}">{{ $row->branchname_ar }}</option>
+                            @endforeach
+                        </select>
+                    </div>
         <div class="form-group">
-            <label for="name">اسم:</label>
-            <input type="text" id="name" placeholder="اسم" name="name" class="form-control" required>
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" placeholder="الاسم" name="name" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="number">رقم:</label>
-            <input type="text" id="number" name="number" placeholder="رقم" class="form-control" required>
+            <label for="number">رقم الجوال:</label>
+            <input type="text" id="number" name="number" placeholder="رقم الجوال" class="form-control" required>
         </div>
+        
         <div class="form-group">
-            <label for="branch">فرع:</label>
-            <input type="text" id="branch" name="branch" placeholder="فرع" class="form-control">
+            <label for="message">الرسالة:</label>
+            <textarea id="message" name="message" placeholder="الرسالة" class="form-control" rows="5" required></textarea>
         </div>
-        <div class="form-group">
-            <label for="message">رسالة:</label>
-            <textarea id="message" name="message" placeholder="رسالة" class="form-control" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary"> يُقدِّم</button>
+        <button type="submit" class="btn btn-primary"> تم</button>
     </form>
 </div>
     </div>

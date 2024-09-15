@@ -10,7 +10,6 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SocialmediaController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\InsuranceController;
 use Illuminate\Support\Facades\Route;
@@ -148,28 +147,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/insurances/{id}/delete', [InsuranceController::class, 'destroy'])->name('insurances.destroy');
     Route::get('/insurances/{id}/show', [InsuranceController::class, 'show'])->name('insurances.show');
     // Route::get('/insurances', [InsuranceController::class, 'getInsurance']);
-
-
-
-    // User Routes
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/dataTablesForUsers', [UserController::class, 'dataTablesForUsers'])->name('users.dataTablesForUsers');
-    Route::post('/users/increment', [UserController::class, 'userIncrement'])->name('users.increment');
-    Route::post('/users/decrement', [UserController::class, 'userDecrement'])->name('users.decrement');
-    // Route::resource('users', UserController::class);
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::get('/users/addUsers', [UserController::class, 'addUsers'])->name('users.add');
-    Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
-    // Route::get('/users', [UserController::class, 'getUser']);
 });
 Route::get('/', [FrontEndController::class, 'home']);
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
 Route::get('/articleDetails/{surl}', [FrontEndController::class, 'articleDetails'])->name('articleDetails');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
-Route::get('/offers', [FrontEndController::class, 'offer'])->name('offer');
+Route::get('/main_offers', [FrontEndController::class, 'offer'])->name('offer');
 Route::get('/contact_us', [FrontEndController::class, 'contact_us'])->name('contact_us');
 Route::get('/doctors', [FrontEndController::class, 'doctors'])->name('doctors');
 Route::get('/branch_location/{clinicId}', [FrontEndController::class, 'branch_location'])->name('branch_location');

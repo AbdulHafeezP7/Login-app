@@ -37,7 +37,7 @@
             <div class="about__text mb-5">
                 <h2 class="title about__title mb-5" data-aos="fade-up" data-aos-delay="100">الأطباء</h2>
                 <p class=" mb-0 color-text-secondary about__" data-aos="fade-up" data-aos-delay="200">
-                    نخبة من الإستشاريين والإخصائيين في كافة التخصصات الطبية
+                    نخبة من الإستشاريين والأخصائيين في كافة التخصصات الطبية
                 </p>
             </div>
             <div class="col-md-12 col-12">

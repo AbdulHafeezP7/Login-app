@@ -54,7 +54,7 @@
     margin: 2px;
     height: 28px;
 ">
-                                            احجز اآلن </a>
+                                            احجز الآن </a>
 
                                         <li class="list-inline-item">
                                             <a href="https://wa.me/+966920010436" target="_blank" title="Whasapp">
@@ -158,7 +158,7 @@
 
                         <div class="my-2 my-lg-0 d-xl-inline-block">
                             <a href="#" class="btn btn-white" data-toggle="modal" data-target="#booking">
-                                االتصال بنا </a>
+                                اتصل بنا </a>
 
                         </div>
                     </div>
