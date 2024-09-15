@@ -169,7 +169,7 @@ Route::get('/', [FrontEndController::class, 'home']);
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
 Route::get('/articleDetails/{surl}', [FrontEndController::class, 'articleDetails'])->name('articleDetails');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
-Route::get('/offer', [FrontEndController::class, 'offer'])->name('offer');
+Route::get('/offers', [FrontEndController::class, 'offer'])->name('offer');
 Route::get('/contact_us', [FrontEndController::class, 'contact_us'])->name('contact_us');
 Route::get('/doctors', [FrontEndController::class, 'doctors'])->name('doctors');
 Route::get('/branch_location/{clinicId}', [FrontEndController::class, 'branch_location'])->name('branch_location');

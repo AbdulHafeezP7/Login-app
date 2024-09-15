@@ -125,16 +125,16 @@
                     <div class="col-md-4 col-12 mb-5">
                         <div class="contact__blocks">
                             <div class="form-group row d-flex align-items-center">
-                                <label for="bookName" class="col-lg-3 col-form-label">مدير فرع</label>
-                                <div class="col-lg-9">
+                                <label for="bookName" class="col-lg-6 col-form-label">مدير فرع</label>
+                                <div class="col-lg-6">
                                
                                     {{$branchDetails->branchmanager_name}}
                                                                     </div>
                             </div>
 
                             <div class="form-group row d-flex align-items-center">
-                                <label for="bookName" class="col-lg-3 col-form-label">رقم مدير الفرع</label>
-                                <div class="col-lg-9">
+                                <label for="bookName" class="col-lg-6 col-form-label">رقم مدير الفرع</label>
+                                <div class="col-lg-6">
                                
                                     {{$branchDetails->branchmanager_number}}
                                                                     </div>
