@@ -46,7 +46,7 @@ class FrontEndController extends Controller
     public function doctors()
     {
         $data['doctors'] = Doctor::join('departments', 'doctors.department', '=', 'departments.id')
-            ->select('doctors.*', 'departments.department_en as department_name')
+            ->select('doctors.*', 'departments.department_ar as department_name')
             ->where('doctors.frontpage', '=', 1)
             ->orderBy('sort', 'asc')
             ->get();
