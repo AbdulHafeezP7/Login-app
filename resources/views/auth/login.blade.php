@@ -59,17 +59,13 @@
                                     <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                                 </div>
                             </div>
-                            <!-- <div class="my-8">
-                                <div class="d-flex justify-content-between">
-                                    <div class="form-check mb-0 ms-2">
-                                        <input class="form-check-input" type="checkbox" id="remember-me" />
-                                        <label class="form-check-label" for="remember-me"> Remember Me </label>
-                                    </div>
-                                    <a href="auth-forgot-password-basic.html"><p class="mb-0">Forgot Password?</p></a>
-                                </div>
-                            </div> -->
                             <div class="mb-6">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                            </div>
+                            <div class="my-8">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a href="auth-forgot-password-basic.ht"><p class="mb-0">Forgot Password?</p></a>
+                                </div>
                             </div>
                         </form>
 
