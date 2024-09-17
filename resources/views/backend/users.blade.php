@@ -19,7 +19,6 @@
                         <tr>
                             <th>Full Name</th>
                             <th>Email</th>
-                            <th>Sort</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -108,7 +107,7 @@
                     data: 'name',
                     name: 'name',
                     render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
+                        return data ? data.substring() + '' : '';
                     }
                 },
                 {
@@ -117,20 +116,7 @@
                     orderable: false,
                     searchable: false,
                     render: function(data) {
-                        return data ? data.substring(0, 13) + '' : '';
-                    }
-                },
-                {
-                    data: null,
-                    name: 'sort',
-                    orderable: true,
-                    searchable: false,
-                    render: function(data, type, row) {
-                        return `
-                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
-                    ${row.sort}
-                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
-                `;
+                        return data ? data.substring() + '' : '';
                     }
                 },
                 {
@@ -147,6 +133,7 @@
                     <button type="button" class="btn btn-info view-user" data-id="${row.id}"><i class="fa-solid fa-eye"></i></button>
                     <button type="button" class="btn btn-warning edit-user" data-id="${row.id}"><i class="fa-solid fa-pen-to-square"></i></button>
                     <button type="button" class="btn btn-danger delete-user" data-id="${row.id}"><i class="fa-solid fa-trash"></i></button>
+                    <button type="button" class="btn btn-primary passwordreset-user" data-id="${row.id}"><i class="fa-solid fa-unlock"></i></button>
                 `;
                     }
                 }

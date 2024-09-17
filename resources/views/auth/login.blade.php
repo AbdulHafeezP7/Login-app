@@ -62,11 +62,11 @@
                             <div class="mb-6">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
-                            <div class="my-8">
+                            <!-- <div class="my-8">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <a href="auth-forgot-password-basic.ht"><p class="mb-0">Forgot Password?</p></a>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
 
                         <!-- <div class="divider my-6">
