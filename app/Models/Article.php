@@ -12,9 +12,9 @@ class Article extends Model
     protected $fillable = [
         'title_en',
         'title_ar',
+        'content_en',
+        'content_ar',
         'image',
-        'article_en',
-        'article_ar',
         'slug',
     ];
 }

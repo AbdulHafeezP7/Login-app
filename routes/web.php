@@ -37,12 +37,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
     Route::post('/articles/store', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/articles/dataTablesForArticles', [ArticleController::class, 'dataTablesForArticles'])->name('articles.dataTablesForArticles');
+    Route::post('/articles/increment', [ArticleController::class, 'articleIncrement'])->name('articles.increment');
+    Route::post('/articles/decrement', [ArticleController::class, 'articleDecrement'])->name('articles.decrement');
     // Route::resource('articles', ArticleController::class);
     Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::get('/articles/addArticles', [ArticleController::class, 'addArticles'])->name('articles.add');
     Route::put('/articles/{id}/update', [ArticleController::class, 'update'])->name('articles.update');
     Route::delete('/articles/{id}/delete', [ArticleController::class, 'destroy'])->name('articles.destroy');
     Route::get('/articles/{id}/show', [ArticleController::class, 'show'])->name('articles.show');
+    // Route::get('/articles', [ArticleController::class, 'getArticle']);
 
 
     // Doctor Routes

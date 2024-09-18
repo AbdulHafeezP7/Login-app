@@ -12,7 +12,7 @@
                 @method('PUT')
                 <div class="mb-3" style="display:none;">
                     <label for="id" class="form-label">ID</label>
-                    <input type="hidden" class="form-control" name="id" value="{{ $article->id }}">
+                    <input type="hidden" class="form-control" name="id" value="{{$id}}">
                 </div>
                 <div class="mb-3">
                     <label for="title_en" class="form-label">Title (English)</label>
@@ -23,8 +23,9 @@
                     <input type="text" class="form-control" id="title_ar" name="title_ar" value="{{ old('title_ar', $article->title_ar) }}">
                 </div>
                 <div class="mb-3">
-                    <label for="article_en" class="form-label">Article(English)</label>
+                    <label for="content_en" class="form-label">Article(English)</label>
                     <div id="snow-toolbar">
+
                         <span class="ql-formats">
                             <select class="ql-font"></select>
                             <select class="ql-size"></select>
@@ -54,8 +55,9 @@
                     <div id="content_en"></div>
                 </div>
                 <div class="mb-3">
-                    <label for="article_ar" class="form-label">Article(Arabic)</label>
+                    <label for="content_ar" class="form-label">Article(Arabic)</label>
                     <div id="snow-toolbar1">
+
                         <span class="ql-formats">
                             <select class="ql-font"></select>
                             <select class="ql-size"></select>
@@ -84,22 +86,24 @@
                     <div id="snow-editor1"></div>
                     <div id="content_ar"></div>
                 </div>
-                <input type="hidden" id="content_en_data" name="article_en" value="{{ old('article_en', $article->article_en) }}">
-                <input type="hidden" id="content_ar_data" name="article_ar" value="{{ old('article_ar', $article->article_ar) }}">
-
                 <div class="mb-3">
-                    <label for="slug" class="form-label">Slug</label>
-                    <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $article->slug) }}">
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Thumbnail Image</label>
+                    <label for="image" class="form-label">Article Image</label>
                     <input type="file" class="form-control" id="image" name="image">
                     @if($article->image)
                     <img src="{{ asset('images/' . $article->image) }}" alt="Article Image" class="img-thumbnail mt-2" style="width: 100px;">
                     @endif
                 </div>
+                <div class="mb-3">
+                    <label for="slug" class="form-label">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $article->slug) }}">
+                </div>
+
+
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('articles.index') }}" class="btn btn-secondary">Cancel</a>
+
+                <input type="hidden" value="{{old('content_en', $article->content_en) }}" name="content_en_old" id="content_en_old">
+                <input type="hidden" value="{{old('content_ar', $article->content_ar) }}" name="content_ar_old" id="content_ar_old">
             </form>
         </div>
     </div>
@@ -109,7 +113,8 @@
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
 <script src="{{ asset('assets/js/article-edit-validation.js') }}"></script>
 <script>
-    var articlesIndexUrl = "{{ route('articles.index') }}";
+    var articleIndexUrl = "{{ route('articles.index') }}";
 </script>
+
 
 @endsection

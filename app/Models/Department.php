@@ -15,5 +15,6 @@ class Department extends Model
         'image',
         'department_details',
         'slug',
+        'content_ar'
     ];
 }

@@ -7,22 +7,31 @@ use Illuminate\Validation\Rule;
 
 class ArticleUpdateRequest extends FormRequest
 {
-    public function prepareForValidation()
+    public function authorize()
     {
-        $this->merge([
-            'article_en' => strip_tags($this->article_en),
-            'article_ar' => strip_tags($this->article_ar),
-        ]);
+        return true;
     }
+
     public function rules()
     {
         return [
             'title_en' => 'required|string|max:255',
             'title_ar' => 'required|string|max:255',
-            'article_en' => 'required|string',
-            'article_ar' => 'required|string',
-            'slug' => 'required|string|max:255|unique:articles,slug,' . $this->id,
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('articles', 'slug')->ignore($this->route('id')),
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'slug.unique' => 'The slug should be unique.',
         ];
     }
 }
+

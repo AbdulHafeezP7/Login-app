@@ -1,5 +1,5 @@
 @extends('backend.layouts.backendLayout')
-@section('title', 'AddDepartment')
+@section('title', 'Add Department')
 @section('content')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
@@ -32,39 +32,39 @@
                                 <label for="slug" class="form-label">Slug</label>
                                 <input type="text" class="form-control" id="slug" name="slug">
                             </div>
-                            
-                               <div class="mb-3">
-                                <label for="doctor_description" class="form-label">Article(English)</label>
+
+                            <div class="mb-3">
+                                <label for="doctor_description" class="form-label">Department Description</label>
                                 <div id="snow-toolbar">
-                                  <span class="ql-formats">
-                                    <select class="ql-font"></select>
-                                    <select class="ql-size"></select>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                    <button class="ql-strike"></button>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <select class="ql-color"></select>
-                                    <select class="ql-background"></select>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-script" value="sub"></button>
-                                    <button class="ql-script" value="super"></button>
-                                  </span>
-                                  <span class="ql-formats">
-                                    <button class="ql-header" value="1"></button>
-                                    <button class="ql-header" value="2"></button>
-                                    <button class="ql-blockquote"></button>
-                                    <button class="ql-code-block"></button>
-                                  </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-color"></select>
+                                        <select class="ql-background"></select>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-script" value="sub"></button>
+                                        <button class="ql-script" value="super"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <button class="ql-header" value="1"></button>
+                                        <button class="ql-header" value="2"></button>
+                                        <button class="ql-blockquote"></button>
+                                        <button class="ql-code-block"></button>
+                                    </span>
                                 </div>
                                 <div id="snow-editor"></div>
                                 <div id="content_ar"></div>
-                             </div>
-                            
+                            </div>
+
                             <div class="row justify-content-end">
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-primary">Save</button>
@@ -86,5 +86,5 @@
         var departmentIndexUrl = "{{ route('departments.index') }}";
         var departmentStoreUrl = "{{ route('departments.store') }}";
     </script>
-     <script src="{{ asset('assets/js/department-form-validation.js') }}"></script>
+    <script src="{{ asset('assets/js/department-form-validation.js') }}"></script>
     @endsection

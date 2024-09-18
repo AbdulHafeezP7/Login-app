@@ -1,12 +1,10 @@
 @extends('backend.layouts.backendLayout')
 @section('title', 'Article')
 @section('content')
-<script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-build-classic@43.0.0/build/ckeditor.min.js"></script>
 <div id="content-area">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Articles</h1>
-
+            <h1 class="card-title">Article</h1>
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{route('articles.add')}}"><button type="button" class="btn btn-primary">
                         Add New Article
@@ -21,10 +19,11 @@
                         <tr>
                             <th>Title (English)</th>
                             <th>Title (Arabic)</th>
-                            <th>Thumbnail Image</th>
                             <th>Article (English)</th>
                             <th>Article (Arabic)</th>
+                            <th>Tumbnail Image</th>
                             <th>Slug</th>
+                            <th>Sort</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -40,6 +39,57 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+    function decrement(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('articles.decrement')}}",
+                data: {
+                    articleId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.message);
+                     
+                         var table = $('#articles-table').DataTable();
+                         table.ajax.reload();
+                    } else {
+                        console.error('Error decrementing article:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
+
+    function increment(id) {
+        $(document).ready(function() {
+            $.ajax({
+                type: "post",
+                url: "{{route('articles.increment')}}",
+                data: {
+                    articleId: id,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status) {
+                         var table = $('#articles-table').DataTable();
+                         table.ajax.reload();
+                    } else {
+                        console.error('Error incrementing article:', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                }
+            });
+        });
+    }
     $(document).ready(function() {
         function showAlert(message, type, alertBoxId) {
             $('#' + alertBoxId + ' #alert-message').text(message);
@@ -75,31 +125,44 @@
                     }
                 },
                 {
+                    data: 'content_en',
+                    name: 'content_en',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
+                    data: 'content_ar',
+                    name: 'content_ar',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
+                    }
+                },
+                {
                     data: 'image',
                     name: 'image',
                     orderable: false,
                     searchable: false,
                     render: function(data) {
-                        return `<img src="${data}" style="width: 50px; height: 50px;">`;
-                    }
-                },
-                {
-                    data: 'article_en',
-                    name: 'article_en',
-                    render: function(data) {
-                        return data ? data.substring(0, 20) + '' : '';
-                    }
-                },
-                {
-                    data: 'article_ar',
-                    name: 'article_ar',
-                    render: function(data) {
-                        return data ? data.substring(0, 20) + '' : '';
+                        return `<img src="${data}" style="width: 50px; height: auto;">`;
                     }
                 },
                 {
                     data: 'slug',
                     name: 'slug'
+                },
+                {
+                    data: null,
+                    name: 'sort',
+                    orderable: true,
+                    searchable: false,
+                    render: function(data, type, row) {
+                        return `
+                    <button type="button" class="btn btn-info" onClick="increment(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-down"></i></button>
+                    ${row.sort}
+                    <button type="button" class="btn btn-info" onClick="decrement(${row.id});" data-id="${row.id}"><i class="fa-solid fa-arrow-up"></i></button>
+                `;
+                    }
                 },
                 {
                     data: 'created_at',
@@ -120,7 +183,7 @@
                 }
             ],
             order: [
-                [5, 'desc']
+                [7, 'desc']
             ]
         });
         $('#articles-table').on('click', '.view-article', function() {
@@ -143,7 +206,7 @@
                     success: function(response) {
                         if (response.status) {
                             Swal.fire({
-                                title: 'Deleted!',
+                                title: 'Good job!',
                                 text: 'Article deleted successfully!',
                                 icon: 'success',
                                 customClass: {
@@ -151,11 +214,9 @@
                                 },
                                 buttonsStyling: false
                             }).then(() => {
-                                setTimeout(() => {
-                                    window.location.href = "{{route('articles.index')}}";
-                                }, 0);
+                                 var table = $('#articles-table').DataTable();
+                                 table.ajax.reload();
                             });
-
                         } else {
                             console.log('Error deleting article: ' + response.message);
                         }

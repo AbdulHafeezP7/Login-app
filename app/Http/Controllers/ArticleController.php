@@ -8,7 +8,6 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\ArticleUpdateRequest;
 
-
 class ArticleController extends Controller
 {
     public function index()
@@ -25,21 +24,25 @@ class ArticleController extends Controller
                 ->addColumn('title_ar', function ($row) {
                     return $row->title_ar;
                 })
+                ->addColumn('content_en', function ($row) {
+                    return $row->content_en;
+                })
+                ->addColumn('content_ar', function ($row) {
+                    return $row->content_ar;
+                })
                 ->addColumn('image', function ($row) {
                     if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image);
+                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+
                     } else {
                         return 'No Image';
                     }
                 })
-                ->addColumn('article_en', function ($row) {
-                    return $row->article_en;
-                })
-                ->addColumn('article_ar', function ($row) {
-                    return $row->article_ar;
-                })
                 ->addColumn('slug', function ($row) {
                     return $row->slug;
+                })
+                ->addColumn('sort', function ($row) {
+                    return $row->sort;
                 })
                 ->editColumn('created_at', function ($row) {
                     return $row->created_at->format('Y-m-d H:i:s');
@@ -50,14 +53,17 @@ class ArticleController extends Controller
                 ->filterColumn('title_ar', function ($query, $keyword) {
                     $query->where('title_ar', 'like', "%{$keyword}%");
                 })
-                ->filterColumn('article_en', function ($query, $keyword) {
-                    $query->where('article_ar', 'like', "%{$keyword}%");
+                ->filterColumn('content_en', function ($query, $keyword) {
+                    $query->where('content_en', 'like', "%{$keyword}%");
                 })
-                ->filterColumn('article_ar', function ($query, $keyword) {
-                    $query->where('article_ar', 'like', "%{$keyword}%");
+                ->filterColumn('content_ar', function ($query, $keyword) {
+                    $query->where('content_ar', 'like', "%{$keyword}%");
                 })
                 ->filterColumn('slug', function ($query, $keyword) {
                     $query->where('slug', 'like', "%{$keyword}%");
+                })
+                ->orderColumn('sort', function ($query) {
+                    $query->orderBy('sort', 'asc');
                 })
                 ->make(true);
     }
@@ -68,12 +74,14 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         try {
+            $totalArticles = Article::count();
             $article = new Article;
             $article->title_en = $request->title_en;
             $article->title_ar = $request->title_ar;
-            $article->article_en = $request->content_en;
-            $article->article_ar = $request->content_ar;
+            $article->content_en = $request->content_en;
+            $article->content_ar = $request->content_ar;
             $article->slug = $request->slug;
+            $article->sort = $totalArticles + 1;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
@@ -81,25 +89,57 @@ class ArticleController extends Controller
             }
             $article->save();
             return response()->json(['status' => true, 'message' => 'Article created successfully.']);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return response()->json(['status' => false, 'message' => $e->validator->errors()->first()], 422);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
+    }
+    public function articleDecrement(Request $request)
+    {
+        $article = Article::find($request->articleId);
+        
+        $sort =($article->sort!="")?--$article->sort:0;
+        if ($sort >= 1) {
+            $articleDownData = Article::where('sort', $sort)->first();
+            if ($articleDownData) {
+                $newSort = ($articleDownData->sort == 0 || $articleDownData->sort == null) ? 0 : $articleDownData->sort;
+                $articleDownData->sort = $newSort + 1;
+                $articleDownData->save();
+            }
+            $article->sort = $sort;
+            $article->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
+    }
+    public function articleIncrement(Request $request)
+    {
+        $article = Article::find($request->articleId);
+        $sort = ++$article->sort;
+        $articleCount = Article::count('id');
+        if ($sort <= $articleCount) {
+            $articleUpData = Article::where('sort', $sort)->first();
+            if ($articleUpData) {
+                $newSort = ($articleUpData->sort == 0 || $articleUpData->sort == null) ? 0 : $articleUpData->sort;
+                $articleUpData->sort = $newSort - 1;
+                $articleUpData->save();
+            }
+            $article->sort = $sort;
+            $article->save();
+        }
+        return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
     }
     public function edit($id)
     {
         $article = Article::find($id);
         return view('backend.article-edit', compact('article', 'id'));
     }
-    public function update(ArticleUpdateRequest $request, Article $article)
+    public function update(ArticleUpdateRequest $request)
     {
         try {
             $article = Article::findOrFail($request->id);
             $article->title_en = $request->title_en;
             $article->title_ar = $request->title_ar;
-            $article->article_en = $request->article_en;
-            $article->article_ar = $request->article_ar;
+            $article->content_en = $request->content_en;
+            $article->content_ar = $request->content_ar;
             $article->slug = $request->slug;
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
@@ -126,7 +166,6 @@ class ArticleController extends Controller
             }
         }
     }
-
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
