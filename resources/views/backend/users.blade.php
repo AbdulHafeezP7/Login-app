@@ -150,6 +150,24 @@
             var userId = $(this).data('id');
             window.location.href = "{{ url('users') }}/" + userId + "/edit";
         });
+        $('#users-table').on('click', '.passwordreset-user', function() {
+            var userId = $(this).data('id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to reset this user's password?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, reset it!',
+                cancelButtonText: 'No,cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "{{ url('users') }}/" + userId + "/passwordreset";
+                }
+            });
+        });
+
         $('#users-table').on('click', '.delete-user', function() {
             var userId = $(this).data('id');
             if (confirm('Are you sure you want to delete this user?')) {

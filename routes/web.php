@@ -150,19 +150,23 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/insurances', [InsuranceController::class, 'getInsurance']);
 
 
-     // User Routes
-     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-     Route::get('/users/dataTablesForUsers', [UserController::class, 'dataTablesForUsers'])->name('users.dataTablesForUsers');
-     Route::post('/users/increment', [UserController::class, 'userIncrement'])->name('users.increment');
-     Route::post('/users/decrement', [UserController::class, 'userDecrement'])->name('users.decrement');
-     // Route::resource('users', UserController::class);
-     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-     Route::get('/users/addUsers', [UserController::class, 'addUsers'])->name('users.add');
-     Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
-     Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
-     Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
-     // Route::get('/users', [UserController::class, 'getUser']);
+    // User Routes
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/dataTablesForUsers', [UserController::class, 'dataTablesForUsers'])->name('users.dataTablesForUsers');
+    Route::post('/users/increment', [UserController::class, 'userIncrement'])->name('users.increment');
+    Route::post('/users/decrement', [UserController::class, 'userDecrement'])->name('users.decrement');
+    // Route::resource('users', UserController::class);
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users/addUsers', [UserController::class, 'addUsers'])->name('users.add');
+    Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
+    // Route::get('/users', [UserController::class, 'getUser']);
+    // Route to show the password reset form
+    Route::get('users/{id}/passwordreset', [UserController::class, 'showPasswordResetForm'])->name('users.passwordreset');
+    // Route to handle password reset form submission
+    Route::post('users/{id}/passwordreset', [UserController::class, 'resetPassword'])->name('users.passwordreset.update');
 });
 Route::get('/', [FrontEndController::class, 'home']);
 Route::get('/home', [FrontEndController::class, 'home'])->name('home');
@@ -174,4 +178,3 @@ Route::get('/doctors', [FrontEndController::class, 'doctors'])->name('doctors');
 Route::get('/branch_location/{clinicId}', [FrontEndController::class, 'branch_location'])->name('branch_location');
 Route::get('/departmentDetails/{surl}', [FrontEndController::class, 'departmentDetails'])->name('departmentDetails');
 Route::get('/privacy_policy', [FrontEndController::class, 'privacy_policy'])->name('privacy_policy');
-

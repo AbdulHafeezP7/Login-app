@@ -100,5 +100,23 @@ class UserController extends Controller
 
         return view('backend.user-show', compact('user'));
     }
-    
+    public function showPasswordResetForm($id)
+    {
+        $user = User::findOrFail($id);
+        return view('backend.user-passwordreset', compact('user'));
+    }
+
+    // Handle the password reset
+    public function resetPassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Password reset successfully!');
+    }
 }
