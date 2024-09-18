@@ -39,7 +39,6 @@ $(document).ready(function () {
         // Form validation
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-console.log(title_ar);
         let titleEn = $('#title_en').val().trim();
         let titleAr = $('#title_ar').val().trim();
         let slug = $('#slug').val().trim();
