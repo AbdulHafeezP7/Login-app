@@ -26,9 +26,6 @@ class UserController extends Controller
             ->addColumn('email', function ($row) {
                 return $row->email;
             })
-            ->addColumn('sort', function ($row) {
-                return $row->sort;
-            })
             ->editColumn('created_at', function ($row) {
                 return $row->created_at->format('Y-m-d H:i:s');
             })
@@ -37,9 +34,6 @@ class UserController extends Controller
             })
             ->filterColumn('email', function ($query, $keyword) {
                 $query->where('email', 'like', "%{$keyword}%");
-            })
-            ->orderColumn('sort', function ($query) {
-                $query->orderBy('sort', 'asc');
             })
             ->make(true);
     }
@@ -55,46 +49,12 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->sort = $totalUsers + 1;
             $user->save();
             return response()->json(['status' => true, 'message' => 'User created successfully.']);
         } catch (\Exception $e) {
 
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
-    }
-    public function userDecrement(Request $request)
-    {
-        $user = User::find($request->userId);
-        $sort = --$user->sort;
-        if ($sort >= 1) {
-            $userDownData = User::where('sort', $sort)->first();
-            if ($userDownData) {
-                $newSort = ($userDownData->sort == 0 || $userDownData->sort == null) ? 0 : $userDownData->sort;
-                $userDownData->sort = $newSort + 1;
-                $userDownData->save();
-            }
-            $user->sort = $sort;
-            $user->save();
-        }
-        return response()->json(['status' => true, 'message' => 'User sorted successfully.']);
-    }
-    public function userIncrement(Request $request)
-    {
-        $user = User::find($request->userId);
-        $sort = ++$user->sort;
-        $userCount = User::count('id');
-        if ($sort <= $userCount) {
-            $userUpData = User::where('sort', $sort)->first();
-            if ($userUpData) {
-                $newSort = ($userUpData->sort == 0 || $userUpData->sort == null) ? 0 : $userUpData->sort;
-                $userUpData->sort = $newSort - 1;
-                $userUpData->save();
-            }
-            $user->sort = $sort;
-            $user->save();
-        }
-        return response()->json(['status' => true, 'message' => 'User sorted successfully.']);
     }
     public function edit($id)
     {
@@ -140,4 +100,5 @@ class UserController extends Controller
 
         return view('backend.user-show', compact('user'));
     }
+    
 }
