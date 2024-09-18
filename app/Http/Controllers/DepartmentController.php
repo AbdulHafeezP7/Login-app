@@ -164,7 +164,7 @@ class DepartmentController extends Controller
     {
         $department = Department::findOrFail($id);
         $department->delete();
-        return response()->json(['status' => true, 'message' => 'Department deleted successfully']);
+        return response()->json(['status' => true, 'message' => 'Department deleted successfully'],'');
     }
     public function show(Request $request, $id)
     {

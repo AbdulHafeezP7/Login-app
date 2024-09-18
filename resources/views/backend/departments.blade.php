@@ -198,7 +198,7 @@
                     success: function(response) {
                         if (response.status) {
                             Swal.fire({
-                                title: 'Deleted!',
+                                title: 'Good job!',
                                 text: 'Department deleted successfully!',
                                 icon: 'success',
                                 customClass: {

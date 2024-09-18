@@ -18,7 +18,7 @@
             <div>{!! $department->department_details !!}</div>
             <p><strong>Slug:</strong> {{ $department->slug }}</p>
             <p><strong>Created at:</strong> {{ $department->created_at->format('Y-m-d H:i:s') }}</p>
-            <a href="{{ route('departments.index') }}" class="btn btn-primary">Back to Department</a>
+            <a href="{{ route('departments.index') }}" class="btn btn-primary">Back to Departments</a>
         </div>
     </div>
 </div>
