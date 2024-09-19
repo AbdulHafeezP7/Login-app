@@ -24,36 +24,38 @@
                     <input type="text" class="form-control" id="name_ar" name="name_ar" value="{{ old('name_ar', $doctor->name_ar) }}">
                 </div>
                 <div class="mb-3">
-                    <label for="doctor_description" class="form-label">Doctor Description</label>
-                    <div id="doctor-description-toolbar">
-                        <span class="ql-formats">
-                            <select class="ql-font"></select>
-                            <select class="ql-size"></select>
-                        </span>
-                        <span class="ql-formats">
-                            <button class="ql-bold"></button>
-                            <button class="ql-italic"></button>
-                            <button class="ql-underline"></button>
-                            <button class="ql-strike"></button>
-                        </span>
-                        <span class="ql-formats">
-                            <select class="ql-color"></select>
-                            <select class="ql-background"></select>
-                        </span>
-                        <span class="ql-formats">
-                            <button class="ql-script" value="sub"></button>
-                            <button class="ql-script" value="super"></button>
-                        </span>
-                        <span class="ql-formats">
-                            <button class="ql-header" value="1"></button>
-                            <button class="ql-header" value="2"></button>
-                            <button class="ql-blockquote"></button>
-                            <button class="ql-code-block"></button>
-                        </span>
-                    </div>
-                    <div id="doctor-description-editor"></div>
-                    <input type="hidden" name="doctor_description" id="doctor_description" value="{{ old('doctor_description', $doctor->doctor_description) }}>
-                </div>
+          <label for="doctor_description" class="form-label">Article(Arabic)</label>
+          <div id="snow-toolbar">
+
+            <span class="ql-formats">
+              <select class="ql-font"></select>
+              <select class="ql-size"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold"></button>
+              <button class="ql-italic"></button>
+              <button class="ql-underline"></button>
+              <button class="ql-strike"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-color"></select>
+              <select class="ql-background"></select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-script" value="sub"></button>
+              <button class="ql-script" value="super"></button>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-header" value="1"></button>
+              <button class="ql-header" value="2"></button>
+              <button class="ql-blockquote"></button>
+              <button class="ql-code-block"></button>
+            </span>
+          </div>
+          <div id="snow-editor"></div>
+          <div id="doctor_description"></div>
+        </div>
+        <input type="hidden" value="{{old('doctor_description', $doctor->doctor_description) }}" name="doctor_description_old" id="doctor_description_old">
                 <div class="mb-3">
                     <label for="department" class="form-label">Department</label>
                     <select class="form-control" id="department" name="department">

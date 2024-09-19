@@ -1,39 +1,32 @@
 $(document).ready(function() {
-    // Function to strip HTML tags
-    function stripHtmlTags(html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-        return doc.body.textContent || "";
-    }
-
-    // Initialize Quill editor
-    var quillDescription = new Quill('#doctor-description-editor', {
+    const snowEditor = new Quill('#snow-editor', {
+        bounds: '#snow-editor',
         modules: {
             formula: true,
-            toolbar: '#doctor-description-toolbar'
+            toolbar: '#snow-toolbar'
         },
         theme: 'snow'
     });
-
-    // Get the initial content, clean it, and set it to Quill editor
-    var initialDescriptionContent = $('#doctor_description').val();
-    var cleanContent = stripHtmlTags(initialDescriptionContent);
-    quillDescription.root.innerHTML = cleanContent;
+    // Special case for editors
+    snowEditor.on('text-change', function () {
+        if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
+            $('#snow-editor').removeClass('is-invalid');
+            $('#snow-editor').siblings('.invalid-feedback').remove();
+        }
+    });
+       const doctor_description = $('#doctor_description_old').val();
+        snowEditor.root.innerHTML = doctor_description;
 
     // Handle form submission
     $('#doctor-form').on('submit', function(e) {
         e.preventDefault();
-
-        // Get the Quill editor content
-        var doctorDescriptionContent = quillDescription.root.innerHTML;
-        $('#doctor_description').val(doctorDescriptionContent);
-
         // Form validation
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
+
         let nameEn = $('#name_en').val().trim();
         let nameAr = $('#name_ar').val().trim();
         let department = $('#department').val();
-        let doctorDescription = doctorDescriptionContent.trim();
         let imageFile = $('#image')[0].files[0];
         let validImageFormats = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
         let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
@@ -41,7 +34,6 @@ $(document).ready(function() {
 
         if (!nameEn) errors.name_en = 'Name (English) is required.';
         if (!nameAr) errors.name_ar = 'Name (Arabic) is required.';
-        if (!doctorDescription || doctorDescription === '<p><br></p>') errors.doctor_description = 'Doctor Description is required.';
         if (!department) errors.department = 'Department is required.';
         if (!isValidImage) errors.image = 'Image format must be JPEG, PNG, JPG, GIF, or SVG.';
 
@@ -70,6 +62,12 @@ $(document).ready(function() {
             });
             return;
         }
+        let contentDr = snowEditor.root.innerHTML.trim();
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'doctor_description',
+            value: contentDr
+        }).appendTo('#doctor-form');
 
         let formData = new FormData(this);
         if (imageFile) formData.append('image', imageFile);
@@ -130,12 +128,5 @@ $(document).ready(function() {
     $('#doctor-form input, #doctor-form textarea').on('input change', function() {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
-    });
-
-    quillDescription.on('text-change', function() {
-        if (quillDescription.root.innerHTML.trim() !== '<p><br></p>') {
-            $('#doctor-description-editor').removeClass('is-invalid');
-            $('#doctor-description-editor').siblings('.invalid-feedback').remove();
-        }
     });
 });

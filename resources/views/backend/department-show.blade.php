@@ -16,6 +16,8 @@
             </div>
             <h3 class="card-title">Department Details:</h3>
             <div>{!! $department->department_details !!}</div>
+            <h3 class="card-title">Article(Arabic):</h3>
+            <div>{!! $department->content_ar !!}</div>
             <p><strong>Slug:</strong> {{ $department->slug }}</p>
             <p><strong>Created at:</strong> {{ $department->created_at->format('Y-m-d H:i:s') }}</p>
             <a href="{{ route('departments.index') }}" class="btn btn-primary">Back to Departments</a>

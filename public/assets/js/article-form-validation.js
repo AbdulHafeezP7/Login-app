@@ -131,4 +131,9 @@ $(document).ready(function () {
             }
         });
     });
+     // Event listener to clear validation on input
+     $('#addArticleForm input, #addArticleForm select').on('input change', function () {
+        $(this).removeClass('is-invalid');
+        $(this).next('.invalid-feedback').remove();
+    });
 });

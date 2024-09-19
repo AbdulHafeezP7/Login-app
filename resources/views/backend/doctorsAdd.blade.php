@@ -12,13 +12,11 @@
                     <div class="card-body">
                         <form id="addDoctorForm" class="is-invalid" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <label for="name_en" class="form-label">Name (English)</label>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon11">Dr.</span>
+                            <div class="mb-3">
                                 <input type=" text" class="form-control" id="name_en" name="name_en">
                             </div>
                             <label for="name_ar" class="form-label">Name (Arabic)</label>
-                            <div class="input-group">
-                                <span class="input-group-text" id="basic-addon11">Dr.</span>
+                            <div class="mb-3">
                                 <input type="text" class="form-control" id="name_ar" name="name_ar">
                             </div>
                             <div class="mb-3" id="doctorImg">
@@ -27,7 +25,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="doctor_description" class="form-label">Doctor Description</label>
-                                <div id="doctor-description-toolbar">
+                                <div id="snow-toolbar">
                                     <span class="ql-formats">
                                         <select class="ql-font"></select>
                                         <select class="ql-size"></select>
@@ -53,8 +51,8 @@
                                         <button class="ql-code-block"></button>
                                     </span>
                                 </div>
-                                <div id="doctor-description-editor"></div>
-                                <input type="hidden" name="doctor_description" id="doctor_description">
+                                <div id="snow-editor"></div>
+                                <div id="doctor_description"></div>
                             </div>
 
                             <div class="mb-3" id="imgdiv" style="display: none;">

@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="doctor_description" class="form-label">Department Description</label>
+                                <label for="article_ar" class="form-label">Article(Arabic)</label>
                                 <div id="snow-toolbar">
                                     <span class="ql-formats">
                                         <select class="ql-font"></select>

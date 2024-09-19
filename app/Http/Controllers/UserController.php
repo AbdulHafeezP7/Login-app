@@ -116,7 +116,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->password = Hash::make($request->password);
         $user->save();
-
-        return redirect()->route('users.index')->with('success', 'Password reset successfully!');
+        return response()->json(['status' => true, 'message' => 'Password reset successfully!']);
+        // return redirect()->route('users.index')->with('success', 'Password reset successfully!');
     }
 }

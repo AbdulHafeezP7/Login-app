@@ -1,10 +1,10 @@
 
 $(document).ready(function() {
-    const snowEditor = new Quill('#snow-editor1', {
-       bounds: '#snow-editor1',
+    const snowEditor = new Quill('#snow-editor', {
+       bounds: '#snow-editor',
        modules: {
            formula: true,
-           toolbar: '#snow-toolbar1'
+           toolbar: '#snow-toolbar'
        },
        theme: 'snow'
    });

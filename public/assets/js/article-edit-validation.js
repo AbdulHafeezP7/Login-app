@@ -144,4 +144,9 @@ $(document).ready(function () {
             }
         });
     });
+     // Remove validation error when input enters
+   $('#article-form input, #article-form textarea').on('input change', function() {
+    $(this).removeClass('is-invalid');
+    $(this).next('.invalid-feedback').remove();
+});
 });

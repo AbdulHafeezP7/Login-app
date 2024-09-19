@@ -1,11 +1,20 @@
 $(document).ready(function () {
-    var quillDescription = new Quill('#doctor-description-editor', {
+    const snowEditor = new Quill('#snow-editor', {
+        bounds: '#snow-editor',
         modules: {
-            toolbar: '#doctor-description-toolbar'
+            formula: true,
+            toolbar: '#snow-toolbar'
         },
         theme: 'snow'
     });
-
+    
+    // Special case for editors
+    snowEditor.on('text-change', function () {
+        if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
+            $('#snow-editor').removeClass('is-invalid');
+            $('#snow-editor').siblings('.invalid-feedback').remove();
+        }
+    });
     $('#addDoctorForm').on('submit', function (e) {
         e.preventDefault();
 
@@ -13,19 +22,10 @@ $(document).ready(function () {
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
 
-        // Get prefix value from the span
-        var prefix = $('#basic-addon11').text().trim();
-
-        // Validate the actual input fields
-        var nameEn = $('#name_en').val().trim();
-        var nameAr = $('#name_ar').val().trim();
-        var department = $('#department').val();
-        var doctorDescriptionContent = quillDescription.root.innerHTML.trim();
-        var image = $('#image').val();
-
-        // Remove prefix from name_en and name_ar for validation
-        var rawNameEn = nameEn.startsWith(prefix) ? nameEn.slice(prefix.length).trim() : nameEn;
-        var rawNameAr = nameAr.startsWith(prefix) ? nameAr.slice(prefix.length).trim() : nameAr;
+        let nameEn = $('#name_en').val().trim();
+        let nameAr = $('#name_ar').val().trim();
+        let department = $('#department').val();
+        let image = $('#image').val();
 
         // Image format validation
         let imageFile = $('#image')[0].files[0];
@@ -34,9 +34,8 @@ $(document).ready(function () {
 
         let errors = {};
 
-        if (!rawNameEn) errors.name_en = 'Name (English) is required.';
-        if (!rawNameAr) errors.name_ar = 'Name (Arabic) is required.';
-        if (!doctorDescriptionContent || doctorDescriptionContent === '<p><br></p>') errors.doctor_description = 'Doctor description is required.';
+        if (!nameEn) errors.name_en = 'Name (English) is required.';
+        if (!nameAr) errors.name_ar = 'Name (Arabic) is required.';
         if (!department) errors.department = 'Please select a department.';
         if (!image) errors.image = 'Doctor image is required.';
         if (!isValidImage) errors.image = 'Image format must be JPEG, JPG, PNG, GIF, or SVG.';
@@ -66,17 +65,14 @@ $(document).ready(function () {
             return;
         }
 
-        // Append hidden input for doctor description
-        $('#doctor_description').val(doctorDescriptionContent);
-
-        // Append the prefix to names for storage
-        nameEn = prefix + ' ' + rawNameEn;
-        nameAr = prefix + ' ' + rawNameAr;
+        let contentDr = snowEditor.root.innerHTML.trim();
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'doctor_description',
+            value: contentDr
+        }).appendTo('#addDoctorForm');
 
         var formData = new FormData(this);
-        formData.set('name_en', nameEn);
-        formData.set('name_ar', nameAr);
-        formData.set('doctor_description', doctorDescriptionContent);
         $.ajax({
             url: doctorStoreUrl,
             type: 'POST',
@@ -120,12 +116,5 @@ $(document).ready(function () {
     $('#addDoctorForm input, #addDoctorForm select').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
-    });
-
-    quillDescription.on('text-change', function () {
-        if (quillDescription.root.innerHTML.trim() !== '<p><br></p>') {
-            $('#doctor-description-editor').removeClass('is-invalid');
-            $('#doctor-description-editor').siblings('.invalid-feedback').remove();
-        }
     });
 });

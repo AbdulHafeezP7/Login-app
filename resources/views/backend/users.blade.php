@@ -167,7 +167,6 @@
                 }
             });
         });
-
         $('#users-table').on('click', '.delete-user', function() {
             var userId = $(this).data('id');
             if (confirm('Are you sure you want to delete this user?')) {

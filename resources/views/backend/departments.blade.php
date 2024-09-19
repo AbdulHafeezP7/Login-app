@@ -21,6 +21,7 @@
                             <th>Department (Arabic)</th>
                             <th>Department Image</th>
                             <th>Department Details</th>
+                            <th>Article</th>
                             <th>Slug</th>
                             <th>Sort</th>
                             <th>Created At</th>
@@ -137,6 +138,13 @@
                     name: 'department_details',
                     render: function(data) {
                         return data ? data.substring(0, 23) + '' : '';
+                    }
+                },
+                {
+                    data: 'content_ar',
+                    name: 'content_ar',
+                    render: function(data) {
+                        return data ? data.substring(0, 13) + '' : '';
                     }
                 },
                 {
