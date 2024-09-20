@@ -26,4 +26,11 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+<script src="{{ asset('assets/js/user-passwordreset.js') }}"></script>
+<script>
+    var userIndexUrl = "{{ route('users.index') }}";
+</script>
 @endsection

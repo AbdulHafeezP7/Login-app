@@ -156,11 +156,11 @@
                 title: 'Are you sure?',
                 text: "Do you want to reset this user's password?",
                 icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, reset it!',
-                cancelButtonText: 'No,cancel'
+                customClass: {
+                    confirmButton: 'btn btn-primary waves-effect waves-light',
+                    cancelButton: 'btn btn-danger waves-effect waves-light'
+                },
+                buttonsStyling: false
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "{{ url('users') }}/" + userId + "/passwordreset";

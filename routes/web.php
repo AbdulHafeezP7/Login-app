@@ -166,9 +166,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
     // Route::get('/users', [UserController::class, 'getUser']);
-    // Route to show the password reset form
     Route::get('users/{id}/passwordreset', [UserController::class, 'showPasswordResetForm'])->name('users.passwordreset');
-    // Route to handle password reset form submission
     Route::post('users/{id}/passwordreset', [UserController::class, 'resetPassword'])->name('users.passwordreset.update');
 });
 Route::get('/', [FrontEndController::class, 'home']);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\UserPasswordResetRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -44,7 +45,6 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         try {
-            $totalUsers = User::count();
             $user = new User;
             $user->name = $request->name;
             $user->email = $request->email;
@@ -106,17 +106,30 @@ class UserController extends Controller
         return view('backend.user-passwordreset', compact('user'));
     }
 
-    // Handle the password reset
-    public function resetPassword(Request $request, $id)
+    public function resetPassword(UserPasswordResetRequest $request, $id)
     {
-        $request->validate([
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        try {
+            $user = User::findOrFail($id);
+            $user->password = Hash::make($request->password);
+            $user->save();
 
-        $user = User::findOrFail($id);
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return response()->json(['status' => true, 'message' => 'Password reset successfully!']);
-        // return redirect()->route('users.index')->with('success', 'Password reset successfully!');
+            if ($request->ajax()) {
+                return response()->json(['status' => true, 'message' => 'Password reset successfully!']);
+            } else {
+                return redirect()->route('users.index')->with('success', 'Password reset successfully!');
+            }
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            if ($request->ajax()) {
+                return response()->json(['status' => false, 'message' => $e->validator->errors()->first()], 422);
+            } else {
+                return back()->with('error', $e->validator->errors()->first());
+            }
+        } catch (\Exception $e) {
+            if ($request->ajax()) {
+                return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
+            } else {
+                return back()->with('error', $e->getMessage());
+            }
+        }
     }
 }
