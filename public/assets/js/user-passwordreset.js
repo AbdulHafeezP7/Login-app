@@ -11,15 +11,15 @@ $(document).ready(function () {
         let errors = {};
 
         if (!newPassword) {
-            errors.new_password = 'New Password is required.';
+            errors.password = 'New Password is required.';
         } else if (newPassword.length < 8) {
-            errors.new_password = 'Password must be at least 8 characters, at least one uppercase, at least one number,at least one special character.';
+            errors.password = 'Password must be at least 8 characters, at least one uppercase, at least one number,at least one special character.';
         }
 
         if (!confirmPassword) {
-            errors.new_password_confirmation = 'Confirm Password is required.';
+            errors.password_confirmation = 'Confirm Password is required.';
         } else if (confirmPassword !== newPassword) {
-            errors.new_password_confirmation = 'Passwords do not match.';
+            errors.password_confirmation = 'Passwords do not match.';
         }
 
         // If there are validation errors
@@ -53,17 +53,21 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'User Password Reset successfully!',
-                    icon: 'success',
-                    customClass: {
-                        confirmButton: 'btn btn-primary waves-effect waves-light'
-                    },
-                    buttonsStyling: false
-                }).then(() => {
-                    window.location.href = userIndexUrl;
-                });
+                if (response.status) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'User Password Reset successfully!',
+                        icon: 'success',
+                        customClass: {
+                            confirmButton: 'btn btn-primary waves-effect waves-light'
+                        },
+                        buttonsStyling: false
+                    }).then(() => {
+                        window.location.href = userIndexUrl;
+                    });
+                } else {
+                    console.log('Error updating password reset: ' + response.message);
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 422) {
@@ -94,7 +98,7 @@ $(document).ready(function () {
     });
 
     // Remove validation error when input changes
-    $('#password-reset-form input').on('input change', function () {
+    $('#user-form input').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
     });

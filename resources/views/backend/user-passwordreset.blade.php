@@ -12,16 +12,17 @@
                     <input type="hidden" class="form-control" name="id" value="{{ $user->id }}">
                 </div>
                 <div class="mb-3">
-                <label for="password" class="form-label">New Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-              </div>
-              <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-              </div>
-
+                    <label for="password" class="form-label">New Password:</label>
+                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                </div>
+                <div class="mb-3">
+                    <label for="password_confirmation" class="form-label">Confirm Password:</label>
+                    <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password_confirmation" />
+                </div>
                 <button type="submit" class="btn btn-primary">Reset Password</button>
                 <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>
+                <input type="hidden" name="content" id="content">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
         </div>
     </div>
