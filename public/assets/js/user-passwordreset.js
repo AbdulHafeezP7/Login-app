@@ -15,7 +15,6 @@ $(document).ready(function () {
         } else if (newPassword.length < 8) {
             errors.password = 'Password must be at least 8 characters, at least one uppercase, at least one number,at least one special character.';
         }
-
         if (!confirmPassword) {
             errors.password_confirmation = 'Confirm Password is required.';
         } else if (confirmPassword !== newPassword) {
