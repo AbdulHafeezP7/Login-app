@@ -18,7 +18,7 @@
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -52,27 +52,20 @@
                                 <label for="email" class="form-label">Email or Username</label>
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus />
                             </div>
-                            <div class="mb-6 form-password-toggle">
+                            <!-- <div class="mb-6 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password" placeholder="••••••••" aria-describedby="password" />
-                                    <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                                 </div>
+                            </div> -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                             </div>
                             <div class="mb-6">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
-                            <!-- <div class="my-8">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <a href="auth-forgot-password-basic.ht"><p class="mb-0">Forgot Password?</p></a>
-                                </div>
-                            </div> -->
                         </form>
-
-                        <!-- <div class="divider my-6">
-                            <div class="divider-text">or</div>
-                        </div>
-                        <p class="text-center"><span>New on our platform?</span> <a href="{{ url('register') }}"><span>Create an account</span></a></p> -->
                     </div>
                 </div>
             </div>
@@ -80,71 +73,119 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        $(document).ready(function () {
+            $('#formAuthentication').on('submit', function (e) {
+                e.preventDefault();
+                let formData = new FormData(this);
+                $('.invalid-feedback').remove();
+                $('.form-control').removeClass('is-invalid');
 
-        $('#formAuthentication').on('submit', function(e) {
-            e.preventDefault();
+                // Validation checks
+                let email = $('#email').val().trim();
+                let password = $('#password').val().trim();
 
-            let email = $('#email').val();
-            let password = $('#password').val();
-            let errors = [];
+                let errors = {};
 
-            if (email === '') {
-                errors.push('Email is required.');
-            } else if (!email.endsWith('@gmail.com')) {
-                errors.push('Email must be a @gmail.com address.');
-            }
-            if (password === '') {
-                errors.push('Password is required.');
-            } else if (password.length < 8) {
-                errors.push('Password must be at least 8 characters, at least one uppercase, at least one number,at least one special character.');
-            }
-            if (errors.length > 0) {
-                let errorHtml = '<div class="alert alert-danger"><ul>';
-                errors.forEach(function(error) {
-                    errorHtml += '<li>' + error + '</li>';
-                });
-                errorHtml += '</ul></div>';
-                $('#error-messages').html(errorHtml);
-            } else {
+                if (!email) {
+                    errors.email = 'Email is required.';
+                } else if (!email.endsWith('@gmail.com')) {
+                    errors.email = 'Email must be a @gmail.com address.';
+                }
+                if (!password) {
+                    errors.password = 'Password is required.';
+                } else if (password.length < 8) {
+                    errors.password = 'Password must be at least 8 characters, including at least one uppercase letter, one number, and one special character.';
+                }
+
+                // If there are validation errors
+                if (Object.keys(errors).length > 0) {
+                    for (let field in errors) {
+                        let errorMessage = errors[field];
+                        let inputField = $('#' + field);
+
+                        let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
+                        inputField.addClass('is-invalid').after(errorDiv);
+                    }
+
+                    let errorMessages = Object.values(errors).join('\n');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: errorMessages,
+                        icon: 'error',
+                        customClass: {
+                            confirmButton: 'btn btn-primary waves-effect waves-light'
+                        },
+                        buttonsStyling: false
+                    });
+                    return;
+                }
+
+                // Submit the form via AJAX
                 $.ajax({
-                    url: "{{ route('login') }}",
+                    url: $(this).attr('action'),
                     method: 'POST',
-                    data: {
-                        email: email,
-                        password: password,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
                         if (response.success) {
-                            let successHtml = '<div class="alert alert-success">' + response.message + '</div>';
-                            $('#error-messages').html(successHtml);
-                            setTimeout(function() {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'User Login successfull!',
+                                icon: 'success',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary waves-effect waves-light'
+                                },
+                                buttonsStyling: false
+                            }).then(() => {
                                 window.location.href = "{{ route('dashboard') }}";
-                            }, 1000);
-                        } else {
-                            let errorHtml = '<div class="alert alert-danger"><ul>';
-                            response.errors.forEach(function(error) {
-                                errorHtml += '<li>' + error + '</li>';
                             });
-                            errorHtml += '</ul></div>';
-                            $('#error-messages').html(errorHtml);
+                        } else {
+                            let errorMessages = response.errors.join('\n');
+                            Swal.fire({
+                                title: 'Error!',
+                                text: errorMessages,
+                                icon: 'error',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary waves-effect waves-light'
+                                },
+                                buttonsStyling: false
+                            });
                         }
                     },
-                    error: function(xhr) {
+                    error: function (xhr) {
                         if (xhr.status === 401) {
-                            $('#error-messages').html('<div class="alert alert-danger"> Unauthorized: Invalid email or password.</div>');
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Unauthorized: Invalid email or password.',
+                                icon: 'error',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary waves-effect waves-light'
+                                },
+                                buttonsStyling: false
+                            });
                         } else {
-                            $('#error-messages').html('<div class="alert alert-danger">An error occurred. Please try again later.</div>');
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred. Please try again later.',
+                                icon: 'error',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary waves-effect waves-light'
+                                },
+                                buttonsStyling: false
+                            });
                         }
                     }
                 });
-            }
+            });
+
+            // Remove validation error when input changes
+            $('#formAuthentication input').on('input change', function () {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            });
         });
     </script>
 </body>
