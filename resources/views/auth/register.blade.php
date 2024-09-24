@@ -1,3 +1,4 @@
+<!-- Register Form -->
 <!doctype html>
 <html
     lang="en"
@@ -12,6 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Register</title>
+    <!-- CSS Link -->
     <link rel="stylesheet" href="{{ asset('css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flag-icons.css') }}">
@@ -53,6 +55,7 @@
                         <!-- /Logo -->
                         <h4 class="mb-1">Create an Account 🚀</h4>
                         <p class="mb-6">Fill the form below to create a new account</p>
+                        <!-- Form Start -->
                         <form id="formAuthentication" class="mb-4" action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="mb-6">
@@ -81,17 +84,16 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
                             </div>
                         </form>
+                        <!-- Form End -->
                         <div class="divider my-6">
                             <div class="divider-text">or</div>
                         </div>
-
                         <p class="text-center">
                             <span>Already have an account?</span>
                             <a href="{{ url('login') }}">
                                 <span>Login instead</span>
                             </a>
                         </p>
-
                         <div class="d-flex justify-content-center">
                             <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-facebook me-1_5">
                                 <i class="tf-icons ti ti-brand-facebook-filled"></i>
@@ -120,18 +122,20 @@
         </ul>
     </div>
     @endif
+    <!-- Js Link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#formAuthentication').on('submit', function(e) {
                 e.preventDefault();
+                // Clear previous error And Validating Form
                 $('.alert-danger').remove();
                 let name = $('#name').val();
                 let email = $('#email').val();
                 let password = $('#password').val();
                 let password_confirmation = $('#password_confirmation').val();
-
                 let errors = [];
+                // Checks Validation
                 if (name === '') {
                     errors.push('Full Name is required.');
                 }
@@ -154,6 +158,7 @@
                 if (password_confirmation !== password) {
                     errors.push('Password confirmation does not match.');
                 }
+                // If There Are Validation Errors, Display Them And Prevent Form Submission
                 if (errors.length > 0) {
                     let errorHtml = '<div class="alert alert-danger"><ul>';
                     errors.forEach(function(error) {
@@ -162,7 +167,7 @@
                     errorHtml += '</ul></div>';
                     $('form').before(errorHtml);
                 } else {
-                    // Send Ajax request
+                    // Submit The Form Via AJAX And Displaying Success Message
                     $.ajax({
                         url: "{{ route('register') }}",
                         method: 'POST',

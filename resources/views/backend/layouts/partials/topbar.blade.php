@@ -1,3 +1,4 @@
+<!-- Topbar Form -->
 <nav
   class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
   id="layout-navbar">
@@ -6,7 +7,6 @@
       <i class="ti ti-menu-2 ti-md"></i>
     </a>
   </div>
-
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
     <!-- Search -->
     <div class="navbar-nav align-items-center">
@@ -18,7 +18,6 @@
       </div>
     </div>
     <!-- /Search -->
-
     <ul class="navbar-nav flex-row align-items-center ms-auto">
       <!-- Language -->
       <li class="nav-item dropdown-language dropdown">
@@ -52,7 +51,6 @@
         </ul>
       </li>
       <!--/ Language -->
-
       <!-- Style Switcher -->
       <li class="nav-item dropdown-style-switcher dropdown">
         <a
@@ -80,7 +78,6 @@
         </ul>
       </li>
       <!-- / Style Switcher-->
-
       <!-- Quick links  -->
       <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
         <a
@@ -172,7 +169,6 @@
         </div>
       </li>
       <!-- Quick links -->
-
       <!-- Notification -->
       <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
         <a
@@ -377,7 +373,6 @@
         </ul>
       </li>
       <!--/ Notification -->
-
       <!-- User -->
       <li class="nav-item navbar-dropdown dropdown-user dropdown">
         <a
@@ -439,21 +434,19 @@
             </a>
           </li>
           <li>
+            <!-- Logout -->
             <div class="d-grid px-2 pt-2 pb-1">
               <a class="btn btn-sm btn-danger d-flex" href="{{ route('logout') }}">
                 <small class="align-middle">Logout</small>
                 <i class="ti ti-logout ms-2 ti-14px"></i>
               </a>
             </div>
-
           </li>
         </ul>
       </li>
       <!--/ User -->
     </ul>
-
   </div>
-
   <!-- Search Small Screens -->
   <div class="navbar-search-wrapper search-input-wrapper d-none">
     <input

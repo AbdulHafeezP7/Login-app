@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Validation Request For Partner
 class PartnerRequest extends FormRequest
 {
     public function authorize(): bool
@@ -12,6 +13,7 @@ class PartnerRequest extends FormRequest
     }
     public function rules(): array
     {
+        // Requirements Of Validation
         return [
             'partner_en' => 'required|string|max:255',
             'partner_ar' => 'required|string|max:255',

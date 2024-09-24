@@ -8,50 +8,55 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\InsuranceRequest;
 use App\Http\Requests\InsuranceUpdateRequest;
 
+// Controller For Insurance
 class InsuranceController extends Controller
 {
+    // View Insurance Index
     public function index()
     {
         return view('backend.insurances');
     }
+    // Datatable for Insurance
     public function dataTablesForInsurances()
     {
-            $query = Insurance::query();
-            return DataTables::of($query)
-                ->addColumn('insurance_en', function ($row) {
-                    return $row->insurance_en;
-                })
-                ->addColumn('insurance_ar', function ($row) {
-                    return $row->insurance_ar;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('insurance_en', function ($query, $keyword) {
-                    $query->where('insurance_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('insurance_ar', function ($query, $keyword) {
-                    $query->where('insurance_ar', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Insurance::query();
+        return DataTables::of($query)
+            ->addColumn('insurance_en', function ($row) {
+                return $row->insurance_en;
+            })
+            ->addColumn('insurance_ar', function ($row) {
+                return $row->insurance_ar;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('insurance_en', function ($query, $keyword) {
+                $query->where('insurance_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('insurance_ar', function ($query, $keyword) {
+                $query->where('insurance_ar', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Insurance
     public function addInsurances()
     {
         return view('backend.insurancesAdd');
     }
+    // Store Insurance
     public function store(InsuranceRequest $request)
     {
         try {
@@ -68,10 +73,10 @@ class InsuranceController extends Controller
             $insurance->save();
             return response()->json(['status' => true, 'message' => 'Insurance created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Insurance
     public function insuranceDecrement(Request $request)
     {
         $insurance = Insurance::find($request->insuranceId);
@@ -88,6 +93,7 @@ class InsuranceController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Insurance sorted successfully.']);
     }
+    // Sort Increment Function For Insurance 
     public function insuranceIncrement(Request $request)
     {
         $insurance = Insurance::find($request->insuranceId);
@@ -105,12 +111,13 @@ class InsuranceController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Insurance sorted successfully.']);
     }
+    // Edit Insurance
     public function edit($id)
     {
         $singleInsurance = Insurance::find($id);
-
         return view('backend.insurance-edit', compact('singleInsurance', 'id'));
     }
+    // Update Insurance
     public function update(InsuranceUpdateRequest $request)
     {
         try {
@@ -142,16 +149,17 @@ class InsuranceController extends Controller
             }
         }
     }
+    // Delete Insurance
     public function destroy($id)
     {
         $insurance = Insurance::findOrFail($id);
         $insurance->delete();
         return response()->json(['status' => true, 'message' => 'Insurance deleted successfully'],);
     }
+    // View Insurance
     public function show(Request $request, $id)
     {
         $singleInsurance = Insurance::find($id);
-
         return view('backend.insurance-show', compact('singleInsurance'));
     }
 }

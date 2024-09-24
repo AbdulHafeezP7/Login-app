@@ -1,24 +1,24 @@
-$(document).ready(function() {
-    $('#addPartnerForm').on('submit', function(e) {
+// Partner Form Js And Validation Concept
+$(document).ready(function () {
+    $('#addPartnerForm').on('submit', function (e) {
         e.preventDefault();
-
-        // Clear previous error messages
+        // Clear previous error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
-        // Get form field values
         let partnerEn = $('#partner_en').val().trim();
         let partnerAr = $('#partner_ar').val().trim();
         let partnerImage = $('#image').val();
-
+        // Image Validation
+        let imageFile = $('#image')[0].files[0];
+        let validImageFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/svg+xml'];
+        let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
         let errors = {};
-
-        // Validate fields
+        // Checks Validation
         if (!partnerEn) errors.partner_en = 'Partner Name (English) is required.';
         if (!partnerAr) errors.partner_ar = 'Partner Name (Arabic) is required.';
         if (!partnerImage) errors.image = 'Partner Image is required.';
-
-        // Display error messages if any
+        if (!isValidImage) errors.image = 'Image format must be JPEG, JPG, PNG, GIF, or SVG.';
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
@@ -26,9 +26,7 @@ $(document).ready(function() {
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
                 inputField.addClass('is-invalid').after(errorDiv);
             }
-
             let errorMessages = Object.values(errors).join('\n');
-
             Swal.fire({
                 title: 'Error!',
                 text: errorMessages,
@@ -40,16 +38,16 @@ $(document).ready(function() {
             });
             return;
         }
-
-        // Submit the form via AJAX
+        // Prepare And Submmiting Form Data
         let formData = new FormData(this);
+        // Submit The Form Via AJAX And Displaying Success Message
         $.ajax({
             url: partnerStoreUrl,
             type: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 if (response.status) {
                     Swal.fire({
                         title: 'Success!',
@@ -66,7 +64,7 @@ $(document).ready(function() {
                     console.log('Error saving partner: ' + response.message);
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     $('.invalid-feedback').remove();
                     let errors = xhr.responseJSON.errors;
@@ -83,9 +81,8 @@ $(document).ready(function() {
             }
         });
     });
-
-    // Clear validation on input
-    $('#addPartnerForm input').on('input', function() {
+    // Remove Validation Error After Entering The Input Values
+    $('#addPartnerForm input').on('input', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
     });

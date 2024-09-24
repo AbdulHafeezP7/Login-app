@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -7,18 +9,20 @@ use App\Http\Requests\BranchRequest;
 use App\Http\Requests\BranchUpdateRequest;
 use App\Models\SocialMedia;
 
-
+// Controller For Branch
 class BranchController extends Controller
 {
+    // View Branch Index
     public function index()
     {
         return view('backend.branchs');
     }
+    // Datatable of Branch
     public function dataTablesForBranchs(Request $request)
     {
         if ($request->ajax()) {
             $query = Branch::query()
-                ->join('socialmedias', 'branchs.branchsocial_link', '=', 'socialmedias.id') // Join with departments table
+                ->join('socialmedias', 'branchs.branchsocial_link', '=', 'socialmedias.id') // Join with departments table with branch
                 ->select('branchs.*', 'socialmedias.socialmedia_url as socialmedia_url'); // Select the department name
             $query = Branch::query();
             return DataTables::of($query)
@@ -82,11 +86,13 @@ class BranchController extends Controller
                 ->make(true);
         }
     }
+    // Add Branchs
     public function addBranchs()
     {
         $socialmedias = SocialMedia::all();
         return view('backend.branchsAdd', compact('socialmedias'));
     }
+    // Store Branchs
     public function store(BranchRequest $request)
     {
         try {
@@ -107,6 +113,7 @@ class BranchController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Branch 
     public function branchDecrement(Request $request)
     {
         $branch = Branch::find($request->branchId);
@@ -123,6 +130,7 @@ class BranchController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
     }
+    // Sort Increment Function For Branch
     public function branchIncrement(Request $request)
     {
         $branch = Branch::find($request->branchId);
@@ -140,12 +148,14 @@ class BranchController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
     }
+    // Edit Branchs
     public function edit($id)
     {
         $singleBranch = Branch::find($id);
         $socialmedias = SocialMedia::all();
         return view('backend.branch-edit', compact('socialmedias', 'singleBranch', 'id'));
     }
+    // Update Branchs
     public function update(BranchUpdateRequest $request)
     {
         try {
@@ -178,12 +188,14 @@ class BranchController extends Controller
             }
         }
     }
+    // Delete Branchs
     public function destroy($id)
     {
         $branch = Branch::findOrFail($id);
         $branch->delete();
         return response()->json(['status' => true, 'message' => 'Branch deleted successfully'],);
     }
+    // View Branchs
     public function show(Request $request, $id)
     {
         $singleBranch = Branch::find($id);

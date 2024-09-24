@@ -8,62 +8,67 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\OfferRequest;
 use App\Http\Requests\OfferUpdateRequest;
 
+// Controller For Offer
 class OfferController extends Controller
 {
+    // View Offer Index
     public function index()
     {
         return view('backend.offers');
     }
+    // Datatable For Offer
     public function dataTablesForOffers()
     {
-            $query = Offer::query();
-            return DataTables::of($query)
-                ->addColumn('offer_en', function ($row) {
-                    return $row->offer_en;
-                })
-                ->addColumn('offer_ar', function ($row) {
-                    return $row->offer_ar;
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('actual_price', function ($row) {
-                    return $row->actual_price;
-                })
-                ->addColumn('offer_price', function ($row) {
-                    return $row->offer_price;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('offer_en', function ($query, $keyword) {
-                    $query->where('offer_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('offer_ar', function ($query, $keyword) {
-                    $query->where('offer_ar', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('actual_price', function ($query, $keyword) {
-                    $query->where('actual_price', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('offer_price', function ($query, $keyword) {
-                    $query->where('offer_price', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Offer::query();
+        return DataTables::of($query)
+            ->addColumn('offer_en', function ($row) {
+                return $row->offer_en;
+            })
+            ->addColumn('offer_ar', function ($row) {
+                return $row->offer_ar;
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('actual_price', function ($row) {
+                return $row->actual_price;
+            })
+            ->addColumn('offer_price', function ($row) {
+                return $row->offer_price;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('offer_en', function ($query, $keyword) {
+                $query->where('offer_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('offer_ar', function ($query, $keyword) {
+                $query->where('offer_ar', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('actual_price', function ($query, $keyword) {
+                $query->where('actual_price', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('offer_price', function ($query, $keyword) {
+                $query->where('offer_price', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Offer
     public function addOffers()
     {
         return view('backend.offersAdd');
     }
+    // Store Offer
     public function store(OfferRequest $request)
     {
         try {
@@ -82,10 +87,10 @@ class OfferController extends Controller
             $offer->save();
             return response()->json(['status' => true, 'message' => 'Offer created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Offer
     public function offerDecrement(Request $request)
     {
         $offer = Offer::find($request->offerId);
@@ -102,6 +107,7 @@ class OfferController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
+    // Sort Increment Function For Offer
     public function offerIncrement(Request $request)
     {
         $offer = Offer::find($request->offerId);
@@ -119,12 +125,13 @@ class OfferController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Offer sorted successfully.']);
     }
+    // Edit Offer
     public function edit($id)
     {
         $offer = Offer::find($id);
-
         return view('backend.offer-edit', compact('offer', 'id'));
     }
+    // Update Offer
     public function update(OfferUpdateRequest $request)
     {
         try {
@@ -158,16 +165,17 @@ class OfferController extends Controller
             }
         }
     }
+    // Delete Offer
     public function destroy($id)
     {
         $offer = Offer::findOrFail($id);
         $offer->delete();
         return response()->json(['status' => true, 'message' => 'Offer deleted successfully']);
     }
+    // View Offer
     public function show(Request $request, $id)
     {
         $offer = Offer::find($id);
-
         return view('backend.offer-show', compact('offer'));
     }
 }

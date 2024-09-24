@@ -4,15 +4,16 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Validation Request For Branch Update
 class BranchUpdateRequest extends FormRequest
 {
     public function authorize()
     {
         return true;
     }
-
     public function rules()
     {
+        // Requirements Of Validation
         return [
             'branchname_en' => 'required|string|max:255',
             'branchname_ar' => 'required|string|max:255',
@@ -33,5 +34,3 @@ class BranchUpdateRequest extends FormRequest
         ];
     }
 }
-
-

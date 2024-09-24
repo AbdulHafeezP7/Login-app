@@ -8,63 +8,67 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\DepartmentRequest;
 use App\Http\Requests\DepartmentUpdateRequest;
 
+// Controller For Department
 class DepartmentController extends Controller
 {
+    // View Department Index
     public function index()
     {
         return view('backend.departments');
     }
+    // Datatable For Department
     public function dataTablesForDepartments()
     {
-            $query = Department::query();
-            return DataTables::of($query)
-                ->addColumn('department_en', function ($row) {
-                    return $row->department_en;
-                })
-                ->addColumn('department_ar', function ($row) {
-                    return $row->department_ar;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('department_details', function ($row) {
-                    return $row->department_details;
-                })
-                ->addColumn('slug', function ($row) {
-                    return $row->slug;
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('department_en', function ($query, $keyword) {
-                    $query->where('department_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('department_ar', function ($query, $keyword) {
-                    $query->where('department_ar', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('department_details', function ($query, $keyword) {
-                    $query->where('department_details', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('slug', function ($query, $keyword) {
-                    $query->where('slug', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Department::query();
+        return DataTables::of($query)
+            ->addColumn('department_en', function ($row) {
+                return $row->department_en;
+            })
+            ->addColumn('department_ar', function ($row) {
+                return $row->department_ar;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image);
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('department_details', function ($row) {
+                return $row->department_details;
+            })
+            ->addColumn('slug', function ($row) {
+                return $row->slug;
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('department_en', function ($query, $keyword) {
+                $query->where('department_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('department_ar', function ($query, $keyword) {
+                $query->where('department_ar', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('department_details', function ($query, $keyword) {
+                $query->where('department_details', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('slug', function ($query, $keyword) {
+                $query->where('slug', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Department
     public function addDepartments()
     {
         return view('backend.departmentsAdd');
     }
+    // Store Department
     public function store(DepartmentRequest $request)
     {
         try {
@@ -87,11 +91,11 @@ class DepartmentController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function for Department
     public function departmentDecrement(Request $request)
     {
         $department = Department::find($request->departmentId);
-        
-        $sort =($department->sort!="")?--$department->sort:0;
+        $sort = ($department->sort != "") ? --$department->sort : 0;
         if ($sort >= 1) {
             $departmentDownData = Department::where('sort', $sort)->first();
             if ($departmentDownData) {
@@ -104,6 +108,7 @@ class DepartmentController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
     }
+    // Sort Increment Function For Department
     public function departmentIncrement(Request $request)
     {
         $department = Department::find($request->departmentId);
@@ -121,11 +126,13 @@ class DepartmentController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
     }
+    // Edit Department
     public function edit($id)
     {
         $department = Department::find($id);
         return view('backend.department-edit', compact('department', 'id'));
     }
+    // Update Department
     public function update(DepartmentUpdateRequest $request)
     {
         try {
@@ -160,12 +167,14 @@ class DepartmentController extends Controller
             }
         }
     }
+    // Delete Department
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
         $department->delete();
         return response()->json(['status' => true, 'message' => 'Department deleted successfully']);
     }
+    // View Department
     public function show(Request $request, $id)
     {
         $department = Department::find($id);

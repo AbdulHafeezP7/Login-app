@@ -8,69 +8,73 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\ArticleUpdateRequest;
 
+// Controller For Article
 class ArticleController extends Controller
 {
+    // View Article Index
     public function index()
     {
         return view('backend.articles');
     }
+    // Datatable of Article
     public function dataTablesForArticles()
     {
-            $query = Article::query();
-            return DataTables::of($query)
-                ->addColumn('title_en', function ($row) {
-                    return $row->title_en;
-                })
-                ->addColumn('title_ar', function ($row) {
-                    return $row->title_ar;
-                })
-                ->addColumn('content_en', function ($row) {
-                    return $row->content_en;
-                })
-                ->addColumn('content_ar', function ($row) {
-                    return $row->content_ar;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('slug', function ($row) {
-                    return $row->slug;
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('title_en', function ($query, $keyword) {
-                    $query->where('title_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('title_ar', function ($query, $keyword) {
-                    $query->where('title_ar', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('content_en', function ($query, $keyword) {
-                    $query->where('content_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('content_ar', function ($query, $keyword) {
-                    $query->where('content_ar', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('slug', function ($query, $keyword) {
-                    $query->where('slug', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Article::query();
+        return DataTables::of($query)
+            ->addColumn('title_en', function ($row) {
+                return $row->title_en;
+            })
+            ->addColumn('title_ar', function ($row) {
+                return $row->title_ar;
+            })
+            ->addColumn('content_en', function ($row) {
+                return $row->content_en;
+            })
+            ->addColumn('content_ar', function ($row) {
+                return $row->content_ar;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image);
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('slug', function ($row) {
+                return $row->slug;
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('title_en', function ($query, $keyword) {
+                $query->where('title_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('title_ar', function ($query, $keyword) {
+                $query->where('title_ar', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('content_en', function ($query, $keyword) {
+                $query->where('content_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('content_ar', function ($query, $keyword) {
+                $query->where('content_ar', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('slug', function ($query, $keyword) {
+                $query->where('slug', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Articles
     public function addArticles()
     {
         return view('backend.articlesAdd');
     }
+    // Store Articles
     public function store(ArticleRequest $request)
     {
         try {
@@ -93,11 +97,11 @@ class ArticleController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Article
     public function articleDecrement(Request $request)
     {
         $article = Article::find($request->articleId);
-        
-        $sort =($article->sort!="")?--$article->sort:0;
+        $sort = ($article->sort != "") ? --$article->sort : 0;
         if ($sort >= 1) {
             $articleDownData = Article::where('sort', $sort)->first();
             if ($articleDownData) {
@@ -110,6 +114,7 @@ class ArticleController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
     }
+    // Sort Increment Function For Article
     public function articleIncrement(Request $request)
     {
         $article = Article::find($request->articleId);
@@ -127,11 +132,13 @@ class ArticleController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
     }
+    // Edit Articles
     public function edit($id)
     {
         $article = Article::find($id);
         return view('backend.article-edit', compact('article', 'id'));
     }
+    // Update Articles
     public function update(ArticleUpdateRequest $request)
     {
         try {
@@ -166,12 +173,14 @@ class ArticleController extends Controller
             }
         }
     }
+    // Delete Articles
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
         $article->delete();
         return response()->json(['status' => true, 'message' => 'Article deleted successfully']);
     }
+    // View Articles
     public function show(Request $request, $id)
     {
         $article = Article::find($id);

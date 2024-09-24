@@ -10,15 +10,17 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserPasswordResetRequest;
 use Illuminate\Support\Facades\Hash;
 
+// Controller For User
 class UserController extends Controller
 {
+    // View User Index
     public function index()
     {
         return view('backend.users');
     }
+    // Datatable For User
     public function dataTablesForUsers()
     {
-
         $query = User::query();
         return DataTables::of($query)
             ->addColumn('name', function ($row) {
@@ -38,10 +40,12 @@ class UserController extends Controller
             })
             ->make(true);
     }
+    // Add User
     public function addUsers()
     {
         return view('backend.usersAdd');
     }
+    // Store User
     public function store(UserRequest $request)
     {
         try {
@@ -52,16 +56,16 @@ class UserController extends Controller
             $user->save();
             return response()->json(['status' => true, 'message' => 'User created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Edit User
     public function edit($id)
     {
         $user = User::find($id);
-
         return view('backend.user-edit', compact('user', 'id'));
     }
+    // Update User
     public function update(UserUpdateRequest $request)
     {
         try {
@@ -88,31 +92,33 @@ class UserController extends Controller
             }
         }
     }
+    // Delete User
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json(['status' => true, 'message' => 'User deleted successfully']);
     }
+    // View User
     public function show(Request $request, $id)
     {
         $user = User::find($id);
 
         return view('backend.user-show', compact('user'));
     }
+    // View User Passwordreset
     public function showPasswordResetForm($id)
     {
         $user = User::findOrFail($id);
         return view('backend.user-passwordreset', compact('user'));
     }
-
+    // Passwordreset Function For User
     public function resetPassword(UserPasswordResetRequest $request, $id)
     {
         try {
             $user = User::findOrFail($id);
             $user->password = Hash::make($request->password);
             $user->save();
-
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Password reset successfully!']);
             } else {

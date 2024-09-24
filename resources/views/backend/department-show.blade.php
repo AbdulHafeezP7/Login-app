@@ -1,3 +1,4 @@
+<!-- Department Show/View Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'View Department')
 @section('content')

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Validation Request For Article
 class ArticleRequest extends FormRequest
 {
     public function authorize(): bool
@@ -12,6 +13,7 @@ class ArticleRequest extends FormRequest
     }
     public function rules(): array
     {
+        // Requirements Of Validation
         return [
             'title_en' => 'required|string|max:255',
             'title_ar' => 'required|string|max:255',

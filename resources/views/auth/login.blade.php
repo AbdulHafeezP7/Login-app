@@ -1,3 +1,4 @@
+<!-- Login Form -->
 <!doctype html>
 <html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="light">
 
@@ -5,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Login</title>
+    <!-- CSS Links -->
     <link rel="stylesheet" href="{{ asset('css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/flag-icons.css') }}">
@@ -43,10 +45,9 @@
                         </div>
                         <h4 class="mb-1">Welcome to Login Page 👋</h4>
                         <p class="mb-6">Please sign-in to your account and start the adventure</p>
-
                         <div id="error-messages"></div>
-
-                        <form id="formAuthentication" class="mb-4" action="{{ route('login') }}" method="POST">
+                        <!-- Form Stating -->
+                        <form id="formAuthentication" class="is-invalid" novalidate action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-6">
                                 <label for="email" class="form-label">Email or Username</label>
@@ -66,28 +67,29 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                             </div>
                         </form>
+                        <!-- Form Ending -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- JS Link -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function () {
-            $('#formAuthentication').on('submit', function (e) {
+        // Login Js And Validation
+        $(document).ready(function() {
+            $('#formAuthentication').on('submit', function(e) {
                 e.preventDefault();
+                // Prepare And Submmiting Form Data
                 let formData = new FormData(this);
+                // Clear previous error And Validating Form
                 $('.invalid-feedback').remove();
                 $('.form-control').removeClass('is-invalid');
-
-                // Validation checks
                 let email = $('#email').val().trim();
                 let password = $('#password').val().trim();
-
                 let errors = {};
-
+                // Checks Validation
                 if (!email) {
                     errors.email = 'Email is required.';
                 } else if (!email.endsWith('@gmail.com')) {
@@ -98,17 +100,14 @@
                 } else if (password.length < 8) {
                     errors.password = 'Password must be at least 8 characters, including at least one uppercase letter, one number, and one special character.';
                 }
-
-                // If there are validation errors
+                // If There Are Validation Errors, Display Them And Prevent Form Submission
                 if (Object.keys(errors).length > 0) {
                     for (let field in errors) {
                         let errorMessage = errors[field];
                         let inputField = $('#' + field);
-
                         let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
                         inputField.addClass('is-invalid').after(errorDiv);
                     }
-
                     let errorMessages = Object.values(errors).join('\n');
                     Swal.fire({
                         title: 'Error!',
@@ -121,15 +120,14 @@
                     });
                     return;
                 }
-
-                // Submit the form via AJAX
+                // Submit The Form Via AJAX And Displaying Success Message
                 $.ajax({
                     url: $(this).attr('action'),
                     method: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function (response) {
+                    success: function(response) {
                         if (response.success) {
                             Swal.fire({
                                 title: 'Success!',
@@ -155,7 +153,7 @@
                             });
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         if (xhr.status === 401) {
                             Swal.fire({
                                 title: 'Error!',
@@ -180,9 +178,8 @@
                     }
                 });
             });
-
-            // Remove validation error when input changes
-            $('#formAuthentication input').on('input change', function () {
+            // Remove Validation Error After Entering The Input Values
+            $('#formAuthentication input').on('input change', function() {
                 $(this).removeClass('is-invalid');
                 $(this).next('.invalid-feedback').remove();
             });

@@ -1,12 +1,15 @@
+<!-- Department Edit Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Edit Department')
 @section('content')
+<!-- CSS Link -->
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
 <div id="content-area">
   <div class="card">
     <div class="card-body">
       <h1 class="card-title">Edit Department</h1>
+      <!-- Form Start -->
       <form id="department-form" class="is-invalid" novalidate action="{{ route('departments.update', $department->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -37,10 +40,10 @@
           <label for="slug" class="form-label">Slug</label>
           <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $department->slug) }}">
         </div>
+        <!-- Editor -->
         <div class="mb-3">
           <label for="article_ar" class="form-label">Article(Arabic)</label>
           <div id="snow-toolbar">
-
             <span class="ql-formats">
               <select class="ql-font"></select>
               <select class="ql-size"></select>
@@ -68,23 +71,22 @@
           </div>
           <div id="snow-editor"></div>
           <div id="content_ar"></div>
+          <input type="hidden" value="{{old('content_ar', $department->content_ar) }}" name="content_ar_old" id="content_ar_old">
         </div>
-
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="{{ route('departments.index') }}" class="btn btn-secondary">Cancel</a>
-
-        <input type="hidden" value="{{old('content_ar', $department->content_ar) }}" name="content_ar_old" id="content_ar_old">
       </form>
+      <!-- Form End -->
     </div>
   </div>
 </div>
+<!-- JSS Link -->
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
 <script src="{{ asset('assets/js/department-edit-validation.js') }}"></script>
 <script>
+  // Route for Department Index
   var departmentIndexUrl = "{{ route('departments.index') }}";
 </script>
-
-
 @endsection

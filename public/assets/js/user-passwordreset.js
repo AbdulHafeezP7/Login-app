@@ -1,15 +1,16 @@
+// User Password Reset Form Js And Validation Concept
 $(document).ready(function () {
     $('#user-form').on('submit', function (e) {
         e.preventDefault();
+        // Prepare And Submmiting Form Data
         let formData = new FormData(this);
+        // Clear previous error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
-        // Validation checks
         let newPassword = $('#password').val().trim();
         let confirmPassword = $('#password_confirmation').val().trim();
         let errors = {};
-
+        // Checks Validation
         if (!newPassword) {
             errors.password = 'New Password is required.';
         } else if (newPassword.length < 8) {
@@ -20,17 +21,14 @@ $(document).ready(function () {
         } else if (confirmPassword !== newPassword) {
             errors.password_confirmation = 'Passwords do not match.';
         }
-
-        // If there are validation errors
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
                 let inputField = $('#' + field);
-
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
                 inputField.addClass('is-invalid').after(errorDiv);
             }
-
             let errorMessages = Object.values(errors).join('\n');
             Swal.fire({
                 title: 'Error!',
@@ -43,8 +41,7 @@ $(document).ready(function () {
             });
             return;
         }
-
-        // Submit the form via AJAX
+        // Submit The Form Via AJAX And Displaying Success Message
         $.ajax({
             url: $(this).attr('action'),
             method: 'POST',
@@ -95,8 +92,7 @@ $(document).ready(function () {
             }
         });
     });
-
-    // Remove validation error when input changes
+    // Remove Validation Error After Entering The Input Values
     $('#user-form input').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();

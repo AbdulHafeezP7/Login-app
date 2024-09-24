@@ -1,10 +1,10 @@
-$(document).ready(function() {
-    $('#branch-form').on('submit', function(e) {
+// Branch Edit Form Js And Validation Concept
+$(document).ready(function () {
+    $('#branch-form').on('submit', function (e) {
         e.preventDefault();
-        // Form validation
+        // Clear previous error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
         let branchNameEn = $('#branchname_en').val().trim();
         let branchNameAr = $('#branchname_ar').val().trim();
         let branchManagerName = $('#branchmanager_name').val().trim();
@@ -14,8 +14,7 @@ $(document).ready(function() {
         let branchOfficeNumber = $('#branchoffice_number').val().trim();
         let branchManagerNumber = $('#branchmanager_number').val().trim();
         let errors = {};
-
-        // Validation checks
+        // Checks Validation
         if (!branchNameEn) errors.branchname_en = 'Branch Name (English) is required.';
         if (!branchNameAr) errors.branchname_ar = 'Branch Name (Arabic) is required.';
         if (!branchManagerName) errors.branchmanager_name = 'Branch Manager Name is required.';
@@ -24,13 +23,11 @@ $(document).ready(function() {
         if (!branchSocialLink) errors.branchsocial_link = 'Branch Social Media Link is required.';
         if (!branchOfficeNumber) errors.branchoffice_number = 'Branch Office Number is required.';
         if (!branchManagerNumber) errors.branchmanager_number = 'Branch Manager Number is required.';
-
-        // If there are validation errors, display them and prevent form submission
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
                 let inputField = $('#' + field);
-
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
                 inputField.addClass('is-invalid').after(errorDiv);
             }
@@ -46,19 +43,17 @@ $(document).ready(function() {
             });
             return;
         }
-
-        // Prepare form data
+        // Prepare And Submmiting Form Data
         let formData = new FormData(this);
         formData.append('_method', 'PUT');
-
-        // Submit the form via AJAX
+        // Submit The Form Via AJAX And Displaying Success Message 
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
             data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
+            success: function (response) {
                 if (response.status) {
                     Swal.fire({
                         title: 'Success!',
@@ -73,11 +68,10 @@ $(document).ready(function() {
                     });
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
                     let errorMessages = '';
-
                     for (let field in errors) {
                         let errorMessage = errors[field][0];
                         let inputField = $('#' + field);
@@ -86,7 +80,6 @@ $(document).ready(function() {
                         inputField.addClass('is-invalid').after(errorDiv);
                         errorMessages += errorMessage + '\n';
                     }
-
                     Swal.fire({
                         title: 'Error!',
                         text: errorMessages.trim(),
@@ -102,9 +95,8 @@ $(document).ready(function() {
             }
         });
     });
-
-    // Remove validation error when input enters
-    $('#branch-form input, #branch-form textarea').on('input change', function() {
+    // Remove Validation Error After Entering The Input Values
+    $('#branch-form input, #branch-form textarea').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
     });

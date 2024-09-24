@@ -1,6 +1,8 @@
+<!-- Doctor Add Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Add Doctor')
 @section('content')
+<!-- CSS Link -->
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
 <div class="content-wrapper">
@@ -10,6 +12,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Doctor</h5>
                     <div class="card-body">
+                        <!-- Form Start -->
                         <form id="addDoctorForm" class="is-invalid" novalidate action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data">
                             <label for="name_en" class="form-label">Name (English)</label>
                             <div class="mb-3">
@@ -23,6 +26,7 @@
                                 <label for="image" class="form-label">Doctor Image</label>
                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                             </div>
+                            <!-- Editor -->
                             <div class="mb-3">
                                 <label for="doctor_description" class="form-label">Doctor Description</label>
                                 <div id="snow-toolbar">
@@ -54,7 +58,6 @@
                                 <div id="snow-editor"></div>
                                 <div id="doctor_description"></div>
                             </div>
-
                             <div class="mb-3" id="imgdiv" style="display: none;">
                                 <img id="doctorImage" src="" alt="" width="100px" height="100px">
                             </div>
@@ -76,18 +79,20 @@
                             <input type="hidden" name="content" id="content">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
+                        <!-- Form End -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- JS Link -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
     <script src="{{ asset('assets/js/doctor-form-validation.js') }}"></script>
     <script>
+        // Route For Doctor Index And Store
         var doctorIndexUrl = "{{ route('doctors.index') }}";
         var doctorStoreUrl = "{{ route('doctors.store') }}";
     </script>
-
     @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Validation Request For Offer
 class OfferRequest extends FormRequest
 {
     public function authorize(): bool
@@ -12,6 +13,7 @@ class OfferRequest extends FormRequest
     }
     public function rules(): array
     {
+        // Requirements Of Validation
         return [
             'offer_en' => 'required|string|max:255',
             'offer_ar' => 'required|string|max:255',

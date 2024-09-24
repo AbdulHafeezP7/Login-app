@@ -1,3 +1,4 @@
+<!-- Branch Edit Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Edit Branch')
 @section('content')
@@ -5,6 +6,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Branch</h1>
+            <!-- Form Start -->
             <form id="branch-form" class="is-invalid" novalidate action="{{ route('branchs.update', $singleBranch->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -54,14 +56,17 @@
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('branchs.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
+            <!-- Form End -->
         </div>
     </div>
 </div>
+<!-- JS Link -->
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
 <script src="{{ asset('assets/js/branch-edit-validation.js') }}"></script>
 <script>
+    // Route For Branch Index
      var branchIndexUrl = "{{ route('branchs.index') }}";
 </script>
 @endsection

@@ -6,8 +6,10 @@ use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
+// Controller For ActivityLog
 class ActivityLogController extends Controller
 {
+    // View ActivityLog
     public function showLogs(Request $request)
     {
         if ($request->ajax()) {

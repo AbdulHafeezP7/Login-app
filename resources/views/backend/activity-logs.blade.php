@@ -1,3 +1,4 @@
+<!-- ActivityLog Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Activity Log')
 @section('content')
@@ -6,6 +7,7 @@
         <div class="card-body">
             <h1 class="card-title">Activity Log</h1>
             @include('backend.layouts.partials.sidebar')
+            <!-- Table Content -->
             <div class="table-responsive">
                 <table class="table table-bordered" id="activity-log-table">
                     <thead>
@@ -21,6 +23,7 @@
             </div>
         </div>
     </div>
+    <!-- JS Link -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script>

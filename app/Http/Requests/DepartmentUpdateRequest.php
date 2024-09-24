@@ -5,15 +5,16 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+// Validation For Department Update
 class DepartmentUpdateRequest extends FormRequest
 {
     public function authorize()
     {
         return true;
     }
-
     public function rules()
     {
+        // Requirements Of Validation
         return [
             'department_en' => 'required|string|max:255',
             'department_ar' => 'required|string|max:255',
@@ -27,12 +28,11 @@ class DepartmentUpdateRequest extends FormRequest
             ],
         ];
     }
-
     public function messages()
     {
+        // Checking Slug Uniqueness
         return [
             'slug.unique' => 'The slug should be unique.',
         ];
     }
 }
-

@@ -1,3 +1,4 @@
+<!-- Article Show/View Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'View Article')
 @section('content')

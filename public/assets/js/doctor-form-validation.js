@@ -1,3 +1,4 @@
+// Doctor Form Js And Validation Concept
 $(document).ready(function () {
     const snowEditor = new Quill('#snow-editor', {
         bounds: '#snow-editor',
@@ -7,8 +8,7 @@ $(document).ready(function () {
         },
         theme: 'snow'
     });
-    
-    // Special case for editors
+    // Special Case For Editors
     snowEditor.on('text-change', function () {
         if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor').removeClass('is-invalid');
@@ -17,42 +17,33 @@ $(document).ready(function () {
     });
     $('#addDoctorForm').on('submit', function (e) {
         e.preventDefault();
-
-        // Clear previous error messages
+        // Clear previous error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
         let nameEn = $('#name_en').val().trim();
         let nameAr = $('#name_ar').val().trim();
         let department = $('#department').val();
         let image = $('#image').val();
-
-        // Image format validation
+        // Image Validation
         let imageFile = $('#image')[0].files[0];
         let validImageFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/svg+xml'];
         let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
-
         let errors = {};
-
+        // Checks Validation
         if (!nameEn) errors.name_en = 'Name (English) is required.';
         if (!nameAr) errors.name_ar = 'Name (Arabic) is required.';
         if (!department) errors.department = 'Please select a department.';
         if (!image) errors.image = 'Doctor image is required.';
         if (!isValidImage) errors.image = 'Image format must be JPEG, JPG, PNG, GIF, or SVG.';
-
-        // Display error messages if any
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
                 let inputField = $('#' + field);
-
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
-
                 inputField.addClass('is-invalid').after(errorDiv);
             }
-
             let errorMessages = Object.values(errors).join('\n');
-
             Swal.fire({
                 title: 'Error!',
                 text: errorMessages,
@@ -64,15 +55,16 @@ $(document).ready(function () {
             });
             return;
         }
-
+        // Appending doctor_description
         let contentDr = snowEditor.root.innerHTML.trim();
         $('<input>').attr({
             type: 'hidden',
             name: 'doctor_description',
             value: contentDr
         }).appendTo('#addDoctorForm');
-
+        // Prepare And Submmiting Form Data
         var formData = new FormData(this);
+        // Submit The Form Via AJAX And Displaying Success Message 
         $.ajax({
             url: doctorStoreUrl,
             type: 'POST',
@@ -111,8 +103,7 @@ $(document).ready(function () {
             }
         });
     });
-
-    // Event listener to clear validation on input
+    // Remove Validation Error After Entering The Input Values
     $('#addDoctorForm input, #addDoctorForm select').on('input change', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();

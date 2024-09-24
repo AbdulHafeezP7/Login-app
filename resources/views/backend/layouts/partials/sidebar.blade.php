@@ -1,3 +1,4 @@
+<!-- Sidebar Settings -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="index.html" class="app-brand-link">
@@ -43,75 +44,82 @@
     <li class="menu-header small">
       <span class="menu-header-text" data-i18n="Apps & Pages">Menus</span>
     </li>
+    <!-- Dashboard Route -->
     <li class="menu-item active open">
       <a href="{{ route('dashboard') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-table-columns"></i>
         <div data-i18n="Dashboards">Dashboards</div>
       </a>
     </li>
+    <!-- Article Route -->
     <li class="menu-item">
       <a href="{{ route('articles.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-newspaper"></i>
         <div data-i18n="Articles">Articles</div>
       </a>
     </li>
-
+    <!-- Doctor Route -->
     <li class="menu-item">
       <a href="{{ route('doctors.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-stethoscope"></i>
         <div data-i18n="Doctors">Doctors</div>
       </a>
     </li>
-
+    <!-- Department Route -->
     <li class="menu-item">
       <a href="{{ route('departments.index') }}" class="menu-link">
         <i class="menu-icon fa-regular fa-building"></i>
         <div data-i18n="Department">Department</div>
       </a>
     </li>
+    <!-- Branch Route -->
     <li class="menu-item">
       <a href="{{ route('branchs.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-network-wired"></i>
         <div data-i18n="Branch">Branch</div>
       </a>
     </li>
+    <!-- Offer Route -->
     <li class="menu-item">
       <a href="{{ route('offers.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-tags"></i>
         <div data-i18n="Offer">Offer</div>
       </a>
     </li>
+    <!-- SOcialmedia Route -->
     <li class="menu-item">
       <a href="{{ route('socialmedias.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-hashtag"></i>
         <div data-i18n="Socialmedia">Social Media</div>
       </a>
     </li>
+    <!-- Partner Route -->
     <li class="menu-item">
       <a href="{{ route('partners.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-handshake"></i>
         <div data-i18n="Partner">Partner</div>
       </a>
     </li>
+    <!-- Insurance Route -->
     <li class="menu-item">
       <a href="{{ route('insurances.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-hand-holding-medical"></i>
         <div data-i18n="Insurance">Insurance</div>
       </a>
     </li>
+    <!-- User Route -->
     <li class="menu-item">
       <a href="{{ route('users.index') }}" class="menu-link">
         <i class="menu-icon fa-solid fa-user"></i>
         <div data-i18n="User">User</div>
       </a>
     </li>
+    <!-- Activity Route -->
     <li class="menu-item">
       <a href="{{route('activities')}}" class="menu-link">
         <i class="menu-icon fa-solid fa-chart-line"></i>
         <div data-i18n="Activity">Activity</div>
       </a>
     </li>
-    <!-- e-commerce-app menu start -->
-
   </ul>
 </aside>

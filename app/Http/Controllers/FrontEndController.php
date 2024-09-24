@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\Offer;
 use App\Models\Branch;
 
-
+// Controller For Frontend
 class FrontEndController extends Controller
 {
     public function home()
@@ -36,12 +36,12 @@ class FrontEndController extends Controller
     public function offer()
     {
         $data['offer'] = Offer::whereNotNull('image')->orderBy('sort', 'asc')->get();
-        return view('frontend.offer',$data);
+        return view('frontend.offer', $data);
     }
-     public function contact_us()
+    public function contact_us()
     {
         $data['branch'] = Branch::orderBy('sort', 'asc')->get();
-        return view('frontend.contact',$data);
+        return view('frontend.contact', $data);
     }
     public function doctors()
     {
@@ -51,12 +51,12 @@ class FrontEndController extends Controller
             ->orderBy('sort', 'asc')
             ->get();
         $data['department'] = Department::whereNotNull('department_ar')->get();
-        return view('frontend.doctor',$data);
+        return view('frontend.doctor', $data);
     }
-    public function branch_location($branchId=null)
+    public function branch_location($branchId = null)
     {
         $data['branchDetails'] = Branch::find($branchId);
-        return view('frontend.branch_location',$data);
+        return view('frontend.branch_location', $data);
     }
     public function departmentDetails($slug = null)
     {
@@ -64,10 +64,8 @@ class FrontEndController extends Controller
         $data['details'] = Department::where('slug', $slug)->firstOrFail();
         return view('frontend.departmentDetails', $data);
     }
-     public function privacy_policy()
+    public function privacy_policy()
     {
-        
         return view('frontend.privacy_policy');
     }
-  
 }

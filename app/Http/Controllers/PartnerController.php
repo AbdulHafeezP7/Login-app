@@ -8,50 +8,55 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\PartnerRequest;
 use App\Http\Requests\PartnerUpdateRequest;
 
+// Controller For Partner
 class PartnerController extends Controller
 {
+    // View Partner Index
     public function index()
     {
         return view('backend.partners');
     }
+    // Datatable For Partner
     public function dataTablesForPartners()
     {
-            $query = Partner::query();
-            return DataTables::of($query)
-                ->addColumn('partner_en', function ($row) {
-                    return $row->partner_en;
-                })
-                ->addColumn('partner_ar', function ($row) {
-                    return $row->partner_ar;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('partner_en', function ($query, $keyword) {
-                    $query->where('partner_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('partner_ar', function ($query, $keyword) {
-                    $query->where('partner_ar', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Partner::query();
+        return DataTables::of($query)
+            ->addColumn('partner_en', function ($row) {
+                return $row->partner_en;
+            })
+            ->addColumn('partner_ar', function ($row) {
+                return $row->partner_ar;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('partner_en', function ($query, $keyword) {
+                $query->where('partner_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('partner_ar', function ($query, $keyword) {
+                $query->where('partner_ar', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Partner
     public function addPartners()
     {
         return view('backend.partnersAdd');
     }
+    // Store PArtner
     public function store(PartnerRequest $request)
     {
         try {
@@ -68,10 +73,10 @@ class PartnerController extends Controller
             $partner->save();
             return response()->json(['status' => true, 'message' => 'Partner created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Partner
     public function partnerDecrement(Request $request)
     {
         $partner = Partner::find($request->partnerId);
@@ -88,6 +93,7 @@ class PartnerController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Partner sorted successfully.']);
     }
+    // Sort Increment Function For Partner
     public function partnerIncrement(Request $request)
     {
         $partner = Partner::find($request->partnerId);
@@ -105,12 +111,14 @@ class PartnerController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Partner sorted successfully.']);
     }
+    // Edit Partner
     public function edit($id)
     {
         $singlePartner = Partner::find($id);
 
         return view('backend.partner-edit', compact('singlePartner', 'id'));
     }
+    // Update Partner
     public function update(PartnerUpdateRequest $request)
     {
         try {
@@ -142,16 +150,17 @@ class PartnerController extends Controller
             }
         }
     }
+    // Delete Partner
     public function destroy($id)
     {
         $partner = Partner::findOrFail($id);
         $partner->delete();
         return response()->json(['status' => true, 'message' => 'Partner deleted successfully']);
     }
+    // View Partner
     public function show(Request $request, $id)
     {
         $singlePartner = Partner::find($id);
-
         return view('backend.partner-show', compact('singlePartner'));
     }
 }

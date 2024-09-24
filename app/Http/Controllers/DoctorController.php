@@ -9,68 +9,73 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
 use App\Http\Requests\DoctorUpdateRequest;
 
+// Controller For Doctor
 class DoctorController extends Controller
 {
+    // View Doctor Index
     public function index()
     {
         return view('backend.doctors');
     }
+    // Datatable For Doctor
     public function dataTablesForDoctors()
     {
-            $query = Doctor::query()
-                ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
-                ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
-            return DataTables::of($query)
-                ->addColumn('name_en', function ($row) {
-                    return $row->name_en;
-                })
-                ->addColumn('name_ar', function ($row) {
-                    return $row->name_ar;
-                })
-                ->addColumn('doctor_description', function ($row) {
-                    return $row->doctor_description;
-                })
-                ->addColumn('frontpage', function ($row) {
-                    return $row->frontpage;
-                })
-                ->addColumn('image', function ($row) {
-                    if ($row->image) {
-                        return $imageUrl = asset('images/' . $row->image);
-                    } else {
-                        return 'No Image';
-                    }
-                })
-                ->addColumn('department', function ($row) {
-                    return $row->department_name;
-                })
-                ->addColumn('sort', function ($row) {
-                    return $row->sort;
-                })
-                ->editColumn('created_at', function ($row) {
-                    return $row->created_at->format('Y-m-d H:i:s');
-                })
-                ->filterColumn('name_en', function ($query, $keyword) {
-                    $query->where('name_en', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('doctor_description', function ($query, $keyword) {
-                    $query->where('doctor_description', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('name_ar', function ($query, $keyword) {
-                    $query->where('name_ar', 'like', "%{$keyword}%");
-                })
-                ->filterColumn('department', function ($query, $keyword) {
-                    $query->where('departments.department_en', 'like', "%{$keyword}%");
-                })
-                ->orderColumn('sort', function ($query) {
-                    $query->orderBy('sort', 'asc');
-                })
-                ->make(true);
+        $query = Doctor::query()
+            ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table with doctor table
+            ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
+        return DataTables::of($query)
+            ->addColumn('name_en', function ($row) {
+                return $row->name_en;
+            })
+            ->addColumn('name_ar', function ($row) {
+                return $row->name_ar;
+            })
+            ->addColumn('doctor_description', function ($row) {
+                return $row->doctor_description;
+            })
+            ->addColumn('frontpage', function ($row) {
+                return $row->frontpage;
+            })
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return $imageUrl = asset('images/' . $row->image);
+                } else {
+                    return 'No Image';
+                }
+            })
+            ->addColumn('department', function ($row) {
+                return $row->department_name;
+            })
+            ->addColumn('sort', function ($row) {
+                return $row->sort;
+            })
+            ->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d H:i:s');
+            })
+            ->filterColumn('name_en', function ($query, $keyword) {
+                $query->where('name_en', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('doctor_description', function ($query, $keyword) {
+                $query->where('doctor_description', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('name_ar', function ($query, $keyword) {
+                $query->where('name_ar', 'like', "%{$keyword}%");
+            })
+            ->filterColumn('department', function ($query, $keyword) {
+                $query->where('departments.department_en', 'like', "%{$keyword}%");
+            })
+            ->orderColumn('sort', function ($query) {
+                $query->orderBy('sort', 'asc');
+            })
+            ->make(true);
     }
+    // Add Doctor
     public function addDoctors()
     {
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctorsAdd', compact('departments'));
     }
+    // Store Doctor
     public function store(DoctorRequest $request)
     {
         try {
@@ -92,7 +97,7 @@ class DoctorController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-
+    // Sort Decrement Function For Doctor
     public function doctorDecrement(Request $request)
     {
         $doctor = Doctor::find($request->doctorId);
@@ -109,6 +114,7 @@ class DoctorController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
     }
+    // Sort Increment Function For Doctor
     public function doctorIncrement(Request $request)
     {
         $doctor = Doctor::find($request->doctorId);
@@ -126,12 +132,14 @@ class DoctorController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
     }
+    // Edit Doctor
     public function edit($id)
     {
         $doctor = Doctor::find($id);
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
+    // Update Doctor
     public function update(DoctorUpdateRequest $request)
     {
         try {
@@ -165,17 +173,20 @@ class DoctorController extends Controller
             }
         }
     }
+    // Delete Doctor
     public function destroy($id)
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->delete();
         return response()->json(['status' => true, 'message' => 'Doctor deleted successfully']);
     }
+    // View Doctor
     public function show(Request $request, $id)
     {
         $doctor = Doctor::find($id);
         return view('backend.doctor-show', compact('doctor'));
     }
+    // Function For Togglebutton
     public function toggleFrontpage(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);

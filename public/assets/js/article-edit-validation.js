@@ -1,4 +1,4 @@
-
+// Article Edit Form Js And Validation Concept
 $(document).ready(function () {
     const snowEditor = new Quill('#snow-editor', {
         bounds: '#snow-editor',
@@ -16,7 +16,7 @@ $(document).ready(function () {
         },
         theme: 'snow'
     });
-    // Special case for editors
+    // Special Case For Editors
     snowEditor.on('text-change', function () {
         if (snowEditor.root.innerHTML.trim() !== '<p><br></p>') {
             $('#snow-editor').removeClass('is-invalid');
@@ -33,27 +33,25 @@ $(document).ready(function () {
     snowEditor.root.innerHTML = content_en;
     const content_ar = $('#content_ar_old').val();
     snowEditor1.root.innerHTML = content_ar;
-
     $('#article-form').on('submit', function (e) {
         e.preventDefault();
-        // Form validation
+        // Clear Previous Error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
         let titleEn = $('#title_en').val().trim();
         let titleAr = $('#title_ar').val().trim();
         let slug = $('#slug').val().trim();
+        // Image Validation
         let imageFile = $('#image')[0].files[0];
         let validImageFormats = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
         let isValidImage = imageFile ? validImageFormats.includes(imageFile.type) : true;
         let errors = {};
-
-        // Validation checks
+        // Checks Validation
         if (!titleEn) errors.title_en = 'Title (English) is required.';
         if (!titleAr) errors.title_ar = 'Title (Arabic) is required.';
         if (!slug) errors.slug = 'Slug is required.';
         if (!isValidImage) errors.image = 'Image format must be JPEG, PNG, JPG, GIF, or SVG.';
-
-        // If there are validation errors, display them and prevent form submission
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
@@ -74,7 +72,7 @@ $(document).ready(function () {
             });
             return;
         }
-
+        // Appending content_en And conten_ar
         let contentEn = snowEditor.root.innerHTML.trim();
         $('<input>').attr({
             type: 'hidden',
@@ -87,13 +85,11 @@ $(document).ready(function () {
             name: 'content_ar',
             value: contentAr
         }).appendTo('#article-form');
-
-        // Prepare form data
+        // Prepare And Submmiting Form Data
         let formData = new FormData(this);
         if (imageFile) formData.append('image', imageFile);
         formData.append('_method', 'PUT');
-
-        // Submit the form via AJAX
+        // Submit The Form Via AJAX And Displaying Success Message 
         $.ajax({
             url: $(this).attr('action'),
             type: 'POST',
@@ -128,7 +124,6 @@ $(document).ready(function () {
                         inputField.addClass('is-invalid').after(errorDiv);
                         errorMessages += errorMessage + '\n';
                     }
-
                     Swal.fire({
                         title: 'Error!',
                         text: errorMessages.trim(),
@@ -144,9 +139,9 @@ $(document).ready(function () {
             }
         });
     });
-     // Remove validation error when input enters
-   $('#article-form input, #article-form textarea').on('input change', function() {
-    $(this).removeClass('is-invalid');
-    $(this).next('.invalid-feedback').remove();
-});
+    // Remove Validation Error After Entering The Input Values
+    $('#article-form input, #article-form textarea').on('input change', function () {
+        $(this).removeClass('is-invalid');
+        $(this).next('.invalid-feedback').remove();
+    });
 });

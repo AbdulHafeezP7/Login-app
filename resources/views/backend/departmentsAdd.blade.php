@@ -1,6 +1,8 @@
+<!-- Dashboard Add Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Add Department')
 @section('content')
+<!-- CSS Link -->
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/katex.css')}}" />
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/quill/editor.css')}}" />
 <div class="content-wrapper">
@@ -10,6 +12,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Department</h5>
                     <div class="card-body">
+                        <!-- Form Start -->
                         <form id="addDepartmentForm" class="is-invalid" novalidate action="{{ route('departments.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
@@ -32,7 +35,7 @@
                                 <label for="slug" class="form-label">Slug</label>
                                 <input type="text" class="form-control" id="slug" name="slug">
                             </div>
-
+                            <!-- Editor -->
                             <div class="mb-3">
                                 <label for="article_ar" class="form-label">Article(Arabic)</label>
                                 <div id="snow-toolbar">
@@ -64,7 +67,6 @@
                                 <div id="snow-editor"></div>
                                 <div id="content_ar"></div>
                             </div>
-
                             <div class="row justify-content-end">
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-primary">Save</button>
@@ -74,17 +76,20 @@
                             <input type="hidden" name="content" id="content">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
+                        <!-- Form End -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- JS Link -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
+    <script src="{{ asset('assets/js/department-form-validation.js') }}"></script>
     <script>
+        // Route for Department Index And Store
         var departmentIndexUrl = "{{ route('departments.index') }}";
         var departmentStoreUrl = "{{ route('departments.store') }}";
     </script>
-    <script src="{{ asset('assets/js/department-form-validation.js') }}"></script>
     @endsection

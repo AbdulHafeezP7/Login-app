@@ -1,3 +1,4 @@
+<!-- Article Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Article')
 @section('content')
@@ -13,6 +14,7 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
+            <!-- Table Content -->
             <div class="table-responsive">
                 <table class="table table-bordered mt-4" id="articles-table">
                     <thead>
@@ -34,11 +36,13 @@
         </div>
     </div>
 </div>
+<!-- JS Link -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+    // Sort Decrement Function
     function decrement(id) {
         $(document).ready(function() {
             $.ajax({
@@ -52,9 +56,9 @@
                 success: function(response) {
                     if (response.status) {
                         console.log(response.message);
-                     
-                         var table = $('#articles-table').DataTable();
-                         table.ajax.reload();
+
+                        var table = $('#articles-table').DataTable();
+                        table.ajax.reload();
                     } else {
                         console.error('Error decrementing article:', response.message);
                     }
@@ -65,7 +69,7 @@
             });
         });
     }
-
+    // Sort Increment Function
     function increment(id) {
         $(document).ready(function() {
             $.ajax({
@@ -78,8 +82,8 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.status) {
-                         var table = $('#articles-table').DataTable();
-                         table.ajax.reload();
+                        var table = $('#articles-table').DataTable();
+                        table.ajax.reload();
                     } else {
                         console.error('Error incrementing article:', response.message);
                     }
@@ -106,6 +110,7 @@
             showAlert(sessionStorage.getItem('editMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('editMessage');
         }
+        // Datatable Content
         var table = $('#articles-table').DataTable({
             processing: true,
             serverSide: true,
@@ -186,14 +191,17 @@
                 [7, 'desc']
             ]
         });
+        // View Article
         $('#articles-table').on('click', '.view-article', function() {
             var articleId = $(this).data('id');
             window.location.href = "{{ url('articles') }}/" + articleId + "/show";
         });
+        // Edit Article
         $('#articles-table').on('click', '.edit-article', function() {
             var articleId = $(this).data('id');
             window.location.href = "{{ url('articles') }}/" + articleId + "/edit";
         });
+        // Delete Article
         $('#articles-table').on('click', '.delete-article', function() {
             var articleId = $(this).data('id');
             if (confirm('Are you sure you want to delete this article?')) {
@@ -214,8 +222,8 @@
                                 },
                                 buttonsStyling: false
                             }).then(() => {
-                                 var table = $('#articles-table').DataTable();
-                                 table.ajax.reload();
+                                var table = $('#articles-table').DataTable();
+                                table.ajax.reload();
                             });
                         } else {
                             console.log('Error deleting article: ' + response.message);

@@ -8,15 +8,17 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\SocialmediaRequest;
 use App\Http\Requests\SocialmediaUpdateRequest;
 
+// Controller For Socialmedia
 class SocialmediaController extends Controller
 {
+    // View Socialmedia Index
     public function index()
     {
         return view('backend.socialmedias');
     }
+    // Datatable For Socialmedia
     public function dataTablesForSocialmedias()
     {
-
         $query = Socialmedia::query();
         return DataTables::of($query)
             ->addColumn('socialmedia_url', function ($row) {
@@ -43,31 +45,31 @@ class SocialmediaController extends Controller
             })
             ->make(true);
     }
+    // Add Socialmedia
     public function addSocialmedias()
     {
         return view('backend.socialmediasAdd');
     }
+    // Store Socialmedia
     public function store(SocialmediaRequest $request)
     {
         try {
             $totalSocialmedias = Socialmedia::count();
             $socialmedia = new Socialmedia;
-
             $socialmedia->socialmedia_url = $request->socialmedia_url;
             if ($request->hasFile('socialmedia_image')) {
                 $socialmediaImageName = time() . '_socialmedia.' . $request->socialmedia_image->extension();
                 $request->socialmedia_image->move(public_path('images'), $socialmediaImageName);
                 $socialmedia->socialmedia_image = $socialmediaImageName;
             }
-
             $socialmedia->sort = $totalSocialmedias + 1;
             $socialmedia->save();
             return response()->json(['status' => true, 'message' => 'Social Media created successfully.']);
         } catch (\Exception $e) {
-
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
+    // Sort Decrement Function For Socialmedia
     public function socialmediaDecrement(Request $request)
     {
         $socialmedia = Socialmedia::find($request->socialmediaId);
@@ -84,6 +86,7 @@ class SocialmediaController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Social Media sorted successfully.']);
     }
+    // Sort IncrementFunction For Socialmedia
     public function socialmediaIncrement(Request $request)
     {
         $socialmedia = Socialmedia::find($request->socialmediaId);
@@ -101,12 +104,14 @@ class SocialmediaController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Social Media sorted successfully.']);
     }
+    // Edit Socialmedia
     public function edit($id)
     {
         $socialmedia = Socialmedia::find($id);
 
         return view('backend.socialmedia-edit', compact('socialmedia', 'id'));
     }
+    // Update Socialmedia
     public function update(SocialmediaUpdateRequest $request)
     {
         try {
@@ -137,16 +142,17 @@ class SocialmediaController extends Controller
             }
         }
     }
+    //  Delete Socialmedia
     public function destroy($id)
     {
         $socialmedia = Socialmedia::findOrFail($id);
         $socialmedia->delete();
         return response()->json(['status' => true, 'message' => 'Social Media deleted successfully']);
     }
+    // View Socialmedia
     public function show(Request $request, $id)
     {
         $socialmedia = Socialmedia::find($id);
-
         return view('backend.socialmedia-show', compact('socialmedia'));
     }
 }

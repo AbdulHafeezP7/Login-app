@@ -1,20 +1,16 @@
+// User Form Js And Validation Concept
 $(document).ready(function () {
     $('#addUserForm').on('submit', function (e) {
         e.preventDefault();
-
-        // Clear previous error messages
+        // Clear previous error And Validating Form
         $('.invalid-feedback').remove();
         $('.form-control').removeClass('is-invalid');
-
-        // Get form field values
         let Name = $('#name').val().trim();
         let Email = $('#email').val().trim();
         let Password = $('#password').val().trim();
         let Password_confirmation = $('#password_confirmation').val().trim();
-
         let errors = {};
-
-        // Validate fields
+        // Checks Validation
         if (!Name) errors.name = 'Full Name is required.';
         if (!Email) {
             errors.email = 'Email is required.';
@@ -32,8 +28,7 @@ $(document).ready(function () {
         if (Password_confirmation !== Password) {
             errors.password_confirmation = 'Password confirmation does not match.';
         }
-
-        // Display error messages if any
+        // If There Are Validation Errors, Display Them And Prevent Form Submission
         if (Object.keys(errors).length > 0) {
             for (let field in errors) {
                 let errorMessage = errors[field];
@@ -41,9 +36,7 @@ $(document).ready(function () {
                 let errorDiv = $('<div>').addClass('invalid-feedback').text(errorMessage);
                 inputField.addClass('is-invalid').after(errorDiv);
             }
-
             let errorMessages = Object.values(errors).join('\n');
-
             Swal.fire({
                 title: 'Error!',
                 text: errorMessages,
@@ -55,9 +48,9 @@ $(document).ready(function () {
             });
             return;
         }
-
-        // Submit the form via AJAX
+        // Prepare And Submmiting Form Data
         let formData = new FormData(this);
+        // Submit The Form Via AJAX And Displaying Success Message
         $.ajax({
             url: userStoreUrl,
             type: 'POST',
@@ -96,8 +89,7 @@ $(document).ready(function () {
             }
         });
     });
-
-    // Clear validation on input
+    // Remove Validation Error After Entering The Input Values
     $('#addUserForm input').on('input', function () {
         $(this).removeClass('is-invalid');
         $(this).next('.invalid-feedback').remove();
