@@ -21,7 +21,6 @@
                                             <span property="name">الرئيسية</span>
                                         </a>
                                     </li>
-
                                     <li class="active last">
                                         <span>نبذة عنا</span>
                                     </li>
@@ -34,7 +33,6 @@
         </div>
     </div>
 </div>
-
 <!-- BEGIN :: services content -->
 <section class="d-pad brd-top-rad mb-150">
     <div class="container">
@@ -47,7 +45,6 @@
     </div>
 </section>
 <!-- END ::  services content -->
-
 <!-- BEGIN :: services content -->
 <section class="d-pad brd-top-rad mb-150">
     <div class="container">
@@ -60,7 +57,6 @@
     </div>
 </section>
 <!-- END ::  services content -->
-
 <!-- BEGIN :: services content -->
 <section class="d-pad brd-top-rad mb-150">
     <div class="container">
@@ -72,5 +68,4 @@
         </div>
     </div>
 </section>
-
 @endsection

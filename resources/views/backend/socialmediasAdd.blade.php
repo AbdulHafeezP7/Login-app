@@ -1,3 +1,4 @@
+<!-- Socialmedia Add Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Add Socialmedia')
 @section('content')
@@ -8,6 +9,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Social Media</h5>
                     <div class="card-body">
+                        <!-- Form Start -->
                         <form id="addSocialmediaForm" class="is-invalid" novalidate action="{{ route('socialmedias.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
@@ -27,16 +29,19 @@
                             <input type="hidden" name="content" id="content">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
+                        <!-- Form End -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- JS Link -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
     <script src="{{ asset('assets/js/socialmedia-form-validation.js') }}"></script>
     <script>
+        // Route For Partner Index And Store
         var socialmediaIndexUrl = "{{ route('socialmedias.index') }}";
         var socialmediaStoreUrl = "{{ route('socialmedias.store') }}";
     </script>

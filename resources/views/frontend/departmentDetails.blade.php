@@ -2,7 +2,6 @@
 @section('title', 'Dashborad')
 @section('content')
 <!-- BEGIN :: slider section -->
-
 <!-- BEGIN :: page header section -->
 <div class="slider">
     <div class="swiper mm">
@@ -15,7 +14,6 @@
                     <div class="slider__text">
                         <div class="container">
                             <p class="lead font-weight-bold" data-aos="fade-up" data-aos-delay="100">اتصل بنا</p>
-
                             <div class="breadcrumb">
                                 <ul vocab="https://schema.org/" typeof="BreadcrumbList">
                                     <li property="itemListElement" typeof="ListItem" class="first">
@@ -35,10 +33,7 @@
         </div>
     </div>
 </div>
-
-
-
-
+<!-- END :: slider section  -->
 <!-- END :: page header section -->
 <!-- BEGIN :: page content section -->
 <div class="page-content services main-services-page d-pad pb-0">
@@ -52,7 +47,6 @@
     </div>
 </div>
 <!-- END :: page content section -->
-
 <!-- BEGIN :: book now section -->
 <section class="container d-pad pb-0">
     <div class="container book-now d-pad m-0">
@@ -71,8 +65,4 @@
     </div>
 </section>
 <!-- END :: book now section -->
-
-
-
-
 @endsection

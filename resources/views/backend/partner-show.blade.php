@@ -1,3 +1,4 @@
+<!-- Partner Show/View Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'View Partner')
 @section('content')

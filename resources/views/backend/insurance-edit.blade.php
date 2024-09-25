@@ -1,3 +1,4 @@
+<!-- Insurance Edit Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Edit Insurance')
 @section('content')
@@ -5,6 +6,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Insurance</h1>
+            <!-- Form Start -->
             <form id="insurance-form" class="is-invalid" novalidate action="{{ route('insurances.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -30,14 +32,17 @@
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('insurances.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
+            <!-- Form End -->
         </div>
     </div>
 </div>
+<!-- JS Link -->
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
 <script src="{{ asset('assets/js/insurance-edit-validation.js') }}"></script>
 <script>
+    // Route For Insurance Index
      var insuranceIndexUrl = "{{ route('insurances.index') }}";
 </script>
 @endsection

@@ -1,3 +1,4 @@
+<!-- Partner Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Partner')
 @section('content')
@@ -13,6 +14,7 @@
             <div class="alert alert-dismissible fade show" role="alert" id="alert-box1" style="display: none;">
                 <span id="alert-message"></span>
             </div>
+            <!-- Table Content -->
             <div class="table-responsive">
                 <table class="table table-bordered mt-4" id="partners-table">
                     <thead>
@@ -31,11 +33,13 @@
         </div>
     </div>
 </div>
+<!-- JS Link -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script>
+    // Sort Decrement Funtion
     function decrement(id) {
         $(document).ready(function() {
             $.ajax({
@@ -60,7 +64,7 @@
             });
         });
     }
-
+    // Sort Increment Function
     function increment(id) {
         $(document).ready(function() {
             $.ajax({
@@ -101,6 +105,7 @@
             showAlert(sessionStorage.getItem('editMessage'), 'success', 'alert-box1');
             sessionStorage.removeItem('editMessage');
         }
+        // Datatable Content
         var table = $('#partners-table').DataTable({
             processing: true,
             serverSide: true,
@@ -163,14 +168,17 @@
                 [3, 'desc']
             ]
         });
+        // View Partner
         $('#partners-table').on('click', '.view-partner', function() {
             var partnerId = $(this).data('id');
             window.location.href = "{{ url('partners') }}/" + partnerId + "/show";
         });
+        // Edit Partner
         $('#partners-table').on('click', '.edit-partner', function() {
             var partnerId = $(this).data('id');
             window.location.href = "{{ url('partners') }}/" + partnerId + "/edit";
         });
+        // Delete Partner
         $('#partners-table').on('click', '.delete-partner', function() {
             var partnerId = $(this).data('id');
             if (confirm('Are you sure you want to delete this partner?')) {

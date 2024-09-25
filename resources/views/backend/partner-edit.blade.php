@@ -1,3 +1,4 @@
+<!-- Partner Edit Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Edit Partner')
 @section('content')
@@ -5,6 +6,7 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Edit Partner</h1>
+            <!-- Form Start -->
             <form id="partner-form" class="is-invalid" novalidate action="{{ route('partners.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -30,14 +32,17 @@
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('partners.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
+            <!-- Form End -->
         </div>
     </div>
 </div>
+<!-- JS Link -->
 <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
 <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
 <script src="{{ asset('assets/js/partner-edit-validation.js') }}"></script>
 <script>
+    // Route For Partner Index
      var partnerIndexUrl = "{{ route('partners.index') }}";
 </script>
 @endsection

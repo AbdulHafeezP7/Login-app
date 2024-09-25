@@ -1,3 +1,4 @@
+<!-- Insurance Add Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'Add Insurance')
 @section('content')
@@ -8,6 +9,7 @@
                 <div class="card mb-6">
                     <h5 class="card-header">Add Insurance</h5>
                     <div class="card-body">
+                        <!-- Form Start -->
                         <form id="addInsuranceForm" class="is-invalid" novalidate action="{{ route('insurances.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
@@ -31,16 +33,19 @@
                             <input type="hidden" name="content" id="content">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
+                        <!-- Form End -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- JS Link -->
     <script src="{{ asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/katex.js')}}"></script>
     <script src="{{ asset('assets/vendor/libs/quill/quill.js')}}"></script>
     <script src="{{ asset('assets/js/insurance-form-validation.js') }}"></script>
     <script>
+        // Route For Insurance Index And Store
         var insuranceIndexUrl = "{{ route('insurances.index') }}";
         var insuranceStoreUrl = "{{ route('insurances.store') }}";
     </script>

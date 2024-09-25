@@ -1,3 +1,4 @@
+<!-- Insurance Show/View Form -->
 @extends('backend.layouts.backendLayout')
 @section('title', 'View Insurance')
 @section('content')

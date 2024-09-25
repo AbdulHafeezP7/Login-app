@@ -2,7 +2,6 @@
 @section('title', 'Dashborad')
 @section('content')
 <!-- BEGIN :: slider section -->
-
 <!-- BEGIN :: page header section -->
 <div class="slider">
     <div class="swiper mm">

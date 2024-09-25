@@ -46,16 +46,9 @@
                         <div class="container p-0">
                             <div class="top-bar__container">
                                 <div class="top-bar__block social">
-                                    <ul class="list-inline d-flex flex-row-reverse" style="
-    min-height: 27px;
-">
-
-                                        <a href="#" class="btn-brand-primary article-btn" data-toggle="modal" data-target="#booking" style="
-    margin: 2px;
-    height: 28px;
-">
+                                    <ul class="list-inline d-flex flex-row-reverse" style="min-height: 27px;">
+                                        <a href="#" class="btn-brand-primary article-btn" data-toggle="modal" data-target="#booking" style="margin: 2px; height: 28px;">
                                             احجز الآن </a>
-
                                         <li class="list-inline-item">
                                             <a href="https://wa.me/+966920010436" target="_blank" title="Whasapp">
                                                 <div class="top-bar__icon">
@@ -64,15 +57,12 @@
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="tel:+966920010436" >
+                                            <a href="tel:+966920010436">
                                                 <div class="top-bar__icon">
-                                                    <img src="{{ asset('frontend/frontend/images/icons/phone-svg.png')}}" draggable="false" alt="snapchat" class="socialmedia-icon" style="
-    width: 60%;
-" />
+                                                    <img src="{{ asset('frontend/frontend/images/icons/phone-svg.png')}}" draggable="false" alt="snapchat" class="socialmedia-icon" style="width: 60%;" />
                                                 </div>
                                             </a>
                                         </li>
-
                                         <!-- <li class="list-inline-item">
                                             <a href="https://twitter.com/drkalruhaimi" target="_blank" title="Twitter">
                                                 <div class="top-bar__icon">
@@ -106,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="collapse navbar-collapse" id="navbarElm">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -120,14 +109,13 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="blogDropdown" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                الأقسام </a>
+                                    الأقسام </a>
                                 <div class="dropdown-menu " aria-labelledby="blogDropdown">
                                     @foreach($departments as $department)
                                     <a class="dropdown-item" href="{{route('departmentDetails',['surl'=>$department->slug])}}">{{ $department->department_ar }}</a>
                                     @endforeach
                                 </div>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="blogDropdown" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
@@ -135,31 +123,26 @@
 
                                 <div class="dropdown-menu " aria-labelledby="blogDropdown">
                                     @foreach($branch as $row)
-                                     <a class="dropdown-item" href="{{route('branch_location',['clinicId'=>$row->id])}}">{{ $row->branchname_ar }}</a>
+                                    <a class="dropdown-item" href="{{route('branch_location',['clinicId'=>$row->id])}}">{{ $row->branchname_ar }}</a>
                                     @endforeach
                                 </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('doctors')}}">
-                                   الأطباء </a>
+                                    الأطباء </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('offer')}}">
-                                   العروض </a>
+                                    العروض </a>
                             </li>
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('contact_us')}}">
                                     تواصل معنا </a>
                             </li>
-
-
                         </ul>
-
                         <div class="my-2 my-lg-0 d-xl-inline-block">
                             <a href="#" class="btn btn-white" data-toggle="modal" data-target="#booking">
                                 اتصل بنا </a>
-
                         </div>
                     </div>
                 </div>
