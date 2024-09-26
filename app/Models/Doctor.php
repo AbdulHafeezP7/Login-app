@@ -5,21 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Model For Doctor
+// Model for doctors
 class Doctor extends Model
 {
     use HasFactory;
-    // Table Name And Table Items
+
+    /**
+     * The name of the table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'doctors';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'name_en',
-        'name_ar',
-        'doctor_description',
-        'department',
-        'image',
-        'availability',
+        'name_en',             // The name of the doctor in English
+        'name_ar',             // The name of the doctor in Arabic
+        'doctor_description',   // A description of the doctor
+        'department',           // The department the doctor belongs to
+        'image',                // The image associated with the doctor
+        'availability',         // The availability status of the doctor
     ];
-    // Connecting Department Table Item With Doctor
+
+    /**
+     * Get the department associated with the doctor.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');

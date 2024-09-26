@@ -5,15 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Model For Partner
+// Model for partner
 class Partner extends Model
 {
     use HasFactory;
-    // Table Name And Table Items
+
+    /**
+     * The name of the table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'partners';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'partner_en',
-        'partner_ar',
-        'image',
+        'partner_en',  // The name of the partner in English
+        'partner_ar',  // The name of the partner in Arabic
+        'image',       // The image associated with the partner
     ];
 }
