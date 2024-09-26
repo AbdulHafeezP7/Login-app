@@ -4,22 +4,33 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-// Validation Request For Offer
+// Validation request for offer information
 class OfferRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
     public function authorize(): bool
     {
-        return true;
+        return true; // Allow all users to make this request
     }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules(): array
     {
-        // Requirements Of Validation
+        // Validation rules for offer information
         return [
-            'offer_en' => 'required|string|max:255',
-            'offer_ar' => 'required|string|max:255',
-            'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'actual_price' => 'required|string|max:255',
-            'offer_price' => 'required|string|max:255',
+            'offer_en' => 'required|string|max:255', // English offer name is required, should be a string, and has a maximum length of 255 characters
+            'offer_ar' => 'required|string|max:255', // Arabic offer name is required, should be a string, and has a maximum length of 255 characters
+            'image' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is required; if provided, it must be an image of specified types and a maximum size of 2048 KB
+            'actual_price' => 'required|string|max:255', // Actual price is required, should be a string, and has a maximum length of 255 characters
+            'offer_price' => 'required|string|max:255', // Offer price is required, should be a string, and has a maximum length of 255 characters
         ];
     }
 }
