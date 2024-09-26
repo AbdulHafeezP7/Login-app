@@ -9,22 +9,24 @@ use App\Http\Requests\BranchRequest;
 use App\Http\Requests\BranchUpdateRequest;
 use App\Models\SocialMedia;
 
-// Controller For Branch
+// Controller for managing Branch operations
 class BranchController extends Controller
 {
-    // View Branch Index
+    // Display the index view for branches
     public function index()
     {
         return view('backend.branchs');
     }
-    // Datatable of Branch
+
+    // Handle the DataTable request for branches
     public function dataTablesForBranchs(Request $request)
     {
         if ($request->ajax()) {
+            // Fetch branch data with social media links
             $query = Branch::query()
-                ->join('socialmedias', 'branchs.branchsocial_link', '=', 'socialmedias.id') // Join with departments table with branch
-                ->select('branchs.*', 'socialmedias.socialmedia_url as socialmedia_url'); // Select the department name
-            $query = Branch::query();
+                ->join('socialmedias', 'branchs.branchsocial_link', '=', 'socialmedias.id')
+                ->select('branchs.*', 'socialmedias.socialmedia_url as socialmedia_url');
+
             return DataTables::of($query)
                 ->addColumn('branchname_en', function ($row) {
                     return $row->branchname_en;
@@ -86,13 +88,15 @@ class BranchController extends Controller
                 ->make(true);
         }
     }
-    // Add Branchs
+
+    // Show the form to add a new branch
     public function addBranchs()
     {
         $socialmedias = SocialMedia::all();
         return view('backend.branchsAdd', compact('socialmedias'));
     }
-    // Store Branchs
+
+    // Store a newly created branch
     public function store(BranchRequest $request)
     {
         try {
@@ -108,16 +112,19 @@ class BranchController extends Controller
             $branch->branchmanager_number = $request->branchmanager_number;
             $branch->sort = $totalBranchs + 1;
             $branch->save();
+
             return response()->json(['status' => true, 'message' => 'Branch created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Branch 
+
+    // Decrement the sort order of a branch
     public function branchDecrement(Request $request)
     {
         $branch = Branch::find($request->branchId);
         $sort = --$branch->sort;
+
         if ($sort >= 1) {
             $branchDownData = Branch::where('sort', $sort)->first();
             if ($branchDownData) {
@@ -128,14 +135,17 @@ class BranchController extends Controller
             $branch->sort = $sort;
             $branch->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
     }
-    // Sort Increment Function For Branch
+
+    // Increment the sort order of a branch
     public function branchIncrement(Request $request)
     {
         $branch = Branch::find($request->branchId);
         $sort = ++$branch->sort;
         $branchCount = Branch::count('id');
+
         if ($sort <= $branchCount) {
             $branchUpData = Branch::where('sort', $sort)->first();
             if ($branchUpData) {
@@ -146,16 +156,19 @@ class BranchController extends Controller
             $branch->sort = $sort;
             $branch->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Branch sorted successfully.']);
     }
-    // Edit Branchs
+
+    // Show the form to edit a specific branch
     public function edit($id)
     {
         $singleBranch = Branch::find($id);
         $socialmedias = SocialMedia::all();
         return view('backend.branch-edit', compact('socialmedias', 'singleBranch', 'id'));
     }
-    // Update Branchs
+
+    // Update the specified branch
     public function update(BranchUpdateRequest $request)
     {
         try {
@@ -169,6 +182,7 @@ class BranchController extends Controller
             $branch->branchoffice_number = $request->branchoffice_number;
             $branch->branchmanager_number = $request->branchmanager_number;
             $branch->save();
+
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Branch updated successfully.']);
             } else {
@@ -188,14 +202,16 @@ class BranchController extends Controller
             }
         }
     }
-    // Delete Branchs
+
+    // Delete a specific branch
     public function destroy($id)
     {
         $branch = Branch::findOrFail($id);
         $branch->delete();
-        return response()->json(['status' => true, 'message' => 'Branch deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Branch deleted successfully']);
     }
-    // View Branchs
+
+    // Display details of a specific branch
     public function show(Request $request, $id)
     {
         $singleBranch = Branch::find($id);

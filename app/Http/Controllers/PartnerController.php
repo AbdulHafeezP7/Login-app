@@ -8,15 +8,16 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\PartnerRequest;
 use App\Http\Requests\PartnerUpdateRequest;
 
-// Controller For Partner
+// Controller for managing Partner resources
 class PartnerController extends Controller
 {
-    // View Partner Index
+    // Display the index view for Partners
     public function index()
     {
         return view('backend.partners');
     }
-    // Datatable For Partner
+
+    // Provide data for the Partners DataTable
     public function dataTablesForPartners()
     {
         $query = Partner::query();
@@ -28,11 +29,7 @@ class PartnerController extends Controller
                 return $row->partner_ar;
             })
             ->addColumn('image', function ($row) {
-                if ($row->image) {
-                    return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
-                } else {
-                    return 'No Image';
-                }
+                return $row->image ? asset('images/' . $row->image) : 'No Image';
             })
             ->addColumn('sort', function ($row) {
                 return $row->sort;
@@ -51,12 +48,14 @@ class PartnerController extends Controller
             })
             ->make(true);
     }
-    // Add Partner
+
+    // Show the form for creating a new Partner
     public function addPartners()
     {
         return view('backend.partnersAdd');
     }
-    // Store PArtner
+
+    // Store a newly created Partner in the database
     public function store(PartnerRequest $request)
     {
         try {
@@ -65,6 +64,8 @@ class PartnerController extends Controller
             $partner->partner_en = $request->partner_en;
             $partner->partner_ar = $request->partner_ar;
             $partner->sort = $totalPartners + 1;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
@@ -76,11 +77,13 @@ class PartnerController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Partner
+
+    // Decrement the sort order for a Partner
     public function partnerDecrement(Request $request)
     {
         $partner = Partner::find($request->partnerId);
         $sort = --$partner->sort;
+
         if ($sort >= 1) {
             $partnerDownData = Partner::where('sort', $sort)->first();
             if ($partnerDownData) {
@@ -93,12 +96,14 @@ class PartnerController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Partner sorted successfully.']);
     }
-    // Sort Increment Function For Partner
+
+    // Increment the sort order for a Partner
     public function partnerIncrement(Request $request)
     {
         $partner = Partner::find($request->partnerId);
         $sort = ++$partner->sort;
         $partnerCount = Partner::count('id');
+
         if ($sort <= $partnerCount) {
             $partnerUpData = Partner::where('sort', $sort)->first();
             if ($partnerUpData) {
@@ -111,26 +116,30 @@ class PartnerController extends Controller
         }
         return response()->json(['status' => true, 'message' => 'Partner sorted successfully.']);
     }
-    // Edit Partner
+
+    // Show the form for editing a specific Partner
     public function edit($id)
     {
         $singlePartner = Partner::find($id);
-
         return view('backend.partner-edit', compact('singlePartner', 'id'));
     }
-    // Update Partner
+
+    // Update a specific Partner in the database
     public function update(PartnerUpdateRequest $request)
     {
         try {
             $partner = Partner::findOrFail($request->id);
             $partner->partner_en = $request->partner_en;
             $partner->partner_ar = $request->partner_ar;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $partner->image = $imageName;
             }
             $partner->save();
+
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Partner updated successfully.']);
             } else {
@@ -150,14 +159,16 @@ class PartnerController extends Controller
             }
         }
     }
-    // Delete Partner
+
+    // Delete a specific Partner from the database
     public function destroy($id)
     {
         $partner = Partner::findOrFail($id);
         $partner->delete();
         return response()->json(['status' => true, 'message' => 'Partner deleted successfully']);
     }
-    // View Partner
+
+    // Display details for a specific Partner
     public function show(Request $request, $id)
     {
         $singlePartner = Partner::find($id);

@@ -10,15 +10,24 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Requests\UserPasswordResetRequest;
 use Illuminate\Support\Facades\Hash;
 
-// Controller For User
+// Controller for managing user-related actions
 class UserController extends Controller
 {
-    // View User Index
+    /**
+     * Display the user index view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         return view('backend.users');
     }
-    // Datatable For User
+
+    /**
+     * Fetch user data for DataTables.
+     *
+     * @return \Yajra\DataTables\DataTableAbstract
+     */
     public function dataTablesForUsers()
     {
         $query = User::query();
@@ -40,12 +49,23 @@ class UserController extends Controller
             })
             ->make(true);
     }
-    // Add User
+
+    /**
+     * Show the form for adding a new user.
+     *
+     * @return \Illuminate\View\View
+     */
     public function addUsers()
     {
         return view('backend.usersAdd');
     }
-    // Store User
+
+    /**
+     * Store a newly created user in storage.
+     *
+     * @param UserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(UserRequest $request)
     {
         try {
@@ -59,13 +79,25 @@ class UserController extends Controller
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Edit User
+
+    /**
+     * Show the form for editing the specified user.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function edit($id)
     {
         $user = User::find($id);
         return view('backend.user-edit', compact('user', 'id'));
     }
-    // Update User
+
+    /**
+     * Update the specified user in storage.
+     *
+     * @param UserUpdateRequest $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function update(UserUpdateRequest $request)
     {
         try {
@@ -73,6 +105,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->save();
+
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'User updated successfully.']);
             } else {
@@ -92,33 +125,59 @@ class UserController extends Controller
             }
         }
     }
-    // Delete User
+
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json(['status' => true, 'message' => 'User deleted successfully']);
     }
-    // View User
+
+    /**
+     * Display the specified user.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function show(Request $request, $id)
     {
         $user = User::find($id);
-
         return view('backend.user-show', compact('user'));
     }
-    // View User Passwordreset
+
+    /**
+     * Show the password reset form for the specified user.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function showPasswordResetForm($id)
     {
         $user = User::findOrFail($id);
         return view('backend.user-passwordreset', compact('user'));
     }
-    // Passwordreset Function For User
+
+    /**
+     * Reset the password for the specified user.
+     *
+     * @param UserPasswordResetRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function resetPassword(UserPasswordResetRequest $request, $id)
     {
         try {
             $user = User::findOrFail($id);
             $user->password = Hash::make($request->password);
             $user->save();
+
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Password reset successfully!']);
             } else {

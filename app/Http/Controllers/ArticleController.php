@@ -8,18 +8,21 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\ArticleUpdateRequest;
 
-// Controller For Article
+// Controller for managing articles
 class ArticleController extends Controller
 {
-    // View Article Index
+    // Display the article index view
     public function index()
     {
         return view('backend.articles');
     }
-    // Datatable of Article
+
+    // Retrieve and return DataTable for articles
     public function dataTablesForArticles()
     {
         $query = Article::query();
+
+        // Return the DataTable representation of articles
         return DataTables::of($query)
             ->addColumn('title_en', function ($row) {
                 return $row->title_en;
@@ -34,11 +37,7 @@ class ArticleController extends Controller
                 return $row->content_ar;
             })
             ->addColumn('image', function ($row) {
-                if ($row->image) {
-                    return $imageUrl = asset('images/' . $row->image);
-                } else {
-                    return 'No Image';
-                }
+                return $row->image ? asset('images/' . $row->image) : 'No Image';
             })
             ->addColumn('slug', function ($row) {
                 return $row->slug;
@@ -49,32 +48,40 @@ class ArticleController extends Controller
             ->editColumn('created_at', function ($row) {
                 return $row->created_at->format('Y-m-d H:i:s');
             })
+            // Filter articles by title (English)
             ->filterColumn('title_en', function ($query, $keyword) {
                 $query->where('title_en', 'like', "%{$keyword}%");
             })
+            // Filter articles by title (Arabic)
             ->filterColumn('title_ar', function ($query, $keyword) {
                 $query->where('title_ar', 'like', "%{$keyword}%");
             })
+            // Filter articles by content (English)
             ->filterColumn('content_en', function ($query, $keyword) {
                 $query->where('content_en', 'like', "%{$keyword}%");
             })
+            // Filter articles by content (Arabic)
             ->filterColumn('content_ar', function ($query, $keyword) {
                 $query->where('content_ar', 'like', "%{$keyword}%");
             })
+            // Filter articles by slug
             ->filterColumn('slug', function ($query, $keyword) {
                 $query->where('slug', 'like', "%{$keyword}%");
             })
+            // Order articles by sort value
             ->orderColumn('sort', function ($query) {
                 $query->orderBy('sort', 'asc');
             })
             ->make(true);
     }
-    // Add Articles
+
+    // Display the view for adding new articles
     public function addArticles()
     {
         return view('backend.articlesAdd');
     }
-    // Store Articles
+
+    // Store a new article in the database
     public function store(ArticleRequest $request)
     {
         try {
@@ -86,22 +93,27 @@ class ArticleController extends Controller
             $article->content_ar = $request->content_ar;
             $article->slug = $request->slug;
             $article->sort = $totalArticles + 1;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $article->image = $imageName;
             }
+
             $article->save();
             return response()->json(['status' => true, 'message' => 'Article created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Article
+
+    // Decrement the sort order of an article
     public function articleDecrement(Request $request)
     {
         $article = Article::find($request->articleId);
         $sort = ($article->sort != "") ? --$article->sort : 0;
+
         if ($sort >= 1) {
             $articleDownData = Article::where('sort', $sort)->first();
             if ($articleDownData) {
@@ -112,14 +124,17 @@ class ArticleController extends Controller
             $article->sort = $sort;
             $article->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
     }
-    // Sort Increment Function For Article
+
+    // Increment the sort order of an article
     public function articleIncrement(Request $request)
     {
         $article = Article::find($request->articleId);
         $sort = ++$article->sort;
         $articleCount = Article::count('id');
+
         if ($sort <= $articleCount) {
             $articleUpData = Article::where('sort', $sort)->first();
             if ($articleUpData) {
@@ -130,15 +145,18 @@ class ArticleController extends Controller
             $article->sort = $sort;
             $article->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Article sorted successfully.']);
     }
-    // Edit Articles
+
+    // Display the edit form for an article
     public function edit($id)
     {
         $article = Article::find($id);
         return view('backend.article-edit', compact('article', 'id'));
     }
-    // Update Articles
+
+    // Update an existing article in the database
     public function update(ArticleUpdateRequest $request)
     {
         try {
@@ -148,24 +166,31 @@ class ArticleController extends Controller
             $article->content_en = $request->content_en;
             $article->content_ar = $request->content_ar;
             $article->slug = $request->slug;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $article->image = $imageName;
             }
+
             $article->save();
+
+            // Return response based on the request type
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Article updated successfully.']);
             } else {
                 return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
             }
         } catch (\Illuminate\Validation\ValidationException $e) {
+            // Return validation errors
             if ($request->ajax()) {
                 return response()->json(['status' => false, 'message' => $e->validator->errors()->first()], 422);
             } else {
                 return back()->with('error', $e->validator->errors()->first());
             }
         } catch (\Exception $e) {
+            // Handle other exceptions
             if ($request->ajax()) {
                 return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
             } else {
@@ -173,14 +198,16 @@ class ArticleController extends Controller
             }
         }
     }
-    // Delete Articles
+
+    // Delete an article from the database
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
         $article->delete();
         return response()->json(['status' => true, 'message' => 'Article deleted successfully']);
     }
-    // View Articles
+
+    // Display the details of an article
     public function show(Request $request, $id)
     {
         $article = Article::find($id);

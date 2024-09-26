@@ -8,15 +8,16 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\DepartmentRequest;
 use App\Http\Requests\DepartmentUpdateRequest;
 
-// Controller For Department
+// Controller for managing Department operations
 class DepartmentController extends Controller
 {
-    // View Department Index
+    // Display the department index view
     public function index()
     {
         return view('backend.departments');
     }
-    // Datatable For Department
+
+    // Get data for departments in DataTable format
     public function dataTablesForDepartments()
     {
         $query = Department::query();
@@ -28,11 +29,7 @@ class DepartmentController extends Controller
                 return $row->department_ar;
             })
             ->addColumn('image', function ($row) {
-                if ($row->image) {
-                    return $imageUrl = asset('images/' . $row->image);
-                } else {
-                    return 'No Image';
-                }
+                return $row->image ? asset('images/' . $row->image) : 'No Image';
             })
             ->addColumn('department_details', function ($row) {
                 return $row->department_details;
@@ -63,12 +60,14 @@ class DepartmentController extends Controller
             })
             ->make(true);
     }
-    // Add Department
+
+    // Show the form to add a new department
     public function addDepartments()
     {
         return view('backend.departmentsAdd');
     }
-    // Store Department
+
+    // Store a new department in the database
     public function store(DepartmentRequest $request)
     {
         try {
@@ -80,22 +79,26 @@ class DepartmentController extends Controller
             $department->content_ar = $request->content_ar;
             $department->slug = $request->slug;
             $department->sort = $totalDepartments + 1;
+
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $department->image = $imageName;
             }
+
             $department->save();
             return response()->json(['status' => true, 'message' => 'Department created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function for Department
+
+    // Decrement the sort order of a department
     public function departmentDecrement(Request $request)
     {
         $department = Department::find($request->departmentId);
         $sort = ($department->sort != "") ? --$department->sort : 0;
+
         if ($sort >= 1) {
             $departmentDownData = Department::where('sort', $sort)->first();
             if ($departmentDownData) {
@@ -106,14 +109,17 @@ class DepartmentController extends Controller
             $department->sort = $sort;
             $department->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
     }
-    // Sort Increment Function For Department
+
+    // Increment the sort order of a department
     public function departmentIncrement(Request $request)
     {
         $department = Department::find($request->departmentId);
         $sort = ++$department->sort;
         $departmentCount = Department::count('id');
+
         if ($sort <= $departmentCount) {
             $departmentUpData = Department::where('sort', $sort)->first();
             if ($departmentUpData) {
@@ -124,15 +130,18 @@ class DepartmentController extends Controller
             $department->sort = $sort;
             $department->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Department sorted successfully.']);
     }
-    // Edit Department
+
+    // Show the form to edit an existing department
     public function edit($id)
     {
         $department = Department::find($id);
         return view('backend.department-edit', compact('department', 'id'));
     }
-    // Update Department
+
+    // Update an existing department in the database
     public function update(DepartmentUpdateRequest $request)
     {
         try {
@@ -142,12 +151,15 @@ class DepartmentController extends Controller
             $department->department_details = $request->department_details;
             $department->content_ar = $request->content_ar;
             $department->slug = $request->slug;
+
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $department->image = $imageName;
             }
+
             $department->save();
+
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Department updated successfully.']);
             } else {
@@ -167,14 +179,16 @@ class DepartmentController extends Controller
             }
         }
     }
-    // Delete Department
+
+    // Delete a department from the database
     public function destroy($id)
     {
         $department = Department::findOrFail($id);
         $department->delete();
         return response()->json(['status' => true, 'message' => 'Department deleted successfully']);
     }
-    // View Department
+
+    // Display the details of a specific department
     public function show(Request $request, $id)
     {
         $department = Department::find($id);

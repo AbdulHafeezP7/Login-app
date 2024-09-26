@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\DoctorRequest;
 use App\Http\Requests\DoctorUpdateRequest;
 
-// Controller For Doctor
+// Controller for managing Doctor records
 class DoctorController extends Controller
 {
-    // View Doctor Index
+    // Display the index view for Doctors
     public function index()
     {
         return view('backend.doctors');
     }
-    // Datatable For Doctor
+
+    // Retrieve and format data for the Doctors DataTable
     public function dataTablesForDoctors()
     {
         $query = Doctor::query()
-            ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table with doctor table
+            ->leftJoin('departments', 'doctors.department', '=', 'departments.id') // Join with departments table
             ->select('doctors.*', 'departments.department_en as department_name'); // Select the department name
+        
         return DataTables::of($query)
             ->addColumn('name_en', function ($row) {
                 return $row->name_en;
@@ -37,11 +39,7 @@ class DoctorController extends Controller
                 return $row->frontpage;
             })
             ->addColumn('image', function ($row) {
-                if ($row->image) {
-                    return $imageUrl = asset('images/' . $row->image);
-                } else {
-                    return 'No Image';
-                }
+                return $row->image ? asset('images/' . $row->image) : 'No Image';
             })
             ->addColumn('department', function ($row) {
                 return $row->department_name;
@@ -69,13 +67,15 @@ class DoctorController extends Controller
             })
             ->make(true);
     }
-    // Add Doctor
+
+    // Show the form to add a new Doctor
     public function addDoctors()
     {
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctorsAdd', compact('departments'));
     }
-    // Store Doctor
+
+    // Store a newly created Doctor in storage
     public function store(DoctorRequest $request)
     {
         try {
@@ -86,22 +86,26 @@ class DoctorController extends Controller
             $doctor->doctor_description = $request->doctor_description;
             $doctor->department = $request->department;
             $doctor->sort = $totalDoctors + 1;
+            
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $doctor->image = $imageName;
             }
+            
             $doctor->save();
             return response()->json(['status' => true, 'message' => 'Doctor created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Doctor
+
+    // Decrement the sort order of a Doctor
     public function doctorDecrement(Request $request)
     {
         $doctor = Doctor::find($request->doctorId);
         $sort = --$doctor->sort;
+        
         if ($sort >= 1) {
             $doctorDownData = Doctor::where('sort', $sort)->first();
             if ($doctorDownData) {
@@ -112,14 +116,17 @@ class DoctorController extends Controller
             $doctor->sort = $sort;
             $doctor->save();
         }
+        
         return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
     }
-    // Sort Increment Function For Doctor
+
+    // Increment the sort order of a Doctor
     public function doctorIncrement(Request $request)
     {
         $doctor = Doctor::find($request->doctorId);
         $sort = ++$doctor->sort;
         $doctorCount = Doctor::count('id');
+        
         if ($sort <= $doctorCount) {
             $doctorUpData = Doctor::where('sort', $sort)->first();
             if ($doctorUpData) {
@@ -130,16 +137,19 @@ class DoctorController extends Controller
             $doctor->sort = $sort;
             $doctor->save();
         }
+        
         return response()->json(['status' => true, 'message' => 'Doctor sorted successfully.']);
     }
-    // Edit Doctor
+
+    // Show the form for editing a specific Doctor
     public function edit($id)
     {
         $doctor = Doctor::find($id);
         $departments = DB::table('departments')->pluck('department_en', 'id');
         return view('backend.doctor-edit', compact('departments', 'doctor', 'id'));
     }
-    // Update Doctor
+
+    // Update the specified Doctor in storage
     public function update(DoctorUpdateRequest $request)
     {
         try {
@@ -148,12 +158,15 @@ class DoctorController extends Controller
             $doctor->name_ar = $request->name_ar;
             $doctor->doctor_description = $request->doctor_description;
             $doctor->department = $request->department;
+            
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $doctor->image = $imageName;
             }
+            
             $doctor->save();
+            
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Doctor updated successfully.']);
             } else {
@@ -173,24 +186,28 @@ class DoctorController extends Controller
             }
         }
     }
-    // Delete Doctor
+
+    // Remove the specified Doctor from storage
     public function destroy($id)
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->delete();
         return response()->json(['status' => true, 'message' => 'Doctor deleted successfully']);
     }
-    // View Doctor
+
+    // Display a specific Doctor's details
     public function show(Request $request, $id)
     {
         $doctor = Doctor::find($id);
         return view('backend.doctor-show', compact('doctor'));
     }
-    // Function For Togglebutton
+
+    // Toggle the frontpage status of a Doctor
     public function toggleFrontpage(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);
         $doctor->frontpage = $request->input('frontpage');
+        
         if ($doctor->save()) {
             return response()->json(['status' => true]);
         } else {

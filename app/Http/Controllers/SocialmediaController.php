@@ -8,15 +8,16 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\SocialmediaRequest;
 use App\Http\Requests\SocialmediaUpdateRequest;
 
-// Controller For Socialmedia
+// Controller for managing social media entries
 class SocialmediaController extends Controller
 {
-    // View Socialmedia Index
+    // Display the social media index view
     public function index()
     {
         return view('backend.socialmedias');
     }
-    // Datatable For Socialmedia
+
+    // Return data for the social media DataTable
     public function dataTablesForSocialmedias()
     {
         $query = Socialmedia::query();
@@ -25,11 +26,7 @@ class SocialmediaController extends Controller
                 return $row->socialmedia_url;
             })
             ->addColumn('socialmedia_image', function ($row) {
-                if ($row->socialmedia_image) {
-                    return $imageUrl = asset('images/' . $row->socialmedia_image); // Ensure this path is correct
-                } else {
-                    return 'No Image';
-                }
+                return $row->socialmedia_image ? asset('images/' . $row->socialmedia_image) : 'No Image';
             })
             ->addColumn('sort', function ($row) {
                 return $row->sort;
@@ -45,35 +42,42 @@ class SocialmediaController extends Controller
             })
             ->make(true);
     }
-    // Add Socialmedia
+
+    // Show the form for adding a new social media entry
     public function addSocialmedias()
     {
         return view('backend.socialmediasAdd');
     }
-    // Store Socialmedia
+
+    // Store a newly created social media entry
     public function store(SocialmediaRequest $request)
     {
         try {
             $totalSocialmedias = Socialmedia::count();
             $socialmedia = new Socialmedia;
             $socialmedia->socialmedia_url = $request->socialmedia_url;
+
+            // Handle image upload if a file is provided
             if ($request->hasFile('socialmedia_image')) {
                 $socialmediaImageName = time() . '_socialmedia.' . $request->socialmedia_image->extension();
                 $request->socialmedia_image->move(public_path('images'), $socialmediaImageName);
                 $socialmedia->socialmedia_image = $socialmediaImageName;
             }
-            $socialmedia->sort = $totalSocialmedias + 1;
+
+            $socialmedia->sort = $totalSocialmedias + 1; // Set the sort order
             $socialmedia->save();
             return response()->json(['status' => true, 'message' => 'Social Media created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Socialmedia
+
+    // Decrement the sort order for a social media entry
     public function socialmediaDecrement(Request $request)
     {
         $socialmedia = Socialmedia::find($request->socialmediaId);
         $sort = --$socialmedia->sort;
+
         if ($sort >= 1) {
             $socialmediaDownData = Socialmedia::where('sort', $sort)->first();
             if ($socialmediaDownData) {
@@ -84,14 +88,17 @@ class SocialmediaController extends Controller
             $socialmedia->sort = $sort;
             $socialmedia->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Social Media sorted successfully.']);
     }
-    // Sort IncrementFunction For Socialmedia
+
+    // Increment the sort order for a social media entry
     public function socialmediaIncrement(Request $request)
     {
         $socialmedia = Socialmedia::find($request->socialmediaId);
         $sort = ++$socialmedia->sort;
         $socialmediaCount = Socialmedia::count('id');
+
         if ($sort <= $socialmediaCount) {
             $socialmediaUpData = Socialmedia::where('sort', $sort)->first();
             if ($socialmediaUpData) {
@@ -102,27 +109,34 @@ class SocialmediaController extends Controller
             $socialmedia->sort = $sort;
             $socialmedia->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Social Media sorted successfully.']);
     }
-    // Edit Socialmedia
+
+    // Show the form for editing a social media entry
     public function edit($id)
     {
         $socialmedia = Socialmedia::find($id);
-
         return view('backend.socialmedia-edit', compact('socialmedia', 'id'));
     }
-    // Update Socialmedia
+
+    // Update an existing social media entry
     public function update(SocialmediaUpdateRequest $request)
     {
         try {
             $socialmedia = Socialmedia::findOrFail($request->id);
             $socialmedia->socialmedia_url = $request->socialmedia_url;
+
+            // Handle image upload if a file is provided
             if ($request->hasFile('socialmedia_image')) {
                 $socialmediaImageName = time() . '_socialmedia.' . $request->socialmedia_image->extension();
                 $request->socialmedia_image->move(public_path('images'), $socialmediaImageName);
                 $socialmedia->socialmedia_image = $socialmediaImageName;
             }
+
             $socialmedia->save();
+
+            // Return response based on request type
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Social Media updated successfully.']);
             } else {
@@ -142,14 +156,16 @@ class SocialmediaController extends Controller
             }
         }
     }
-    //  Delete Socialmedia
+
+    // Delete a social media entry
     public function destroy($id)
     {
         $socialmedia = Socialmedia::findOrFail($id);
         $socialmedia->delete();
         return response()->json(['status' => true, 'message' => 'Social Media deleted successfully']);
     }
-    // View Socialmedia
+
+    // Show a specific social media entry
     public function show(Request $request, $id)
     {
         $socialmedia = Socialmedia::find($id);

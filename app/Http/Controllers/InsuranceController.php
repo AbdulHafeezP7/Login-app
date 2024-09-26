@@ -8,15 +8,16 @@ use Yajra\DataTables\DataTables;
 use App\Http\Requests\InsuranceRequest;
 use App\Http\Requests\InsuranceUpdateRequest;
 
-// Controller For Insurance
+// Controller for managing Insurance
 class InsuranceController extends Controller
 {
-    // View Insurance Index
+    // Display the index page for Insurance
     public function index()
     {
         return view('backend.insurances');
     }
-    // Datatable for Insurance
+
+    // Retrieve data for Insurance DataTables
     public function dataTablesForInsurances()
     {
         $query = Insurance::query();
@@ -29,7 +30,7 @@ class InsuranceController extends Controller
             })
             ->addColumn('image', function ($row) {
                 if ($row->image) {
-                    return $imageUrl = asset('images/' . $row->image); // Ensure this path is correct
+                    return asset('images/' . $row->image); // Ensure this path is correct
                 } else {
                     return 'No Image';
                 }
@@ -51,12 +52,14 @@ class InsuranceController extends Controller
             })
             ->make(true);
     }
-    // Add Insurance
+
+    // Show the form for adding a new Insurance
     public function addInsurances()
     {
         return view('backend.insurancesAdd');
     }
-    // Store Insurance
+
+    // Store a newly created Insurance
     public function store(InsuranceRequest $request)
     {
         try {
@@ -65,22 +68,27 @@ class InsuranceController extends Controller
             $insurance->insurance_en = $request->insurance_en;
             $insurance->insurance_ar = $request->insurance_ar;
             $insurance->sort = $totalInsurances + 1;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $insurance->image = $imageName;
             }
+
             $insurance->save();
             return response()->json(['status' => true, 'message' => 'Insurance created successfully.']);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()], 400);
         }
     }
-    // Sort Decrement Function For Insurance
+
+    // Decrement the sort order for Insurance
     public function insuranceDecrement(Request $request)
     {
         $insurance = Insurance::find($request->insuranceId);
         $sort = --$insurance->sort;
+
         if ($sort >= 1) {
             $insuranceDownData = Insurance::where('sort', $sort)->first();
             if ($insuranceDownData) {
@@ -91,14 +99,17 @@ class InsuranceController extends Controller
             $insurance->sort = $sort;
             $insurance->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Insurance sorted successfully.']);
     }
-    // Sort Increment Function For Insurance 
+
+    // Increment the sort order for Insurance
     public function insuranceIncrement(Request $request)
     {
         $insurance = Insurance::find($request->insuranceId);
         $sort = ++$insurance->sort;
         $insuranceCount = Insurance::count('id');
+
         if ($sort <= $insuranceCount) {
             $insuranceUpData = Insurance::where('sort', $sort)->first();
             if ($insuranceUpData) {
@@ -109,26 +120,32 @@ class InsuranceController extends Controller
             $insurance->sort = $sort;
             $insurance->save();
         }
+
         return response()->json(['status' => true, 'message' => 'Insurance sorted successfully.']);
     }
-    // Edit Insurance
+
+    // Show the form for editing Insurance
     public function edit($id)
     {
         $singleInsurance = Insurance::find($id);
         return view('backend.insurance-edit', compact('singleInsurance', 'id'));
     }
-    // Update Insurance
+
+    // Update the specified Insurance
     public function update(InsuranceUpdateRequest $request)
     {
         try {
             $insurance = Insurance::findOrFail($request->id);
             $insurance->insurance_en = $request->insurance_en;
             $insurance->insurance_ar = $request->insurance_ar;
+
+            // Handle image upload
             if ($request->hasFile('image')) {
                 $imageName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $imageName);
                 $insurance->image = $imageName;
             }
+
             $insurance->save();
             if ($request->ajax()) {
                 return response()->json(['status' => true, 'message' => 'Insurance updated successfully.']);
@@ -149,14 +166,16 @@ class InsuranceController extends Controller
             }
         }
     }
-    // Delete Insurance
+
+    // Remove the specified Insurance
     public function destroy($id)
     {
         $insurance = Insurance::findOrFail($id);
         $insurance->delete();
-        return response()->json(['status' => true, 'message' => 'Insurance deleted successfully'],);
+        return response()->json(['status' => true, 'message' => 'Insurance deleted successfully']);
     }
-    // View Insurance
+
+    // Display the specified Insurance
     public function show(Request $request, $id)
     {
         $singleInsurance = Insurance::find($id);
